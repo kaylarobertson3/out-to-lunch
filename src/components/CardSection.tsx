@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card"
-import { COLOR } from "../theme";
+import { COLOR } from "@src/theme";
 
 const CardSectionWrapper = styled.section`
 `

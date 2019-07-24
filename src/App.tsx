@@ -5,7 +5,7 @@ import FancyDiv from '@components/FancyDiv'
 import Dynamic from '@components/Dynamic'
 import './app.css'
 import styled from "styled-components";
-import { FONT, COLOR } from "./theme";
+import { FONT, COLOR } from "@src/theme";
 
 const Site = styled.div`
   display: flex;
@@ -33,12 +33,16 @@ const Site = styled.div`
   button {
     cursor: pointer;
   }
+
+  a {
+    color: ${COLOR.black};
+    text-decoration: none;
+  }
 `
 const Nav = styled.nav`
   padding: 1rem;
 
   a {
-    color: ${COLOR.black};
     margin-right: .5rem;
   }
 `

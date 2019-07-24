@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR } from "../theme";
+import { COLOR } from "@src/theme";
 
 const CardLink = styled.a`
 
@@ -46,7 +46,7 @@ const Name = styled.h3`
 `
 
 const Tags = styled.div`
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -60,6 +60,10 @@ const Tag = styled.h5`
 `
 
 const Icons = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
     img {
         width: 15px;
         margin: 5px;
@@ -71,6 +75,9 @@ const DataRow = styled.div`
     flex-direction: row;
     background: ${COLOR.lightGray};
     border-radius: 10px;
+    position: absolute;
+    right: 1.5rem;
+    margin-top: -2rem;
 `
 
 const Price = styled.h5`
@@ -96,6 +103,10 @@ class Card extends React.Component<{
                         <Img src={imgUrl} alt={name} />
                     </ImgContainer>
                     <TextContainer>
+                        <DataRow>
+                            <Price>{price}</Price>
+                            <Rating>{rating}</Rating>
+                        </DataRow>
                         <Name>{name}</Name>
                         <Tags>
                             <Tag>Tags</Tag>
@@ -107,13 +118,9 @@ class Card extends React.Component<{
                             <Img src="../img/burger.png" alt="" />
                             <Img src="../img/burger.png" alt="" />
                         </Icons>
-                        <DataRow>
-                            <Price>{price}</Price>
-                            <Rating>{rating}</Rating>
-                        </DataRow>
                     </TextContainer>
                 </CardContainer >
-            </CardLink>
+            </CardLink >
         )
     }
 }
