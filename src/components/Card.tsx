@@ -8,13 +8,13 @@ const CardLink = styled.a`
 
 const CardContainer = styled.div`
     background: ${COLOR.white};
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0 1rem 0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
+/*     
     :hover img {
         opacity: 1;
         transform: scale(1.1);
-    }  
+    }   */
     `
 
 const ImgContainer = styled.div`
@@ -39,6 +39,7 @@ const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
 `
 
 const Name = styled.h3`
@@ -71,13 +72,17 @@ const Icons = styled.div`
 `
 
 const DataRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    background: ${COLOR.lightGray};
-    border-radius: 10px;
+    align-self: flex-end;
     position: absolute;
-    right: 1.5rem;
-    margin-top: -2rem;
+    margin: -2rem 0 0 0;
+}
+    div {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        background: rgb(242, 242, 242);
+        z-index: 1;
+    }
 `
 
 const Price = styled.h5`
@@ -88,14 +93,19 @@ const Rating = styled.h5`
     margin: .5rem;    
 `
 
+const Distance = styled.h5`
+    margin: .5rem;    
+`
+
 class Card extends React.Component<{
     imgUrl: string;
     price: string;
     name: string;
     rating: number;
+    distance: number;
 }>{
     render() {
-        const { imgUrl, price, name, rating } = this.props
+        const { imgUrl, price, name, rating, distance } = this.props
         return (
             <CardLink href="/">
                 <CardContainer>
@@ -104,8 +114,11 @@ class Card extends React.Component<{
                     </ImgContainer>
                     <TextContainer>
                         <DataRow>
-                            <Price>{price}</Price>
-                            <Rating>{rating}</Rating>
+                            <div>
+                                <Price>{price}</Price>
+                                <Rating>{rating}</Rating>
+                                <Distance>{distance} mins</Distance>
+                            </div>
                         </DataRow>
                         <Name>{name}</Name>
                         <Tags>

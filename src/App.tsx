@@ -34,6 +34,11 @@ const Site = styled.div`
     cursor: pointer;
   }
 
+  select {
+    font: normal 300 16px/23px ${FONT.sansSerif};
+    padding: 8px 10px;
+  }
+
   a {
     color: ${COLOR.black};
     text-decoration: none;

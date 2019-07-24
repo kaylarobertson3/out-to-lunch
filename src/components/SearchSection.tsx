@@ -35,7 +35,6 @@ const Input = styled.input`
     width: 100%;
 `
 
-
 class Comp extends React.Component<{
     // handleSubmit: () => any;
 }> {

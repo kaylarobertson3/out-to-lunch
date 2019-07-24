@@ -6,11 +6,26 @@ import SearchSection from "@components/SearchSection"
 
 // console.log("data", data)
 
-console.log
-export default () => (
-  <>
-    <Hero />
-    <CardSection />
-    <SearchSection />
-  </>
-);
+class Home extends React.Component<{}, {}>{
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("this.state", this.state);
+  }
+
+  render() {
+
+    return (
+      <>
+        <Hero handleClick={this.handleSubmit} />
+        <CardSection />
+        <SearchSection />
+      </>
+    )
+  }
+}
+
+
+
+
+export default Home;

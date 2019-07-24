@@ -21,20 +21,30 @@ const Sort = styled.button`
     background: none;
 `
 
-const Cards = styled.div`
+const Cards = styled.div<{ listView: boolean }>`
+    display: ${props => props.listView ? "block" : "grid"};
+    /* display: grid; */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
 `
 
-class CardSection extends React.Component<{
+class CardSection extends React.Component<{}, {
+    listView: boolean;
 }>{
     constructor(props) {
         super(props);
         this.state = {
-
+            listView: false
         }
+        this.toggleListView = this.toggleListView.bind(this);
     }
 
-    handleClick = () => {
-
+    toggleListView(e) {
+        e.preventDefault();
+        this.setState({
+            listView: !this.state.listView
+        })
     }
 
     render() {
@@ -42,13 +52,13 @@ class CardSection extends React.Component<{
             <CardSectionWrapper>
                 <MenuBar>
                     Results
-                <ListViewBtn onClick={this.handleClick}>List view</ListViewBtn>
+                <ListViewBtn onClick={this.toggleListView}>List view</ListViewBtn>
                     <Sort>Sort <img src="../img/arrow.png" alt="" /></Sort>
                 </MenuBar>
-                <Cards>
-                    <Card name={"Pizza Place"} imgUrl={"../img/cards/pizza.jpg"} price={'$'} rating={3.9} />
-                    <Card name={"Tommi's Burger Joint"} imgUrl={"../img/cards/burger.jpg"} price={'$$$'} rating={4.5} />
-                    <Card name={"Heno Heno"} imgUrl={"../img/cards/ramen.jpg"} price={'$$'} rating={4.9} />
+                <Cards listView={this.state.listView}>
+                    <Card name={"Pizza Place"} imgUrl={"../img/cards/pizza.jpg"} price={'$'} rating={3.9} distance={7} />
+                    <Card name={"Tommi's Burger Joint"} imgUrl={"../img/cards/burger.jpg"} price={'$$$'} rating={4.5} distance={7} />
+                    <Card name={"Heno Heno"} imgUrl={"../img/cards/ramen.jpg"} price={'$$'} rating={4.9} distance={7} />
                 </Cards>
             </CardSectionWrapper>
         )
