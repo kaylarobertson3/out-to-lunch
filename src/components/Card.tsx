@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { COLOR } from "../theme";
 
-const Card = styled.div`
+const CardContainer = styled.div`
     background: ${COLOR.white};
     margin: 1rem 0 2rem 0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);`
@@ -63,29 +63,40 @@ const Rating = styled.h5`
     margin: .5rem;    
 `
 
+class Card extends React.Component<{}>{
+    constructor(props) {
+        super(props);
+        this.state = {
 
+        }
+    }
 
-export default () => (
-    <Card>
-        <ImgContainer>
-            <Img src="../img/burger.png" alt="" />
-        </ImgContainer>
-        <TextContainer>
-            <Name>Heno Heno</Name>
-            <Tags>
-                <Tag>Tags</Tag>
-                <Tag>Tags</Tag>
-                <Tag>Tags</Tag>
-            </Tags>
-            <Icons>
-                <Img src="../img/burger.png" alt="" />
-                <Img src="../img/burger.png" alt="" />
-                <Img src="../img/burger.png" alt="" />
-            </Icons>
-            <DataRow>
-                <Price>$$$</Price>
-                <Rating>4.9</Rating>
-            </DataRow>
-        </TextContainer>
-    </Card>
-);
+    render() {
+        return (
+            <CardContainer>
+                <ImgContainer>
+                    <Img src="../img/burger.png" alt="" />
+                </ImgContainer>
+                <TextContainer>
+                    <Name>Heno Heno</Name>
+                    <Tags>
+                        <Tag>Tags</Tag>
+                        <Tag>Tags</Tag>
+                        <Tag>Tags</Tag>
+                    </Tags>
+                    <Icons>
+                        <Img src="../img/burger.png" alt="" />
+                        <Img src="../img/burger.png" alt="" />
+                        <Img src="../img/burger.png" alt="" />
+                    </Icons>
+                    <DataRow>
+                        <Price>$$$</Price>
+                        <Rating>4.9</Rating>
+                    </DataRow>
+                </TextContainer>
+            </CardContainer>
+        )
+    }
+}
+
+export default Card;

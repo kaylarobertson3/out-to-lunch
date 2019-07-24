@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR } from "../theme";
-// import { render } from "react-dom";
 
 const SearchSection = styled.section`
     display: flex;
