@@ -98,7 +98,7 @@ const CuisineFilter = styled.select`
   }
 `
 
-class Hero extends React.Component<{ handleClick: any }, { cuisine: string, price: number, distance: number }>{
+class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: any, distance: number }>{
   constructor(props) {
     super(props);
     this.state = {
@@ -108,16 +108,10 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: string, pric
     }
   }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("this.state", this.state);
-  // }
-
   handleChange = (e) => {
     const key = e.target.name;
     const value = e.target.value
     this.state[key] = value
-    console.log("key and value:", key + " " + value)
   }
 
   render() {
@@ -135,7 +129,7 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: string, pric
               <CuisineFilter name="cuisine" onChange={this.handleChange}>
                 <option value="anything">Anything</option>
                 <option value="ramen">ramen</option>
-                <option value="pizza">pizza</option>
+                <option value="Japanese">Japanese</option>
               </CuisineFilter>
             </div>
             <div>

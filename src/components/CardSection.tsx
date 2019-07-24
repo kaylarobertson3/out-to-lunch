@@ -18,8 +18,18 @@ const ListViewBtn = styled.button`
     background: none;
 `
 
+const SortDropdown = styled.div`
+    position: absolute;
+    z-index: 1;
+    background: ${COLOR.lightGray};
+    padding: 8px 10px;
+
+    p {
+      margin: .5rem 0;
+    }
+  `
+
 const Sort = styled.button`
-    margin-left: 1rem;
     color: ${COLOR.black};
     background: none;
 `
@@ -35,13 +45,16 @@ class CardSection extends React.Component<{
   cardData: any;
 }, {
   listView: boolean;
+  showOptions: boolean;
 }>{
   constructor(props) {
     super(props);
     this.state = {
-      listView: false
+      listView: false,
+      showOptions: false
     }
     this.toggleListView = this.toggleListView.bind(this);
+    this.showSortOptions = this.showSortOptions.bind(this);
   }
 
   toggleListView(e) {
@@ -51,26 +64,47 @@ class CardSection extends React.Component<{
     })
   }
 
+  showSortOptions(e) {
+    e.preventDefault();
+    console.log("sort hovered or clicked")
+    this.setState({
+      showOptions: !this.state.showOptions
+    })
+  }
+
   render() {
     const { cardData } = this.props;
-    console.log("cardData", cardData)
+    const listViewText = this.state.listView ? "Grid View" : "List View";
     return (
       <CardSectionWrapper>
         <MenuBar>
           <MenuLeft>
             X Results
-            <ListViewBtn onClick={this.toggleListView}>List view</ListViewBtn>
+            <ListViewBtn onClick={this.toggleListView}>
+              {listViewText}
+            </ListViewBtn>
           </MenuLeft>
           <MenuRight>
-            <Sort>Sort <img src="../img/arrow.png" alt="" /></Sort>
+            <Sort onClick={this.showSortOptions}>Sort <img src="../img/arrow.png" alt="" /></Sort>
+            {this.state.showOptions &&
+              <SortDropdown>
+                <p>A-Z</p>
+                <p>price: <img src="../img/arrow.png" alt="" /></p>
+                <p>price: <img src="../img/arrow.png" alt="" /></p>
+              </SortDropdown>
+            }
           </MenuRight>
         </MenuBar>
 
         <Cards listView={this.state.listView}>
+          {cardData.length < 1 &&
+            <p>
+              sorry, no results
+            </p >
+          }
           {cardData.map((d, i) => {
-            console.log("d", d)
             return (
-              < Card key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} />
+              < Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} />
             )
           })}
         </Cards>

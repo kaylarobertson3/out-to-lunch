@@ -6,32 +6,28 @@ const CardLink = styled.a`
 
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ listView: boolean }>`
     background: ${COLOR.white};
     margin: 1rem 0 1rem 0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-/*
-    :hover img {
-        opacity: 1;
-        transform: scale(1.1);
-    }   */
-    `
+    display: ${props => props.listView ? "flex" : "block"};
+  `
 
-const ImgContainer = styled.div`
+const ImgContainer = styled.div<{ listView: boolean }>`
     background: ${COLOR.black};
     overflow: hidden;
     background: black;
-    height: 200px;
-
+    height: ${props => props.listView ? "auto" : "200px"};
+    max-width: ${props => props.listView ? "100px" : "100%"};
 `
 
 const Img = styled.img`
     margin: 0 0 -1rem 0;
     object-fit: cover;
-    min-height: 100%;
     width: 100%;
     opacity: 0.9;
     transition: all 0.2s ease;
+    min-height: 100%;
 `
 
 const TextContainer = styled.div`
@@ -40,6 +36,7 @@ const TextContainer = styled.div`
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+    width: 100%;
 `
 
 const Name = styled.h3`
@@ -72,10 +69,11 @@ const Icons = styled.div`
     }
 `
 
-const DataRow = styled.div`
+const DataRow = styled.div<{ listView: boolean }>`
     align-self: flex-end;
-    position: absolute;
-    margin: -2rem 0 0 0;
+    position: ${props => props.listView ? "relative" : "absolute"};
+    margin: ${props => props.listView ? "0" : " -2rem 0 0 0"}
+    /* margin: -2rem 0 0 0; */
 }
     div {
         display: flex;
@@ -104,24 +102,25 @@ class Card extends React.Component<{
   name: string;
   rating: number;
   distance: number;
+  listView: boolean;
 }>{
   render() {
-    const { imgUrl, price, name, rating, distance } = this.props
+    const { imgUrl, price, name, rating, distance, listView } = this.props
     return (
       <CardLink href="/">
-        <CardContainer>
-          <ImgContainer>
+        <CardContainer listView={listView}>
+          <ImgContainer listView={listView}>
             <Img src={imgUrl} alt={name} />
           </ImgContainer>
           <TextContainer>
-            <DataRow>
+            <Name>{name}</Name>
+            <DataRow listView={listView}>
               <div>
                 <Price>{price}</Price>
                 <Rating>{rating}</Rating>
                 <Distance>{distance} mins</Distance>
               </div>
             </DataRow>
-            <Name>{name}</Name>
             <Tags>
               <Tag>Tags</Tag>
               <Tag>Tags</Tag>
