@@ -1,2 +1,2 @@
-tmp/dev-server
-node_modules
+tmp
+/node_modules
