@@ -1,0 +1,46 @@
+{
+  "name": "react-static-example-typescript",
+  "private": true,
+  "scripts": {
+    "start": "react-static start",
+    "stage": "react-static build --staging",
+    "build": "react-static build",
+    "bundle": "react-static bundle",
+    "export": "react-static export",
+    "serve": "serve dist -p 3000 -s"
+  },
+  "dependencies": {
+    "@humblebee/styled-components-breakpoint": "^2.1.4",
+    "@reach/router": "^1.2.1",
+    "@types/styled-components": "^4.1.18",
+    "axios": "^0.18.1",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-static": "^7.1.0",
+    "react-static-plugin-reach-router": "^7.0.0",
+    "react-static-plugin-sitemap": "^7.0.0",
+    "react-static-plugin-source-filesystem": "^7.0.0",
+    "react-static-plugin-typescript": "^7.0.0",
+    "styled-components": "^4.3.2",
+    "styled-components-breakpoint": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.23",
+    "@types/reach__router": "^1.2.2",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
+    "@types/react-hot-loader": "^4.1.0",
+    "@types/webpack-env": "^1.13.6",
+    "babel-eslint": "9.x",
+    "eslint": "5.x",
+    "eslint-config-react-app": "^3.0.8",
+    "eslint-config-react-tools": "1.x.x",
+    "eslint-plugin-flowtype": "2.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-react": "7.x",
+    "react-static-plugin-typescript": "^7.0.10",
+    "serve": "10.1.2",
+    "typescript": "^3.4.1"
+  }
+}
