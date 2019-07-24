@@ -1,8 +1,8 @@
 import React from 'react'
 import { Root, Routes, addPrefetchExcludes } from 'react-static'
 import { Link, Router } from '@reach/router'
-import FancyDiv from 'components/FancyDiv'
-import Dynamic from 'components/Dynamic'
+import FancyDiv from '@components/FancyDiv'
+import Dynamic from '@components/Dynamic'
 import './app.css'
 import styled from "styled-components";
 import { FONT, COLOR } from "./theme";
@@ -30,6 +30,9 @@ const Site = styled.div`
     border: none;
   }
 
+  button {
+    cursor: pointer;
+  }
 `
 const Nav = styled.nav`
   padding: 1rem;

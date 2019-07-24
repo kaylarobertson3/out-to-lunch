@@ -66,6 +66,7 @@ class Comp extends React.Component<{
                         <SearchButton>Search</SearchButton>
                     </form>
                 </Section>
+                <hr style={{ width: 100 + "%", margin: 2 + "rem" }} />
                 <Section>
                     <h2>Can't decide?</h2>
                     <p>Click the randomize button and we’ll choose a random resturant for you.</p>

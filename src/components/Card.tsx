@@ -20,7 +20,6 @@ const TextContainer = styled.div`
 
 const Img = styled.img`
     max-width: 100%;
-    opacity: 0;
 `
 
 const Name = styled.h3`
@@ -63,22 +62,21 @@ const Rating = styled.h5`
     margin: .5rem;    
 `
 
-class Card extends React.Component<{}>{
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-
+class Card extends React.Component<{
+    imgUrl: string;
+    price: string;
+    name: string;
+    rating: number;
+}>{
     render() {
+        const { imgUrl, price, name, rating } = this.props
         return (
             <CardContainer>
                 <ImgContainer>
-                    <Img src="../img/burger.png" alt="" />
+                    <Img src={imgUrl} alt={name} />
                 </ImgContainer>
                 <TextContainer>
-                    <Name>Heno Heno</Name>
+                    <Name>{name}</Name>
                     <Tags>
                         <Tag>Tags</Tag>
                         <Tag>Tags</Tag>
@@ -90,11 +88,11 @@ class Card extends React.Component<{}>{
                         <Img src="../img/burger.png" alt="" />
                     </Icons>
                     <DataRow>
-                        <Price>$$$</Price>
-                        <Rating>4.9</Rating>
+                        <Price>{price}</Price>
+                        <Rating>{rating}</Rating>
                     </DataRow>
                 </TextContainer>
-            </CardContainer>
+            </CardContainer >
         )
     }
 }
