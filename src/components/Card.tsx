@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR } from "@src/theme";
+import { COLOR, FONT } from "@src/theme";
 
 const CardLink = styled.a`
 
@@ -10,7 +10,7 @@ const CardContainer = styled.div`
     background: ${COLOR.white};
     margin: 1rem 0 1rem 0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-/*     
+/*
     :hover img {
         opacity: 1;
         transform: scale(1.1);
@@ -43,7 +43,8 @@ const TextContainer = styled.div`
 `
 
 const Name = styled.h3`
-
+    /* font: normal 700 19px/1.2 ${FONT.serif};
+    letter-spacing: 1.2px; */
 `
 
 const Tags = styled.div`
@@ -90,52 +91,52 @@ const Price = styled.h5`
 `
 
 const Rating = styled.h5`
-    margin: .5rem;    
+    margin: .5rem;
 `
 
 const Distance = styled.h5`
-    margin: .5rem;    
+    margin: .5rem;
 `
 
 class Card extends React.Component<{
-    imgUrl: string;
-    price: string;
-    name: string;
-    rating: number;
-    distance: number;
+  imgUrl: string;
+  price: string;
+  name: string;
+  rating: number;
+  distance: number;
 }>{
-    render() {
-        const { imgUrl, price, name, rating, distance } = this.props
-        return (
-            <CardLink href="/">
-                <CardContainer>
-                    <ImgContainer>
-                        <Img src={imgUrl} alt={name} />
-                    </ImgContainer>
-                    <TextContainer>
-                        <DataRow>
-                            <div>
-                                <Price>{price}</Price>
-                                <Rating>{rating}</Rating>
-                                <Distance>{distance} mins</Distance>
-                            </div>
-                        </DataRow>
-                        <Name>{name}</Name>
-                        <Tags>
-                            <Tag>Tags</Tag>
-                            <Tag>Tags</Tag>
-                            <Tag>Tags</Tag>
-                        </Tags>
-                        <Icons>
-                            <Img src="../img/burger.png" alt="" />
-                            <Img src="../img/burger.png" alt="" />
-                            <Img src="../img/burger.png" alt="" />
-                        </Icons>
-                    </TextContainer>
-                </CardContainer >
-            </CardLink >
-        )
-    }
+  render() {
+    const { imgUrl, price, name, rating, distance } = this.props
+    return (
+      <CardLink href="/">
+        <CardContainer>
+          <ImgContainer>
+            <Img src={imgUrl} alt={name} />
+          </ImgContainer>
+          <TextContainer>
+            <DataRow>
+              <div>
+                <Price>{price}</Price>
+                <Rating>{rating}</Rating>
+                <Distance>{distance} mins</Distance>
+              </div>
+            </DataRow>
+            <Name>{name}</Name>
+            <Tags>
+              <Tag>Tags</Tag>
+              <Tag>Tags</Tag>
+              <Tag>Tags</Tag>
+            </Tags>
+            <Icons>
+              <Img src="../img/burger.png" alt="" />
+              <Img src="../img/burger.png" alt="" />
+              <Img src="../img/burger.png" alt="" />
+            </Icons>
+          </TextContainer>
+        </CardContainer >
+      </CardLink >
+    )
+  }
 }
 
 export default Card;

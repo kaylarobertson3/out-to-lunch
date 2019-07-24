@@ -4,8 +4,6 @@ import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
 import data from "@src/data/data.json"
 
-// console.log("data", data)
-
 class Home extends React.Component<{}, { data: Object }>{
   constructor(props) {
     super(props);
@@ -19,21 +17,18 @@ class Home extends React.Component<{}, { data: Object }>{
 
   handleSubmit = (stuff) => {
     console.log("stuff,", stuff)
+    //filter data based on stuff, then pass to card section
   }
 
   render() {
-
     return (
       <>
         <Hero handleClick={this.handleSubmit} />
-        <CardSection />
+        <CardSection cardData={data} />
         <SearchSection />
       </>
     )
   }
 }
-
-
-
 
 export default Home;

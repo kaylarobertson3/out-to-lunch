@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR } from "@src/theme";
+import { COLOR, BREAKPOINT } from "@src/theme";
 
 const HeroContainer = styled.section`
-  margin: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,18 +13,22 @@ const Img = styled.img`
 `
 const MainSearch = styled.div`
   margin: 1rem 0;
-  text-align: center; 
+  text-align: center;
 `
 
 const Filters = styled.form`
   margin-top: 1rem;
 
+  ${BREAKPOINT.m`
+    display: flex;
+    `};
   div {
-    /* DESKTOP */
-    /* margin-top: 1rem;
+    /* ${BREAKPOINT.m`
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
-    align-items: flex-start; */
+    align-items: flex-start;
+    `}; */
   }
 `
 
