@@ -60,10 +60,7 @@ function App() {
     <Root>
       <Site>
         <Nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/dynamic">Dynamic</Link>
+          <Link to="/">Out to Lunch with IGG</Link>
         </Nav>
         <Content>
           <FancyDiv>
