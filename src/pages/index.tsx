@@ -2,15 +2,23 @@ import React from "react";
 import Hero from "@components/Hero"
 import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
-// import data from "@src/data/data.json"
+import data from "@src/data/data.json"
 
 // console.log("data", data)
 
-class Home extends React.Component<{}, {}>{
+class Home extends React.Component<{}, { data: Object }>{
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: data,
+      // cuisine: null,
+      // price: null,
+      // distance: null
+    }
+  }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("this.state", this.state);
+  handleSubmit = (stuff) => {
+    console.log("stuff,", stuff)
   }
 
   render() {

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR } from "@src/theme";
-import data from "@src/data/data.json"
 
 const HeroContainer = styled.section`
   margin: 1rem;
@@ -96,27 +95,26 @@ const CuisineFilter = styled.select`
   }
 `
 
-class Hero extends React.Component<{}, { data: Object, cuisine: string, price: number, distance: number }>{
+class Hero extends React.Component<{ handleClick: any }, { cuisine: string, price: number, distance: number }>{
   constructor(props) {
     super(props);
     this.state = {
-      data: data,
       cuisine: null,
       price: null,
       distance: null
     }
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("this.state", this.state);
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("this.state", this.state);
+  // }
 
   handleChange = (e) => {
     const key = e.target.name;
     const value = e.target.value
     this.state[key] = value
-    console.log("changing state to: ", key + ": " + value)
+    console.log("key and value:", key + " " + value)
   }
 
   render() {
@@ -155,7 +153,10 @@ class Hero extends React.Component<{}, { data: Object, cuisine: string, price: n
                 <option value="10+">10+</option>
               </CuisineFilter>
             </div>
-            <FindFoodBtn onClick={handleClick}>
+            <FindFoodBtn onClick={(e) => {
+              e.preventDefault();
+              handleClick(this.state)
+            }}>
               Find Food!
             </FindFoodBtn>
           </Filters>
