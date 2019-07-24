@@ -22,7 +22,8 @@
     "react-static-plugin-source-filesystem": "^7.0.0",
     "react-static-plugin-typescript": "^7.0.0",
     "styled-components": "^4.3.2",
-    "styled-components-breakpoint": "^2.1.1"
+    "styled-components-breakpoint": "^2.1.1",
+    "stylis": "^3.5.4"
   },
   "devDependencies": {
     "@types/node": "^10.12.23",
