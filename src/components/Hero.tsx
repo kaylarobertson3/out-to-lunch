@@ -22,14 +22,6 @@ const Filters = styled.form`
   ${BREAKPOINT.m`
     display: flex;
     `};
-  div {
-    /* ${BREAKPOINT.m`
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    `}; */
-  }
 `
 
 const Label = styled.p`
@@ -108,15 +100,11 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: 
     }
   }
 
-  handleChange = (e) => {
-    const key = e.target.name;
-    const value = e.target.value
-    this.state[key] = value
-  }
 
   render() {
 
     const { handleClick } = this.props;
+
 
     return (
       <HeroContainer>
@@ -126,13 +114,19 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: 
           <Filters>
             <div>
               <Label>I want to eat</Label>
-              <CuisineFilter name="cuisine" onChange={this.handleChange}>
-                <option value="anything">Anything</option>
+              <CuisineFilter name="cuisine" onChange={(e) => {
+                const key = e.target.name;
+                const value = e.target.value
+
+                handleClick(key, value);
+                // this.state[key] = value
+              }}>
+                <option value="all">Anything</option>
                 <option value="ramen">ramen</option>
                 <option value="Japanese">Japanese</option>
               </CuisineFilter>
             </div>
-            <div>
+            {/* <div>
               <Label>I'd like to spend </Label>
               <CuisineFilter name="price" onChange={this.handleChange}>
                 <option value="any">Any price</option>
@@ -140,8 +134,8 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: 
                 <option value="10">around 10</option>
                 <option value="10+++">more than ten</option>
               </CuisineFilter>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <Label> I'm up for walking</Label>
               <CuisineFilter name="distance" onChange={this.handleChange}>
                 <option value="any">Any distance</option>
@@ -149,13 +143,13 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: 
                 <option value="10 ish">under 10 minutes</option>
                 <option value="10+">10+</option>
               </CuisineFilter>
-            </div>
-            <FindFoodBtn onClick={(e) => {
+            </div> */}
+            {/* <FindFoodBtn onClick={(e) => {
               e.preventDefault();
-              handleClick(this.state)
+              // handleClick(this.state)
             }}>
               Find Food!
-            </FindFoodBtn>
+            </FindFoodBtn> */}
           </Filters>
         </MainSearch>
       </HeroContainer>

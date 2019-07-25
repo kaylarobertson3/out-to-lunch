@@ -43,6 +43,9 @@ const Cards = styled.div<{ listView: boolean }>`
 
 class CardSection extends React.Component<{
   cardData: any;
+  sortAz: any;
+  sortRating: any;
+  sortDistance: any;
 }, {
   listView: boolean;
   showOptions: boolean;
@@ -71,8 +74,9 @@ class CardSection extends React.Component<{
     })
   }
 
+
   render() {
-    const { cardData } = this.props;
+    const { cardData, sortAz, sortRating, sortDistance } = this.props;
     const listViewText = this.state.listView ? "Grid View" : "List View";
     return (
       <CardSectionWrapper>
@@ -87,9 +91,9 @@ class CardSection extends React.Component<{
             <Sort onClick={this.showSortOptions}>Sort <img src="../img/arrow.png" alt="" /></Sort>
             {this.state.showOptions &&
               <SortDropdown>
-                <p>A-Z</p>
-                <p>price: <img src="../img/arrow.png" alt="" /></p>
-                <p>price: <img src="../img/arrow.png" alt="" /></p>
+                <p onClick={sortAz}>A-Z</p>
+                <p onClick={sortRating}>highest rating: <img src="../img/arrow.png" alt="" /></p>
+                <p onClick={sortDistance}>shortest distance <img src="../img/arrow.png" alt="" /></p>
               </SortDropdown>
             }
           </MenuRight>
