@@ -3,19 +3,21 @@ import Hero from "@components/Hero"
 import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
 import data from "@src/data/data.json"
+import { any } from "prop-types";
 
-class Home extends React.Component<{}, { data: Object, cuisine: any, price: any, distance: any }>{
+class Home extends React.Component<{}, { data: Object, cuisine: any, price: any, distance: any, selectedRestaurantId: any }>{
   constructor(props) {
     super(props);
     this.state = {
       data: data,
       cuisine: null,
       price: null,
-      distance: null
+      distance: null,
+      selectedRestaurantId: null
     }
   }
 
-  handleSubmit = (filterTerms) => {
+  handleFilter = (filterTerms) => {
     const { cuisine, price, distance } = filterTerms;
 
     let filteredData;
@@ -31,14 +33,27 @@ class Home extends React.Component<{}, { data: Object, cuisine: any, price: any,
     })
   }
 
+  handleRandomize = () => {
+    console.log("randomizing based on all data")
+    const random = data[0];
+    console.log("data.length", data.length);
+    this.setState({
+      selectedRestaurantId: data[0]
+    })
+  }
+
+  handleSearch = (searchTerms) => {
+    console.log("searching with: ", searchTerms)
+  }
+
   render() {
 
 
     return (
       <>
-        <Hero handleClick={this.handleSubmit} />
+        <Hero handleClick={this.handleFilter} />
         <CardSection cardData={this.state.data} />
-        <SearchSection />
+        <SearchSection handleSearchClick={this.handleSearch} handleRandomizeClick={this.handleRandomize} />
       </>
     )
   }

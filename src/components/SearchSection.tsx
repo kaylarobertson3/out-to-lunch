@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT } from "@src/theme";
 
-const SearchSection = styled.section`
+const SearchSectionContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,8 +56,10 @@ const Input = styled.input`
 `
 
 
-class Comp extends React.Component<{
+class SearchSection extends React.Component<{
   // handleSubmit: () => any;
+  handleSearchClick: any,
+  handleRandomizeClick: any
 }> {
   constructor(props) {
     super(props);
@@ -67,8 +69,8 @@ class Comp extends React.Component<{
 
   handleSubmit = (e) => {
     const val = e.target.value.value
-    console.log("e.val", val)
     e.preventDefault();
+    this.props.handleSearchClick(val)
   }
 
   handleRandomSubmit = () => {
@@ -76,8 +78,11 @@ class Comp extends React.Component<{
   }
 
   render() {
+
+    const { handleSearchClick, handleRandomizeClick } = this.props;
+
     return (
-      <SearchSection>
+      <SearchSectionContainer>
         <Section>
           <form onSubmit={this.handleSubmit}>
             <h2>Looking for something specific?</h2>
@@ -92,11 +97,11 @@ class Comp extends React.Component<{
         <Section>
           <h2>Can't decide?</h2>
           <p>Click the randomize button and we’ll choose a random resturant for you.</p>
-          <RandomizeButton onClick={this.handleRandomSubmit}>Randomize</RandomizeButton>
+          <RandomizeButton onClick={handleRandomizeClick}>Randomize</RandomizeButton>
         </Section>
-      </SearchSection>
+      </SearchSectionContainer>
     )
   }
 }
 
-export default Comp;
+export default SearchSection;

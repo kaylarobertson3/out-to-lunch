@@ -66,7 +66,6 @@ class CardSection extends React.Component<{
 
   showSortOptions(e) {
     e.preventDefault();
-    console.log("sort hovered or clicked")
     this.setState({
       showOptions: !this.state.showOptions
     })
