@@ -7,52 +7,113 @@ const CardSectionWrapper = styled.section`
 `
 
 const MenuBar = styled.div`
-
+  display: flex;
+  justify-content: space-between;
 `
+const MenuLeft = styled.div``
+
+const MenuRight = styled.div``
 
 const ListViewBtn = styled.button`
     background: none;
-
 `
 
+const SortDropdown = styled.div`
+    position: absolute;
+    z-index: 1;
+    background: ${COLOR.lightGray};
+    padding: 8px 10px;
+
+    p {
+      margin: .5rem 0;
+    }
+  `
+
 const Sort = styled.button`
-    margin-left: 1rem;
     color: ${COLOR.black};
     background: none;
 `
 
-const Cards = styled.div`
+const Cards = styled.div<{ listView: boolean }>`
+    display: ${props => props.listView ? "block" : "grid"};
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
 `
 
 class CardSection extends React.Component<{
+  cardData: any;
+  sortAz: any;
+  sortRating: any;
+  sortDistance: any;
+}, {
+  listView: boolean;
+  showOptions: boolean;
 }>{
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      listView: false,
+      showOptions: false
     }
+    this.toggleListView = this.toggleListView.bind(this);
+    this.showSortOptions = this.showSortOptions.bind(this);
+  }
 
-    handleClick = () => {
+  toggleListView(e) {
+    e.preventDefault();
+    this.setState({
+      listView: !this.state.listView
+    })
+  }
 
-    }
+  showSortOptions(e) {
+    e.preventDefault();
+    this.setState({
+      showOptions: !this.state.showOptions
+    })
+  }
 
-    render() {
-        return (
-            <CardSectionWrapper>
-                <MenuBar>
-                    Results
-                <ListViewBtn onClick={this.handleClick}>List view</ListViewBtn>
-                    <Sort>Sort <img src="../img/arrow.png" alt="" /></Sort>
-                </MenuBar>
-                <Cards>
-                    <Card name={"Pizza Place"} imgUrl={"../img/cards/pizza.jpg"} price={'$'} rating={3.9} />
-                    <Card name={"Tommi's Burger Joint"} imgUrl={"../img/cards/burger.jpg"} price={'$$$'} rating={4.5} />
-                    <Card name={"Heno Heno"} imgUrl={"../img/cards/ramen.jpg"} price={'$$'} rating={4.9} />
-                </Cards>
-            </CardSectionWrapper>
-        )
-    }
+
+  render() {
+    const { cardData, sortAz, sortRating, sortDistance } = this.props;
+    const listViewText = this.state.listView ? "Grid View" : "List View";
+    return (
+      <CardSectionWrapper>
+        <MenuBar>
+          <MenuLeft>
+            X Results
+            <ListViewBtn onClick={this.toggleListView}>
+              {listViewText}
+            </ListViewBtn>
+          </MenuLeft>
+          <MenuRight>
+            <Sort onClick={this.showSortOptions}>Sort <img src="../img/arrow.png" alt="" /></Sort>
+            {this.state.showOptions &&
+              <SortDropdown>
+                <p onClick={sortAz}>A-Z</p>
+                <p onClick={sortRating}>highest rating: <img src="../img/arrow.png" alt="" /></p>
+                <p onClick={sortDistance}>shortest distance <img src="../img/arrow.png" alt="" /></p>
+              </SortDropdown>
+            }
+          </MenuRight>
+        </MenuBar>
+
+        <Cards listView={this.state.listView}>
+          {cardData.length < 1 &&
+            <p>
+              sorry, no results
+            </p >
+          }
+          {cardData.map((d, i) => {
+            return (
+              < Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} />
+            )
+          })}
+        </Cards>
+      </CardSectionWrapper>
+    )
+  }
 }
 
 

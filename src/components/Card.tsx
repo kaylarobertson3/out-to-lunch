@@ -1,37 +1,33 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR } from "@src/theme";
+import { COLOR, FONT } from "@src/theme";
 
 const CardLink = styled.a`
 
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ listView: boolean }>`
     background: ${COLOR.white};
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0 1rem 0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    
-    :hover img {
-        opacity: 1;
-        transform: scale(1.1);
-    }  
-    `
+    display: ${props => props.listView ? "flex" : "block"};
+  `
 
-const ImgContainer = styled.div`
+const ImgContainer = styled.div<{ listView: boolean }>`
     background: ${COLOR.black};
     overflow: hidden;
     background: black;
-    height: 200px;
-
+    height: ${props => props.listView ? "auto" : "200px"};
+    max-width: ${props => props.listView ? "100px" : "100%"};
 `
 
 const Img = styled.img`
     margin: 0 0 -1rem 0;
     object-fit: cover;
-    min-height: 100%;
     width: 100%;
     opacity: 0.9;
     transition: all 0.2s ease;
+    min-height: 100%;
 `
 
 const TextContainer = styled.div`
@@ -39,10 +35,13 @@ const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    position: relative;
+    width: 100%;
 `
 
 const Name = styled.h3`
-
+    /* font: normal 700 19px/1.2 ${FONT.serif};
+    letter-spacing: 1.2px; */
 `
 
 const Tags = styled.div`
@@ -70,14 +69,19 @@ const Icons = styled.div`
     }
 `
 
-const DataRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    background: ${COLOR.lightGray};
-    border-radius: 10px;
-    position: absolute;
-    right: 1.5rem;
-    margin-top: -2rem;
+const DataRow = styled.div<{ listView: boolean }>`
+    align-self: flex-end;
+    position: ${props => props.listView ? "relative" : "absolute"};
+    margin: ${props => props.listView ? "0" : " -2rem 0 0 0"}
+    /* margin: -2rem 0 0 0; */
+}
+    div {
+        display: flex;
+        flex-direction: row;
+        border-radius: 10px;
+        background: rgb(242, 242, 242);
+        z-index: 1;
+    }
 `
 
 const Price = styled.h5`
@@ -85,44 +89,53 @@ const Price = styled.h5`
 `
 
 const Rating = styled.h5`
-    margin: .5rem;    
+    margin: .5rem;
+`
+
+const Distance = styled.h5`
+    margin: .5rem;
 `
 
 class Card extends React.Component<{
-    imgUrl: string;
-    price: string;
-    name: string;
-    rating: number;
+  imgUrl: string;
+  price: string;
+  name: string;
+  rating: number;
+  distance: number;
+  listView: boolean;
 }>{
-    render() {
-        const { imgUrl, price, name, rating } = this.props
-        return (
-            <CardLink href="/">
-                <CardContainer>
-                    <ImgContainer>
-                        <Img src={imgUrl} alt={name} />
-                    </ImgContainer>
-                    <TextContainer>
-                        <DataRow>
-                            <Price>{price}</Price>
-                            <Rating>{rating}</Rating>
-                        </DataRow>
-                        <Name>{name}</Name>
-                        <Tags>
-                            <Tag>Tags</Tag>
-                            <Tag>Tags</Tag>
-                            <Tag>Tags</Tag>
-                        </Tags>
-                        <Icons>
-                            <Img src="../img/burger.png" alt="" />
-                            <Img src="../img/burger.png" alt="" />
-                            <Img src="../img/burger.png" alt="" />
-                        </Icons>
-                    </TextContainer>
-                </CardContainer >
-            </CardLink >
-        )
-    }
+  render() {
+    const { imgUrl, price, name, rating, distance, listView } = this.props
+    return (
+      <CardLink href="/">
+        <CardContainer listView={listView}>
+          <ImgContainer listView={listView}>
+            <Img src={imgUrl} alt={name} />
+          </ImgContainer>
+          <TextContainer>
+            <Name>{name}</Name>
+            <DataRow listView={listView}>
+              <div>
+                <Price>{price}</Price>
+                <Rating>{rating}</Rating>
+                <Distance>{distance} mins</Distance>
+              </div>
+            </DataRow>
+            <Tags>
+              <Tag>Tags</Tag>
+              <Tag>Tags</Tag>
+              <Tag>Tags</Tag>
+            </Tags>
+            <Icons>
+              <Img src="../img/burger.png" alt="" />
+              <Img src="../img/burger.png" alt="" />
+              <Img src="../img/burger.png" alt="" />
+            </Icons>
+          </TextContainer>
+        </CardContainer >
+      </CardLink >
+    )
+  }
 }
 
 export default Card;

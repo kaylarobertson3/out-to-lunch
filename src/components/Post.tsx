@@ -1,7 +1,12 @@
 import React from 'react'
 import { useRouteData } from 'react-static'
 import { Link } from '@reach/router'
-import { Post } from '../../types'
+
+interface Post {
+  body: string
+  id: number
+  title: string
+}
 
 export default () => {
   const { post }: { post: Post } = useRouteData()
