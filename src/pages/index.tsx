@@ -2,13 +2,22 @@ import React from "react";
 import Hero from "@components/Hero"
 import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
-import data from "@src/data/data.json"
+import data from "@src/data/data.json";
 
-class Home extends React.Component<{}, { data: any, cuisine: any, price: any, distance: any, selectedRestaurantId: any }> {
+const cuisines = ["all"];
+
+data.map((d) => {
+  if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
+  // cuisines.push(d.cuisine)
+})
+
+console.log("cuisines", cuisines)
+class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, selectedRestaurantId: any }> {
   constructor(props) {
     super(props);
     this.state = {
       data: data,
+      cuisines: cuisines,
       cuisine: null,
       price: null,
       distance: null,
@@ -29,6 +38,8 @@ class Home extends React.Component<{}, { data: any, cuisine: any, price: any, di
 
 
   handleFilter = (key, value) => {
+    console.log("key", key)
+    console.log("value", value)
     if (value == 'all') {
       this.setState({ data: data })
     } else {
@@ -72,11 +83,9 @@ class Home extends React.Component<{}, { data: any, cuisine: any, price: any, di
   }
 
   render() {
-
-
     return (
       <>
-        <Hero handleClick={this.handleFilter} />
+        <Hero data={this.state.data} cuisines={cuisines} handleClick={this.handleFilter} />
         <CardSection
           sortDistance={this.handleSortDistance}
           sortAz={this.handleSortAz}

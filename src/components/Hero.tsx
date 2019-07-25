@@ -90,7 +90,7 @@ const CuisineFilter = styled.select`
   }
 `
 
-class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: any, distance: number }>{
+class Hero extends React.Component<{ data: any, cuisines: any, handleClick: any }, { cuisine: any, price: any, distance: number }>{
   constructor(props) {
     super(props);
     this.state = {
@@ -102,9 +102,7 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: 
 
 
   render() {
-
-    const { handleClick } = this.props;
-
+    const { handleClick, data, cuisines } = this.props;
 
     return (
       <HeroContainer>
@@ -121,9 +119,15 @@ class Hero extends React.Component<{ handleClick: any }, { cuisine: any, price: 
                 handleClick(key, value);
                 // this.state[key] = value
               }}>
-                <option value="all">Anything</option>
+                {cuisines.map((d, i) => {
+                  console.log("d")
+                  return (
+                    <option value={d}>{d}</option>
+                  )
+                })}
+                {/* <option value="all">Anything</option>
                 <option value="ramen">ramen</option>
-                <option value="Japanese">Japanese</option>
+                <option value="japanese">Japanese</option> */}
               </CuisineFilter>
             </div>
             {/* <div>
