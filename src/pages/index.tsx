@@ -8,7 +8,6 @@ const cuisines = ["all"];
 
 data.map((d) => {
   if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
-  // cuisines.push(d.cuisine)
 })
 
 console.log("cuisines", cuisines)
