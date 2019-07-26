@@ -10,7 +10,7 @@ data.map((d) => {
   if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
 })
 
-class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, selectedRestaurantId: any }> {
+class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, selectedRestaurantId: any, searchTerms: any }> {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,8 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
       cuisine: null,
       price: null,
       distance: null,
-      selectedRestaurantId: null
+      selectedRestaurantId: null,
+      searchTerms: null
     }
   }
 
@@ -43,7 +44,10 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
     if (value == 'all') {
       this.setState({ data: data })
     } else {
-      this.setState({ data: data.filter(d => d[key] == value) })
+      this.setState({
+        data: data.filter(d => d[key] == value),
+        searchTerms: value
+      })
     }
   }
 
@@ -92,7 +96,8 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
           sortDistance={this.handleSortDistance}
           sortAz={this.handleSortAz}
           sortRating={this.handleSortRating}
-          cardData={this.state.data} />
+          cardData={this.state.data}
+          searchTerms={this.state.searchTerms} />
         <SearchSection
           handleSearchClick={this.handleSearch}
           handleRandomizeClick={this.handleRandomize}

@@ -46,6 +46,7 @@ class CardSection extends React.Component<{
   sortAz: any;
   sortRating: any;
   sortDistance: any;
+  searchTerms: string
 }, {
   listView: boolean;
   showOptions: boolean;
@@ -76,18 +77,19 @@ class CardSection extends React.Component<{
 
 
   render() {
-    const { cardData, sortAz, sortRating, sortDistance } = this.props;
+    const { cardData, sortAz, sortRating, sortDistance, searchTerms } = this.props;
     const listViewText = this.state.listView ? "Grid View" : "List View";
+    const resultsText = "Results for: " + searchTerms + ":"
     return (
       <CardSectionWrapper>
         <MenuBar>
           <MenuLeft>
-            X Results
+            {resultsText}
+          </MenuLeft>
+          <MenuRight>
             <ListViewBtn onClick={this.toggleListView}>
               {listViewText}
             </ListViewBtn>
-          </MenuLeft>
-          <MenuRight>
             <Sort onClick={this.showSortOptions}>Sort <img src="../img/arrow.png" alt="" /></Sort>
             {this.state.showOptions &&
               <SortDropdown>
