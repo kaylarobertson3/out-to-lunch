@@ -120,14 +120,10 @@ class Hero extends React.Component<{ data: any, cuisines: any, handleClick: any 
                 // this.state[key] = value
               }}>
                 {cuisines.map((d, i) => {
-                  console.log("d")
                   return (
                     <option value={d}>{d}</option>
                   )
                 })}
-                {/* <option value="all">Anything</option>
-                <option value="ramen">ramen</option>
-                <option value="japanese">Japanese</option> */}
               </CuisineFilter>
             </div>
             {/* <div>

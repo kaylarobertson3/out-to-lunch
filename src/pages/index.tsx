@@ -10,7 +10,6 @@ data.map((d) => {
   if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
 })
 
-console.log("cuisines", cuisines)
 class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, selectedRestaurantId: any }> {
   constructor(props) {
     super(props);
@@ -67,18 +66,20 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
     this.setState({ data: sortedData })
   }
 
-
   handleRandomize = () => {
-    console.log("randomizing based on all data")
-    const random = data[0];
-    console.log("data.length", data.length);
+    const min = 0;
+    const max = data.length;
+    var randomId = Math.floor(Math.random() * (+max - +min)) + +min;
+    var randomResturant = this.state.data[randomId];
+    console.log("randomId", randomId)
+    console.log("randomResturant", randomResturant)
     this.setState({
-      selectedRestaurantId: data[0]
+      selectedRestaurantId: randomResturant
     })
   }
 
   handleSearch = (searchTerms) => {
-    console.log("searching with: ", searchTerms)
+    console.log("searching with: ", searchTerms);
   }
 
   render() {
@@ -92,7 +93,9 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
           cardData={this.state.data} />
         <SearchSection
           handleSearchClick={this.handleSearch}
-          handleRandomizeClick={this.handleRandomize} />
+          handleRandomizeClick={this.handleRandomize}
+          randomId={this.state.selectedRestaurantId}
+        />
       </>
     )
   }
