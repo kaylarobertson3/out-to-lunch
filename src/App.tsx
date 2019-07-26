@@ -67,7 +67,7 @@ const Content = styled.div`
 const Footer = styled.footer`
   padding: 1rem;
   margin-top: 3rem;
-  min-height: 200px;
+  min-height: 270px;
   background: ${COLOR.lightGray};
   color: ${COLOR.black};
 

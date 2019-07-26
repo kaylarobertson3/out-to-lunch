@@ -3,14 +3,22 @@ import styled from "styled-components";
 import { COLOR, FONT } from "@src/theme";
 
 const CardLink = styled.a`
-
+    height: 100%;
 `;
 
 const CardContainer = styled.div<{ listView: boolean }>`
     background: ${COLOR.white};
     margin: 1rem 0 1rem 0;
+    height: 100%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: ${props => props.listView ? "flex" : "block"};
+    
+    p {
+      color: ${COLOR.darkGray};
+      font-size: 16px;
+      line-height: 1.5;
+      margin-top: .7rem;
+    }
   `
 
 const ImgContainer = styled.div<{ listView: boolean }>`
@@ -22,12 +30,13 @@ const ImgContainer = styled.div<{ listView: boolean }>`
 `
 
 const Img = styled.img`
-    margin: 0 0 -1rem 0;
     object-fit: cover;
     width: 100%;
+    margin: 0 0 -1rem 0;
     opacity: 0.9;
-    transition: all 0.2s ease;
-    min-height: 100%;
+    /* margin: 0 0 -1rem 0;
+    height: 200px; */
+    position: relative;
 `
 
 const TextContainer = styled.div`
@@ -42,6 +51,8 @@ const TextContainer = styled.div`
 const Name = styled.h3`
     /* font: normal 700 19px/1.2 ${FONT.serif};
     letter-spacing: 1.2px; */
+    color: ${COLOR.darkGray};
+
 `
 
 const Tags = styled.div`
@@ -73,6 +84,7 @@ const DataRow = styled.div<{ listView: boolean }>`
     align-self: flex-end;
     position: ${props => props.listView ? "relative" : "absolute"};
     margin: ${props => props.listView ? "0" : " -2rem 0 0 0"}
+    color: ${COLOR.darkGray};
     /* margin: -2rem 0 0 0; */
 }
     div {
@@ -103,9 +115,10 @@ class Card extends React.Component<{
   rating: number;
   distance: number;
   listView: boolean;
+  description: string;
 }>{
   render() {
-    const { imgUrl, price, name, rating, distance, listView } = this.props
+    const { imgUrl, price, name, rating, distance, listView, description } = this.props
     return (
       <CardLink href="/">
         <CardContainer listView={listView}>
@@ -121,15 +134,16 @@ class Card extends React.Component<{
                 <Distance>{distance} mins</Distance>
               </div>
             </DataRow>
-            <Tags>
+            {/* <Tags>
               <Tag>Tags</Tag>
               <Tag>Tags</Tag>
               <Tag>Tags</Tag>
-            </Tags>
+            </Tags> */}
+            <p>{description}</p>
             <Icons>
-              <Img src="../img/burger.png" alt="" />
-              <Img src="../img/burger.png" alt="" />
-              <Img src="../img/burger.png" alt="" />
+              <img src="../img/burger.png" alt="" />
+              <img src="../img/burger.png" alt="" />
+              <img src="../img/burger.png" alt="" />
             </Icons>
           </TextContainer>
         </CardContainer >

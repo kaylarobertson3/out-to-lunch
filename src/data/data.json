@@ -10,7 +10,8 @@
     "price": "$$",
     "best dish": "curry reis",
     "lat": "",
-    "long": ""
+    "long": "",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   },
   {
     "name": "Zeit für Brot",
@@ -23,7 +24,8 @@
     "price": "$",
     "best dish": "Schnecke",
     "lat": "",
-    "long": ""
+    "long": "",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   },
   {
     "name": "Ashoka",
@@ -36,7 +38,8 @@
     "best dish": "curry of some sort",
     "lat": "",
     "long": "",
-    "imgUrl": "burger.jpg"
+    "imgUrl": "burger.jpg",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   },
   {
     "name": "Repke Spätzlerei",
@@ -49,7 +52,8 @@
     "best dish": "Spätzle",
     "lat": "",
     "long": "",
-    "imgUrl": "pizza.jpg"
+    "imgUrl": "pizza.jpg",
+    "description": "Lorem ipsum dolor sit "
   },
   {
     "name": "Zen",
@@ -62,7 +66,8 @@
     "best dish": "Tempora sushi",
     "lat": "",
     "long": "",
-    "imgUrl": "burger.jpg"
+    "imgUrl": "burger.jpg",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   },
   {
     "name": "NU RESTAURANT",
@@ -75,6 +80,7 @@
     "best dish": "daily special",
     "lat": "",
     "long": "",
-    "imgUrl": "ramen.jpg"
+    "imgUrl": "ramen.jpg",
+    "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   }
 ]

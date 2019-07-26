@@ -37,7 +37,7 @@ const Sort = styled.button`
 const Cards = styled.div<{ listView: boolean }>`
     display: ${props => props.listView ? "block" : "grid"};
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
+    grid-gap: 35px 20px;
     align-items: stretch;
 `
 
@@ -107,7 +107,7 @@ class CardSection extends React.Component<{
           }
           {cardData.map((d, i) => {
             return (
-              < Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} />
+              <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
             )
           })}
         </Cards>

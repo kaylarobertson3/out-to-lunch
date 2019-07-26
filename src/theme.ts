@@ -4,7 +4,10 @@ export const COLOR = {
   black: "#000000",
   white: "#FFFFFF",
   lightGray: "#F2F2F2",
-  darkGray: "#4C4C4C"
+  darkGray: "#4C4C4C",
+  gray2: '#AAAAAF',
+  lightBlue: '#B6D5D8',
+  red: '#C42C1B'
 };
 
 export const BREAKPOINT = styledBreakpoint({
