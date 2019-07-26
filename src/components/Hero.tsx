@@ -22,10 +22,17 @@ const Filters = styled.form`
   ${BREAKPOINT.m`
     display: flex;
     `};
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
 `
 
 const Label = styled.p`
-  margin: 2rem 0 0 0;
+  /* margin: 2rem 0 0 0; */
 `
 
 const FindFoodBtn = styled.button`
@@ -35,7 +42,7 @@ const FindFoodBtn = styled.button`
     color: ${COLOR.white};
 `
 
-const CuisineFilter = styled.select`
+const Filter = styled.select`
   width: 150px;
   background: none;
   border-top: none;
@@ -97,22 +104,22 @@ class Hero extends React.Component<{
   handleReset
 },
   {
-    cuisine: any,
-    price: any,
-    distance: number
+    cuisineFilter: any,
+    priceFilter: any,
+    distanceFilter: any
   }>{
   constructor(props) {
     super(props);
     this.state = {
-      cuisine: null,
-      price: null,
-      distance: null
+      cuisineFilter: 'any',
+      priceFilter: 'any',
+      distanceFilter: 'any'
     }
   }
 
 
   render() {
-    const { handleClick, data, cuisines, handleReset } = this.props;
+    const { handleClick, cuisines, handleReset } = this.props;
 
     return (
       <HeroContainer>
@@ -122,48 +129,63 @@ class Hero extends React.Component<{
           <Filters>
             <div>
               <Label>I want to eat</Label>
-              <CuisineFilter name="cuisine" onChange={(e) => {
-                const key = e.target.name;
-                const value = e.target.value
-
-                handleClick(key, value);
-                // this.state[key] = value
+              <Filter name="cuisine" value={this.state.cuisineFilter} onChange={(e) => {
+                this.setState({
+                  cuisineFilter: e.target.value
+                })
               }}>
                 {cuisines.map((d, i) => {
                   return (
                     <option key={i} value={d}>{d}</option>
                   )
                 })}
-              </CuisineFilter>
-              <button onClick={(e) => handleReset(e)}>Reset</button>
+              </Filter>
             </div>
-            {/* <div>
-              <Label>I'd like to spend </Label>
-              <CuisineFilter name="price" onChange={this.handleChange}>
+            <div>
+              <Label>for </Label>
+              <Filter name="price" value={this.state.priceFilter} onChange={(e) => {
+                this.setState({
+                  priceFilter: e.target.value
+                })
+              }}>
                 <option value="any">Any price</option>
-                <option value="5">under 5</option>
-                <option value="10">around 10</option>
-                <option value="10+++">more than ten</option>
-              </CuisineFilter>
-            </div> */}
-            {/* <div>
-              <Label> I'm up for walking</Label>
-              <CuisineFilter name="distance" onChange={this.handleChange}>
+                <option value="cheap">$</option>
+                <option value="middle">$$</option>
+                <option value="expensive">$$$</option>
+              </Filter>
+            </div>
+            <div>
+              <Label> and am up for walking</Label>
+              <Filter name="distance" value={this.state.distanceFilter} onChange={(e) => {
+                this.setState({
+                  distanceFilter: e.target.value
+                })
+              }}>
                 <option value="any">Any distance</option>
                 <option value="<5">under 5 minutes</option>
-                <option value="10 ish">under 10 minutes</option>
+                <option value="10">under 10 minutes</option>
                 <option value="10+">10+</option>
-              </CuisineFilter>
-            </div> */}
-            {/* <FindFoodBtn onClick={(e) => {
+              </Filter>
+            </div>
+            <FindFoodBtn type="submit" onClick={(e) => {
               e.preventDefault();
-              // handleClick(this.state)
+              handleClick(this.state.cuisineFilter, this.state.priceFilter, this.state.distanceFilter)
             }}>
               Find Food!
-            </FindFoodBtn> */}
+            </FindFoodBtn>
           </Filters>
+          <button onClick={(e) => {
+            console.log("resetting form")
+            this.setState({
+              cuisineFilter: 'any',
+              priceFilter: 'any',
+              distanceFilter: 'any'
+            })
+            handleReset(e);
+          }}
+          >Reset</button>
         </MainSearch>
-      </HeroContainer>
+      </HeroContainer >
     )
   }
 

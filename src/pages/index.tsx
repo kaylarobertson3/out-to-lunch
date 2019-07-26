@@ -24,7 +24,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
     }
   }
 
-  // handleFilter = (filterTerms) => {
+  // handleFilter = (cuisineFilter, ) => {
   //   const { cuisine, price, distance } = filterTerms;
 
   //   console.log("filter terms index: ", cuisine, price, distance)
@@ -40,15 +40,25 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
     this.setState({ data: data })
   }
 
-  handleFilter = (key, value) => {
-    if (value == 'all') {
-      this.setState({ data: data })
-    } else {
-      this.setState({
-        data: data.filter(d => d[key] == value),
-        searchTerms: value
-      })
-    }
+  handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
+    const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0
+    const priceIndexNum = priceFilter == "any" ? -1 : 0
+    const distanceIndexNum = distanceFilter == "any" ? -1 : 0
+
+    console.log(cuisineFilter, priceFilter, distanceFilter)
+
+    const filteredData = data.filter(d => {
+      return (
+        d.cuisine.indexOf(cuisineFilter) >= cuisineIndexNum
+        && d.price.indexOf(priceFilter) >= priceIndexNum
+        && d.distance.indexOf(distanceFilter) >= distanceIndexNum
+      )
+    })
+    console.log("filteredData", filteredData)
+
+    this.setState({
+      data: filteredData
+    })
   }
 
   handleSortAz = () => {
@@ -103,6 +113,9 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
           handleRandomizeClick={this.handleRandomize}
           randomId={this.state.selectedRestaurantId}
         />
+        <a href="#top" id="bottom">
+          Scroll to top!
+      </a>
       </>
     )
   }
