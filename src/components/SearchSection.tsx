@@ -24,7 +24,6 @@ const Section = styled.div`
     ${BREAKPOINT.m`
       margin: 3rem 4rem;
     `};
-
 `
 
 const SearchContainer = styled.div`

@@ -34,10 +34,12 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
   //   })
   // }
 
+  handleReset = (e) => {
+    e.preventDefault();
+    this.setState({ data: data })
+  }
 
   handleFilter = (key, value) => {
-    console.log("key", key)
-    console.log("value", value)
     if (value == 'all') {
       this.setState({ data: data })
     } else {
@@ -70,7 +72,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
     const min = 0;
     const max = data.length;
     var randomId = Math.floor(Math.random() * (+max - +min)) + +min;
-    var randomResturant = this.state.data[randomId];
+    var randomResturant = data[randomId];
     console.log("randomId", randomId)
     console.log("randomResturant", randomResturant)
     this.setState({
@@ -85,7 +87,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
   render() {
     return (
       <>
-        <Hero data={this.state.data} cuisines={cuisines} handleClick={this.handleFilter} />
+        <Hero data={this.state.data} cuisines={cuisines} handleClick={this.handleFilter} handleReset={this.handleReset} />
         <CardSection
           sortDistance={this.handleSortDistance}
           sortAz={this.handleSortAz}
