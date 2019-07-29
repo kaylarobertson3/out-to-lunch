@@ -39,6 +39,12 @@ const SortDropdown = styled.div`
 const Sort = styled.button`
     color: ${COLOR.black};
     background: none;
+    img {
+      margin: 0 0 0 5px;
+    }
+`
+const SortTerms = styled.span`
+  font-weight: 500;
 `
 
 const Cards = styled.div<{ listView: boolean }>`
@@ -88,6 +94,8 @@ class CardSection extends React.Component<{
     const { cardData, sortAz, sortRating, sortDistance, searchTerms, sortTerms } = this.props;
     const listViewText = this.state.listView ? "Grid View" : "List View";
     const resultsText = "Results for: " + searchTerms + ":"
+    console.log("cardData.length", cardData.length)
+    console.log("cardData", cardData)
     return (
       <CardSectionWrapper>
         <MenuBar>
@@ -98,32 +106,33 @@ class CardSection extends React.Component<{
             <ListViewBtn onClick={this.toggleListView}>
               {listViewText}
             </ListViewBtn>
-            <Sort onClick={this.showSortOptions}>Sort by: {sortTerms} <img src="../img/arrow.png" alt="" /></Sort>
+            <Sort onClick={this.showSortOptions}>Sort by: <SortTerms>{sortTerms}</SortTerms> <img src="../img/arrow.png" alt="" /></Sort>
             {this.state.showOptions &&
               <SortDropdown>
-                <p onClick={(e) => {
-                  e.preventDefault;
-                  sortRating();
-                }
-                }>highest rated</p>
-                <p onClick={(e) => { e.preventDefault; sortDistance(); }}>closest</p>
-                <p onClick={(e) => { e.preventDefault; sortAz(); }}>A-Z</p>
+                <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortRating(); }}>highest rated</p>
+                <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortDistance(); }}>closest</p>
+                <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortAz(); }}>A-Z</p>
               </SortDropdown>
             }
           </MenuRight>
         </MenuBar>
 
         <Cards listView={this.state.listView}>
-          {cardData.length < 1 &&
+          {cardData.length == 0 &&
             <p>
               sorry, no results
             </p >
           }
-          {cardData.map((d, i) => {
-            return (
-              <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
-            )
-          })}
+          {!cardData.length &&
+            <Card listView={this.state.listView} name={cardData.name} imgUrl={`../img/cards/${cardData.imgUrl}`} price={cardData.price} rating={cardData.rating} distance={cardData.distance} description={cardData.description} />
+          }
+          {cardData.length > 1 &&
+            cardData.map((d, i) => {
+              return (
+                <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
+              )
+            })
+          }
         </Cards>
       </CardSectionWrapper>
     )

@@ -10,7 +10,7 @@ data.map((d) => {
   if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
 })
 
-class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, selectedRestaurantId: any, searchTerms: any, sortTerms: string }> {
+class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, searchTerms: any, sortTerms: string }> {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,7 +19,6 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
       cuisine: null,
       price: null,
       distance: null,
-      selectedRestaurantId: null,
       searchTerms: null,
       sortTerms: "Highest Rated"
     }
@@ -89,15 +88,17 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
   }
 
   handleRandomize = () => {
+    // TODO: scroll back to #top
     const min = 0;
     const max = data.length;
     var randomId = Math.floor(Math.random() * (+max - +min)) + +min;
     var randomResturant = data[randomId];
 
     this.setState({
-      selectedRestaurantId: randomResturant,
       data: randomResturant
     })
+
+    console.log("randomresturant", randomResturant)
   }
 
   handleSearch = (searchTerms) => {
@@ -105,6 +106,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
   }
 
   render() {
+    console.log("this.state.data", this.state.data)
     return (
       <>
         <Hero data={this.state.data} cuisines={cuisines} handleClick={this.handleFilter} handleReset={this.handleReset} />
@@ -118,7 +120,6 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
         <SearchSection
           handleSearchClick={this.handleSearch}
           handleRandomizeClick={this.handleRandomize}
-          randomId={this.state.selectedRestaurantId}
         />
         <a href="#top" id="bottom">
           Scroll to top!

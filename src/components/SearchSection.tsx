@@ -64,8 +64,7 @@ const Input = styled.input`
 class SearchSection extends React.Component<{
   // handleSubmit: () => any;
   handleSearchClick: any,
-  handleRandomizeClick: any,
-  randomId: any
+  handleRandomizeClick: any
 }> {
   constructor(props) {
     super(props);
@@ -84,7 +83,7 @@ class SearchSection extends React.Component<{
   }
 
   render() {
-    const { handleSearchClick, handleRandomizeClick, randomId } = this.props;
+    const { handleSearchClick, handleRandomizeClick } = this.props;
 
     return (
       <SearchSectionContainer>
@@ -103,7 +102,6 @@ class SearchSection extends React.Component<{
           <h2>Can't decide?</h2>
           <p>Click the randomize button and we’ll choose a random resturant for you.</p>
           <RandomizeButton onClick={handleRandomizeClick}>Randomize</RandomizeButton>
-          {randomId && <p>you should to go {randomId.name} for lunch!</p>}
         </Section>
       </SearchSectionContainer>
     )

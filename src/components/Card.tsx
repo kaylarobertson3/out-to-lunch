@@ -28,6 +28,7 @@ const ImgContainer = styled.div<{ listView: boolean }>`
     height: ${props => props.listView ? "auto" : "200px"};
     max-width: ${props => props.listView ? "120px" : "100%"};
     min-width: ${props => props.listView ? "120px" : "100%"};
+    margin: 0;
 `
 
 const Img = styled.img`
