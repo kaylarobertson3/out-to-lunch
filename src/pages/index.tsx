@@ -4,7 +4,7 @@ import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
 import data from "@src/data/data.json";
 
-const cuisines = ["anything"];
+const cuisines = ["any"];
 
 data.map((d) => {
   if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
