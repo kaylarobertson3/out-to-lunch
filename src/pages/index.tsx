@@ -3,6 +3,9 @@ import Hero from "@components/Hero"
 import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
 import dataUnsorted from "@src/data/data.json";
+// import Tabletop from 'tabletop'
+
+const apiKey = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
 
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating
@@ -28,6 +31,16 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
       sortTerms: "Highest Rated"
     }
   }
+
+  // componentDidMount() {
+  //   Tabletop.init({
+  //     key: apiKey,
+  //     callback: googleData => {
+  //       console.log("google sheet dadta --->", googleData)
+  //     },
+  //     simpleSheet: true
+  //   })
+  // }
 
   handleReset = (e) => {
     e.preventDefault();

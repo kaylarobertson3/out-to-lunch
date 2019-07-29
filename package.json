@@ -14,6 +14,7 @@
     "@reach/router": "^1.2.1",
     "@types/styled-components": "^4.1.18",
     "axios": "^0.18.1",
+    "fs": "0.0.1-security",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-static": "^7.1.0",
@@ -23,7 +24,8 @@
     "react-static-plugin-typescript": "^7.0.0",
     "styled-components": "^4.3.2",
     "styled-components-breakpoint": "^2.1.1",
-    "stylis": "^3.5.4"
+    "stylis": "^3.5.4",
+    "tabletop": "^1.5.2"
   },
   "devDependencies": {
     "@types/node": "^10.12.23",
@@ -40,8 +42,11 @@
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
+    "file": "^0.2.2",
+    "json-loader": "^0.5.7",
     "react-static-plugin-typescript": "^7.0.10",
     "serve": "10.1.2",
+    "system": "^2.0.1",
     "typescript": "^3.4.1"
   }
 }

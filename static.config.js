@@ -36,5 +36,8 @@ export default {
     ],
     require.resolve("react-static-plugin-reach-router"),
     require.resolve("react-static-plugin-sitemap")
-  ]
+  ],
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js"]
+  }
 };

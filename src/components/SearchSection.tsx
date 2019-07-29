@@ -10,7 +10,7 @@ const SearchSectionContainer = styled.section`
 
   ${BREAKPOINT.m`
           flex-direction: row;
-          align-items: flex-start;
+          align-items: center;
           justify-content: center;
     `};
 `
@@ -61,6 +61,18 @@ const Input = styled.input`
     width: 100%;
 `
 
+const Line = styled.hr`
+    width: 300px;
+    margin: 2rem;
+    height: 1px;
+
+  ${BREAKPOINT.m`
+    width: 300px;
+      margin: 2rem;
+      height: 1px;
+      transform: rotate(90deg);
+  `};
+`
 
 class SearchSection extends React.Component<{
   handleRandomizeClick: any,
@@ -90,7 +102,7 @@ class SearchSection extends React.Component<{
             {/* <Suggestions results={results} /> */}
           </form>
         </Section>
-        <hr style={{ width: 100 + "%", margin: 2 + "rem" }} />
+        <Line />
         <Section>
           <h2>Can't decide?</h2>
           <p>Click the randomize button and we’ll choose a random resturant for you.</p>

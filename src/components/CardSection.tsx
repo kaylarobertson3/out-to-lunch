@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card"
-import { COLOR } from "@src/theme";
+import { COLOR, BREAKPOINT } from "@src/theme";
 
 const CardSectionWrapper = styled.section`
 `
@@ -14,10 +14,21 @@ const MenuBar = styled.div`
 `
 const MenuLeft = styled.div``
 
-const MenuRight = styled.div``
+const MenuRight = styled.div`
+  display: flex;
+  align-content: center;
+  justify-content: center;
+`
 
-const ListViewBtn = styled.button`
+const ViewBtn = styled.button`
     background: none;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-left: 1rem;
+    }
 `
 
 const SortDropdown = styled.div`
@@ -25,6 +36,13 @@ const SortDropdown = styled.div`
     z-index: 1;
     background: ${COLOR.lightGray};
     padding: 8px 10px;
+    margin-top: 3rem;
+    right: 1rem;
+
+    ${BREAKPOINT.m`
+      margin-top: 0;
+      right: auto;
+    `};
 
     p {
       margin: .5rem 0;
@@ -36,21 +54,23 @@ const SortDropdown = styled.div`
     }
   `
 
-const Sort = styled.button`
-    color: ${COLOR.black};
-    background: none;
+const SortBtn = styled.button`
+    color: ${COLOR.white};
+    background: ${COLOR.black};
     img {
       margin: 0 0 0 5px;
     }
 `
 const SortTerms = styled.span`
+  margin-left: .5rem;
   font-weight: 500;
 `
 
 const Cards = styled.div<{ listView: boolean }>`
     display: ${props => props.listView ? "block" : "grid"};
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 35px 20px;
+    /* grid-gap: 35px 20px; */
+    grid-gap: 45px 35px;
     align-items: stretch;
 `
 
@@ -92,10 +112,8 @@ class CardSection extends React.Component<{
 
   render() {
     const { cardData, sortAz, sortRating, sortDistance, query, sortTerms } = this.props;
-    const listViewText = this.state.listView ? "Grid View" : "List View";
-    const resultsText = "Results for " + query + ":"
-    console.log("card data length: ", cardData.length)
-    console.log("card data: ", cardData)
+    const viewText = this.state.listView ? "Grid View" : "List View";
+    const resultsText = "Results for " + query + ":";
     return (
       <CardSectionWrapper>
         <MenuBar>
@@ -103,10 +121,11 @@ class CardSection extends React.Component<{
             {resultsText}
           </MenuLeft>
           <MenuRight>
-            <ListViewBtn onClick={this.toggleListView}>
-              {listViewText}
-            </ListViewBtn>
-            <Sort onClick={this.showSortOptions}>Sort by: <SortTerms>{sortTerms}</SortTerms> <img src="../img/arrow.png" alt="" /></Sort>
+            <ViewBtn onClick={this.toggleListView}>
+              {viewText}
+              {this.state.listView ? <img src="../img/group.png" alt="card view" /> : <img src="../img/list.png" alt="list view" />}
+            </ViewBtn>
+            <SortBtn onClick={this.showSortOptions}>Sort by:<SortTerms>{sortTerms}</SortTerms><img src="../img/arrow.png" alt="" /></SortBtn>
             {this.state.showOptions &&
               <SortDropdown>
                 <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortRating(); }}>highest rated</p>
@@ -119,9 +138,7 @@ class CardSection extends React.Component<{
 
         <Cards listView={this.state.listView}>
           {cardData.length == 0 &&
-            <p>
-              sorry, no results
-            </p >
+            <p>sorry, no results</p>
           }
           {typeof cardData.length == "undefined" &&
             <Card listView={this.state.listView} name={cardData.name} imgUrl={`../img/cards/${cardData.imgUrl}`} price={cardData.price} rating={cardData.rating} distance={cardData.distance} description={cardData.description} />
