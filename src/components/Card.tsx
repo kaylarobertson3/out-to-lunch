@@ -8,11 +8,11 @@ const CardLink = styled.a`
 
 const CardContainer = styled.div<{ listView: boolean }>`
     background: ${COLOR.white};
-    margin: 1rem 0 1rem 0;
     height: ${props => props.listView ? "100px" : "100%"};
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: ${props => props.listView ? "flex" : "block"};
-    
+    margin: ${props => props.listView ? "1rem 0" : "0"};
+
     p {
       color: ${COLOR.darkGray};
       font-size: 16px;
@@ -26,7 +26,8 @@ const ImgContainer = styled.div<{ listView: boolean }>`
     overflow: hidden;
     background: black;
     height: ${props => props.listView ? "auto" : "200px"};
-    max-width: ${props => props.listView ? "100px" : "100%"};
+    max-width: ${props => props.listView ? "120px" : "100%"};
+    min-width: ${props => props.listView ? "120px" : "100%"};
 `
 
 const Img = styled.img`

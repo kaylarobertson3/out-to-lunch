@@ -35,13 +35,22 @@ const Site = styled.div`
   }
 
   select {
-    font: normal 300 16px/23px ${FONT.sansSerif};
-    padding: 8px 10px;
+    font: normal 500 16px/23px ${FONT.sansSerif};
+    padding: 5px 0;
+    color: ${COLOR.black};
+
+    ${BREAKPOINT.m`
+      font-size: 20px;
+    `};
   }
 
   a {
     color: ${COLOR.black};
     text-decoration: none;
+  }
+
+  section {
+    padding: 2rem 0;
   }
 `
 const Nav = styled.nav`

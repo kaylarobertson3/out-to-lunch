@@ -9,6 +9,8 @@ const CardSectionWrapper = styled.section`
 const MenuBar = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 `
 const MenuLeft = styled.div``
 
@@ -26,6 +28,11 @@ const SortDropdown = styled.div`
 
     p {
       margin: .5rem 0;
+      cursor: pointer;
+
+      :hover {
+        color: ${COLOR.darkGray};
+      }
     }
   `
 
@@ -46,7 +53,8 @@ class CardSection extends React.Component<{
   sortAz: any;
   sortRating: any;
   sortDistance: any;
-  searchTerms: string
+  searchTerms: string;
+  sortTerms: string;
 }, {
   listView: boolean;
   showOptions: boolean;
@@ -77,7 +85,7 @@ class CardSection extends React.Component<{
 
 
   render() {
-    const { cardData, sortAz, sortRating, sortDistance, searchTerms } = this.props;
+    const { cardData, sortAz, sortRating, sortDistance, searchTerms, sortTerms } = this.props;
     const listViewText = this.state.listView ? "Grid View" : "List View";
     const resultsText = "Results for: " + searchTerms + ":"
     return (
@@ -90,12 +98,16 @@ class CardSection extends React.Component<{
             <ListViewBtn onClick={this.toggleListView}>
               {listViewText}
             </ListViewBtn>
-            <Sort onClick={this.showSortOptions}>Sort by: <img src="../img/arrow.png" alt="" /></Sort>
+            <Sort onClick={this.showSortOptions}>Sort by: {sortTerms} <img src="../img/arrow.png" alt="" /></Sort>
             {this.state.showOptions &&
               <SortDropdown>
-                <p onClick={sortRating}>highest rated</p>
-                <p onClick={sortDistance}>closest</p>
-                <p onClick={sortAz}>A-Z</p>
+                <p onClick={(e) => {
+                  e.preventDefault;
+                  sortRating();
+                }
+                }>highest rated</p>
+                <p onClick={(e) => { e.preventDefault; sortDistance(); }}>closest</p>
+                <p onClick={(e) => { e.preventDefault; sortAz(); }}>A-Z</p>
               </SortDropdown>
             }
           </MenuRight>

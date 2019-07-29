@@ -37,10 +37,16 @@ const SearchContainer = styled.div`
     `};
 `
 
-const SearchButton = styled.button`
+const SearchBtn = styled.button`
     background: ${COLOR.black};
     color: ${COLOR.white};
-    width: 50px%;
+    width: 100%;
+    margin-top: 1rem;
+    border: 1px solid ${COLOR.black};
+
+  ${BREAKPOINT.m`
+       margin-top: 0rem;
+    `};
 `
 
 const RandomizeButton = styled.button`
@@ -88,7 +94,7 @@ class SearchSection extends React.Component<{
             <p>Search for a resturant by name</p>
             <SearchContainer>
               <Input name="value" placeholder="Heno Heno..." />
-              <SearchButton>Search</SearchButton>
+              <SearchBtn>Search</SearchBtn>
             </SearchContainer>
           </form>
         </Section>
