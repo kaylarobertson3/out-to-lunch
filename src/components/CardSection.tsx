@@ -90,12 +90,12 @@ class CardSection extends React.Component<{
             <ListViewBtn onClick={this.toggleListView}>
               {listViewText}
             </ListViewBtn>
-            <Sort onClick={this.showSortOptions}>Sort <img src="../img/arrow.png" alt="" /></Sort>
+            <Sort onClick={this.showSortOptions}>Sort by: <img src="../img/arrow.png" alt="" /></Sort>
             {this.state.showOptions &&
               <SortDropdown>
+                <p onClick={sortRating}>highest rated</p>
+                <p onClick={sortDistance}>closest</p>
                 <p onClick={sortAz}>A-Z</p>
-                <p onClick={sortRating}>highest rating: <img src="../img/arrow.png" alt="" /></p>
-                <p onClick={sortDistance}>shortest distance <img src="../img/arrow.png" alt="" /></p>
               </SortDropdown>
             }
           </MenuRight>
