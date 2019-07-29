@@ -7,6 +7,7 @@ const HeroContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 100vw;
 
   ${BREAKPOINT.m`
     display: flex;

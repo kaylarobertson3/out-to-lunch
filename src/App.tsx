@@ -54,13 +54,13 @@ const Site = styled.div`
   }
 `
 const Nav = styled.nav`
-  padding: 1rem;
+  padding: 1rem 2rem;
   margin-bottom: 3rem;
   font-size: .9em;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;        
+  width: 100%;
 
   div {
     display: flex;
@@ -78,9 +78,11 @@ const Nav = styled.nav`
 
 const Content = styled.div`
   flex: 1;
-  margin: 0 1rem;
+  padding: 0 1rem;
   max-width: 1100px;
+  width: 100%;
   align-self: center;
+
 `
 
 const Footer = styled.footer`
@@ -102,6 +104,7 @@ const Footer = styled.footer`
   div  {
     width: 100%;
     max-width: 1100px;
+    width: 100%;
     }
 `
 

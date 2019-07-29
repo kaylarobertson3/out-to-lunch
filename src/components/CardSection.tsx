@@ -4,6 +4,7 @@ import Card from "./Card"
 import { COLOR, BREAKPOINT } from "@src/theme";
 
 const CardSectionWrapper = styled.section`
+    max-width: 100vw;
 `
 
 const MenuBar = styled.div`
