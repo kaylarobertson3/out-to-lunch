@@ -207,11 +207,10 @@ class Hero extends React.Component<{
             </FindFoodBtn>
           </Filters>
           <ResetBtn onClick={(e) => {
-            console.log("resetting form")
             this.setState({
               cuisineFilter: 'any',
               priceFilter: 'any',
-              distanceFilter: 'any'
+              distanceFilter: 'any',
             })
             handleReset(e);
           }}

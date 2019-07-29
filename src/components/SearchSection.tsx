@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT } from "@src/theme";
+import Suggestions from "@components/Suggestions"
 
 const SearchSectionContainer = styled.section`
     display: flex;
@@ -62,42 +63,34 @@ const Input = styled.input`
 
 
 class SearchSection extends React.Component<{
-  // handleSubmit: () => any;
-  handleSearchClick: any,
-  handleRandomizeClick: any
+  handleRandomizeClick: any,
+  handleInputChange: any,
+  results: any,
+  searchData: any
 }> {
   constructor(props) {
     super(props);
-    this.state = {
-    };
-  }
-
-  handleSubmit = (e) => {
-    const val = e.target.value.value
-    e.preventDefault();
-    this.props.handleSearchClick(val)
-  }
-
-  handleRandomSubmit = () => {
-    alert("random clicked")
   }
 
   render() {
-    const { handleSearchClick, handleRandomizeClick } = this.props;
+    const { handleRandomizeClick, handleInputChange, results, searchData } = this.props;
 
     return (
       <SearchSectionContainer>
         <Section>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={(e) => {
+            e.preventDefault(); searchData
+          }}>
             <h2>Looking for something specific?</h2>
             <p>Search for a resturant by name</p>
             <SearchContainer>
-              <Input name="value" placeholder="Heno Heno..." />
-              <SearchBtn>Search</SearchBtn>
+              <Input onChange={(e) => { handleInputChange(e.target.value) }} name="value" placeholder="Heno Heno..." />
+              <SearchBtn type="submit">Search</SearchBtn>
             </SearchContainer>
+            {/* <Suggestions results={results} /> */}
           </form>
         </Section>
-        {/* <hr style={{ width: 100 + "%", margin: 2 + "rem" }} /> */}
+        <hr style={{ width: 100 + "%", margin: 2 + "rem" }} />
         <Section>
           <h2>Can't decide?</h2>
           <p>Click the randomize button and we’ll choose a random resturant for you.</p>

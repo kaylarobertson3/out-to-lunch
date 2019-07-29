@@ -2,7 +2,11 @@ import React from "react";
 import Hero from "@components/Hero"
 import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
-import data from "@src/data/data.json";
+import dataUnsorted from "@src/data/data.json";
+
+const data = dataUnsorted.sort((a, b) => {
+  return b.rating - a.rating
+})
 
 const cuisines = ["any"];
 
@@ -10,7 +14,7 @@ data.map((d) => {
   if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
 })
 
-class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, searchTerms: any, sortTerms: string }> {
+class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, query: any, sortTerms: string, results: any }> {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,34 +23,25 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
       cuisine: null,
       price: null,
       distance: null,
-      searchTerms: null,
+      query: '',
+      results: [],
       sortTerms: "Highest Rated"
     }
   }
 
-  // handleFilter = (cuisineFilter, ) => {
-  //   const { cuisine, price, distance } = filterTerms;
-
-  //   console.log("filter terms index: ", cuisine, price, distance)
-  //   const filteredData = data.filter(d => d.cuisine == cuisine);
-
-  //   this.setState({
-  //     data: filteredData
-  //   })
-  // }
-
   handleReset = (e) => {
     e.preventDefault();
-    this.setState({ data: data })
+    this.setState({
+      data: data,
+      query: '',
+      sortTerms: "Highest Rated"
+    })
   }
 
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
     const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0
     const priceIndexNum = priceFilter == "any" ? -1 : 0
     const distanceIndexNum = distanceFilter == "any" ? -1 : 0
-
-    console.log(cuisineFilter, priceFilter, distanceFilter)
-
     const filteredData = data.filter(d => {
       return (
         d.cuisine.indexOf(cuisineFilter) >= cuisineIndexNum
@@ -54,37 +49,43 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
         && d.distance.indexOf(distanceFilter) >= distanceIndexNum
       )
     })
-    console.log("filteredData", filteredData)
-
     this.setState({
-      data: filteredData
+      data: filteredData,
+      query: cuisineFilter + " ," + priceFilter + ", " + distanceFilter
     })
   }
 
   handleSortAz = () => {
-    console.log("sorting a to z");
-    const sortedData = this.state.data.sort((a, b) => {
-      return a.name.localeCompare(b.name);
-    })
+    let sortedData;
+    if (this.state.data.length >= 1) {
+      sortedData = this.state.data.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      })
+    } else sortedData = this.state.data;
     this.setState({ data: sortedData, sortTerms: "A - Z" })
   }
 
   handleSortRating = () => {
-    console.log("sorting rating");
-    const sortedData = this.state.data.sort((a, b) => {
-      return b.rating - a.rating
-    })
+    let sortedData;
+    if (this.state.data.length >= 1) {
+      sortedData = this.state.data.sort((a, b) => {
+        return b.rating - a.rating
+      })
+    } else sortedData = this.state.data;
+
     this.setState({ data: sortedData, sortTerms: "Highest Rated" })
   }
 
   handleSortDistance = () => {
-    console.log("sorting distance");
-    const sortedData = this.state.data.sort((a, b) => {
-      return a.distance - b.distance
-    })
-    console.log("sortedData", sortedData)
-    this.setState({ data: sortedData, sortTerms: "Closest" })
+    let sortedData;
+    if (this.state.data.length >= 1) {
 
+      sortedData = this.state.data.sort((a, b) => {
+        return a.distance - b.distance
+      })
+    } else sortedData = this.state.data;
+
+    this.setState({ data: sortedData, sortTerms: "Closest" })
   }
 
   handleRandomize = () => {
@@ -95,18 +96,41 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
     var randomResturant = data[randomId];
 
     this.setState({
-      data: randomResturant
+      data: randomResturant,
+      query: "Random"
     })
-
-    console.log("randomresturant", randomResturant)
   }
 
-  handleSearch = (searchTerms) => {
-    console.log("searching with: ", searchTerms);
+  searchData = () => {
+    const queryLower = this.state.query.toLowerCase();
+
+    const filteredData = data.filter(item => {
+      return Object.keys(item).some(key => {
+        if (item[key]) {
+          if (item[key])
+            return item[key].toString().toLowerCase().includes(queryLower)
+        }
+      }
+      );
+    });
+
+    this.setState({
+      data: filteredData,
+      results: filteredData
+    })
+  }
+
+  handleInputChange = (e) => {
+    this.setState({
+      query: e
+    }, () => {
+      if (this.state.query && this.state.query.length >= 0) {
+        this.searchData()
+      }
+    })
   }
 
   render() {
-    console.log("this.state.data", this.state.data)
     return (
       <>
         <Hero data={this.state.data} cuisines={cuisines} handleClick={this.handleFilter} handleReset={this.handleReset} />
@@ -116,10 +140,12 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
           sortRating={this.handleSortRating}
           cardData={this.state.data}
           sortTerms={this.state.sortTerms}
-          searchTerms={this.state.searchTerms} />
+          query={this.state.query} />
         <SearchSection
-          handleSearchClick={this.handleSearch}
+          searchData={this.searchData}
           handleRandomizeClick={this.handleRandomize}
+          handleInputChange={this.handleInputChange}
+          results={this.state.results}
         />
         <a href="#top" id="bottom">
           Scroll to top!

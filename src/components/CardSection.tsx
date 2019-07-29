@@ -59,7 +59,7 @@ class CardSection extends React.Component<{
   sortAz: any;
   sortRating: any;
   sortDistance: any;
-  searchTerms: string;
+  query: any;
   sortTerms: string;
 }, {
   listView: boolean;
@@ -91,11 +91,11 @@ class CardSection extends React.Component<{
 
 
   render() {
-    const { cardData, sortAz, sortRating, sortDistance, searchTerms, sortTerms } = this.props;
+    const { cardData, sortAz, sortRating, sortDistance, query, sortTerms } = this.props;
     const listViewText = this.state.listView ? "Grid View" : "List View";
-    const resultsText = "Results for: " + searchTerms + ":"
-    console.log("cardData.length", cardData.length)
-    console.log("cardData", cardData)
+    const resultsText = "Results for " + query + ":"
+    console.log("card data length: ", cardData.length)
+    console.log("card data: ", cardData)
     return (
       <CardSectionWrapper>
         <MenuBar>
@@ -123,10 +123,11 @@ class CardSection extends React.Component<{
               sorry, no results
             </p >
           }
-          {!cardData.length &&
+          {typeof cardData.length == "undefined" &&
             <Card listView={this.state.listView} name={cardData.name} imgUrl={`../img/cards/${cardData.imgUrl}`} price={cardData.price} rating={cardData.rating} distance={cardData.distance} description={cardData.description} />
           }
-          {cardData.length > 1 &&
+
+          {cardData.length >= 1 &&
             cardData.map((d, i) => {
               return (
                 <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
