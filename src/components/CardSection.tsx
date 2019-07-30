@@ -77,6 +77,7 @@ const Cards = styled.div<{ listView: boolean }>`
 
 class CardSection extends React.Component<{
   cardData: any;
+  resultsText: string,
   sortAz: any;
   sortRating: any;
   sortDistance: any;
@@ -112,14 +113,13 @@ class CardSection extends React.Component<{
 
 
   render() {
-    const { cardData, sortAz, sortRating, sortDistance, query, sortTerms } = this.props;
+    const { cardData, sortAz, sortRating, sortDistance, query, sortTerms, resultsText } = this.props;
     const viewText = this.state.listView ? "Grid View" : "List View";
-    const resultsText = "Results for " + query + ":";
     return (
       <CardSectionWrapper>
         <MenuBar>
           <MenuLeft>
-            {resultsText}
+            {resultsText && resultsText}
           </MenuLeft>
           <MenuRight>
             <ViewBtn onClick={this.toggleListView}>

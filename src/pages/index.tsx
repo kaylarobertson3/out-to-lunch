@@ -4,6 +4,9 @@ import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
 import dataUnsorted from "@src/data/data.json";
 // import Tabletop from 'tabletop'
+import * as Scroll from 'react-scroll';
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { string } from "prop-types";
 
 const apiKey = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
 
@@ -17,7 +20,7 @@ data.map((d) => {
   if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
 })
 
-class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, query: any, sortTerms: string, results: any }> {
+class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cuisine: any, price: any, distance: any, query: any, sortTerms: string, resultsText: string }> {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +30,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
       price: null,
       distance: null,
       query: '',
-      results: [],
+      resultsText: '',
       sortTerms: "Highest Rated"
     }
   }
@@ -50,6 +53,15 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
       sortTerms: "Highest Rated"
     })
   }
+
+
+  scrollToTop = () => {
+    scroll.scrollTo(0, {
+      duration: 400,
+      delay: 0,
+      smooth: true,
+    });
+  };
 
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
     const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0
@@ -102,7 +114,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
   }
 
   handleRandomize = () => {
-    // TODO: scroll back to #top
+    this.scrollToTop();
     const min = 0;
     const max = data.length;
     var randomId = Math.floor(Math.random() * (+max - +min)) + +min;
@@ -116,7 +128,6 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
 
   searchData = () => {
     const queryLower = this.state.query.toLowerCase();
-
     const filteredData = data.filter(item => {
       return Object.keys(item).some(key => {
         if (item[key]) {
@@ -129,18 +140,21 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
 
     this.setState({
       data: filteredData,
-      results: filteredData
+      resultsText: `Results for ${this.state.query}: `
     })
+    this.scrollToTop();
   }
 
   handleInputChange = (e) => {
     this.setState({
       query: e
-    }, () => {
-      if (this.state.query && this.state.query.length >= 0) {
-        this.searchData()
-      }
     })
+    // Keep this if back to search on input
+    // , () => {
+    //   if (this.state.query && this.state.query.length >= 0) {
+    //     this.searchData()
+    //   }
+    // })
   }
 
   render() {
@@ -150,19 +164,27 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
         <CardSection
           sortDistance={this.handleSortDistance}
           sortAz={this.handleSortAz}
+          query={this.state.query}
           sortRating={this.handleSortRating}
           cardData={this.state.data}
           sortTerms={this.state.sortTerms}
-          query={this.state.query} />
+          resultsText={this.state.resultsText} />
         <SearchSection
           searchData={this.searchData}
           handleRandomizeClick={this.handleRandomize}
           handleInputChange={this.handleInputChange}
-          results={this.state.results}
         />
-        <a href="#top" id="bottom">
-          Scroll to top!
-      </a>
+        {/* <Link
+          activeClass="active"
+          to="top"
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
+        >
+          Section 1
+              </Link> */}
+        <p onClick={this.scrollToTop}>Scroll to top</p>
       </>
     )
   }

@@ -17,6 +17,7 @@
     "fs": "0.0.1-security",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-scroll": "^1.7.12",
     "react-static": "^7.1.0",
     "react-static-plugin-reach-router": "^7.0.0",
     "react-static-plugin-sitemap": "^7.0.0",

@@ -78,29 +78,35 @@ const Line = styled.hr`
 class SearchSection extends React.Component<{
   handleRandomizeClick: any,
   handleInputChange: any,
-  results: any,
   searchData: any
 }> {
   constructor(props) {
     super(props);
   }
 
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.props.searchData();
+    }
+  }
   render() {
-    const { handleRandomizeClick, handleInputChange, results, searchData } = this.props;
+    const { handleRandomizeClick, handleInputChange, searchData } = this.props;
 
     return (
       <SearchSectionContainer>
         <Section>
-          <form onSubmit={(e) => {
-            e.preventDefault(); searchData
-          }}>
+          <form>
             <h2>Looking for something specific?</h2>
             <p>Search for a resturant by name</p>
             <SearchContainer>
-              <Input onChange={(e) => { handleInputChange(e.target.value) }} name="value" placeholder="Heno Heno..." />
-              <SearchBtn type="submit">Search</SearchBtn>
+              <Input onChange={(e) => { handleInputChange(e.target.value) }} name="value" placeholder="Heno Heno..." onKeyDown={(e) => { this.handleKeyPress(e) }} />
+              <p onClick={
+                (e) => {
+                  e.preventDefault();
+                  searchData()
+                }}>Search</p>
             </SearchContainer>
-            {/* <Suggestions results={results} /> */}
           </form>
         </Section>
         <Line />
@@ -109,7 +115,7 @@ class SearchSection extends React.Component<{
           <p>Click the randomize button and we’ll choose a random resturant for you.</p>
           <RandomizeButton onClick={handleRandomizeClick}>Randomize</RandomizeButton>
         </Section>
-      </SearchSectionContainer>
+      </SearchSectionContainer >
     )
   }
 }
