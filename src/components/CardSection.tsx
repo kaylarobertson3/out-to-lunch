@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card"
+import CardAlt from "./CardAlt"
 import { COLOR, BREAKPOINT } from "@src/theme";
 
 const CardSectionWrapper = styled.section`
@@ -25,11 +26,38 @@ const ViewBtn = styled.button`
     background: none;
     margin-right: 1rem;
     display: flex;
+    padding: 0;
     align-items: center;
 
     img {
-      margin-left: 1rem;
+      margin-left: 0;
+      width: 15px;
+
+      ${BREAKPOINT.m`
+        margin-left: 1rem;
+      `};
     }
+
+    span {
+      display: none;
+      ${BREAKPOINT.m`
+        display: block;
+      `};
+    }    
+`
+
+const ExtraFilters = styled.div`
+    padding: 1rem;
+
+    p {
+      margin: 0 1rem 0 0;
+    }
+
+ ${BREAKPOINT.m`
+    display: flex;
+    flex-direction: row;
+
+  `};
 `
 
 const SortDropdown = styled.div`
@@ -41,8 +69,9 @@ const SortDropdown = styled.div`
     right: 1rem;
 
     ${BREAKPOINT.m`
-      margin-top: 0;
-      right: auto;
+      // margin-top: 0;
+      // right: auto;
+      margin-right: 2rem;
     `};
 
     p {
@@ -56,15 +85,16 @@ const SortDropdown = styled.div`
   `
 
 const SortBtn = styled.button`
-    color: ${COLOR.white};
-    background: ${COLOR.black};
+    color: ${COLOR.black};
+    background: none;
+    padding: 0;
+
     img {
-      margin: 0 0 0 5px;
+      margin-left: 1rem;
     }
 `
 const SortTerms = styled.span`
   margin-left: .5rem;
-  font-weight: 500;
 `
 
 const Cards = styled.div<{ listView: boolean }>`
@@ -76,7 +106,6 @@ const Cards = styled.div<{ listView: boolean }>`
     ${BREAKPOINT.m`
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     `};
-
 `
 
 class CardSection extends React.Component<{
@@ -89,29 +118,36 @@ class CardSection extends React.Component<{
   sortTerms: string;
 }, {
   listView: boolean;
-  showOptions: boolean;
+  showSortOptions: boolean;
+  showExtraFilters: boolean;
 }>{
   constructor(props) {
     super(props);
     this.state = {
       listView: false,
-      showOptions: false
+      showSortOptions: false,
+      showExtraFilters: false
     }
-    this.toggleListView = this.toggleListView.bind(this);
-    this.showSortOptions = this.showSortOptions.bind(this);
   }
 
-  toggleListView(e) {
+  toggleListView = (e) => {
     e.preventDefault();
     this.setState({
       listView: !this.state.listView
     })
   }
 
-  showSortOptions(e) {
+  showSortOptions = (e) => {
     e.preventDefault();
     this.setState({
-      showOptions: !this.state.showOptions
+      showSortOptions: !this.state.showSortOptions
+    })
+  }
+
+  toggleExtraFilters = (e) => {
+    e.preventDefault();
+    this.setState({
+      showExtraFilters: !this.state.showExtraFilters
     })
   }
 
@@ -120,26 +156,30 @@ class CardSection extends React.Component<{
     const { cardData, sortAz, sortRating, sortDistance, query, sortTerms, resultsText } = this.props;
     const viewText = this.state.listView ? "Grid View" : "List View";
     return (
-      <CardSectionWrapper>
+      <CardSectionWrapper id="menu-bar">
         <MenuBar>
           <MenuLeft>
             {resultsText && resultsText}
           </MenuLeft>
           <MenuRight>
+            <ViewBtn onClick={this.toggleExtraFilters}>{this.state.showExtraFilters ? "Hide filters" : "Show more filters"}</ViewBtn>
             <ViewBtn onClick={this.toggleListView}>
-              {viewText}
+              <span>{viewText}</span>
               {this.state.listView ? <img src="../img/icons/group.png" alt="card view" /> : <img src="../img/icons/list.png" alt="list view" />}
             </ViewBtn>
             <SortBtn onClick={this.showSortOptions}>Sort by:<SortTerms>{sortTerms}</SortTerms><img src="../img/icons/arrow.png" alt="" /></SortBtn>
-            {this.state.showOptions &&
+            {this.state.showSortOptions &&
               <SortDropdown>
-                <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortRating(); }}>highest rated</p>
-                <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortDistance(); }}>closest</p>
-                <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortAz(); }}>A-Z</p>
+                <p onClick={(e) => { e.preventDefault; this.setState({ showSortOptions: false }); sortRating(); }}>highest rated</p>
+                <p onClick={(e) => { e.preventDefault; this.setState({ showSortOptions: false }); sortDistance(); }}>closest</p>
+                <p onClick={(e) => { e.preventDefault; this.setState({ showSortOptions: false }); sortAz(); }}>A-Z</p>
               </SortDropdown>
             }
           </MenuRight>
         </MenuBar>
+        {this.state.showExtraFilters &&
+          <ExtraFilters><p>bakery</p> <p>IGG favorite</p><p>Vegetarian</p></ExtraFilters>
+        }
 
         <Cards listView={this.state.listView}>
           {cardData.length == 0 &&
@@ -152,7 +192,8 @@ class CardSection extends React.Component<{
           {cardData.length >= 1 &&
             cardData.map((d, i) => {
               return (
-                <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
+                // <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
+                <CardAlt listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
               )
             })
           }

@@ -56,7 +56,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
 
 
   scrollToTop = () => {
-    scroll.scrollTo(0, {
+    scroll.scrollTo('menu-bar', {
       duration: 400,
       delay: 0,
       smooth: true,
@@ -184,7 +184,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
         >
           Section 1
               </Link> */}
-        <p onClick={this.scrollToTop}>Scroll to top</p>
+        <button onClick={this.scrollToTop}>Scroll to top</button>
       </>
     )
   }

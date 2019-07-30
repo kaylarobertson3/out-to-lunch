@@ -22,20 +22,20 @@ const Section = styled.div`
     justify-content: center;
     text-align: center;
     width: 100%;
-
-    ${BREAKPOINT.m`
-      margin: 3rem 4rem;
-    `};
 `
 
 const SearchContainer = styled.div`
     margin-top: 2rem;
     width: 100%;
-    ${BREAKPOINT.m`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    /* ${BREAKPOINT.m`
         display: flex;
         flex-direction: row;
         justify-content: center;
-    `};
+    `}; */
 `
 
 const SearchBtn = styled.button`
@@ -45,7 +45,6 @@ const SearchBtn = styled.button`
     width: 100px;
     background: ${COLOR.black};
     color: ${COLOR.white};
-    margin-top: 1rem;
     border: 1px solid ${COLOR.black};
 
     img {

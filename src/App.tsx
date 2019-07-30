@@ -28,6 +28,7 @@ const Site = styled.div`
     font: normal 300 16px/23px ${FONT.sansSerif};
     padding: 8px 10px;
     border: none;
+    border-radius: .5rem;
   }
 
   button {
