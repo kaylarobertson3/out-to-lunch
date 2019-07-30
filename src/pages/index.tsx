@@ -76,17 +76,20 @@ class Home extends React.Component<
   };
 
   scrollToTop = () => {
+    scroll.scrollTo("0", {
+      duration: 400,
+      delay: 0,
+      smooth: true
+    });
+  };
+
+  scrollToCard = () => {
     scroller.scrollTo("menu-bar", {
       duration: 400,
       delay: 0,
       smooth: true,
       offset: -50
     });
-    // scroll.scrollTo("100", {
-    //   duration: 400,
-    //   delay: 0,
-    //   smooth: true
-    // });
   };
 
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
@@ -139,7 +142,7 @@ class Home extends React.Component<
   };
 
   handleRandomize = () => {
-    this.scrollToTop();
+    this.scrollToCard();
     const min = 0;
     const max = data.length;
     var randomId = Math.floor(Math.random() * (+max - +min)) + +min;
@@ -169,7 +172,7 @@ class Home extends React.Component<
       data: filteredData,
       resultsText: `Results for ${this.state.query}: `
     });
-    this.scrollToTop();
+    this.scrollToCard();
   };
 
   handleInputChange = e => {
