@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Card from "./Card"
 import CardAlt from "./CardAlt"
 import { COLOR, BREAKPOINT } from "@src/theme";
+import MapContainer from "@components/MapContainer"
 
 const CardSectionWrapper = styled.section`
     max-width: 100vw;
@@ -108,6 +109,8 @@ const Cards = styled.div<{ listView: boolean }>`
     `};
 `
 
+const ResultsTextContainer = styled.h4``
+
 class CardSection extends React.Component<{
   cardData: any;
   resultsText: string,
@@ -120,13 +123,15 @@ class CardSection extends React.Component<{
   listView: boolean;
   showSortOptions: boolean;
   showExtraFilters: boolean;
+  showMap: boolean;
 }>{
   constructor(props) {
     super(props);
     this.state = {
       listView: false,
       showSortOptions: false,
-      showExtraFilters: false
+      showExtraFilters: false,
+      showMap: true
     }
   }
 
@@ -151,6 +156,14 @@ class CardSection extends React.Component<{
     })
   }
 
+  toggleMapView = (e) => {
+    e.preventDefault();
+    this.setState({
+      showMap: !this.state.showMap
+    })
+  }
+
+
 
   render() {
     const { cardData, sortAz, sortRating, sortDistance, query, sortTerms, resultsText } = this.props;
@@ -159,10 +172,11 @@ class CardSection extends React.Component<{
       <CardSectionWrapper id="menu-bar">
         <MenuBar>
           <MenuLeft>
-            {resultsText && resultsText}
+            {resultsText && <ResultsTextContainer>{resultsText}</ResultsTextContainer>}
           </MenuLeft>
           <MenuRight>
             <ViewBtn onClick={this.toggleExtraFilters}>{this.state.showExtraFilters ? "Hide filters" : "Show more filters"}</ViewBtn>
+            <ViewBtn onClick={this.toggleMapView}>Map view</ViewBtn>
             <ViewBtn onClick={this.toggleListView}>
               <span>{viewText}</span>
               {this.state.listView ? <img src="../img/icons/group.png" alt="card view" /> : <img src="../img/icons/list.png" alt="list view" />}
@@ -177,13 +191,14 @@ class CardSection extends React.Component<{
             }
           </MenuRight>
         </MenuBar>
+        {this.state.showMap && <MapContainer cardData={cardData} />}
         {this.state.showExtraFilters &&
           <ExtraFilters><p>bakery</p> <p>IGG favorite</p><p>Vegetarian</p></ExtraFilters>
         }
 
         <Cards listView={this.state.listView}>
           {cardData.length == 0 &&
-            <p>sorry, no results</p>
+            <ResultsTextContainer>sorry, no results</ResultsTextContainer>
           }
           {typeof cardData.length == "undefined" &&
             <Card listView={this.state.listView} name={cardData.name} imgUrl={`../img/cards/${cardData.imgUrl}`} price={cardData.price} rating={cardData.rating} distance={cardData.distance} description={cardData.description} />

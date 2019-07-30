@@ -6,6 +6,7 @@ import Dynamic from '@components/Dynamic'
 import './app.css'
 import styled from "styled-components";
 import { FONT, COLOR, BREAKPOINT } from "@src/theme";
+import 'leaflet/dist/leaflet.css'
 
 const Site = styled.div`
   display: flex;
@@ -76,6 +77,7 @@ const Nav = styled.nav`
   svg {
     height: 30px;
     margin-right: 1rem;
+    max-width: 30px;
   }
 }
 `
@@ -89,7 +91,6 @@ const Content = styled.div`
 
   ${BREAKPOINT.m`
         padding: 3rem;
-        margin-top: 5rem;
     `};
 `
 
@@ -142,11 +143,6 @@ function App() {
             </React.Suspense>
           </FancyDiv>
         </Content>
-        {/* <Footer>
-          <div>
-            footer
-          </div>
-        </Footer> */}
       </Site>
     </Root>
   )

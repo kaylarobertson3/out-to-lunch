@@ -3,12 +3,13 @@ import Hero from "@components/Hero"
 import CardSection from "@components/CardSection"
 import SearchSection from "@components/SearchSection"
 import dataUnsorted from "@src/data/data.json";
-// import Tabletop from 'tabletop'
 import * as Scroll from 'react-scroll';
 import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import { string } from "prop-types";
+import Footer from "@components/Footer"
 
-const apiKey = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
+// import Tabletop from 'tabletop'
+// const apiKey = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
 
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating
@@ -30,8 +31,8 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
       price: null,
       distance: null,
       query: '',
-      resultsText: '',
-      sortTerms: "Highest Rated"
+      resultsText: 'All restaurants',
+      sortTerms: "Highest Rated",
     }
   }
 
@@ -50,13 +51,14 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
     this.setState({
       data: data,
       query: '',
-      sortTerms: "Highest Rated"
+      sortTerms: "Highest Rated",
+      resultsText: "All restaurants"
     })
   }
 
 
   scrollToTop = () => {
-    scroll.scrollTo('menu-bar', {
+    scroll.scrollTo('100', {
       duration: 400,
       delay: 0,
       smooth: true,
@@ -173,6 +175,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
           searchData={this.searchData}
           handleRandomizeClick={this.handleRandomize}
           handleInputChange={this.handleInputChange}
+          query={this.state.query}
         />
         {/* <Link
           activeClass="active"
@@ -184,7 +187,7 @@ class Home extends React.Component<{}, { data: any, cuisines: Array<String>, cui
         >
           Section 1
               </Link> */}
-        <button onClick={this.scrollToTop}>Scroll to top</button>
+        <Footer scrollToTop={this.scrollToTop} />
       </>
     )
   }

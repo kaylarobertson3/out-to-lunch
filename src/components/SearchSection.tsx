@@ -83,7 +83,8 @@ const Line = styled.hr`
 class SearchSection extends React.Component<{
   handleRandomizeClick: any,
   handleInputChange: any,
-  searchData: any
+  searchData: any,
+  query: string
 }> {
   constructor(props) {
     super(props);
@@ -96,7 +97,7 @@ class SearchSection extends React.Component<{
     }
   }
   render() {
-    const { handleRandomizeClick, handleInputChange, searchData } = this.props;
+    const { handleRandomizeClick, handleInputChange, searchData, query } = this.props;
 
     return (
       <SearchSectionContainer>
@@ -105,7 +106,7 @@ class SearchSection extends React.Component<{
             <h2>Looking for something specific?</h2>
             <p>Search for a resturant, cuisine, or location</p>
             <SearchContainer>
-              <Input onChange={(e) => { handleInputChange(e.target.value) }} name="value" placeholder="Heno Heno..." onKeyDown={(e) => { this.handleKeyPress(e) }} />
+              <Input onChange={(e) => { handleInputChange(e.target.value) }} name="value" placeholder="Heno Heno..." onKeyDown={(e) => { this.handleKeyPress(e) }} value={query} />
               <SearchBtn onClick={
                 (e) => {
                   e.preventDefault();

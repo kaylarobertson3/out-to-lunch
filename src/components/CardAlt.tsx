@@ -7,9 +7,8 @@ const CardLink = styled.a`
 `;
 
 const CardContainer = styled.div<{ listView: boolean }>`
-    /* background: ${COLOR.white}; */
+    background: ${props => props.listView ? `${COLOR.white}` : "none"};
     height: ${props => props.listView ? "100px" : "100%"};
-    /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15); */
     display: ${props => props.listView ? "flex" : "block"};
     margin: ${props => props.listView ? "1rem 0" : "0"};
 
@@ -28,7 +27,7 @@ const ImgContainer = styled.div<{ listView: boolean }>`
     background: black;
     height: ${props => props.listView ? "auto" : "200px"};
     width: ${props => props.listView ? "30%" : "100%"};
-    /* min-width: ${props => props.listView ? "120px" : "100%"}; */
+    border-radius: ${props => props.listView ? "10px 0 0 10px" : "10px"};
     margin: 0;
 `
 
@@ -87,14 +86,14 @@ const Icons = styled.div`
 const DataRow = styled.div<{ listView: boolean }>`
     align-self: flex-end;
     position: ${props => props.listView ? "relative" : "absolute"};
-    margin: ${props => props.listView ? "0" : " -2rem 0 0 0"}
+    margin: ${props => props.listView ? "0" : " -2rem 0 0 0"};
     color: ${COLOR.darkGray};
     /* margin: -2rem 0 0 0; */
 }
     div {
         display: flex;
         flex-direction: row;
-        border-radius: 10px;
+        border-radius: 10px ;
         background: rgb(242, 242, 242);
         z-index: 1;
     }
@@ -124,7 +123,7 @@ class CardAlt extends React.Component<{
     render() {
         const { imgUrl, price, name, rating, distance, listView, description } = this.props
         return (
-            <CardLink href="/">
+            <CardLink>
                 <CardContainer listView={listView}>
                     <ImgContainer listView={listView}>
                         <Img src={imgUrl} alt={name} />
