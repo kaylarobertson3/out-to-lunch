@@ -7,10 +7,13 @@ const CardLink = styled.a`
 `;
 
 const CardContainer = styled.div<{ listView: boolean }>`
-    background: ${props => props.listView ? `${COLOR.white}` : "none"};
+    /* background: ${props => props.listView ? `${COLOR.white}` : "none"}; */
+    background: ${COLOR.white};
     height: ${props => props.listView ? "100px" : "100%"};
     display: ${props => props.listView ? "flex" : "block"};
     margin: ${props => props.listView ? "1rem 0" : "0"};
+    border-radius: ${props => props.listView ? "0 10px 10px 0" : "0 0 10px 10px"};
+
 
     p {
       color: ${COLOR.darkGray};
@@ -27,7 +30,7 @@ const ImgContainer = styled.div<{ listView: boolean }>`
     background: black;
     height: ${props => props.listView ? "auto" : "200px"};
     width: ${props => props.listView ? "30%" : "100%"};
-    border-radius: ${props => props.listView ? "10px 0 0 10px" : "10px"};
+    border-radius: ${props => props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
     margin: 0;
 `
 
@@ -37,13 +40,10 @@ const Img = styled.img`
     height: 100%;
     margin: 0 0 -1rem 0;
     opacity: 0.9;
-    /* margin: 0 0 -1rem 0;
-    height: 200px; */
-    /* position: relative; */
 `
 
 const TextContainer = styled.div`
-    padding: 1rem 0;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -52,8 +52,6 @@ const TextContainer = styled.div`
 `
 
 const Name = styled.h3`
-    /* font: normal 700 19px/1.2 ${FONT.serif};
-    letter-spacing: 1.2px; */
     color: ${COLOR.darkGray};
 
 `
@@ -112,47 +110,47 @@ const Distance = styled.h5`
 `
 
 class CardAlt extends React.Component<{
-    imgUrl: string;
-    price: string;
-    name: string;
-    rating: number;
-    distance: number;
-    listView: boolean;
-    description: string;
+  imgUrl: string;
+  price: string;
+  name: string;
+  rating: number;
+  distance: number;
+  listView: boolean;
+  description: string;
 }>{
-    render() {
-        const { imgUrl, price, name, rating, distance, listView, description } = this.props
-        return (
-            <CardLink>
-                <CardContainer listView={listView}>
-                    <ImgContainer listView={listView}>
-                        <Img src={imgUrl} alt={name} />
-                    </ImgContainer>
-                    <TextContainer>
-                        <Name>{name}</Name>
-                        <DataRow listView={listView}>
-                            <div>
-                                <Price>{price}</Price>
-                                <Rating>{rating}</Rating>
-                                <Distance>{distance} mins</Distance>
-                            </div>
-                        </DataRow>
-                        <Tags>
-                            <Tag>Tags</Tag>
-                            <Tag>Tags</Tag>
-                            <Tag>Tags</Tag>
-                        </Tags>
-                        {/* {detailView && <p>{description}</p>} */}
-                        <Icons>
-                            <img src="../img/icons/search.png" alt="searcg" />
-                            <img src="../img/icons/search.png" alt="search" />
-                            <img src="../img/icons/search.png" alt="search" />
-                        </Icons>
-                    </TextContainer>
-                </CardContainer >
-            </CardLink >
-        )
-    }
+  render() {
+    const { imgUrl, price, name, rating, distance, listView, description } = this.props
+    return (
+      <CardLink>
+        <CardContainer listView={listView}>
+          <ImgContainer listView={listView}>
+            <Img src={imgUrl} alt={name} />
+          </ImgContainer>
+          <TextContainer>
+            <Name>{name}</Name>
+            <DataRow listView={listView}>
+              <div>
+                <Price>{price}</Price>
+                <Rating>{rating}</Rating>
+                <Distance>{distance} mins</Distance>
+              </div>
+            </DataRow>
+            <Tags>
+              <Tag>Tags</Tag>
+              <Tag>Tags</Tag>
+              <Tag>Tags</Tag>
+            </Tags>
+            {/* {detailView && <p>{description}</p>} */}
+            <Icons>
+              <img src="../img/icons/search.png" alt="searcg" />
+              <img src="../img/icons/search.png" alt="search" />
+              <img src="../img/icons/search.png" alt="search" />
+            </Icons>
+          </TextContainer>
+        </CardContainer >
+      </CardLink >
+    )
+  }
 }
 
 export default CardAlt;
