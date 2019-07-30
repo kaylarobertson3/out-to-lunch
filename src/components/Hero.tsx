@@ -41,7 +41,12 @@ const FiltersContainer = styled.div`
 
 const FilterTop = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
+    ${BREAKPOINT.m`
+      display: flex;
+      flex-direction: row;
+  `};
 `
 
 const FilterGroup = styled.div`
@@ -75,7 +80,7 @@ const Filter = styled.select`
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
-	background-image: url('../img/arrow.png');
+	background-image: url('../img/icons/arrow.png');
 	background-repeat: no-repeat, repeat;
 	background-position: right .7em top 50%, 0 0;
 	background-size: .65em auto, 100%;
@@ -151,7 +156,7 @@ class Hero extends React.Component<{
 
     return (
       <HeroContainer>
-        <Img src="../img/burger.png" />
+        <Img src="../img/illus/burger.png" />
         <MainSearch>
           <h1>What sounds good?</h1>
           <Filters>

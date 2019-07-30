@@ -69,10 +69,14 @@ const SortTerms = styled.span`
 
 const Cards = styled.div<{ listView: boolean }>`
     display: ${props => props.listView ? "block" : "grid"};
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    /* grid-gap: 35px 20px; */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 45px 35px;
     align-items: stretch;
+
+    ${BREAKPOINT.m`
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    `};
+
 `
 
 class CardSection extends React.Component<{
@@ -124,9 +128,9 @@ class CardSection extends React.Component<{
           <MenuRight>
             <ViewBtn onClick={this.toggleListView}>
               {viewText}
-              {this.state.listView ? <img src="../img/group.png" alt="card view" /> : <img src="../img/list.png" alt="list view" />}
+              {this.state.listView ? <img src="../img/icons/group.png" alt="card view" /> : <img src="../img/icons/list.png" alt="list view" />}
             </ViewBtn>
-            <SortBtn onClick={this.showSortOptions}>Sort by:<SortTerms>{sortTerms}</SortTerms><img src="../img/arrow.png" alt="" /></SortBtn>
+            <SortBtn onClick={this.showSortOptions}>Sort by:<SortTerms>{sortTerms}</SortTerms><img src="../img/icons/arrow.png" alt="" /></SortBtn>
             {this.state.showOptions &&
               <SortDropdown>
                 <p onClick={(e) => { e.preventDefault; this.setState({ showOptions: false }); sortRating(); }}>highest rated</p>

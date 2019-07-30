@@ -144,9 +144,9 @@ class Card extends React.Component<{
             </Tags> */}
             <p>{description}</p>
             <Icons>
-              <img src="../img/burger.png" alt="" />
-              <img src="../img/burger.png" alt="" />
-              <img src="../img/burger.png" alt="" />
+              <img src="../img/icons/search.png" alt="searcg" />
+              <img src="../img/icons/search.png" alt="search" />
+              <img src="../img/icons/search.png" alt="search" />
             </Icons>
           </TextContainer>
         </CardContainer >

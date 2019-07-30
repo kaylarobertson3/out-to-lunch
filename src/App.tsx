@@ -54,8 +54,6 @@ const Site = styled.div`
   }
 `
 const Nav = styled.nav`
-  padding: 1rem 2rem;
-  margin-bottom: 3rem;
   font-size: .9em;
   display: flex;
   justify-content: center;
@@ -63,11 +61,16 @@ const Nav = styled.nav`
   width: 100%;
 
   div {
+    padding: 1rem 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     max-width: 1100px;
     width: 100%;
+
+    ${BREAKPOINT.m`
+        padding: 2rem 3rem;
+    `};
 
   svg {
     height: 30px;
@@ -78,15 +81,18 @@ const Nav = styled.nav`
 
 const Content = styled.div`
   flex: 1;
-  padding: 0 1rem;
+  padding: 0 2rem;
   max-width: 1100px;
   width: 100%;
   align-self: center;
 
+  ${BREAKPOINT.m`
+        padding: 3rem;
+        margin-top: 5rem;
+    `};
 `
 
 const Footer = styled.footer`
-  padding: 1rem;
   margin-top: 4rem;
   min-height: 270px;
   background: ${COLOR.lightGray};
@@ -96,15 +102,17 @@ const Footer = styled.footer`
   display: flex;
   justify-content: center;
 
-  ${BREAKPOINT.m`
-        padding: 3rem;
-        margin-top: 5rem;
-    `};
+
 
   div  {
+    padding: 2rem;
     width: 100%;
     max-width: 1100px;
     width: 100%;
+    ${BREAKPOINT.m`
+        padding: 3rem;
+        margin-top: 5rem;
+    `};
     }
 `
 
@@ -133,11 +141,11 @@ function App() {
             </React.Suspense>
           </FancyDiv>
         </Content>
-        <Footer>
+        {/* <Footer>
           <div>
             footer
           </div>
-        </Footer>
+        </Footer> */}
       </Site>
     </Root>
   )

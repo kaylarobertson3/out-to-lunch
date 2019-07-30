@@ -34,17 +34,23 @@ const SearchContainer = styled.div`
     ${BREAKPOINT.m`
         display: flex;
         flex-direction: row;
-        align-items: flex-start;
         justify-content: center;
     `};
 `
 
 const SearchBtn = styled.button`
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 100px;
     background: ${COLOR.black};
     color: ${COLOR.white};
-    width: 100%;
     margin-top: 1rem;
     border: 1px solid ${COLOR.black};
+
+    img {
+      width: 15px;
+    }
 
   ${BREAKPOINT.m`
        margin-top: 0rem;
@@ -98,14 +104,15 @@ class SearchSection extends React.Component<{
         <Section>
           <form>
             <h2>Looking for something specific?</h2>
-            <p>Search for a resturant by name</p>
+            <p>Search for a resturant, cuisine, or location</p>
             <SearchContainer>
               <Input onChange={(e) => { handleInputChange(e.target.value) }} name="value" placeholder="Heno Heno..." onKeyDown={(e) => { this.handleKeyPress(e) }} />
-              <p onClick={
+              <SearchBtn onClick={
                 (e) => {
                   e.preventDefault();
                   searchData()
-                }}>Search</p>
+                }}><img src="../img/icons/search.png" alt="search" />
+              </SearchBtn>
             </SearchContainer>
           </form>
         </Section>
