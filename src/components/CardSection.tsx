@@ -237,14 +237,13 @@ class CardSection extends React.Component<
             )}
           </MenuRight>
         </MenuBar>
-        {this.state.showMap && <MapContainer cardData={cardData} />}
         {this.state.showExtraFilters && (
           <ExtraFilters>
             <p>bakery</p> <p>IGG favorite</p>
             <p>Vegetarian</p>
           </ExtraFilters>
         )}
-
+        {this.state.showMap && <MapContainer cardData={cardData} />}
         <Cards listView={this.state.listView}>
           {cardData.length == 0 && (
             <ResultsTextContainer>sorry, no results</ResultsTextContainer>
