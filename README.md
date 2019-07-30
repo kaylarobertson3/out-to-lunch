@@ -2,4 +2,12 @@
 
 https://igg-lunch.netlify.com/
 
-To start, run `yarn start`.
+
+- desc of proj (one pragraph)
+- framework
+    - react sattic
+    - 
+- instructions to 
+    - pre reqs (node, yarn etc)
+    - To start, run `yarn start`
+- 

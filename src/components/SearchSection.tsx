@@ -1,28 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT } from "@src/theme";
-import Suggestions from "@components/Suggestions"
+import Suggestions from "@components/Suggestions";
 
 const SearchSectionContainer = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100vw;
 
   ${BREAKPOINT.m`
           flex-direction: row;
           align-items: center;
           justify-content: center;
     `};
-`
+`;
+
 const Section = styled.div`
-    margin: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-`
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+`;
 
 const SearchContainer = styled.div`
     margin-top: 2rem;
@@ -36,41 +37,41 @@ const SearchContainer = styled.div`
         flex-direction: row;
         justify-content: center;
     `}; */
-`
+`;
 
 const SearchBtn = styled.button`
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    width: 100px;
-    background: ${COLOR.black};
-    color: ${COLOR.white};
-    border: 1px solid ${COLOR.black};
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  background: ${COLOR.black};
+  color: ${COLOR.white};
+  border: 1px solid ${COLOR.black};
 
-    img {
-      width: 15px;
-    }
+  img {
+    width: 15px;
+  }
 
   ${BREAKPOINT.m`
        margin-top: 0rem;
     `};
-`
+`;
 
 const RandomizeButton = styled.button`
-    margin-top: 2rem;
-    background: ${COLOR.black};
-    color: ${COLOR.white};
-    width: 100%;
-`
+  margin-top: 2rem;
+  background: ${COLOR.black};
+  color: ${COLOR.white};
+  width: 100%;
+`;
 
 const Input = styled.input`
-    width: 100%;
-`
+  width: 100%;
+`;
 
 const Line = styled.hr`
-    width: 300px;
-    margin: 2rem;
-    height: 1px;
+  width: 300px;
+  margin: 2rem;
+  height: 1px;
 
   ${BREAKPOINT.m`
     width: 300px;
@@ -78,26 +79,31 @@ const Line = styled.hr`
       height: 1px;
       transform: rotate(90deg);
   `};
-`
+`;
 
 class SearchSection extends React.Component<{
-  handleRandomizeClick: any,
-  handleInputChange: any,
-  searchData: any,
-  query: string
+  handleRandomizeClick: any;
+  handleInputChange: any;
+  searchData: any;
+  query: string;
 }> {
   constructor(props) {
     super(props);
   }
 
-  handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
+  handleKeyPress = event => {
+    if (event.key === "Enter") {
       event.preventDefault();
       this.props.searchData();
     }
-  }
+  };
   render() {
-    const { handleRandomizeClick, handleInputChange, searchData, query } = this.props;
+    const {
+      handleRandomizeClick,
+      handleInputChange,
+      searchData,
+      query
+    } = this.props;
 
     return (
       <SearchSectionContainer>
@@ -106,12 +112,24 @@ class SearchSection extends React.Component<{
             <h2>Looking for something specific?</h2>
             <p>Search for a resturant, cuisine, or location</p>
             <SearchContainer>
-              <Input onChange={(e) => { handleInputChange(e.target.value) }} name="value" placeholder="Heno Heno..." onKeyDown={(e) => { this.handleKeyPress(e) }} value={query} />
-              <SearchBtn onClick={
-                (e) => {
+              <Input
+                onChange={e => {
+                  handleInputChange(e.target.value);
+                }}
+                name="value"
+                placeholder="Heno Heno..."
+                onKeyDown={e => {
+                  this.handleKeyPress(e);
+                }}
+                value={query}
+              />
+              <SearchBtn
+                onClick={e => {
                   e.preventDefault();
-                  searchData()
-                }}><img src="../img/icons/search.png" alt="search" />
+                  searchData();
+                }}
+              >
+                <img src="../img/icons/search.png" alt="search" />
               </SearchBtn>
             </SearchContainer>
           </form>
@@ -119,11 +137,16 @@ class SearchSection extends React.Component<{
         <Line />
         <Section>
           <h2>Can't decide?</h2>
-          <p>Click the randomize button and we’ll choose a random resturant for you.</p>
-          <RandomizeButton onClick={handleRandomizeClick}>Randomize</RandomizeButton>
+          <p>
+            Click the randomize button and we’ll choose a random resturant for
+            you.
+          </p>
+          <RandomizeButton onClick={handleRandomizeClick}>
+            Randomize
+          </RandomizeButton>
         </Section>
-      </SearchSectionContainer >
-    )
+      </SearchSectionContainer>
+    );
   }
 }
 
