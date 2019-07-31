@@ -1,113 +1,138 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, FONT } from "@src/theme";
+import starIcon from "@src/icons/star.svg";
+import walkIcon from "@src/icons/walk.svg";
 
 const CardLink = styled.a`
-    height: 100%;
+  height: 100%;
 `;
 
 const CardContainer = styled.div<{ listView: boolean }>`
-    /* background: ${props => props.listView ? `${COLOR.white}` : "none"}; */
-    background: ${COLOR.white};
-    height: ${props => props.listView ? "100px" : "100%"};
-    display: ${props => props.listView ? "flex" : "block"};
-    margin: ${props => props.listView ? "1rem 0" : "0"};
-    border-radius: ${props => props.listView ? "0 10px 10px 0" : "0 0 10px 10px"};
-
-
+  flex-direction: column;
+    /* background: ${props => (props.listView ? `${COLOR.white}` : "none")}; */
+    height: ${props => (props.listView ? "100px" : "100%")};
+    display: flex;
+    margin: ${props => (props.listView ? "1rem 0" : "0")};
+    border-radius: ${props =>
+      props.listView ? "0 10px 10px 0" : "0 0 10px 10px"};
+    
     p {
       color: ${COLOR.darkGray};
       font-size: 16px;
       line-height: 1.5;
       margin-top: .7rem;
     }
-  `
+  `;
 
 const ImgContainer = styled.div<{ listView: boolean }>`
-    background: ${COLOR.black};
-    border-radius: 10px;
-    overflow: hidden;
-    background: black;
-    height: ${props => props.listView ? "auto" : "200px"};
-    width: ${props => props.listView ? "30%" : "100%"};
-    border-radius: ${props => props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
-    margin: 0;
-`
+  background: ${COLOR.black};
+  border-radius: 10px;
+  overflow: hidden;
+  background: black;
+  height: ${props => (props.listView ? "auto" : "200px")};
+  width: ${props => (props.listView ? "30%" : "100%")};
+  border-radius: ${props =>
+    props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
+  margin: 0;
+`;
 
 const Img = styled.img`
-    object-fit: cover;
-    min-width: 100%;
-    height: 100%;
-    margin: 0 0 -1rem 0;
-    opacity: 0.9;
-`
-
-const TextContainer = styled.div`
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    width: 100%;
-`
-
-const Name = styled.h3`
-    color: ${COLOR.darkGray};
-
-`
-
-const Tags = styled.div`
-    margin: 1rem 0 0 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-`
-
-const Tag = styled.h5`
-    background: ${COLOR.lightGray};
-    margin-right: .5rem;
-    padding: .4rem .7rem;
-    border-radius: 10px;
-`
-
-const Icons = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-
-    img {
-        width: 15px;
-        margin: 5px;
-    }
-`
+  object-fit: cover;
+  min-width: 100%;
+  height: 100%;
+  margin: 0 0 0 0;
+  opacity: 0.9;
+`;
 
 const DataRow = styled.div<{ listView: boolean }>`
-    align-self: flex-end;
-    position: ${props => props.listView ? "relative" : "absolute"};
-    margin: ${props => props.listView ? "0" : " -2rem 0 0 0"};
-    color: ${COLOR.darkGray};
-    /* margin: -2rem 0 0 0; */
-}
-    div {
-        display: flex;
-        flex-direction: row;
-        border-radius: 10px ;
-        background: rgb(242, 242, 242);
-        z-index: 1;
-    }
-`
+  align-self: flex-end;
+  position: ${props => (props.listView ? "relative" : "absolute")};
+  margin: ${props => (props.listView ? "0" : " 0rem 0 0 0")};
+  color: ${COLOR.darkGray};
+  z-index: 1;
 
-const Price = styled.h5`
-    margin: .5rem;
-`
+  /* div {
+    display: flex;
+    flex-direction: row;
+    border-radius: 9px;
+    background: rgb(242, 242, 242);
+    z-index: 1;
+  } */
+`;
+
+const TextContainer = styled.div`
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  background: ${COLOR.white};
+  color: ${COLOR.darkGray};
+  border-radius: 0 0 10px 10px;
+`;
+
+const Name = styled.h3`
+  color: ${COLOR.darkGray};
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Tags = styled.div`
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const Tag = styled.h5`
+  margin-right: 0.5rem;
+  font-weight: 400;
+  opacity: 0.6;
+  font-size: 13px;
+`;
+
+const Icons = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  img {
+    width: 15px;
+    margin: 5px;
+  }
+`;
 
 const Rating = styled.h5`
-    margin: .5rem;
-`
+  margin: 1rem 1rem 0 0;
+  display: flex;
+  align-items: center;
 
+  img {
+    margin-right: 0.5rem;
+  }
+`;
+
+//TODO: fix div wrapper, style for distance
 const Distance = styled.h5`
-    margin: .5rem;
-`
+  display: flex;
+  border-radius: 9px;
+  background: rgb(242, 242, 242);
+  z-index: 1;
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 15px;
+    margin-right: 0.5rem;
+  }
+`;
 
 class CardAlt extends React.Component<{
   imgUrl: string;
@@ -117,39 +142,55 @@ class CardAlt extends React.Component<{
   distance: number;
   listView: boolean;
   description: string;
-}>{
+}> {
   render() {
-    const { imgUrl, price, name, rating, distance, listView, description } = this.props
+    const {
+      imgUrl,
+      price,
+      name,
+      rating,
+      distance,
+      listView,
+      description
+    } = this.props;
     return (
       <CardLink>
         <CardContainer listView={listView}>
+          <DataRow listView={listView}>
+            <div>
+              {/* <Rating>{price}</Rating> */}
+              <Distance>
+                <img height="15px" src={walkIcon} alt="walking distance" />
+                {distance} min.
+              </Distance>
+            </div>
+          </DataRow>
           <ImgContainer listView={listView}>
             <Img src={imgUrl} alt={name} />
           </ImgContainer>
           <TextContainer>
             <Name>{name}</Name>
-            <DataRow listView={listView}>
-              <div>
-                <Price>{price}</Price>
-                <Rating>{rating}</Rating>
-                <Distance>{distance} mins</Distance>
-              </div>
-            </DataRow>
-            <Tags>
-              <Tag>Tags</Tag>
-              <Tag>Tags</Tag>
-              <Tag>Tags</Tag>
-            </Tags>
+            <Row>
+              <Rating>
+                <img src={starIcon} alt="rating" />
+                {rating}
+              </Rating>
+              <Tags>
+                <Tag>Tags</Tag>
+                <Tag>Tags</Tag>
+                <Tag>Tags</Tag>
+              </Tags>
+            </Row>
             {/* {detailView && <p>{description}</p>} */}
-            <Icons>
+            {/* <Icons>
               <img src="../img/icons/search.png" alt="searcg" />
               <img src="../img/icons/search.png" alt="search" />
               <img src="../img/icons/search.png" alt="search" />
-            </Icons>
+            </Icons> */}
           </TextContainer>
-        </CardContainer >
-      </CardLink >
-    )
+        </CardContainer>
+      </CardLink>
+    );
   }
 }
 

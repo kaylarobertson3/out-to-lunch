@@ -90,7 +90,7 @@ const Content = styled.div`
   align-self: center;
 
   ${BREAKPOINT.m`
-        padding: 3rem;
+        padding: 3rem 3rem 2rem 3rem;
     `};
 `;
 

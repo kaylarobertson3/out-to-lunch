@@ -149,7 +149,7 @@ class Home extends React.Component<
     var randomResturant = data[randomId];
 
     this.setState({
-      resultsText: "Go to: " + randomResturant,
+      resultsText: "Go to: " + randomResturant.name,
       data: randomResturant
     });
 

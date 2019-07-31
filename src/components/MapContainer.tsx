@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BREAKPOINT } from "@src/theme";
+import { BREAKPOINT, FONT, COLOR } from "@src/theme";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
@@ -17,7 +17,7 @@ const DefaultIcon = (L.Marker.prototype.options.icon = L.icon({
 
 // IGG icon
 const IggIcon = (L.Marker.prototype.options.icon = L.icon({
-  iconUrl: require("icons/igg.svg"),
+  iconUrl: require("icons/iggCircle.svg"),
   iconAnchor: [13, 27],
   iconSize: [30, 30]
 }));
@@ -36,6 +36,21 @@ const LeafletWrapper = styled.div`
   .leaflet-popup {
     margin-bottom: 40px;
     left: -49px;
+
+    p {
+      font: normal 700 13px/1.2 ${FONT.sansSerif};
+      margin: 0;
+    }
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: 5px;
+  }
+
+  .leaflet-control-attribution {
+    background: ${COLOR.white};
+    font-family: ${FONT.sansSerif};
+    color: ${COLOR.darkGray};
   }
 `;
 
@@ -54,12 +69,13 @@ class MapContainer extends React.Component<
     this.state = {
       lat: 52.50108,
       long: 13.31798,
-      zoom: 16
+      zoom: 14
     };
   }
 
   render() {
     const { cardData } = this.props;
+    console.log("carddata", cardData);
 
     return (
       <LeafletWrapper>
@@ -77,15 +93,27 @@ class MapContainer extends React.Component<
           />
           <Marker icon={IggIcon} position={IGGpos}>
             <Popup>
-              <span>IGG Office</span>
+              <p>IGG Office</p>
             </Popup>
           </Marker>
 
-          <Marker icon={DefaultIcon} position={IGGpos2}>
-            <Popup>
-              <span>IGG Office</span>
-            </Popup>
-          </Marker>
+          {cardData.length >= 1 &&
+            cardData.map((d, i) => {
+              if (d.lat && d.long) {
+                const latLong = [parseFloat(d.lat), parseFloat(d.long)];
+                console.log("latlong", latLong);
+                return (
+                  <Marker icon={DefaultIcon} position={latLong}>
+                    <Popup>
+                      <p>{d.name}</p>
+                      <p>{d.rating}</p>
+                      <p>{d.price}</p>
+                      <p>{d.distance}</p>
+                    </Popup>
+                  </Marker>
+                );
+              }
+            })}
         </Map>
       </LeafletWrapper>
     );
@@ -93,15 +121,3 @@ class MapContainer extends React.Component<
 }
 
 export default MapContainer;
-
-{
-  /* <TileLayer
-            url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
-            attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          <Marker icon={<img src="icons/igg.svg" />} position={IGGpos}>
-            <Popup>
-              <span>IGG Office</span>
-            </Popup>
-          </Marker> */
-}
