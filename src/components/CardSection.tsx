@@ -14,6 +14,11 @@ const MenuBar = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  flex-direction: column;
+  ${BREAKPOINT.m`
+      margin-left: 1rem;
+      flex-direction: row;
+  `};
 `;
 const MenuLeft = styled.div``;
 
@@ -57,7 +62,6 @@ const ExtraFilters = styled.div`
   ${BREAKPOINT.m`
     display: flex;
     flex-direction: row;
-
   `};
 `;
 
@@ -68,6 +72,7 @@ const SortDropdown = styled.div`
   padding: 8px 10px;
   margin-top: 3rem;
   right: 1rem;
+  z-index: 500;
 
   ${BREAKPOINT.m`
       // margin-top: 0;
@@ -89,6 +94,8 @@ const SortBtn = styled.button`
   color: ${COLOR.black};
   background: none;
   padding: 0;
+  display: flex;
+  align-items: center;
 
   img {
     margin-left: 1rem;
@@ -96,6 +103,11 @@ const SortBtn = styled.button`
 `;
 const SortTerms = styled.span`
   margin-left: 0.5rem;
+  display: none;
+
+  ${BREAKPOINT.m`
+    display: block;
+  `};
 `;
 
 const Cards = styled.div<{ listView: boolean }>`
@@ -172,11 +184,11 @@ class CardSection extends React.Component<
       sortAz,
       sortRating,
       sortDistance,
-      query,
       sortTerms,
       resultsText
     } = this.props;
     const viewText = this.state.listView ? "Grid View" : "List View";
+    const mapText = this.state.showMap ? "Hide map" : "View map";
     return (
       <CardSectionWrapper id="menu-bar">
         <MenuBar>
@@ -186,12 +198,16 @@ class CardSection extends React.Component<
             )}
           </MenuLeft>
           <MenuRight>
-            <ViewBtn onClick={this.toggleExtraFilters}>
+            {/* TODO: add more features functionality */}
+            {/* <ViewBtn onClick={this.toggleExtraFilters}>
               {this.state.showExtraFilters
                 ? "Hide filters"
                 : "Show more filters"}
+            </ViewBtn> */}
+            <ViewBtn onClick={this.toggleMapView}>
+              <span>{mapText}</span>
+              <img src="../img/icons/group.png" alt="map view" />
             </ViewBtn>
-            <ViewBtn onClick={this.toggleMapView}>Map view</ViewBtn>
             <ViewBtn onClick={this.toggleListView}>
               <span>{viewText}</span>
               {this.state.listView ? (
@@ -201,7 +217,8 @@ class CardSection extends React.Component<
               )}
             </ViewBtn>
             <SortBtn onClick={this.showSortOptions}>
-              Sort by:<SortTerms>{sortTerms}</SortTerms>
+              Sort
+              <SortTerms>: {sortTerms}</SortTerms>
               <img src="../img/icons/arrow.png" alt="" />
             </SortBtn>
             {this.state.showSortOptions && (

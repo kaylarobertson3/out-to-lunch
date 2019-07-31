@@ -4,17 +4,23 @@ import { BREAKPOINT } from "@src/theme";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
-import iggLogo from "@src/icons/igg.svg";
 
 const IGGpos = [52.50108, 13.31798];
+const IGGpos2 = [52.50191, 13.31701];
 
-// let DefaultIcon = L.icon({
-//   iconUrl: require("icons/igg.svg"),
-//   // shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
-//   iconAnchor: [13, 27]
-// });
+// default icon
+const DefaultIcon = (L.Marker.prototype.options.icon = L.icon({
+  iconUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconAnchor: [13, 27],
+  iconSize: [20, "auto"]
+}));
 
-// L.Marker.prototype.options.icon = DefaultIcon;
+// IGG icon
+const IggIcon = (L.Marker.prototype.options.icon = L.icon({
+  iconUrl: require("icons/igg.svg"),
+  iconAnchor: [13, 27],
+  iconSize: [30, 30]
+}));
 
 const LeafletWrapper = styled.div`
   margin-bottom: 2rem;
@@ -25,6 +31,11 @@ const LeafletWrapper = styled.div`
     ${BREAKPOINT.m`
       height: 600px;
     `};
+  }
+
+  .leaflet-popup {
+    margin-bottom: 40px;
+    left: -49px;
   }
 `;
 
@@ -50,16 +61,6 @@ class MapContainer extends React.Component<
   render() {
     const { cardData } = this.props;
 
-    const myIcon = L.icon({
-      iconUrl: require("icons/igg.svg"),
-      iconSize: [30, 30],
-      iconAnchor: [13, 27],
-      popupAnchor: null,
-      shadowUrl: null,
-      shadowSize: null,
-      shadowAnchor: null
-    });
-
     return (
       <LeafletWrapper>
         <Map
@@ -74,7 +75,13 @@ class MapContainer extends React.Component<
             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker icon={myIcon} position={IGGpos}>
+          <Marker icon={IggIcon} position={IGGpos}>
+            <Popup>
+              <span>IGG Office</span>
+            </Popup>
+          </Marker>
+
+          <Marker icon={DefaultIcon} position={IGGpos2}>
             <Popup>
               <span>IGG Office</span>
             </Popup>

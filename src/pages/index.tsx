@@ -105,7 +105,7 @@ class Home extends React.Component<
     });
     this.setState({
       data: filteredData,
-      query: cuisineFilter + " ," + priceFilter + ", " + distanceFilter
+      resultsText: cuisineFilter + " ," + priceFilter + ", " + distanceFilter
     });
   };
 
@@ -149,9 +149,12 @@ class Home extends React.Component<
     var randomResturant = data[randomId];
 
     this.setState({
-      data: randomResturant,
-      query: "Random"
+      resultsText: "Go to: " + randomResturant,
+      data: randomResturant
     });
+
+    console.log("query:", this.state.query);
+    console.log("test:", "Go to: " + randomResturant);
   };
 
   searchData = () => {
