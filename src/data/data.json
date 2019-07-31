@@ -9,8 +9,8 @@
     "rating": 1,
     "price": "middle",
     "best dish": "curry reis",
-    "lat": "",
-    "long": "",
+    "lat": "52.503963",
+    "long": "13.31.5598",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   },
   {
@@ -23,8 +23,8 @@
     "rating": 2,
     "price": "middle",
     "best dish": "Schnecke",
-    "lat": "",
-    "long": "",
+    "lat": "52.499072",
+    "long": "13.312346",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   },
   {
@@ -36,8 +36,8 @@
     "rating": 3,
     "price": "expensive",
     "best dish": "curry of some sort",
-    "lat": "",
-    "long": "",
+    "lat": "52.507073",
+    "long": "13.321643",
     "imgUrl": "burger.jpg",
     "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex molestias magni, laudantium vol"
   },
