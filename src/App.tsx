@@ -51,7 +51,7 @@ const Site = styled.div`
   }
 
   section {
-    padding: 2rem 0 0 0;
+    padding: 0 0 4rem 0;
   }
 `;
 const Nav = styled.nav`
