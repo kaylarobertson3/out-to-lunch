@@ -84,7 +84,7 @@ class Home extends React.Component<
   };
 
   scrollToCard = () => {
-    scroller.scrollTo("menu-bar", {
+    scroller.scrollTo("cards", {
       duration: 400,
       delay: 0,
       smooth: true,

@@ -190,7 +190,7 @@ class CardSection extends React.Component<
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
     return (
-      <CardSectionWrapper id="menu-bar">
+      <CardSectionWrapper>
         <MenuBar>
           <MenuLeft>
             {resultsText && (
@@ -261,7 +261,7 @@ class CardSection extends React.Component<
           </ExtraFilters>
         )}
         {this.state.showMap && <MapContainer cardData={cardData} />}
-        <Cards listView={this.state.listView}>
+        <Cards id="cards" listView={this.state.listView}>
           {cardData.length == 0 && (
             <ResultsTextContainer>sorry, no results</ResultsTextContainer>
           )}
