@@ -5,11 +5,11 @@ export const COLOR = {
   white: "#FFFFFF",
   lightGray: "#F2F2F2",
   darkGray: "#4C4C4C",
-  gray2: '#AAAAAF',
-  lightBlue: '#B6D5D8',
-  red: '#C42C1B',
-  darkRed: '#A53332'
-}
+  gray2: "#AAAAAF",
+  lightBlue: "#B6D5D8",
+  red: "#C42C1B",
+  darkRed: "#A53332"
+};
 
 export const BREAKPOINT = styledBreakpoint({
   xxs: 0,
@@ -17,12 +17,12 @@ export const BREAKPOINT = styledBreakpoint({
   s: 576,
   m: 768,
   l: 992,
-  xl: 1200,
+  xl: 1200
 });
 
 export const FONT = {
-  sansSerif: '"Roboto", sans-serif',
-  serif: '"Playfair Display", serif',
+  sansSerif: "'Karla', sans-serif",
+  serif: '"Playfair Display", serif'
 };
 
 export const HEADING_MOBILE = {
@@ -30,7 +30,7 @@ export const HEADING_MOBILE = {
   h2: 30,
   h3: 19,
   h4: 16,
-  p: 16,
+  p: 16
 };
 
 export const HEADING_DESKTOP = {
@@ -38,5 +38,5 @@ export const HEADING_DESKTOP = {
   h2: 57,
   h3: 27,
   h4: 19,
-  p: 19,
+  p: 19
 };

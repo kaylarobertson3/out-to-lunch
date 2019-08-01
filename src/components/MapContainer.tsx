@@ -6,7 +6,6 @@ import "leaflet/dist/leaflet.css";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 
 const IGGpos = [52.50108, 13.31798];
-const IGGpos2 = [52.50191, 13.31701];
 
 // default icon
 const DefaultIcon = (L.Marker.prototype.options.icon = L.icon({
@@ -27,9 +26,11 @@ const LeafletWrapper = styled.div`
   .leaflet-container {
     width: 100%;
     height: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08);
 
     ${BREAKPOINT.m`
-      height: 600px;
+      height: 400px;
     `};
   }
 

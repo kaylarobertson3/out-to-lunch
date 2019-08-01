@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Karla&display=swap");
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -8,18 +8,25 @@
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
 }
 
-html, body {
+html,
+body {
   line-height: 1;
   margin: 0;
   padding: 0;
-  background: #F5F5F1;
+  background: #f5f5f1;
 }
 
 body {
-  font-family: "Roboto", serif;
+  font-family: "Karla", serif;
   font-weight: 300;
 }

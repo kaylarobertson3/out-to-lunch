@@ -11,8 +11,6 @@ const HeroContainer = styled.section`
 
   ${BREAKPOINT.m`
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
     `};
 `;
 
@@ -160,7 +158,6 @@ class Hero extends React.Component<
 
     return (
       <HeroContainer>
-        <Img src="../img/illus/burger.png" />
         <MainSearch>
           <h1>What sounds good?</h1>
           <Filters>

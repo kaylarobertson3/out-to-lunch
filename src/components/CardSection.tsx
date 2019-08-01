@@ -16,7 +16,7 @@ const MenuBar = styled.div`
   margin-bottom: 1rem;
   flex-direction: column;
   ${BREAKPOINT.m`
-      margin-left: 1rem;
+      // margin-left: 1rem;
       flex-direction: row;
   `};
 `;

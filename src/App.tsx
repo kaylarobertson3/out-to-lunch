@@ -13,12 +13,11 @@ const Site = styled.div`
   flex-direction: column;
 
   h1 {
-    font: normal 700 38px/1.2 ${FONT.serif};
+    font: normal 700 38px/1.2 ${FONT.sansSerif};
   }
 
   h2 {
     font: normal 700 30px/1.2 ${FONT.sansSerif};
-    margin: 1rem 0;
   }
   p {
     font: normal 300 16px/23px ${FONT.sansSerif};

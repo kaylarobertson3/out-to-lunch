@@ -30,6 +30,8 @@ const FooterRight = styled.div``;
 
 const ScrollTopBtn = styled.button`
   background: none;
+  display: flex;
+  align-items: center;
 `;
 
 export default class extends React.PureComponent<{ scrollToTop: any }, {}> {

@@ -9,23 +9,23 @@ const CardLink = styled.a`
 `;
 
 const CardContainer = styled.div<{ listView: boolean }>`
-  flex-direction: column;
-    /* background: ${props => (props.listView ? `${COLOR.white}` : "none")}; */
-    height: ${props => (props.listView ? "100px" : "100%")};
-    display: flex;
-    margin: ${props => (props.listView ? "1rem 0" : "0")};
-    border-radius: ${props =>
-      props.listView ? "0 10px 10px 0" : "0 0 10px 10px"};
-    
-    p {
-      color: ${COLOR.darkGray};
-      font-size: 16px;
-      line-height: 1.5;
-      margin-top: .7rem;
-    }
-  `;
+  height: ${props => (props.listView ? "100px" : "100%")};
+  margin: ${props => (props.listView ? "1rem 0" : "0")};
+  border-radius: ${props =>
+    props.listView ? "0 10px 10px 0" : "0 0 10px 10px"};
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08);
+
+  p {
+    color: ${COLOR.darkGray};
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 0.7rem;
+  }
+`;
 
 const ImgContainer = styled.div<{ listView: boolean }>`
+  display: flex;
+  flex-direction: column;
   background: ${COLOR.black};
   border-radius: 10px;
   overflow: hidden;
@@ -43,22 +43,6 @@ const Img = styled.img`
   height: 100%;
   margin: 0 0 0 0;
   opacity: 0.9;
-`;
-
-const DataRow = styled.div<{ listView: boolean }>`
-  align-self: flex-end;
-  position: ${props => (props.listView ? "relative" : "absolute")};
-  margin: ${props => (props.listView ? "0" : " 0rem 0 0 0")};
-  color: ${COLOR.darkGray};
-  z-index: 1;
-
-  /* div {
-    display: flex;
-    flex-direction: row;
-    border-radius: 9px;
-    background: rgb(242, 242, 242);
-    z-index: 1;
-  } */
 `;
 
 const TextContainer = styled.div`
@@ -119,7 +103,10 @@ const Rating = styled.h5`
 `;
 
 //TODO: fix div wrapper, style for distance
-const Distance = styled.h5`
+const Distance = styled.div<{ listView: boolean }>`
+  align-self: flex-end;
+  position: ${props => (props.listView ? "relative" : "absolute")};
+  margin: ${props => (props.listView ? "0" : " 0rem 0 0 0")};
   display: flex;
   border-radius: 9px;
   background: rgb(242, 242, 242);
@@ -127,6 +114,9 @@ const Distance = styled.h5`
   padding: 8px 10px;
   display: flex;
   align-items: center;
+
+  h5 {
+  }
 
   img {
     height: 15px;
@@ -156,17 +146,12 @@ class CardAlt extends React.Component<{
     return (
       <CardLink>
         <CardContainer listView={listView}>
-          <DataRow listView={listView}>
-            <div>
-              {/* <Rating>{price}</Rating> */}
-              <Distance>
-                <img height="15px" src={walkIcon} alt="walking distance" />
-                {distance} min.
-              </Distance>
-            </div>
-          </DataRow>
           <ImgContainer listView={listView}>
             <Img src={imgUrl} alt={name} />
+            <Distance listView={listView}>
+              <img height="15px" src={walkIcon} alt="walking distance" />
+              <h5>{distance} min.</h5>
+            </Distance>
           </ImgContainer>
           <TextContainer>
             <Name>{name}</Name>
@@ -180,6 +165,7 @@ class CardAlt extends React.Component<{
                 <Tag>Tags</Tag>
                 <Tag>Tags</Tag>
               </Tags>
+              <Rating>{price}</Rating>
             </Row>
             {/* {detailView && <p>{description}</p>} */}
             {/* <Icons>
