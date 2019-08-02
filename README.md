@@ -1,13 +1,13 @@
 # IGG Out to Lunch
-
 https://igg-lunch.netlify.com/
+Description of project coming soon.
 
+## Framework
+- This was built with React using [React Static](https://github.com/react-static/react-static).
+-
 
-- desc of proj (one pragraph)
-- framework
-    - react sattic
-    - 
-- instructions to 
+## Prerequisites
     - pre reqs (node, yarn etc)
-    - To start, run `yarn start`
-- 
+    - To start, run `yarn start`, ect
+    
+## Quick Start
