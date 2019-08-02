@@ -110,6 +110,7 @@ class MapContainer extends React.Component<
                       <p>{d.rating}</p>
                       <p>{d.price}</p>
                       <p>{d.distance}</p>
+                      Open in google maps =>
                     </Popup>
                   </Marker>
                 );

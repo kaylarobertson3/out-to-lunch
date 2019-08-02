@@ -214,9 +214,8 @@ class Hero extends React.Component<
                   }}
                 >
                   <option value="any">any distance</option>
-                  <option value="1">under 5 minutes</option>
-                  <option value="2">under 10 minutes</option>
-                  <option value="3">10+</option>
+                  <option value={1}>under 5 minutes</option>
+                  <option value={10}>under 10 minutes</option>
                 </Filter>
               </FilterGroup>
             </FiltersContainer>

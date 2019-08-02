@@ -32,10 +32,10 @@ class Home extends React.Component<
   {},
   {
     data: any;
-    cuisines: Array<String>;
-    cuisine: any;
-    price: any;
-    distance: any;
+    cuisines?: Array<String>;
+    cuisine?: any;
+    price?: any;
+    distance?: any;
     query: any;
     sortTerms: string;
     resultsText: string;
@@ -94,13 +94,14 @@ class Home extends React.Component<
 
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
     const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0;
+    const distanceIndexNum = distanceFilter == "any" ? 100 : distanceFilter;
     const priceIndexNum = priceFilter == "any" ? -1 : 0;
-    const distanceIndexNum = distanceFilter == "any" ? -1 : 0;
     const filteredData = data.filter(d => {
       return (
         d.cuisine.indexOf(cuisineFilter) >= cuisineIndexNum &&
         d.price.indexOf(priceFilter) >= priceIndexNum &&
-        d.distance.indexOf(distanceFilter) >= distanceIndexNum
+        d.distance <= distanceIndexNum
+        // d.distance.indexOf(distanceFilter) >= distanceIndexNum
       );
     });
     this.setState({
