@@ -279,13 +279,23 @@ class CardSection extends React.Component<
 
           {cardData.length >= 1 &&
             cardData.map((d, i) => {
+              var imgUrl;
+              if (d.imgUrl && d.imgUrl.length > 1) {
+                imgUrl = d.imgUrl;
+              } else if (d.cuisine) {
+                const lowerCuisine = d.cuisine.toLowerCase();
+                imgUrl = `../cards/placeholders/${lowerCuisine}`;
+              } else {
+                imgUrl = `../cards/placeholders/placeholder.jpg`;
+              }
+
               return (
                 // <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
                 <CardAlt
                   listView={this.state.listView}
                   key={i}
                   name={d.name}
-                  imgUrl={`../img/cards/${d.imgUrl}`}
+                  imgUrl={`../img/cards/${imgUrl}`}
                   price={d.price}
                   rating={d.rating}
                   distance={d.distance}
