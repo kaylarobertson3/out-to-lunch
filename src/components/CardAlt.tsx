@@ -172,8 +172,8 @@ class CardAlt extends React.Component<{
             <Name>{name}</Name>
             <Row>
               <Tags>
-                {tags[0] && <Tag>{tags[0]}</Tag>}
-                {tags[1] && <Tag>{tags[1]}</Tag>}
+                {/* {tags[0] && <Tag>{tags[0]}</Tag>}
+                {tags[1] && <Tag>{tags[1]}</Tag>} */}
               </Tags>
               <Distance>
                 <img height="15px" src={walkIcon} alt="walking distance" />

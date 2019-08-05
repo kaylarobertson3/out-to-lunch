@@ -3,8 +3,9 @@ import Hero from "@components/Hero";
 import CardSection from "@components/CardSection";
 import SearchSection from "@components/SearchSection";
 import dataUnsorted from "@src/data/data.json";
-import { animateScroll as scroll, scroller } from "react-scroll";
+import { Events, scroller } from "react-scroll";
 import Footer from "@components/Footer";
+import { ANIMATION } from "@src/constants";
 
 // import Tabletop from 'tabletop'
 // const apiKey = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
@@ -47,6 +48,17 @@ class Home extends React.Component<
       sortTerms: "Highest Rated"
     };
   }
+
+  componentDidMount = () => {
+    Events.scrollEvent.register("end", (to, element) => {
+      // console.log("end");
+    });
+  };
+
+  componentWillUnmount = () => {
+    Events.scrollEvent.remove("end");
+  };
+
   handleReset = e => {
     e.preventDefault();
     this.setState({
@@ -57,18 +69,9 @@ class Home extends React.Component<
     });
   };
 
-  scrollToTop = () => {
-    scroll.scrollTo("0", {
-      duration: 400,
-      delay: 0,
-      smooth: true
-    });
-  };
-
   scrollToCard = () => {
     scroller.scrollTo("cards", {
-      duration: 400,
-      delay: 0,
+      duration: ANIMATION.duration,
       smooth: true,
       offset: -50
     });
@@ -204,7 +207,7 @@ class Home extends React.Component<
         >
           Section 1
               </Link> */}
-        <Footer scrollToTop={this.scrollToTop} />
+        <Footer />
       </>
     );
   }

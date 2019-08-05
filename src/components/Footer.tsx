@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { FONT, COLOR, BREAKPOINT } from "@src/theme";
 import scrollIcon from "@src/icons/top.svg";
+import { animateScroll as scroll, Events } from "react-scroll";
+import { ANIMATION } from "@src/constants";
 
 const Footer = styled.footer`
   margin-top: 4rem;
   color: ${COLOR.black};
   width: 100%;
   font-size: 0.8rem;
-  /* display: flex;
-  justify-content: center; */
 `;
 
 const FooterInner = styled.div`
@@ -34,16 +34,33 @@ const ScrollTopBtn = styled.button`
   align-items: center;
 `;
 
-export default class extends React.PureComponent<{ scrollToTop: any }, {}> {
+export default class extends React.Component<{}, {}> {
   constructor(props) {
     super(props);
   }
+
+  componentDidMount = () => {
+    Events.scrollEvent.register("end", (to, element) => {
+      // console.log("end");
+    });
+  };
+
+  componentWillUnmount = () => {
+    Events.scrollEvent.remove("end");
+  };
+
+  scrollToTop = () => {
+    scroll.scrollToTop({
+      duration: ANIMATION.duration,
+      smooth: true
+    });
+  };
 
   render() {
     return (
       <Footer>
         <FooterInner>
-          <ScrollTopBtn onClick={this.props.scrollToTop}>
+          <ScrollTopBtn onClick={this.scrollToTop}>
             <img src={scrollIcon} alt="scroll to top" />
           </ScrollTopBtn>
           <FooterRight>Infographics Group | About | Contact</FooterRight>
