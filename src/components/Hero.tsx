@@ -63,7 +63,7 @@ const FindFoodBtn = styled.button`
 `;
 
 const Buttons = styled.div`
-  margin-top: 2rem;
+  margin-top: 3rem;
   display: flex;
   flex-direction: row;
   align-items: center;
