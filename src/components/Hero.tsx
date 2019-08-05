@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR, BREAKPOINT } from "@src/theme";
+import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 
 const HeroContainer = styled.section`
   display: flex;
@@ -35,11 +35,9 @@ const FilterTop = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-
   ${BREAKPOINT.m`
       display: flex;
       flex-direction: row;
-
   `};
 `;
 
@@ -51,6 +49,7 @@ const FilterGroup = styled.div`
 `;
 
 const Label = styled.label`
+  font: normal 500 16px/23px ${FONT.sansSerif};
   ${BREAKPOINT.m`
     font-size: 20px;
   `};
@@ -87,6 +86,10 @@ const Filter = styled.select`
   background-size: 0.65em auto, 100%;
   margin: 0 1rem;
   width: 160px;
+  font: normal 500 16px/23px ${FONT.sansSerif};
+  ${BREAKPOINT.m`
+    font-size: 20px;
+  `};
 
   ::-ms-expand {
     display: none;

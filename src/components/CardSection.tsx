@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
-import { Element } from "react-scroll";
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
@@ -14,17 +13,12 @@ const MenuBar = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  flex-direction: column;
-  ${BREAKPOINT.m`
-      // margin-left: 1rem;
-      flex-direction: row;
-  `};
 `;
 const MenuLeft = styled.div``;
 
 const MenuRight = styled.div`
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
 `;
 
@@ -52,62 +46,17 @@ const ViewBtn = styled.button`
   }
 `;
 
-const ExtraFilters = styled.div`
-  padding: 1rem;
-
-  p {
-    margin: 0 1rem 0 0;
-  }
-
-  ${BREAKPOINT.m`
-    display: flex;
-    flex-direction: row;
-  `};
-`;
-
-const SortDropdown = styled.div`
-  position: absolute;
-  z-index: 1;
-  background: ${COLOR.lightGray};
-  padding: 8px 10px;
-  margin-top: 3rem;
-  right: 1rem;
-  z-index: 500;
-
-  ${BREAKPOINT.m`
-      // margin-top: 0;
-      // right: auto;
-      margin-right: 2rem;
-    `};
-
-  p {
-    margin: 0.5rem 0;
-    cursor: pointer;
-
-    :hover {
-      color: ${COLOR.darkGray};
-    }
-  }
-`;
-
-const SortBtn = styled.button`
-  color: ${COLOR.black};
-  background: none;
-  padding: 0;
+const SortBtn = styled.select`
   display: flex;
   align-items: center;
+  color: ${COLOR.black};
+  background: none;
+  margin: 0 0 0 1rem;
+  font: normal 300 16px/23px "Karla", sans-serif;
 
   img {
     margin-left: 1rem;
   }
-`;
-const SortTerms = styled.span`
-  margin-left: 0.5rem;
-  display: none;
-
-  ${BREAKPOINT.m`
-    display: block;
-  `};
 `;
 
 const Cards = styled.div<{ listView: boolean }>`
@@ -129,17 +78,12 @@ const ResultsTextContainer = styled.h4`
 class CardSection extends React.Component<
   {
     cardData: any;
+    updateSortParams: any;
     resultsText: string;
-    sortAz: any;
-    sortRating: any;
-    sortDistance: any;
     query: any;
-    sortTerms: string;
   },
   {
     listView: boolean;
-    showSortOptions: boolean;
-    showExtraFilters: boolean;
     showMap: boolean;
   }
 > {
@@ -147,8 +91,6 @@ class CardSection extends React.Component<
     super(props);
     this.state = {
       listView: false,
-      showSortOptions: false,
-      showExtraFilters: false,
       showMap: false
     };
   }
@@ -160,20 +102,6 @@ class CardSection extends React.Component<
     });
   };
 
-  showSortOptions = e => {
-    e.preventDefault();
-    this.setState({
-      showSortOptions: !this.state.showSortOptions
-    });
-  };
-
-  toggleExtraFilters = e => {
-    e.preventDefault();
-    this.setState({
-      showExtraFilters: !this.state.showExtraFilters
-    });
-  };
-
   toggleMapView = e => {
     e.preventDefault();
     this.setState({
@@ -181,15 +109,26 @@ class CardSection extends React.Component<
     });
   };
 
+  // AZ
+  // onClick={e => {
+  //   e.preventDefault;
+  //   sortAz();
+  // }}
+
+  // Distance
+  // onClick={e => {
+  //   e.preventDefault;
+  //   sortDistance();
+  // }}
+
+  // Rating
+  // onClick={e => {
+  //   e.preventDefault;
+  //   sortRating();
+  // }}
+
   render() {
-    const {
-      cardData,
-      sortAz,
-      sortRating,
-      sortDistance,
-      sortTerms,
-      resultsText
-    } = this.props;
+    const { cardData, updateSortParams, resultsText } = this.props;
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
     return (
@@ -201,12 +140,6 @@ class CardSection extends React.Component<
             )}
           </MenuLeft>
           <MenuRight>
-            {/* TODO: add more features functionality */}
-            {/* <ViewBtn onClick={this.toggleExtraFilters}>
-              {this.state.showExtraFilters
-                ? "Hide filters"
-                : "Show more filters"}
-            </ViewBtn> */}
             <ViewBtn onClick={this.toggleMapView}>
               <span>{mapText}</span>
               <img src="../img/icons/group.png" alt="map view" />
@@ -219,50 +152,21 @@ class CardSection extends React.Component<
                 <img src="../img/icons/list.png" alt="list view" />
               )}
             </ViewBtn>
-            <SortBtn onClick={this.showSortOptions}>
-              Sort
-              <SortTerms>: {sortTerms}</SortTerms>
+
+            <label htmlFor="sort">Sorting by: </label>
+            <SortBtn
+              name="sort"
+              onChange={e => {
+                updateSortParams(e.target.value);
+              }}
+            >
+              <option value={"rating"}>highest rated</option>
+              <option value={"distance"}>closest</option>
+              <option value={"a-z"}>A-Z</option>
               <img src="../img/icons/arrow.png" alt="" />
             </SortBtn>
-            {this.state.showSortOptions && (
-              <SortDropdown>
-                <p
-                  onClick={e => {
-                    e.preventDefault;
-                    this.setState({ showSortOptions: false });
-                    sortRating();
-                  }}
-                >
-                  highest rated
-                </p>
-                <p
-                  onClick={e => {
-                    e.preventDefault;
-                    this.setState({ showSortOptions: false });
-                    sortDistance();
-                  }}
-                >
-                  closest
-                </p>
-                <p
-                  onClick={e => {
-                    e.preventDefault;
-                    this.setState({ showSortOptions: false });
-                    sortAz();
-                  }}
-                >
-                  A-Z
-                </p>
-              </SortDropdown>
-            )}
           </MenuRight>
         </MenuBar>
-        {this.state.showExtraFilters && (
-          <ExtraFilters>
-            <p>bakery</p> <p>IGG favorite</p>
-            <p>Vegetarian</p>
-          </ExtraFilters>
-        )}
         {this.state.showMap && <MapContainer cardData={cardData} />}
         <Cards id="cards" listView={this.state.listView}>
           {cardData.length == 0 && (

@@ -38,13 +38,8 @@ const Site = styled.div`
   }
 
   select {
-    font: normal 500 16px/23px ${FONT.sansSerif};
     padding: 5px 0;
     color: ${COLOR.black};
-
-    ${BREAKPOINT.m`
-      font-size: 20px;
-    `};
   }
 
   a {

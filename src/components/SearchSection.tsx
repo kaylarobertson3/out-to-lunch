@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT } from "@src/theme";
-import Suggestions from "@components/Suggestions";
 
 const SearchSectionContainer = styled.section`
   display: flex;
@@ -62,8 +61,8 @@ const SearchBtn = styled.button`
   }
 
   ${BREAKPOINT.m`
-       margin-top: 0rem;
-    `};
+      margin-top: 0rem;
+  `};
 `;
 
 const RandomizeButton = styled.button`

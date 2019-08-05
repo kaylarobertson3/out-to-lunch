@@ -6,9 +6,10 @@ import dataUnsorted from "@src/data/data.json";
 import { Events, scroller } from "react-scroll";
 import Footer from "@components/Footer";
 import { ANIMATION } from "@src/constants";
+import { sortData } from "@src/utils/sort";
 
 // import Tabletop from 'tabletop'
-// const apiKey = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
+// const APIKEY = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
 
 // const ratingAccessor = d => d.rating;
 
@@ -17,8 +18,6 @@ import { ANIMATION } from "@src/constants";
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating;
 });
-
-console.log("data", data);
 
 const cuisines = ["any"];
 
@@ -35,7 +34,6 @@ class Home extends React.Component<
     price?: any;
     distance?: any;
     query: any;
-    sortTerms: string;
     resultsText: string;
   }
 > {
@@ -48,8 +46,7 @@ class Home extends React.Component<
       price: null,
       distance: null,
       query: "",
-      resultsText: "All restaurants",
-      sortTerms: "Highest Rated"
+      resultsText: "All restaurants"
     };
   }
 
@@ -68,7 +65,6 @@ class Home extends React.Component<
     this.setState({
       data: data,
       query: "",
-      sortTerms: "Highest Rated",
       resultsText: "All restaurants"
     });
   };
@@ -99,37 +95,34 @@ class Home extends React.Component<
     });
   };
 
-  handleSortAz = () => {
+  updateSortParams = sortParams => {
     let sortedData;
     if (this.state.data.length >= 1) {
-      sortedData = this.state.data.sort((a, b) => {
-        return a.name.localeCompare(b.name);
-      });
+      sortedData = sortData(this.state.data, sortParams);
     } else sortedData = this.state.data;
-    this.setState({ data: sortedData, sortTerms: "A - Z" });
+    this.setState({ data: sortedData });
   };
 
-  handleSortRating = () => {
-    let sortedData;
-    if (this.state.data.length >= 1) {
-      sortedData = this.state.data.sort((a, b) => {
-        return b.rating - a.rating;
-      });
-    } else sortedData = this.state.data;
+  // handleSortRating = () => {
+  //   let sortedData;
+  //   if (this.state.data.length >= 1) {
+  //     sortedData = this.state.data.sort((a, b) => {
+  //       return b.rating - a.rating;
+  //     });
+  //   } else sortedData = this.state.data;
 
-    this.setState({ data: sortedData, sortTerms: "Highest Rated" });
-  };
+  //   this.setState({ data: sortedData });
+  // };
 
-  handleSortDistance = () => {
-    let sortedData;
-    if (this.state.data.length >= 1) {
-      sortedData = this.state.data.sort((a, b) => {
-        return a.distance - b.distance;
-      });
-    } else sortedData = this.state.data;
-
-    this.setState({ data: sortedData, sortTerms: "Closest" });
-  };
+  // handleSortDistance = () => {
+  //   let sortedData;
+  //   if (this.state.data.length >= 1) {
+  //     sortedData = this.state.data.sort((a, b) => {
+  //       return a.distance - b.distance;
+  //     });
+  //   } else sortedData = this.state.data;
+  //   this.setState({ data: sortedData });
+  // };
 
   handleRandomize = () => {
     this.scrollToCard();
@@ -187,12 +180,9 @@ class Home extends React.Component<
           handleReset={this.handleReset}
         />
         <CardSection
-          sortDistance={this.handleSortDistance}
-          sortAz={this.handleSortAz}
+          updateSortParams={this.updateSortParams}
           query={this.state.query}
-          sortRating={this.handleSortRating}
           cardData={this.state.data}
-          sortTerms={this.state.sortTerms}
           resultsText={this.state.resultsText}
         />
         <SearchSection
