@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CardAlt from "./CardAlt";
 import { COLOR, BREAKPOINT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
+import { Element } from "react-scroll";
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
@@ -109,7 +110,7 @@ const SortTerms = styled.span`
   `};
 `;
 
-const Cards = styled.div<{ listView: boolean }>`
+const Cards = styled(Element)<{ listView: boolean }>`
   display: ${props => (props.listView ? "flex" : "grid")};
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 45px 35px;
@@ -263,7 +264,7 @@ class CardSection extends React.Component<
           </ExtraFilters>
         )}
         {this.state.showMap && <MapContainer cardData={cardData} />}
-        <Cards id="cards" listView={this.state.listView}>
+        <Cards name="cards" listView={this.state.listView}>
           {cardData.length == 0 && (
             <ResultsTextContainer>sorry, no results</ResultsTextContainer>
           )}

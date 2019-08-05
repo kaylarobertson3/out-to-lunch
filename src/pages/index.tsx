@@ -3,16 +3,7 @@ import Hero from "@components/Hero";
 import CardSection from "@components/CardSection";
 import SearchSection from "@components/SearchSection";
 import dataUnsorted from "@src/data/data.json";
-import * as Scroll from "react-scroll";
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller
-} from "react-scroll";
-import { string } from "prop-types";
+import { animateScroll as scroll, scroller } from "react-scroll";
 import Footer from "@components/Footer";
 
 // import Tabletop from 'tabletop'

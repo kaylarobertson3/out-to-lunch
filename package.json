@@ -12,7 +12,6 @@
   "dependencies": {
     "@humblebee/styled-components-breakpoint": "^2.1.4",
     "@reach/router": "^1.2.1",
-    "@types/styled-components": "^4.1.18",
     "axios": "^0.18.1",
     "fs": "0.0.1-security",
     "leaflet": "^1.5.1",
@@ -36,6 +35,8 @@
     "@types/react": "^16.8.2",
     "@types/react-dom": "^16.8.0",
     "@types/react-hot-loader": "^4.1.0",
+    "@types/react-scroll": "^1.5.4",
+    "@types/styled-components": "^4.1.18",
     "@types/webpack-env": "^1.13.6",
     "babel-eslint": "9.x",
     "eslint": "5.x",
