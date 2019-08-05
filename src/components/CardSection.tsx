@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "./Card";
 import CardAlt from "./CardAlt";
 import { COLOR, BREAKPOINT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
@@ -269,7 +268,7 @@ class CardSection extends React.Component<
             <ResultsTextContainer>sorry, no results</ResultsTextContainer>
           )}
           {typeof cardData.length == "undefined" && (
-            <Card
+            <CardAlt
               listView={this.state.listView}
               name={cardData.name}
               imgUrl={`../img/cards/${cardData.imgUrl}`}

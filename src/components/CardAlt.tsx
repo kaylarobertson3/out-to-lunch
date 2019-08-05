@@ -143,7 +143,7 @@ class CardAlt extends React.Component<{
   distance: number;
   listView: boolean;
   description: string;
-  tags: any;
+  tags?: any;
 }> {
   render() {
     const {
