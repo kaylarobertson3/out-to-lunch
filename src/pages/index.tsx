@@ -22,6 +22,8 @@ const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating;
 });
 
+console.log("data", data);
+
 const cuisines = ["any"];
 
 data.map(d => {
@@ -54,17 +56,6 @@ class Home extends React.Component<
       sortTerms: "Highest Rated"
     };
   }
-
-  // componentDidMount() {
-  //   Tabletop.init({
-  //     key: apiKey,
-  //     callback: googleData => {
-  //       console.log("google sheet dadta --->", googleData)
-  //     },
-  //     simpleSheet: true
-  //   })
-  // }
-
   handleReset = e => {
     e.preventDefault();
     this.setState({
@@ -153,9 +144,6 @@ class Home extends React.Component<
       resultsText: "Go to: " + randomResturant.name,
       data: randomResturant
     });
-
-    console.log("query:", this.state.query);
-    console.log("test:", "Go to: " + randomResturant);
   };
 
   searchData = () => {

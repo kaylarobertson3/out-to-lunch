@@ -41,6 +41,10 @@ const SearchContainer = styled.div`
         flex-direction: row;
         justify-content: center;
     `}; */
+
+    input {
+      border-radius: 0.5rem 0 0 .5rem;
+    }
 `;
 
 const SearchBtn = styled.button`
@@ -51,6 +55,7 @@ const SearchBtn = styled.button`
   background: ${COLOR.black};
   color: ${COLOR.white};
   border: 1px solid ${COLOR.black};
+  border-radius: 0rem 0.5rem 0.5rem 0rem !important;
 
   img {
     width: 15px;

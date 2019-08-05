@@ -145,7 +145,7 @@ class Card extends React.Component<{
               </div>
             </DataRow>
             <Tags>
-              <Tag>Tags</Tag>
+              <Tag>{Tags}</Tag>
               <Tag>Tags</Tag>
               <Tag>Tags</Tag>
             </Tags>

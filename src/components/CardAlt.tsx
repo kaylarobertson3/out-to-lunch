@@ -30,6 +30,7 @@ const ImgContainer = styled.div<{ listView: boolean }>`
   border-radius: 10px;
   overflow: hidden;
   background: black;
+  justify-content: flex-start;
   height: ${props => (props.listView ? "auto" : "200px")};
   width: ${props => (props.listView ? "30%" : "100%")};
   border-radius: ${props =>
@@ -62,13 +63,15 @@ const Name = styled.h3`
 `;
 
 const Row = styled.div`
+  margin: 1rem 0 0 0;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const Tags = styled.div`
-  margin: 1rem 0 0 0;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -77,8 +80,10 @@ const Tags = styled.div`
 const Tag = styled.h5`
   margin-right: 0.5rem;
   font-weight: 400;
-  opacity: 0.6;
-  font-size: 13px;
+  opacity: 1;
+  background: rgba(128, 128, 128, 0.1);
+  padding: 5px 8px;
+  border-radius: 5px;
 `;
 
 const Icons = styled.div`
@@ -92,8 +97,7 @@ const Icons = styled.div`
   }
 `;
 
-const Rating = styled.h5`
-  margin: 1rem 1rem 0 0;
+const Distance = styled.div`
   display: flex;
   align-items: center;
 
@@ -103,17 +107,18 @@ const Rating = styled.h5`
 `;
 
 //TODO: fix div wrapper, style for distance
-const Distance = styled.div<{ listView: boolean }>`
+const Details = styled.div<{ listView: boolean }>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   align-self: flex-end;
   position: ${props => (props.listView ? "relative" : "absolute")};
-  margin: ${props => (props.listView ? "0" : " 0rem 0 0 0")};
-  display: flex;
+  margin: ${props => (props.listView ? "0" : " -.8rem 0 0 .3rem")};
   border-radius: 9px;
-  background: rgb(242, 242, 242);
+  background: ${COLOR.white};
   z-index: 1;
   padding: 8px 10px;
-  display: flex;
-  align-items: center;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
 
   h5 {
   }
@@ -124,6 +129,14 @@ const Distance = styled.div<{ listView: boolean }>`
   }
 `;
 
+const Rating = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+`;
+
 class CardAlt extends React.Component<{
   imgUrl: string;
   price: string;
@@ -132,6 +145,7 @@ class CardAlt extends React.Component<{
   distance: number;
   listView: boolean;
   description: string;
+  tags: any;
 }> {
   render() {
     const {
@@ -141,31 +155,33 @@ class CardAlt extends React.Component<{
       rating,
       distance,
       listView,
-      description
+      description,
+      tags
     } = this.props;
     return (
       <CardLink>
         <CardContainer listView={listView}>
           <ImgContainer listView={listView}>
             <Img src={imgUrl} alt={name} />
-            <Distance listView={listView}>
-              <img height="15px" src={walkIcon} alt="walking distance" />
-              <h5>{distance} min.</h5>
-            </Distance>
+            <Details listView={listView}>
+              <Rating>
+                <img src={starIcon} alt="rating" />
+                <h5>{rating}</h5>
+              </Rating>
+              <h5>{price}</h5>
+            </Details>
           </ImgContainer>
           <TextContainer>
             <Name>{name}</Name>
             <Row>
-              <Rating>
-                <img src={starIcon} alt="rating" />
-                {rating}
-              </Rating>
               <Tags>
-                <Tag>Tags</Tag>
-                <Tag>Tags</Tag>
-                <Tag>Tags</Tag>
+                {tags[0] && <Tag>{tags[0]}</Tag>}
+                {tags[1] && <Tag>{tags[1]}</Tag>}
               </Tags>
-              <Rating>{price}</Rating>
+              <Distance>
+                <img height="15px" src={walkIcon} alt="walking distance" />
+                <h5>{distance} min.</h5>
+              </Distance>
             </Row>
             {/* {detailView && <p>{description}</p>} */}
             {/* <Icons>

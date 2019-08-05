@@ -7,7 +7,7 @@ const Footer = styled.footer`
   margin-top: 4rem;
   color: ${COLOR.black};
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   /* display: flex;
   justify-content: center; */
 `;
@@ -47,6 +47,7 @@ export default class extends React.PureComponent<{ scrollToTop: any }, {}> {
             <img src={scrollIcon} alt="scroll to top" />
           </ScrollTopBtn>
           <FooterRight>Infographics Group | About | Contact</FooterRight>
+          <FooterRight>Photos courtesy of: </FooterRight>
         </FooterInner>
       </Footer>
     );

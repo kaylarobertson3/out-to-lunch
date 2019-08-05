@@ -76,7 +76,6 @@ class MapContainer extends React.Component<
 
   render() {
     const { cardData } = this.props;
-    console.log("carddata", cardData);
 
     return (
       <LeafletWrapper>
@@ -102,7 +101,6 @@ class MapContainer extends React.Component<
             cardData.map((d, i) => {
               if (d.lat && d.long) {
                 const latLong = [parseFloat(d.lat), parseFloat(d.long)];
-                console.log("latlong", latLong);
                 return (
                   <Marker icon={DefaultIcon} position={latLong}>
                     <Popup>

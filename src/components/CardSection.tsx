@@ -13,7 +13,7 @@ const MenuBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   flex-direction: column;
   ${BREAKPOINT.m`
       // margin-left: 1rem;
@@ -121,7 +121,10 @@ const Cards = styled.div<{ listView: boolean }>`
     `};
 `;
 
-const ResultsTextContainer = styled.h4``;
+const ResultsTextContainer = styled.h4`
+  font-weight: 400;
+  font-size: 1.3rem;
+`;
 
 class CardSection extends React.Component<
   {
@@ -146,7 +149,7 @@ class CardSection extends React.Component<
       listView: false,
       showSortOptions: false,
       showExtraFilters: false,
-      showMap: true
+      showMap: false
     };
   }
 
@@ -284,13 +287,9 @@ class CardSection extends React.Component<
                 imgUrl = d.imgUrl;
               } else if (d.cuisine) {
                 const lowerCuisine = d.cuisine.toLowerCase();
-                imgUrl = `../cards/placeholders/${lowerCuisine}`;
-              } else {
-                imgUrl = `../cards/placeholders/placeholder.jpg`;
+                imgUrl = `../cards/placeholders/${lowerCuisine}.jpg`;
               }
-
               return (
-                // <Card listView={this.state.listView} key={i} name={d.name} imgUrl={`../img/cards/${d.imgUrl}`} price={d.price} rating={d.rating} distance={d.distance} description={d.description} />
                 <CardAlt
                   listView={this.state.listView}
                   key={i}
@@ -300,6 +299,7 @@ class CardSection extends React.Component<
                   rating={d.rating}
                   distance={d.distance}
                   description={d.description}
+                  tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                 />
               );
             })}
