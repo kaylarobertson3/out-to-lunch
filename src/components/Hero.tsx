@@ -14,14 +14,9 @@ const HeroContainer = styled.section`
     `};
 `;
 
-const Img = styled.img``;
 const MainSearch = styled.div`
   margin: 1rem 0;
   text-align: center;
-
-  ${BREAKPOINT.m`
-    text-align: left;
-  `};
 `;
 
 const Filters = styled.form`
@@ -32,17 +27,19 @@ const FiltersContainer = styled.div`
   ${BREAKPOINT.m`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   `};
 `;
 
 const FilterTop = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 
   ${BREAKPOINT.m`
       display: flex;
       flex-direction: row;
+
   `};
 `;
 
@@ -66,6 +63,13 @@ const FindFoodBtn = styled.button`
   color: ${COLOR.white};
 `;
 
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Filter = styled.select`
   background: none;
   border-top: none;
@@ -82,6 +86,7 @@ const Filter = styled.select`
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
   margin: 0 1rem;
+  width: 160px;
 
   ::-ms-expand {
     display: none;
@@ -219,6 +224,21 @@ class Hero extends React.Component<
                 </Filter>
               </FilterGroup>
             </FiltersContainer>
+          </Filters>
+          <Buttons>
+            <ResetBtn
+              onClick={e => {
+                this.setState({
+                  cuisineFilter: "any",
+                  priceFilter: "any",
+                  distanceFilter: "any"
+                });
+                handleReset(e);
+              }}
+            >
+              Reset
+            </ResetBtn>
+
             <FindFoodBtn
               type="submit"
               onClick={e => {
@@ -232,19 +252,7 @@ class Hero extends React.Component<
             >
               Find Food!
             </FindFoodBtn>
-          </Filters>
-          <ResetBtn
-            onClick={e => {
-              this.setState({
-                cuisineFilter: "any",
-                priceFilter: "any",
-                distanceFilter: "any"
-              });
-              handleReset(e);
-            }}
-          >
-            Reset
-          </ResetBtn>
+          </Buttons>
         </MainSearch>
       </HeroContainer>
     );

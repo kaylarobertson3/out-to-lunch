@@ -145,13 +145,13 @@ class Card extends React.Component<{
               </div>
             </DataRow>
             <Tags>
-              <Tag>{Tags}</Tag>
+              {/* <Tag>{Tags}</Tag> */}
               <Tag>Tags</Tag>
               <Tag>Tags</Tag>
             </Tags>
             {!listView && <p>{description}</p>}
             <Icons>
-              <img src="../img/icons/search.png" alt="searcg" />
+              <img src="../img/icons/search.png" alt="search" />
               <img src="../img/icons/search.png" alt="search" />
               <img src="../img/icons/search.png" alt="search" />
             </Icons>

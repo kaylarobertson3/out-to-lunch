@@ -111,7 +111,7 @@ const SortTerms = styled.span`
 `;
 
 const Cards = styled.div<{ listView: boolean }>`
-  display: ${props => (props.listView ? "block" : "grid")};
+  display: ${props => (props.listView ? "flex" : "grid")};
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 45px 35px;
   align-items: stretch;
