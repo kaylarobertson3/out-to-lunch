@@ -300,7 +300,7 @@ class CardSection extends React.Component<
                   rating={d.rating}
                   distance={d.distance}
                   description={d.description}
-                  // tags={[d.cuisine, d.cuisine2, d.cuisine3]}
+                  tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                 />
               );
             })}

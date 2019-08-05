@@ -32,7 +32,7 @@ const ImgContainer = styled.div<{ listView: boolean }>`
   border-radius: 10px;
   overflow: hidden;
   justify-content: ${props => (props.listView ? "flex-end" : "flex-start")};
-  height: ${props => (props.listView ? "100px" : "200px")};
+  height: ${props => (props.listView ? "100px" : "175px")};
   width: ${props => (props.listView ? "30%" : "100%")};
   border-radius: ${props =>
     props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
@@ -48,7 +48,7 @@ const Img = styled.img`
 `;
 
 const TextContainer = styled.div`
-  padding: 1.5rem 1rem;
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -152,7 +152,6 @@ class CardAlt extends React.Component<{
       rating,
       distance,
       listView,
-      description,
       tags
     } = this.props;
     return (
@@ -172,20 +171,14 @@ class CardAlt extends React.Component<{
             <Name>{name}</Name>
             <Row>
               <Tags>
-                {/* {tags[0] && <Tag>{tags[0]}</Tag>}
-                {tags[1] && <Tag>{tags[1]}</Tag>} */}
+                {tags && tags[0] && <Tag>{tags[0]}</Tag>}
+                {tags && tags[1] && <Tag>{tags[1]}</Tag>}
               </Tags>
               <Distance>
                 <img height="15px" src={walkIcon} alt="walking distance" />
                 <h5>{distance} min.</h5>
               </Distance>
             </Row>
-            {/* {detailView && <p>{description}</p>} */}
-            {/* <Icons>
-              <img src="../img/icons/search.png" alt="searcg" />
-              <img src="../img/icons/search.png" alt="search" />
-              <img src="../img/icons/search.png" alt="search" />
-            </Icons> */}
           </TextContainer>
         </CardContainer>
       </CardLink>
