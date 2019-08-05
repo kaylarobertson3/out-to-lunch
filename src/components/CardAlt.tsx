@@ -9,6 +9,8 @@ const CardLink = styled.a`
 `;
 
 const CardContainer = styled.div<{ listView: boolean }>`
+  display: flex;
+  flex-direction: ${props => (props.listView ? "row" : "column")};
   height: ${props => (props.listView ? "100px" : "100%")};
   margin: ${props => (props.listView ? "1rem 0" : "0")};
   border-radius: ${props =>
@@ -30,8 +32,8 @@ const ImgContainer = styled.div<{ listView: boolean }>`
   border-radius: 10px;
   overflow: hidden;
   background: black;
-  justify-content: flex-start;
-  height: ${props => (props.listView ? "auto" : "200px")};
+  justify-content: ${props => (props.listView ? "flex-end" : "flex-start")};
+  height: ${props => (props.listView ? "100px" : "200px")};
   width: ${props => (props.listView ? "30%" : "100%")};
   border-radius: ${props =>
     props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
@@ -41,7 +43,7 @@ const ImgContainer = styled.div<{ listView: boolean }>`
 const Img = styled.img`
   object-fit: cover;
   min-width: 100%;
-  height: 100%;
+  max-height: 100%;
   margin: 0 0 0 0;
   opacity: 0.9;
 `;
@@ -106,22 +108,18 @@ const Distance = styled.div`
   }
 `;
 
-//TODO: fix div wrapper, style for distance
 const Details = styled.div<{ listView: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
   align-self: flex-end;
-  position: ${props => (props.listView ? "relative" : "absolute")};
+  position: ${props => (props.listView ? "absolute" : "absolute")};
   margin: ${props => (props.listView ? "0" : " -.8rem 0 0 .3rem")};
   border-radius: 9px;
   background: ${COLOR.white};
   z-index: 1;
   padding: 8px 10px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
-
-  h5 {
-  }
 
   img {
     height: 15px;
