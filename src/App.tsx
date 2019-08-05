@@ -2,7 +2,6 @@ import React from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { Link, Router } from "@reach/router";
 import FancyDiv from "@components/FancyDiv";
-import Dynamic from "@components/Dynamic";
 import "./app.css";
 import styled from "styled-components";
 import { FONT, COLOR, BREAKPOINT } from "@src/theme";
@@ -136,7 +135,6 @@ function App() {
           <FancyDiv>
             <React.Suspense fallback={<em>Loading...</em>}>
               <Router>
-                <Dynamic path="dynamic" />
                 <Routes path="*" />
               </Router>
             </React.Suspense>
