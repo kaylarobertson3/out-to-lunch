@@ -10,6 +10,10 @@ import { ANIMATION } from "@src/constants";
 // import Tabletop from 'tabletop'
 // const apiKey = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
 
+// const ratingAccessor = d => d.rating;
+
+// const data = sortData(dataUnsorted, ratingAccessor);
+
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating;
 });

@@ -57,13 +57,13 @@ const Label = styled.label`
 `;
 
 const FindFoodBtn = styled.button`
-  margin-top: 2rem;
   width: 100%;
   background: ${COLOR.black};
   color: ${COLOR.white};
 `;
 
 const Buttons = styled.div`
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -130,7 +130,6 @@ const Filter = styled.select`
 `;
 
 const ResetBtn = styled.button`
-  margin-top: 1rem;
   width: 100%;
   background: none;
   border: 1px solid ${COLOR.black};

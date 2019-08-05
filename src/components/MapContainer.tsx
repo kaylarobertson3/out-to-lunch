@@ -102,7 +102,11 @@ class MapContainer extends React.Component<
               if (d.lat && d.long) {
                 const latLong = [parseFloat(d.lat), parseFloat(d.long)];
                 return (
-                  <Marker icon={DefaultIcon} position={latLong}>
+                  <Marker
+                    key={`map-marker-${i}`}
+                    icon={DefaultIcon}
+                    position={latLong}
+                  >
                     <Popup>
                       <p>{d.name}</p>
                       <p>{d.rating}</p>

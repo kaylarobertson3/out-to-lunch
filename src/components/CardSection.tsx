@@ -268,6 +268,7 @@ class CardSection extends React.Component<
           {cardData.length == 0 && (
             <ResultsTextContainer>sorry, no results</ResultsTextContainer>
           )}
+
           {typeof cardData.length == "undefined" && (
             <CardAlt
               listView={this.state.listView}
@@ -299,7 +300,7 @@ class CardSection extends React.Component<
                   rating={d.rating}
                   distance={d.distance}
                   description={d.description}
-                  tags={[d.cuisine, d.cuisine2, d.cuisine3]}
+                  // tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                 />
               );
             })}
