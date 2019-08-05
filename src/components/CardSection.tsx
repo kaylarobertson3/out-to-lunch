@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CardAlt from "./CardAlt";
+import Card from "./Card";
 import { COLOR, BREAKPOINT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
 import { Element } from "react-scroll";
@@ -270,7 +270,7 @@ class CardSection extends React.Component<
           )}
 
           {typeof cardData.length == "undefined" && (
-            <CardAlt
+            <Card
               listView={this.state.listView}
               name={cardData.name}
               imgUrl={`../img/cards/${cardData.imgUrl}`}
@@ -291,7 +291,7 @@ class CardSection extends React.Component<
                 imgUrl = `../cards/placeholders/${lowerCuisine}.jpg`;
               }
               return (
-                <CardAlt
+                <Card
                   listView={this.state.listView}
                   key={i}
                   name={d.name}

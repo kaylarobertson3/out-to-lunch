@@ -134,7 +134,7 @@ const Rating = styled.div`
   margin-right: 1rem;
 `;
 
-class CardAlt extends React.Component<{
+class Card extends React.Component<{
   imgUrl: string;
   price: string;
   name: string;
@@ -186,4 +186,4 @@ class CardAlt extends React.Component<{
   }
 }
 
-export default CardAlt;
+export default Card;
