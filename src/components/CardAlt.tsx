@@ -31,7 +31,6 @@ const ImgContainer = styled.div<{ listView: boolean }>`
   background: ${COLOR.black};
   border-radius: 10px;
   overflow: hidden;
-  background: black;
   justify-content: ${props => (props.listView ? "flex-end" : "flex-start")};
   height: ${props => (props.listView ? "100px" : "200px")};
   width: ${props => (props.listView ? "30%" : "100%")};

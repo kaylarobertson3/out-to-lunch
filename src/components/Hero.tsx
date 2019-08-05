@@ -50,9 +50,9 @@ const FilterGroup = styled.div`
   justify-content: center;
 `;
 
-const Label = styled.p`
+const Label = styled.label`
   ${BREAKPOINT.m`
-    font-size: 20px!important;
+    font-size: 20px;
   `};
 `;
 
@@ -169,7 +169,7 @@ class Hero extends React.Component<
             <FiltersContainer>
               <FilterTop>
                 <FilterGroup>
-                  <Label>I want</Label>
+                  <Label htmlFor="cuisine">I want</Label>
                   <Filter
                     name="cuisine"
                     value={this.state.cuisineFilter}
@@ -189,7 +189,7 @@ class Hero extends React.Component<
                   </Filter>
                 </FilterGroup>
                 <FilterGroup>
-                  <Label>for </Label>
+                  <Label htmlFor="price">for </Label>
                   <Filter
                     name="price"
                     value={this.state.priceFilter}
@@ -208,7 +208,7 @@ class Hero extends React.Component<
               </FilterTop>
 
               <FilterGroup>
-                <Label> and am up for walking</Label>
+                <Label htmlFor="distance"> and am up for walking</Label>
                 <Filter
                   name="distance"
                   value={this.state.distanceFilter}
