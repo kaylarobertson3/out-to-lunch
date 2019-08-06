@@ -79,8 +79,7 @@ const SortBtn = styled.select`
 const CardWrapper = styled.div<{ showMap: boolean }>`
   display: flex;
   flex-direction: column;
-  max-height: 100%;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   width: 100%;
 
   ${BREAKPOINT.m`
@@ -113,10 +112,10 @@ const ResultsTextContainer = styled.h4`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  /* max-height: 800px; */
 
   ${BREAKPOINT.m`
-      max-height: 800px;
+      // max-height: 800px;
       flex-direction: row;
   `};
 `;
@@ -165,6 +164,8 @@ class CardSection extends React.Component<
 
   render() {
     const { cardData, updateSortParams, resultsText } = this.props;
+
+    const dataPartial = cardData.slice(0, 5);
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
 
@@ -226,25 +227,8 @@ class CardSection extends React.Component<
               {cardData.length == 0 && (
                 <ResultsTextContainer>sorry, no results</ResultsTextContainer>
               )}
-              {typeof cardData.length == "undefined" && (
-                <Card
-                  listView={this.state.listView}
-                  name={cardData.name}
-                  imgUrl={`../img/cards/${getImgUrl(cardData)}`}
-                  price={cardData.price}
-                  rating={cardData.rating}
-                  distance={cardData.distance}
-                  description={cardData.description}
-                  tags={[
-                    cardData.cuisine1,
-                    cardData.cuisine2,
-                    cardData.cuisine3
-                  ]}
-                />
-              )}
-
               {cardData.length >= 1 &&
-                cardData.map((d, i) => {
+                dataPartial.map((d, i) => {
                   return (
                     <Card
                       listView={this.state.listView}

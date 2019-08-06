@@ -32,7 +32,7 @@ const ImgContainer = styled.div<{ listView: boolean }>`
   border-radius: 10px;
   overflow: hidden;
   justify-content: ${props => (props.listView ? "flex-end" : "flex-start")};
-  height: ${props => (props.listView ? "100px" : "175px")};
+  height: ${props => (props.listView ? "100px" : "140px")};
   width: ${props => (props.listView ? "30%" : "100%")};
   border-radius: ${props =>
     props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
@@ -47,7 +47,7 @@ const Img = styled.img`
   opacity: 0.9;
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled.div<{ listView: boolean }>`
   padding: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,8 @@ const TextContainer = styled.div`
   width: 100%;
   background: ${COLOR.white};
   color: ${COLOR.darkGray};
-  border-radius: 0 0 10px 10px;
+  border-radius: ${props =>
+    props.listView ? "0px 10px 10px 0" : "0 0 10px 10px"};
 `;
 
 const Name = styled.h3`
@@ -112,7 +113,8 @@ const Details = styled.div<{ listView: boolean }>`
   flex-direction: row;
   align-items: center;
   align-self: flex-end;
-  /* position: ${props => (props.listView ? "absolute" : "absolute")}; */
+  /* position: ${props => (props.listView ? "block" : "absolute")}; */
+  position: absolute;
   margin: ${props => (props.listView ? "0" : " -.8rem 0 0 .3rem")};
   border-radius: 9px;
   background: ${COLOR.white};
@@ -178,7 +180,7 @@ class Card extends React.Component<{
               <h5>{priceText()}</h5>
             </Details>
           </ImgContainer>
-          <TextContainer>
+          <TextContainer listView={listView}>
             <Name>{name}</Name>
             <Row>
               <Tags>

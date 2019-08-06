@@ -68,7 +68,7 @@ const Nav = styled.nav`
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-width: 1300px;
+    max-width: 2000px;
     width: 100%;
 
     ${BREAKPOINT.m`
@@ -85,7 +85,7 @@ const Nav = styled.nav`
 const Content = styled.div`
   flex: 1;
   padding: 0 2rem;
-  max-width: 1300px;
+  max-width: 2000px;
   max-width: 100%;
   align-self: center;
 

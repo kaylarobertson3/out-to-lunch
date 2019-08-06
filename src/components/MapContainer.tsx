@@ -23,7 +23,7 @@ const IggIcon = (L.Marker.prototype.options.icon = L.icon({
 
 const LeafletWrapper = styled.div`
   width: 50%;
-  height: 100%;
+  height: 100vh;
   margin: 0 0 2rem 0;
 
   ${BREAKPOINT.m`
@@ -85,7 +85,8 @@ class MapContainer extends React.Component<
         <Map
           center={IGGpos}
           zoom={this.state.zoom}
-          scrollWheelZoom={"center"}
+          scrollWheelZoom={false}
+          touchZoom={false}
           zoomSnap={0}
           minZoom={14}
           maxZoom={17}

@@ -11,10 +11,6 @@ import { sortData } from "@src/utils/sort";
 // import Tabletop from 'tabletop'
 // const APIKEY = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
 
-// const ratingAccessor = d => d.rating;
-
-// const data = sortData(dataUnsorted, ratingAccessor);
-
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating;
 });
@@ -73,7 +69,7 @@ class Home extends React.Component<
     scroller.scrollTo("cards", {
       duration: ANIMATION.duration,
       smooth: true,
-      offset: -50
+      offset: -150
     });
   };
 
@@ -176,11 +172,11 @@ class Home extends React.Component<
     const min = 0;
     const max = data.length;
     var randomId = Math.floor(Math.random() * (+max - +min)) + +min;
-    var randomResturant = data[randomId];
+    var randomResturant = [data[randomId]];
 
     this.setState({
-      resultsText: "Go to: " + randomResturant.name,
-      data: randomResturant
+      data: randomResturant,
+      resultsText: "Go to: " + randomResturant[0].name
     });
   };
 
@@ -209,12 +205,6 @@ class Home extends React.Component<
     this.setState({
       query: e
     });
-    // Keep this if back to search on input
-    // , () => {
-    //   if (this.state.query && this.state.query.length >= 0) {
-    //     this.searchData()
-    //   }
-    // })
   };
 
   render() {
