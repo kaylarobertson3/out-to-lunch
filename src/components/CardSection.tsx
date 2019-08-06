@@ -9,10 +9,20 @@ const CardSectionWrapper = styled.section`
 `;
 
 const MenuBar = styled.div`
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  background: ${COLOR.gray};
+  z-index: 300;
+
+  ${BREAKPOINT.m`
+      flex-direction: row;
+  `};
 `;
 const MenuLeft = styled.div``;
 
@@ -59,20 +69,45 @@ const SortBtn = styled.select`
   }
 `;
 
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  overflow-y: scroll;
+  padding-right: 1rem;
+  width: 100%;
+`;
+
 const Cards = styled.div<{ listView: boolean }>`
   display: ${props => (props.listView ? "flex" : "grid")};
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 45px 35px;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-gap: 40px 30px;
   align-items: stretch;
+  width: 100%;
 
   ${BREAKPOINT.m`
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
     `};
 `;
 
 const ResultsTextContainer = styled.h4`
   font-weight: 400;
   font-size: 1.3rem;
+  margin-bottom: 1rem;
+  ${BREAKPOINT.m`
+    margin.bottomm: 0;
+  `};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  ${BREAKPOINT.m`
+      max-height: 800px;
+      flex-direction: row-reverse;
+  `};
 `;
 
 class CardSection extends React.Component<
@@ -91,9 +126,17 @@ class CardSection extends React.Component<
     super(props);
     this.state = {
       listView: false,
-      showMap: false
+      showMap: true
     };
   }
+
+  componentDidMount = () => {
+    if (window.innerWidth <= 700) {
+      this.setState({
+        showMap: false
+      });
+    }
+  };
 
   toggleListView = e => {
     e.preventDefault();
@@ -109,106 +152,91 @@ class CardSection extends React.Component<
     });
   };
 
-  // AZ
-  // onClick={e => {
-  //   e.preventDefault;
-  //   sortAz();
-  // }}
-
-  // Distance
-  // onClick={e => {
-  //   e.preventDefault;
-  //   sortDistance();
-  // }}
-
-  // Rating
-  // onClick={e => {
-  //   e.preventDefault;
-  //   sortRating();
-  // }}
-
   render() {
     const { cardData, updateSortParams, resultsText } = this.props;
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
     return (
       <CardSectionWrapper>
-        <MenuBar>
-          <MenuLeft>
-            {resultsText && (
-              <ResultsTextContainer>{resultsText}</ResultsTextContainer>
-            )}
-          </MenuLeft>
-          <MenuRight>
-            <ViewBtn onClick={this.toggleMapView}>
-              <span>{mapText}</span>
-              <img src="../img/icons/group.png" alt="map view" />
-            </ViewBtn>
-            <ViewBtn onClick={this.toggleListView}>
-              <span>{viewText}</span>
-              {this.state.listView ? (
-                <img src="../img/icons/group.png" alt="card view" />
-              ) : (
-                <img src="../img/icons/list.png" alt="list view" />
+        <Wrapper>
+          {this.state.showMap && <MapContainer cardData={cardData} />}
+          <CardWrapper>
+            <MenuBar>
+              <MenuLeft>
+                {resultsText && (
+                  <ResultsTextContainer>{resultsText}</ResultsTextContainer>
+                )}
+              </MenuLeft>
+              <MenuRight>
+                <ViewBtn onClick={this.toggleMapView}>
+                  <span>{mapText}</span>
+                  <img src="../img/icons/group.png" alt="map view" />
+                </ViewBtn>
+                <ViewBtn onClick={this.toggleListView}>
+                  <span>{viewText}</span>
+                  {this.state.listView ? (
+                    <img src="../img/icons/group.png" alt="card view" />
+                  ) : (
+                    <img src="../img/icons/list.png" alt="list view" />
+                  )}
+                </ViewBtn>
+
+                <label htmlFor="sort">Sorting by: </label>
+                <SortBtn
+                  name="sort"
+                  onChange={e => {
+                    updateSortParams(e.target.value);
+                  }}
+                >
+                  <option value={"rating"}>highest rated</option>
+                  <option value={"distance"}>closest</option>
+                  <option value={"a-z"}>A-Z</option>
+                  <img src="../img/icons/arrow.png" alt="" />
+                </SortBtn>
+              </MenuRight>
+            </MenuBar>
+            <Cards id="cards" listView={this.state.listView}>
+              {cardData.length == 0 && (
+                <ResultsTextContainer>sorry, no results</ResultsTextContainer>
               )}
-            </ViewBtn>
-
-            <label htmlFor="sort">Sorting by: </label>
-            <SortBtn
-              name="sort"
-              onChange={e => {
-                updateSortParams(e.target.value);
-              }}
-            >
-              <option value={"rating"}>highest rated</option>
-              <option value={"distance"}>closest</option>
-              <option value={"a-z"}>A-Z</option>
-              <img src="../img/icons/arrow.png" alt="" />
-            </SortBtn>
-          </MenuRight>
-        </MenuBar>
-        {this.state.showMap && <MapContainer cardData={cardData} />}
-        <Cards id="cards" listView={this.state.listView}>
-          {cardData.length == 0 && (
-            <ResultsTextContainer>sorry, no results</ResultsTextContainer>
-          )}
-
-          {typeof cardData.length == "undefined" && (
-            <Card
-              listView={this.state.listView}
-              name={cardData.name}
-              imgUrl={`../img/cards/${cardData.imgUrl}`}
-              price={cardData.price}
-              rating={cardData.rating}
-              distance={cardData.distance}
-              description={cardData.description}
-            />
-          )}
-
-          {cardData.length >= 1 &&
-            cardData.map((d, i) => {
-              var imgUrl;
-              if (d.imgUrl && d.imgUrl.length > 1) {
-                imgUrl = d.imgUrl;
-              } else if (d.cuisine) {
-                const lowerCuisine = d.cuisine.toLowerCase();
-                imgUrl = `../cards/placeholders/${lowerCuisine}.jpg`;
-              }
-              return (
+              {typeof cardData.length == "undefined" && (
                 <Card
                   listView={this.state.listView}
-                  key={i}
-                  name={d.name}
-                  imgUrl={`../img/cards/${imgUrl}`}
-                  price={d.price}
-                  rating={d.rating}
-                  distance={d.distance}
-                  description={d.description}
-                  tags={[d.cuisine, d.cuisine2, d.cuisine3]}
+                  name={cardData.name}
+                  imgUrl={`../img/cards/${cardData.imgUrl}`}
+                  price={cardData.price}
+                  rating={cardData.rating}
+                  distance={cardData.distance}
+                  description={cardData.description}
                 />
-              );
-            })}
-        </Cards>
+              )}
+
+              {cardData.length >= 1 &&
+                cardData.map((d, i) => {
+                  var imgUrl;
+                  if (d.imgUrl && d.imgUrl.length > 1) {
+                    imgUrl = d.imgUrl;
+                  } else if (d.cuisine) {
+                    const lowerCuisine = d.cuisine.toLowerCase();
+                    imgUrl = `../cards/placeholders/${lowerCuisine}.jpg`;
+                  }
+                  return (
+                    <Card
+                      listView={this.state.listView}
+                      key={i}
+                      name={d.name}
+                      imgUrl={`../img/cards/${imgUrl}`}
+                      price={d.price}
+                      rating={d.rating}
+                      distance={d.distance}
+                      description={d.description}
+                      tags={[d.cuisine, d.cuisine2, d.cuisine3]}
+                    />
+                  );
+                })}
+            </Cards>
+          </CardWrapper>
+        </Wrapper>
       </CardSectionWrapper>
     );
   }

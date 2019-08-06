@@ -64,7 +64,7 @@ const Nav = styled.nav`
     display: flex;
     flex-direction: row;
     align-items: center;
-    max-width: 1100px;
+    max-width: 1300px;
     width: 100%;
 
     ${BREAKPOINT.m`
@@ -72,7 +72,7 @@ const Nav = styled.nav`
     `};
 
     img {
-      width: 160px;
+      width: 100px;
       margin-right: 1rem;
     }
   }
@@ -81,12 +81,12 @@ const Nav = styled.nav`
 const Content = styled.div`
   flex: 1;
   padding: 0 2rem;
-  max-width: 1100px;
+  max-width: 1300px;
   width: 100%;
   align-self: center;
 
   ${BREAKPOINT.m`
-        padding: 3rem 3rem 2rem 3rem;
+        padding: .5rem 3rem 2rem 3rem;
     `};
 `;
 
@@ -103,7 +103,7 @@ const Footer = styled.footer`
   div {
     padding: 2rem;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1300px;
     width: 100%;
     ${BREAKPOINT.m`
         padding: 3rem;

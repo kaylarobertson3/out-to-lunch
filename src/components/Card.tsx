@@ -112,7 +112,7 @@ const Details = styled.div<{ listView: boolean }>`
   flex-direction: row;
   align-items: center;
   align-self: flex-end;
-  position: ${props => (props.listView ? "absolute" : "absolute")};
+  /* position: ${props => (props.listView ? "absolute" : "absolute")}; */
   margin: ${props => (props.listView ? "0" : " -.8rem 0 0 .3rem")};
   border-radius: 9px;
   background: ${COLOR.white};
