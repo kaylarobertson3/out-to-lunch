@@ -8,20 +8,20 @@ const CardSectionWrapper = styled.section`
   max-width: 100vw;
 `;
 
-const MenuBar = styled.div`
+const MenuBar = styled.div<{ showMap: boolean }>`
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: ${props => (props.showMap ? "flex-start" : "center")};
   margin-bottom: 2rem;
   background: ${COLOR.gray};
   z-index: 300;
 
   ${BREAKPOINT.m`
-      flex-direction: row;
+  flex-direction: ${props => (props.showMap ? "column" : "row")};
   `};
 `;
 const MenuLeft = styled.div``;
@@ -164,7 +164,7 @@ class CardSection extends React.Component<
         <Wrapper>
           {this.state.showMap && <MapContainer cardData={cardData} />}
           <CardWrapper showMap={this.state.showMap}>
-            <MenuBar>
+            <MenuBar showMap={this.state.showMap}>
               <MenuLeft>
                 {resultsText && (
                   <ResultsTextContainer>{resultsText}</ResultsTextContainer>
