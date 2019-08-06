@@ -117,7 +117,7 @@ class SearchSection extends React.Component<{
       <SearchSectionContainer>
         <Section>
           <form>
-            <h2>Looking for something specific?</h2>
+            <h2>Can't find something?</h2>
             <p>Search for a resturant, cuisine, or location</p>
             <SearchContainer>
               <Input
@@ -145,10 +145,7 @@ class SearchSection extends React.Component<{
         <Line />
         <Section>
           <h2>Can't decide?</h2>
-          <p>
-            Click the randomize button and we’ll choose a random resturant for
-            you.
-          </p>
+          <p>Click the button to get a random resturant.</p>
           <RandomizeButton onClick={handleRandomizeClick}>
             Randomize
           </RandomizeButton>
