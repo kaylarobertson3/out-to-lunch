@@ -15,28 +15,35 @@ const MenuBar = styled.div<{ showMap: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: ${props => (props.showMap ? "flex-start" : "center")};
+  align-items: flex-start;
   margin-bottom: 2rem;
   background: ${COLOR.gray};
   z-index: 300;
 
   ${BREAKPOINT.m`
-  flex-direction: ${props => (props.showMap ? "column" : "row")};
+  flex-direction: column;
   `};
 `;
-const MenuLeft = styled.div``;
 
-const MenuRight = styled.div`
+const MenuLower = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
 `;
+
+const FloatLeft = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const FloatRight = styled.div``;
 
 const ViewBtn = styled.button`
   background: none;
-  margin-right: 1rem;
   display: flex;
-  padding: 0;
+  padding: 0 !important;
   align-items: center;
 
   img {
@@ -110,7 +117,7 @@ const Wrapper = styled.div`
 
   ${BREAKPOINT.m`
       max-height: 800px;
-      flex-direction: row-reverse;
+      flex-direction: row;
   `};
 `;
 
@@ -174,43 +181,47 @@ class CardSection extends React.Component<
 
     return (
       <CardSectionWrapper>
-        <Wrapper>
-          {this.state.showMap && <MapContainer cardData={cardData} />}
-          <CardWrapper showMap={this.state.showMap}>
-            <MenuBar showMap={this.state.showMap}>
-              <MenuLeft>
-                {resultsText && (
-                  <ResultsTextContainer>{resultsText}</ResultsTextContainer>
+        <MenuBar showMap={this.state.showMap}>
+          {resultsText && (
+            <ResultsTextContainer>{resultsText}</ResultsTextContainer>
+          )}
+          <MenuLower>
+            <FloatLeft>
+              <ViewBtn
+                onClick={this.toggleListView}
+                style={{ marginRight: "1rem" }}
+              >
+                <span>{viewText}</span>
+                {this.state.listView ? (
+                  <img src="../img/icons/group.png" alt="card view" />
+                ) : (
+                  <img src="../img/icons/list.png" alt="list view" />
                 )}
-              </MenuLeft>
-              <MenuRight>
-                <ViewBtn onClick={this.toggleMapView}>
-                  <span>{mapText}</span>
-                  <img src="../img/icons/group.png" alt="map view" />
-                </ViewBtn>
-                <ViewBtn onClick={this.toggleListView}>
-                  <span>{viewText}</span>
-                  {this.state.listView ? (
-                    <img src="../img/icons/group.png" alt="card view" />
-                  ) : (
-                    <img src="../img/icons/list.png" alt="list view" />
-                  )}
-                </ViewBtn>
+              </ViewBtn>
 
-                <label htmlFor="sort">Sort: </label>
-                <SortBtn
-                  name="sort"
-                  onChange={e => {
-                    updateSortParams(e.target.value);
-                  }}
-                >
-                  <option value={"rating"}>highest rated</option>
-                  <option value={"distance"}>closest</option>
-                  <option value={"a-z"}>A-Z</option>
-                  <img src="../img/icons/arrow.png" alt="" />
-                </SortBtn>
-              </MenuRight>
-            </MenuBar>
+              {/* <label htmlFor="sort">Sort: </label> */}
+              <SortBtn
+                name="sort"
+                onChange={e => {
+                  updateSortParams(e.target.value);
+                }}
+              >
+                <option value={"rating"}>Sort by: highest rated</option>
+                <option value={"distance"}>Sort by: closest</option>
+                <option value={"a-z"}>Sort: A-Z</option>
+                <img src="../img/icons/arrow.png" alt="" />
+              </SortBtn>
+            </FloatLeft>
+            <FloatRight>
+              <ViewBtn onClick={this.toggleMapView}>
+                <span>{mapText}</span>
+                <img src="../img/icons/group.png" alt="map view" />
+              </ViewBtn>
+            </FloatRight>
+          </MenuLower>
+        </MenuBar>
+        <Wrapper>
+          <CardWrapper showMap={this.state.showMap}>
             <Cards id="cards" listView={this.state.listView}>
               {cardData.length == 0 && (
                 <ResultsTextContainer>sorry, no results</ResultsTextContainer>
@@ -250,6 +261,7 @@ class CardSection extends React.Component<
                 })}
             </Cards>
           </CardWrapper>
+          {this.state.showMap && <MapContainer cardData={cardData} />}
         </Wrapper>
       </CardSectionWrapper>
     );

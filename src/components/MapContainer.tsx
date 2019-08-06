@@ -22,7 +22,7 @@ const IggIcon = (L.Marker.prototype.options.icon = L.icon({
 }));
 
 const LeafletWrapper = styled.div`
-  width: 100%;
+  width: 50%;
   height: 100%;
   margin: 0 0 2rem 0;
 
