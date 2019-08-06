@@ -26,7 +26,17 @@ const FooterInner = styled.div`
     `};
 `;
 
-const FooterRight = styled.div``;
+const FooterRight = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  h6 {
+    line-height: 1.5;
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin: 0.5rem;
+  }
+`;
 
 const ScrollTopBtn = styled.button`
   background: none;
@@ -63,8 +73,12 @@ export default class extends React.Component<{}, {}> {
           <ScrollTopBtn onClick={this.scrollToTop}>
             <img src={scrollIcon} alt="scroll to top" />
           </ScrollTopBtn>
-          <FooterRight>Infographics Group | About | Contact</FooterRight>
-          <FooterRight>Photos courtesy of: </FooterRight>
+          <FooterRight>
+            <h6>Infographics Group </h6>
+            <h6>About </h6>
+            <h6>Contact </h6>
+            <h6>Photos courtesy of... </h6>
+          </FooterRight>
         </FooterInner>
       </Footer>
     );

@@ -77,7 +77,7 @@ const Input = styled.input`
 `;
 
 const Line = styled.hr`
-  width: 300px;
+  width: 200px;
   margin: 2rem;
   height: 1px;
 

@@ -69,13 +69,16 @@ const SortBtn = styled.select`
   }
 `;
 
-const CardWrapper = styled.div`
+const CardWrapper = styled.div<{ showMap: boolean }>`
   display: flex;
   flex-direction: column;
   max-height: 100%;
   overflow-y: scroll;
-  padding-right: 1rem;
   width: 100%;
+
+  ${BREAKPOINT.m`
+    margin-right: ${props => (props.showMap ? "1" : "0")};
+  `};
 `;
 
 const Cards = styled.div<{ listView: boolean }>`
@@ -160,7 +163,7 @@ class CardSection extends React.Component<
       <CardSectionWrapper>
         <Wrapper>
           {this.state.showMap && <MapContainer cardData={cardData} />}
-          <CardWrapper>
+          <CardWrapper showMap={this.state.showMap}>
             <MenuBar>
               <MenuLeft>
                 {resultsText && (
@@ -181,7 +184,7 @@ class CardSection extends React.Component<
                   )}
                 </ViewBtn>
 
-                <label htmlFor="sort">Sorting by: </label>
+                <label htmlFor="sort">Sort: </label>
                 <SortBtn
                   name="sort"
                   onChange={e => {

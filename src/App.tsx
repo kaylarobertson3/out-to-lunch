@@ -13,8 +13,12 @@ const Site = styled.div`
   flex-direction: column;
 
   h1 {
-    font: normal 700 50px/1.2 ${FONT.sansSerif};
+    font: normal 700 38px/1.2 ${FONT.sansSerif};
     margin-bottom: 2rem;
+
+    ${BREAKPOINT.m`
+    font: normal 700 50px/1.2 ${FONT.sansSerif};
+   `};
   }
 
   h2 {
@@ -82,7 +86,7 @@ const Content = styled.div`
   flex: 1;
   padding: 0 2rem;
   max-width: 1300px;
-  width: 100%;
+  max-width: 100%;
   align-self: center;
 
   ${BREAKPOINT.m`
@@ -90,27 +94,27 @@ const Content = styled.div`
     `};
 `;
 
-const Footer = styled.footer`
-  margin-top: 4rem;
-  min-height: 270px;
-  background: ${COLOR.lightGray};
-  color: ${COLOR.black};
-  width: 100%;
+// const Footer = styled.footer`
+//   margin-top: 4rem;
+//   min-height: 270px;
+//   background: ${COLOR.lightGray};
+//   color: ${COLOR.black};
+//   width: 100%;
 
-  display: flex;
-  justify-content: center;
+//   display: flex;
+//   justify-content: center;
 
-  div {
-    padding: 2rem;
-    width: 100%;
-    max-width: 1300px;
-    width: 100%;
-    ${BREAKPOINT.m`
-        padding: 3rem;
-        margin-top: 5rem;
-    `};
-  }
-`;
+//   div {
+//     padding: 2rem;
+//     width: 100%;
+//     max-width: 1300px;
+//     width: 100%;
+//     ${BREAKPOINT.m`
+//         padding: 3rem;
+//         margin-top: 5rem;
+//     `};
+//   }
+// `;
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);

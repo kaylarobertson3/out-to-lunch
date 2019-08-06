@@ -64,9 +64,13 @@ const FindFoodBtn = styled.button`
 const Buttons = styled.div`
   margin-top: 3rem;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+
+  ${BREAKPOINT.m`
+  flex-direction: row;
+  `};
 `;
 
 const Filter = styled.select`
