@@ -8,7 +8,8 @@ export const COLOR = {
   gray2: "#AAAAAF",
   lightBlue: "#B6D5D8",
   red: "#C42C1B",
-  darkRed: "#A53332"
+  darkRed: "#A53332",
+  gray: "#f5f5f1"
 };
 
 export const BREAKPOINT = styledBreakpoint({

@@ -9,10 +9,20 @@ const CardSectionWrapper = styled.section`
 `;
 
 const MenuBar = styled.div`
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  background: ${COLOR.gray};
+  z-index: 300;
+
+  ${BREAKPOINT.m`
+      flex-direction: row;
+  `};
 `;
 const MenuLeft = styled.div``;
 
@@ -62,8 +72,10 @@ const SortBtn = styled.select`
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 100%;
   overflow-y: scroll;
+  padding-right: 1rem;
+  width: 100%;
 `;
 
 const Cards = styled.div<{ listView: boolean }>`
@@ -81,11 +93,21 @@ const Cards = styled.div<{ listView: boolean }>`
 const ResultsTextContainer = styled.h4`
   font-weight: 400;
   font-size: 1.3rem;
+  margin-bottom: 1rem;
+  ${BREAKPOINT.m`
+    margin.bottomm: 0;
+  `};
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
+  height: 100vh;
+
+  ${BREAKPOINT.m`
+      max-height: 800px;
+      flex-direction: row-reverse;
+  `};
 `;
 
 class CardSection extends React.Component<
@@ -107,6 +129,14 @@ class CardSection extends React.Component<
       showMap: true
     };
   }
+
+  componentDidMount = () => {
+    if (window.innerWidth <= 700) {
+      this.setState({
+        showMap: false
+      });
+    }
+  };
 
   toggleListView = e => {
     e.preventDefault();
@@ -138,10 +168,10 @@ class CardSection extends React.Component<
                 )}
               </MenuLeft>
               <MenuRight>
-                {/* <ViewBtn onClick={this.toggleMapView}>
+                <ViewBtn onClick={this.toggleMapView}>
                   <span>{mapText}</span>
                   <img src="../img/icons/group.png" alt="map view" />
-                </ViewBtn> */}
+                </ViewBtn>
                 <ViewBtn onClick={this.toggleListView}>
                   <span>{viewText}</span>
                   {this.state.listView ? (
