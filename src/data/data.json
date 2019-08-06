@@ -7,8 +7,8 @@
     "cuisine": "Japanese",
     "cuisine2": "sushi",
     "distance": 5,
-    "rating": 4,
-    "price": "$",
+    "rating": 4.0,
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -21,8 +21,8 @@
     "cuisine": "Indian",
     "cuisine2": "asian",
     "distance": 5,
-    "rating": 4,
-    "price": "$",
+    "rating": 5.0,
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -35,8 +35,8 @@
     "cuisine": "vietnamese",
     "cuisine2": "sushi",
     "distance": 5,
-    "rating": 4,
-    "price": "$",
+    "rating": 2.1,
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -49,8 +49,8 @@
     "cuisine": "japanese",
     "cuisine2": "asian",
     "distance": 5,
-    "rating": 5,
-    "price": "$",
+    "rating": 3.9,
+    "price": "1",
     "recommended dish:": "curry rice",
     "tags": "",
     "imgUrl": "heno-heno1.jpg"
@@ -63,8 +63,8 @@
     "cuisine": "sushi",
     "cuisine2": "",
     "distance": 5,
-    "rating": 4,
-    "price": "$",
+    "rating": 3.7,
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -78,7 +78,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "ashoka.jpg"
@@ -92,7 +92,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$$$",
+    "price": "3",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "grosz.jpg"
@@ -106,7 +106,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "2",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -120,7 +120,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "chao.jpg"
@@ -134,7 +134,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -148,7 +148,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "2",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -162,7 +162,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -176,7 +176,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -190,7 +190,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -204,7 +204,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -218,7 +218,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -232,7 +232,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "repke.jpg"
@@ -246,7 +246,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -260,7 +260,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -274,7 +274,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "3",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -288,10 +288,10 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
-    "imgUrl": ""
+    "imgUrl": "rico.jpg"
   },
   {
     "name": "Zaim Falafel",
@@ -302,7 +302,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -316,7 +316,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "koshary-lux.jpg"
@@ -330,7 +330,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -344,7 +344,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "2",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -358,7 +358,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -372,7 +372,7 @@
     "cuisine2": "cake",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -386,7 +386,7 @@
     "cuisine2": "dessert? / cafe",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "kaffee-roast.jpg"
@@ -401,7 +401,7 @@
     "cuisine3": "asian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "kame.jpg"
@@ -415,7 +415,7 @@
     "cuisine2": "bakery",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "churros",
     "tags": "",
     "imgUrl": ""
@@ -429,7 +429,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "2",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -443,7 +443,7 @@
     "cuisine2": "american",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -457,7 +457,7 @@
     "cuisine2": "american",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -471,7 +471,7 @@
     "cuisine2": "american",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -485,7 +485,7 @@
     "cuisine2": "american",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "five-guys.jpg"
@@ -499,7 +499,7 @@
     "cuisine2": "american",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -513,7 +513,7 @@
     "cuisine2": "Italian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -527,7 +527,7 @@
     "cuisine2": "Italian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -541,7 +541,7 @@
     "cuisine2": "Italian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -555,7 +555,7 @@
     "cuisine2": "Italian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -569,7 +569,7 @@
     "cuisine2": "Italian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -583,7 +583,7 @@
     "cuisine2": "Italian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "Pizza Calzone",
     "tags": "",
     "imgUrl": "da-giorgio.jpg"
@@ -597,7 +597,7 @@
     "cuisine2": "Pizza",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "paula-scutarro.jpg"
@@ -611,7 +611,7 @@
     "cuisine2": "Italian",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -625,7 +625,7 @@
     "cuisine2": "Dessert",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -639,7 +639,7 @@
     "cuisine2": "Ice Cream",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -653,7 +653,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -667,7 +667,7 @@
     "cuisine2": "bio",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -681,7 +681,7 @@
     "cuisine2": "bio",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -695,7 +695,7 @@
     "cuisine2": "bio",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -709,7 +709,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "edeka.jpg"
@@ -723,7 +723,7 @@
     "cuisine2": "cheap",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -737,7 +737,7 @@
     "cuisine2": "cheap",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -751,8 +751,8 @@
     "cuisine2": "vietnamese",
     "cuisine3": "sushi",
     "distance": 5,
-    "rating": 4,
-    "price": "$",
+    "rating": 4.2,
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -767,7 +767,7 @@
     "cuisine3": "thai",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -781,7 +781,7 @@
     "cuisine2": "",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -795,7 +795,7 @@
     "cuisine2": "bakery",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -809,7 +809,7 @@
     "cuisine2": "dessert",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -823,7 +823,7 @@
     "cuisine2": "sandwiches",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -837,7 +837,7 @@
     "cuisine2": "korean",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": "ngo-kim-pak2.jpg"
@@ -851,7 +851,7 @@
     "cuisine2": "pizza",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -865,7 +865,7 @@
     "cuisine2": "dessert",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""
@@ -879,7 +879,7 @@
     "cuisine2": "bio",
     "distance": 5,
     "rating": 4,
-    "price": "$",
+    "price": "1",
     "recommended dish:": "",
     "tags": "",
     "imgUrl": ""

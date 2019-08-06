@@ -77,21 +77,68 @@ class Home extends React.Component<
     });
   };
 
+  // handleFilter = (param, name) => {
+  //   console.log("param and name:", param, name);
+
+  //   if (param === "any") {
+
+  //   }
+
+  // const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0;
+  // const distanceIndexNum = distanceFilter == "any" ? 100 : distanceFilter;
+  // const priceIndexNum = priceFilter == "any" ? -1 : 0;
+  // const filteredData = data.filter(d => {
+  //   return (
+  //     d.cuisine.indexOf(cuisineFilter) >= cuisineIndexNum &&
+  //     d.price.indexOf(priceFilter) >= priceIndexNum &&
+  //     d.distance <= distanceIndexNum
+  //     // d.distance.indexOf(distanceFilter) >= distanceIndexNum
+  //   );
+  // });
+  // this.setState({
+  //   data: filteredData,
+  //   resultsText: cuisineFilter + " ," + priceFilter + ", " + distanceFilter
+  // });
+  // };
+
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
     const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0;
     const distanceIndexNum = distanceFilter == "any" ? 100 : distanceFilter;
-    const priceIndexNum = priceFilter == "any" ? -1 : 0;
+    const priceIndexNum = priceFilter == "any" ? 3 : priceFilter;
     const filteredData = data.filter(d => {
       return (
         d.cuisine.indexOf(cuisineFilter) >= cuisineIndexNum &&
-        d.price.indexOf(priceFilter) >= priceIndexNum &&
+        d.price <= priceIndexNum &&
         d.distance <= distanceIndexNum
-        // d.distance.indexOf(distanceFilter) >= distanceIndexNum
       );
     });
+
+    const cuisineText = () => {
+      if (cuisineFilter == "any") return "Any cuisine";
+      else return cuisineFilter;
+    };
+
+    const priceText = () => {
+      if (priceFilter === "any") {
+        return "Any price";
+      } else if (priceFilter == 1) {
+        return "under $";
+      } else if (priceFilter == 2) {
+        return "under $$";
+      } else if (priceFilter == 3) {
+        return "under $$$";
+      } else return "?";
+    };
+
+    const distanceText = () => {
+      if (distanceFilter === "any") {
+        return "Any distance";
+      } else return `Under ${distanceFilter} min.`;
+    };
+
     this.setState({
       data: filteredData,
-      resultsText: cuisineFilter + " ," + priceFilter + ", " + distanceFilter
+      resultsText: cuisineText() + ", " + priceText() + ", " + distanceText()
     });
   };
 

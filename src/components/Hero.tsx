@@ -160,9 +160,12 @@ class Hero extends React.Component<
     };
   }
 
+  handleChange = (cuisineFilter, priceFilter, distanceFilter) => {
+    this.props.handleClick(cuisineFilter, priceFilter, distanceFilter);
+  };
+
   render() {
     const { handleClick, cuisines, handleReset } = this.props;
-
     return (
       <HeroContainer>
         <MainSearch>
@@ -179,6 +182,11 @@ class Hero extends React.Component<
                       this.setState({
                         cuisineFilter: e.target.value
                       });
+                      this.handleChange(
+                        e.target.value,
+                        this.state.priceFilter,
+                        this.state.distanceFilter
+                      );
                     }}
                   >
                     {cuisines.map((d, i) => {
@@ -199,12 +207,17 @@ class Hero extends React.Component<
                       this.setState({
                         priceFilter: e.target.value
                       });
+                      this.handleChange(
+                        this.state.cuisineFilter,
+                        e.target.value,
+                        this.state.distanceFilter
+                      );
                     }}
                   >
                     <option value="any">any price</option>
-                    <option value="$">$</option>
-                    <option value="$$">$$</option>
-                    <option value="$$$">$$$</option>
+                    <option value={1}>around $</option>
+                    <option value={2}>$$ or less</option>
+                    <option value={3}>$$$ or less</option>
                   </Filter>
                 </FilterGroup>
               </FilterTop>
@@ -218,10 +231,15 @@ class Hero extends React.Component<
                     this.setState({
                       distanceFilter: e.target.value
                     });
+                    this.handleChange(
+                      this.state.cuisineFilter,
+                      this.state.priceFilter,
+                      e.target.value
+                    );
                   }}
                 >
                   <option value="any">any distance</option>
-                  <option value={1}>under 5 minutes</option>
+                  <option value={5}>under 5 minutes</option>
                   <option value={10}>under 10 minutes</option>
                 </Filter>
               </FilterGroup>

@@ -13,6 +13,7 @@
     "@humblebee/styled-components-breakpoint": "^2.1.4",
     "@reach/router": "^1.2.1",
     "axios": "^0.18.1",
+    "babel-preset-es2016": "^6.24.1",
     "fs": "0.0.1-security",
     "leaflet": "^1.5.1",
     "react": "^16.8.6",

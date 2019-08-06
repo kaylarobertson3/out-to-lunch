@@ -1,4 +1,3 @@
-import axios from "axios";
 import path from "path";
 
 // Typescript support in static.config.js is not yet supported, but is coming in a future update!
@@ -18,6 +17,14 @@ export default {
   ],
   resolve: {
     extensions: ["", ".webpack.js", ".web.js", ".js"]
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.json$/,
+        loader: "json-loader"
+      }
+    ]
   }
 };
 

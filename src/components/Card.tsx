@@ -136,7 +136,7 @@ const Rating = styled.div`
 
 class Card extends React.Component<{
   imgUrl: string;
-  price: string;
+  price: number;
   name: string;
   rating: number;
   distance: number;
@@ -154,6 +154,17 @@ class Card extends React.Component<{
       listView,
       tags
     } = this.props;
+
+    const priceText = () => {
+      if (price == 1) {
+        return "$";
+      } else if (price == 2) {
+        return "$$";
+      } else if (price == 3) {
+        return "$$$";
+      } else return "?";
+    };
+
     return (
       <CardLink>
         <CardContainer listView={listView}>
@@ -164,7 +175,7 @@ class Card extends React.Component<{
                 <img src={starIcon} alt="rating" />
                 <h5>{rating}</h5>
               </Rating>
-              <h5>{price}</h5>
+              <h5>{priceText()}</h5>
             </Details>
           </ImgContainer>
           <TextContainer>
