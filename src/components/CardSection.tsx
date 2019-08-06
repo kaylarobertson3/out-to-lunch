@@ -83,6 +83,7 @@ const CardWrapper = styled.div<{ showMap: boolean }>`
 
 const Cards = styled.div<{ listView: boolean }>`
   display: ${props => (props.listView ? "flex" : "grid")};
+  flex-direction: column;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   grid-gap: 40px 30px;
   align-items: stretch;
@@ -159,6 +160,18 @@ class CardSection extends React.Component<
     const { cardData, updateSortParams, resultsText } = this.props;
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
+
+    const getImgUrl = d => {
+      var imgUrl;
+      if (d.imgUrl && d.imgUrl.length > 1) {
+        imgUrl = d.imgUrl;
+      } else if (d.cuisine) {
+        const lowerCuisine = d.cuisine.toLowerCase();
+        imgUrl = `../cards/placeholders/${lowerCuisine}.jpg`;
+      }
+      return imgUrl;
+    };
+
     return (
       <CardSectionWrapper>
         <Wrapper>
@@ -206,29 +219,27 @@ class CardSection extends React.Component<
                 <Card
                   listView={this.state.listView}
                   name={cardData.name}
-                  imgUrl={`../img/cards/${cardData.imgUrl}`}
+                  imgUrl={`../img/cards/${getImgUrl(cardData)}`}
                   price={cardData.price}
                   rating={cardData.rating}
                   distance={cardData.distance}
                   description={cardData.description}
+                  tags={[
+                    cardData.cuisine1,
+                    cardData.cuisine2,
+                    cardData.cuisine3
+                  ]}
                 />
               )}
 
               {cardData.length >= 1 &&
                 cardData.map((d, i) => {
-                  var imgUrl;
-                  if (d.imgUrl && d.imgUrl.length > 1) {
-                    imgUrl = d.imgUrl;
-                  } else if (d.cuisine) {
-                    const lowerCuisine = d.cuisine.toLowerCase();
-                    imgUrl = `../cards/placeholders/${lowerCuisine}.jpg`;
-                  }
                   return (
                     <Card
                       listView={this.state.listView}
                       key={i}
                       name={d.name}
-                      imgUrl={`../img/cards/${imgUrl}`}
+                      imgUrl={`../img/cards/${getImgUrl(d)}`}
                       price={d.price}
                       rating={d.rating}
                       distance={d.distance}
