@@ -21,7 +21,6 @@ const Section = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  width: 100%;
 
   h2 {
     margin: 0 0 1rem 0;
@@ -138,7 +137,7 @@ class SearchSection extends React.Component<{
                   searchData();
                 }}
               >
-                <img src={"assetes/icons/search.png"} alt="search" />
+                <img src={"assets/icons/search.png"} alt="search" />
               </SearchBtn>
             </SearchContainer>
           </form>
