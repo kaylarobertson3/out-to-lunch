@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, FONT } from "@src/theme";
-import starIcon from "@src/icons/star.svg";
-import walkIcon from "@src/icons/walk.svg";
+import starIcon from "@src/assets/icons/star.svg";
+import walkIcon from "@src/assets/icons/walk.svg";
 
 const CardLink = styled.a`
   height: 100%;
@@ -60,8 +60,22 @@ const TextContainer = styled.div<{ listView: boolean }>`
     props.listView ? "0px 10px 10px 0" : "0 0 10px 10px"};
 `;
 
+const NameWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 const Name = styled.h3`
   color: ${COLOR.darkGray};
+  margin-right: 1rem;
+`;
+
+const Price = styled.h4`
+  color: ${COLOR.darkGray};
+  font-size: 0.9rem;
+  font-weight: 300;
 `;
 
 const Row = styled.div`
@@ -113,7 +127,6 @@ const Details = styled.div<{ listView: boolean }>`
   flex-direction: row;
   align-items: center;
   align-self: flex-end;
-  /* position: ${props => (props.listView ? "block" : "absolute")}; */
   position: absolute;
   margin: ${props => (props.listView ? "0" : " -.8rem 0 0 .3rem")};
   border-radius: 9px;
@@ -177,20 +190,22 @@ class Card extends React.Component<{
                 <img src={starIcon} alt="rating" />
                 <h5>{rating}</h5>
               </Rating>
-              <h5>{priceText()}</h5>
+              <Distance>
+                <img height="15px" src={walkIcon} alt="walking distance" />
+                <h5>{distance} min.</h5>
+              </Distance>
             </Details>
           </ImgContainer>
           <TextContainer listView={listView}>
-            <Name>{name}</Name>
+            <NameWrapper>
+              <Name>{name}</Name>
+              <Price>{priceText()}</Price>
+            </NameWrapper>
             <Row>
               <Tags>
                 {tags && tags[0] && <Tag>{tags[0]}</Tag>}
                 {tags && tags[1] && <Tag>{tags[1]}</Tag>}
               </Tags>
-              <Distance>
-                <img height="15px" src={walkIcon} alt="walking distance" />
-                <h5>{distance} min.</h5>
-              </Distance>
             </Row>
           </TextContainer>
         </CardContainer>

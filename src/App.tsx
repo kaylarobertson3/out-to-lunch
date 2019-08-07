@@ -5,7 +5,6 @@ import FancyDiv from "@components/FancyDiv";
 import "./app.css";
 import styled from "styled-components";
 import { FONT, COLOR, BREAKPOINT } from "@src/theme";
-import logo from "@src/icons/igg-logo.svg";
 
 const Site = styled.div`
   display: flex;
@@ -34,7 +33,6 @@ const Site = styled.div`
     font: normal 300 16px/23px ${FONT.sansSerif};
     padding: 8px 10px;
     border: none;
-    border-radius: 0.5rem;
   }
 
   button {
@@ -86,35 +84,13 @@ const Content = styled.div`
   flex: 1;
   padding: 0 2rem;
   max-width: 2000px;
-  max-width: 100%;
+  width: 100%;
   align-self: center;
 
   ${BREAKPOINT.m`
         padding: .5rem 3rem 2rem 3rem;
     `};
 `;
-
-// const Footer = styled.footer`
-//   margin-top: 4rem;
-//   min-height: 270px;
-//   background: ${COLOR.lightGray};
-//   color: ${COLOR.black};
-//   width: 100%;
-
-//   display: flex;
-//   justify-content: center;
-
-//   div {
-//     padding: 2rem;
-//     width: 100%;
-//     max-width: 1300px;
-//     width: 100%;
-//     ${BREAKPOINT.m`
-//         padding: 3rem;
-//         margin-top: 5rem;
-//     `};
-//   }
-// `;
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 addPrefetchExcludes(["dynamic"]);
@@ -126,7 +102,7 @@ function App() {
         <Nav>
           <div>
             <a href="/">
-              <img src={logo} alt="infographics logo" />
+              <img src="/assets/icons/igg.png" alt="infographics logo" />
             </a>
           </div>
         </Nav>

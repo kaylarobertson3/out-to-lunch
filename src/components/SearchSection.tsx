@@ -54,7 +54,7 @@ const SearchBtn = styled.button`
   background: ${COLOR.black};
   color: ${COLOR.white};
   border: 1px solid ${COLOR.black};
-  border-radius: 0rem 0.5rem 0.5rem 0rem !important;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
 
   img {
     width: 15px;
@@ -70,6 +70,7 @@ const RandomizeButton = styled.button`
   background: ${COLOR.black};
   color: ${COLOR.white};
   width: 100%;
+  border-radius: 0.5rem;
 `;
 
 const Input = styled.input`
@@ -137,7 +138,7 @@ class SearchSection extends React.Component<{
                   searchData();
                 }}
               >
-                <img src="../img/icons/search.png" alt="search" />
+                <img src={"assetes/icons/search.png"} alt="search" />
               </SearchBtn>
             </SearchContainer>
           </form>

@@ -59,6 +59,7 @@ const FindFoodBtn = styled.button`
   width: 100%;
   background: ${COLOR.black};
   color: ${COLOR.white};
+  border-radius: 0.5rem;
 `;
 
 const Buttons = styled.div`
@@ -84,7 +85,7 @@ const Filter = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-image: url("../img/icons/arrow.png");
+  background-image: url("@assets/icons/arrow.png");
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
@@ -140,6 +141,7 @@ const ResetBtn = styled.button`
   width: 100%;
   background: none;
   border: 1px solid ${COLOR.black};
+  border-radius: 0.5rem;
 `;
 
 class Hero extends React.Component<

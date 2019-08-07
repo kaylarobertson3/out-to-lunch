@@ -3,20 +3,18 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
+import ReactPaginate from "react-paginate";
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
 `;
 
 const MenuBar = styled.div<{ showMap: boolean }>`
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   background: ${COLOR.gray};
   z-index: 300;
 
@@ -96,7 +94,7 @@ const Cards = styled.div<{ listView: boolean }>`
   width: 100%;
 
   ${BREAKPOINT.m`
-      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     `};
 `;
 
@@ -165,17 +163,18 @@ class CardSection extends React.Component<
   render() {
     const { cardData, updateSortParams, resultsText } = this.props;
 
-    const dataPartial = cardData.slice(0, 5);
+    const dataPartial = cardData.slice(0, 12);
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
 
     const getImgUrl = d => {
       var imgUrl;
       if (d.imgUrl && d.imgUrl.length > 1) {
-        imgUrl = d.imgUrl;
+        console.log("d.imgUrl", d.imgUrl);
+        imgUrl = `../../assets/img/cards/${d.imgUrl}`;
       } else if (d.cuisine) {
         const lowerCuisine = d.cuisine.toLowerCase();
-        imgUrl = `../cards/placeholders/${lowerCuisine}.jpg`;
+        imgUrl = `../../assets/img/cards/placeholders/${lowerCuisine}.jpg`;
       }
       return imgUrl;
     };
@@ -194,9 +193,9 @@ class CardSection extends React.Component<
               >
                 <span>{viewText}</span>
                 {this.state.listView ? (
-                  <img src="../img/icons/group.png" alt="card view" />
+                  <img src="../../assets/icons/group.png" alt="card view" />
                 ) : (
-                  <img src="../img/icons/list.png" alt="list view" />
+                  <img src="../../assets/icons/list.png" alt="list view" />
                 )}
               </ViewBtn>
 
@@ -210,13 +209,13 @@ class CardSection extends React.Component<
                 <option value={"rating"}>Sort by: highest rated</option>
                 <option value={"distance"}>Sort by: closest</option>
                 <option value={"a-z"}>Sort: A-Z</option>
-                <img src="../img/icons/arrow.png" alt="" />
+                <img src="../assetes/icons/arrow.png" alt="" />
               </SortBtn>
             </FloatLeft>
             <FloatRight>
               <ViewBtn onClick={this.toggleMapView}>
                 <span>{mapText}</span>
-                <img src="../img/icons/group.png" alt="map view" />
+                <img src="../assets/icons/group.png" alt="map view" />
               </ViewBtn>
             </FloatRight>
           </MenuLower>
@@ -234,7 +233,7 @@ class CardSection extends React.Component<
                       listView={this.state.listView}
                       key={i}
                       name={d.name}
-                      imgUrl={`../img/cards/${getImgUrl(d)}`}
+                      imgUrl={`${getImgUrl(d)}`}
                       price={d.price}
                       rating={d.rating}
                       distance={d.distance}
@@ -247,6 +246,7 @@ class CardSection extends React.Component<
           </CardWrapper>
           {this.state.showMap && <MapContainer cardData={cardData} />}
         </Wrapper>
+        pagination goes here?
       </CardSectionWrapper>
     );
   }
