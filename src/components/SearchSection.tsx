@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT } from "@src/theme";
+import * as searchIcon from "@src/assets/icons/search.png";
 
 const SearchSectionContainer = styled.section`
   display: flex;
@@ -137,7 +138,7 @@ class SearchSection extends React.Component<{
                   searchData();
                 }}
               >
-                <img src={"assets/icons/search.png"} alt="search" />
+                <img src={searchIcon} alt="search" />
               </SearchBtn>
             </SearchContainer>
           </form>
