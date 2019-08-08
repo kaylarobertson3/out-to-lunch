@@ -86,8 +86,8 @@
   {
     "name": "Grosz",
     "address": "Kurfürstendamm 193/194, 10707 Berlin",
-    "long": null,
-    "lat": null,
+    "long": 13.31759,
+    "lat": 52.50103,
     "cuisine": "German",
     "cuisine2": "",
     "distance": 5,

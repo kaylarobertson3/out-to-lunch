@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { BREAKPOINT, FONT, COLOR } from "@src/theme";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import { Map, Popup, TileLayer } from "react-leaflet";
+import Marker from "@src/components/Marker";
 
 const IGGpos = [52.50108, 13.31798];
 
@@ -58,6 +59,19 @@ const LeafletWrapper = styled.div`
   }
 `;
 
+// // Create your own class, extending from the Marker class.
+// class ExtendedMarker extends Marker {
+//   leafletElement: any;
+//   // "Hijack" the component lifecycle.
+//   componentDidMount() {
+//     // Call the Marker class componentDidMount (to make sure everything behaves as normal)
+//     super.componentDidMount();
+
+//     // Access the marker element and open the popup.
+//     this.leafletElement.openPopup();
+//   }
+// }
+
 class MapContainer extends React.Component<
   {
     cardData: any;
@@ -80,6 +94,33 @@ class MapContainer extends React.Component<
   render() {
     const { cardData } = this.props;
 
+    // console.log("CardDAta", cardData);
+    // const markers = cardData.map((d, i) => {
+    //   if (d.lat && d.long) {
+    //     const latLong = [parseFloat(d.lat), parseFloat(d.long)];
+    //     return (
+    //       <ExtendedMarker
+    //         key={`marker-${d.name}`}
+    //         ref={`marker-${d.name}`}
+    //         icon={DefaultIcon}
+    //         position={latLong}
+    //         onClick={e => {
+    //           console.log("marker clicked");
+    //         }}
+    //       >
+    //         <Popup>
+    //           <p>{d.name}</p>
+    //           <p>{d.rating}</p>
+    //           <p>{d.price}</p>
+    //           <p>{d.distance}</p>
+    //           Open in google maps =>
+    //         </Popup>
+    //       </ExtendedMarker>
+    //     );
+    //   }
+    // });
+    // console.log("markers", markers);
+
     return (
       <LeafletWrapper>
         <Map
@@ -95,21 +136,25 @@ class MapContainer extends React.Component<
             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker icon={IggIcon} position={IGGpos}>
+          {/* <ExtendedMarker icon={IggIcon} position={IGGpos}>
             <Popup>
               <p>IGG Office</p>
             </Popup>
-          </Marker>
+          </ExtendedMarker> */}
 
-          {cardData.length >= 1 &&
+          {/* {cardData.length >= 1 &&
             cardData.map((d, i) => {
               if (d.lat && d.long) {
                 const latLong = [parseFloat(d.lat), parseFloat(d.long)];
                 return (
                   <Marker
                     key={`map-marker-${i}`}
+                    ref={`map-marker-${i}`}
                     icon={DefaultIcon}
                     position={latLong}
+                    onClick={e => {
+                      console.log("marker clicked");
+                    }}
                   >
                     <Popup>
                       <p>{d.name}</p>
@@ -121,8 +166,16 @@ class MapContainer extends React.Component<
                   </Marker>
                 );
               }
-            })}
+            })} */}
         </Map>
+        {/* <button
+          onClick={e => {
+            const ref = "marker-Aki Tatsu Sushi";
+            ref.context.map.openPopup();
+          }}
+        >
+          BUTTON
+        </button> */}
       </LeafletWrapper>
     );
   }

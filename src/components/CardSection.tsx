@@ -109,7 +109,7 @@ const SortBtn = styled.select`
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
   margin: 0 1rem;
-  width: 160px;
+  min-width: 160px;
   font: normal 500 16px/23px ${FONT.sansSerif};
   ${BREAKPOINT.m`
     font-size: 16px;
@@ -358,7 +358,7 @@ class CardSection extends React.Component<
                 <ResultsTextContainer>sorry, no results</ResultsTextContainer>
               )}
             </Cards>
-            {cardData.length > 12 && (
+            {cardData.length > this.state.perPage && (
               <Pagination
                 prevPageText="prev"
                 nextPageText="next"

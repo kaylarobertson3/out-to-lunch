@@ -28,7 +28,7 @@ const CardContainer = styled.div<{ listView: boolean }>`
 const ImgContainer = styled.div<{ listView: boolean }>`
   display: flex;
   flex-direction: column;
-  background: ${COLOR.black};
+  background: ${COLOR.white};
   border-radius: 10px;
   overflow: hidden;
   justify-content: ${props => (props.listView ? "flex-end" : "flex-start")};
@@ -70,6 +70,7 @@ const NameWrapper = styled.div`
 const Name = styled.h3`
   color: ${COLOR.darkGray};
   margin-right: 1rem;
+  line-height: 1.2;
 
   ${BREAKPOINT.m`
       height: 40px;
@@ -185,7 +186,12 @@ class Card extends React.Component<{
     };
 
     return (
-      <CardLink>
+      <CardLink
+        onClick={e => {
+          console.log(`${name} was clicked`);
+          // open cooresponding leaflet popup somehow;
+        }}
+      >
         <CardContainer listView={listView}>
           <ImgContainer listView={listView}>
             <Img src={imgUrl} alt={name} />
