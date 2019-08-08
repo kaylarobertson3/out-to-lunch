@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
+import * as arrowIcon from "@src/assets/icons/arrow.png";
 
 const HeroContainer = styled.section`
   display: flex;
@@ -97,7 +98,7 @@ const Filter = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-image: url("../../assets/icons/arrow.png");
+  background-image: url(${arrowIcon});
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;

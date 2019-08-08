@@ -6,8 +6,8 @@ import MapContainer from "@components/MapContainer";
 import * as listIcon from "@public/assets/icons/list.png";
 import * as mapIcon from "@public/assets/icons/map.png";
 import * as groupIcon from "@public/assets/icons/group.png";
+import * as arrowIcon from "@public/assets/icons/arrow.png";
 import Pagination from "react-js-pagination";
-// import Pagination from "@src/components/Pagination";
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
@@ -87,16 +87,13 @@ const ViewBtn = styled.button`
         display: block;
       `};
   }
+
+  ${BREAKPOINT.m`
+      min-width: 100px;
+  `};
 `;
 
 const SortBtn = styled.select`
-  /* display: flex;
-  align-items: center;
-  color: ${COLOR.black};
-  background: none;
-  margin: 0 0 0 1rem;
-  font: normal 300 16px/23px "Karla", sans-serif; */
-
   background: none;
   border-top: none;
   border-right: none;
@@ -107,7 +104,7 @@ const SortBtn = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-image: url('../assets/icons/igg.png');
+  background-image: url(${arrowIcon});
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
@@ -207,12 +204,15 @@ class CardSection extends React.Component<
     updateSortParams: any;
     resultsText: string;
     query: any;
+    sortParams: string;
+    isReset: boolean;
   },
   {
     listView: boolean;
     showMap: boolean;
-    activePage: number;
     perPage: number;
+    sortParams: string;
+    activePage: number;
   }
 > {
   constructor(props) {
@@ -220,8 +220,9 @@ class CardSection extends React.Component<
     this.state = {
       listView: false,
       showMap: true,
+      activePage: 1,
       perPage: 12,
-      activePage: 1
+      sortParams: this.props.sortParams
     };
   }
 
@@ -233,8 +234,17 @@ class CardSection extends React.Component<
     }
   };
 
+  componentWillReceiveProps(nextProps) {
+    console.log("this.props.isReset", this.props.isReset);
+    console.log("nextProps.isReset", nextProps.isReset);
+    if (this.props.isReset !== nextProps.isReset) {
+      this.setState({
+        activePage: 1
+      });
+    }
+  }
+
   handlePageChange = pageNumber => {
-    console.log(`active page is ${pageNumber}`);
     this.setState({ activePage: pageNumber });
   };
 
@@ -253,7 +263,7 @@ class CardSection extends React.Component<
   };
 
   render() {
-    const { cardData, updateSortParams, resultsText } = this.props;
+    const { cardData, updateSortParams, sortParams, resultsText } = this.props;
 
     const dataPartial = () => {
       const perPage = this.state.perPage;
@@ -262,7 +272,7 @@ class CardSection extends React.Component<
       const offset = () => {
         if (activePage == 1) {
           return 0;
-        } else return perPage * activePage;
+        } else return perPage * (activePage - 1);
       };
 
       const partialData = cardData.slice(offset(), offset() + perPage);
@@ -292,14 +302,15 @@ class CardSection extends React.Component<
                 )}
               </ViewBtn>
 
-              {/* <label htmlFor="sort">Sort: </label> */}
               <SortBtn
                 name="sort"
                 onChange={e => {
                   updateSortParams(e.target.value);
+                  this.setState({ sortParams: e.target.value, activePage: 1 });
                 }}
+                value={sortParams}
               >
-                <option value={"rating"}>Sort by: highest rated</option>
+                <option value={"rating"}>Sort by: top rated</option>
                 <option value={"distance"}>Sort by: closest</option>
                 <option value={"a-z"}>Sort: A-Z</option>
                 <img src="../assets/icons/arrow.png" alt="" />
@@ -342,16 +353,17 @@ class CardSection extends React.Component<
                 <ResultsTextContainer>sorry, no results</ResultsTextContainer>
               )}
             </Cards>
-            <Pagination
-              hideFirstLastPages
-              prevPageText="prev"
-              nextPageText="next"
-              activePage={this.state.activePage}
-              itemsCountPerPage={this.state.perPage}
-              totalItemsCount={cardData.length}
-              pageRangeDisplayed={5}
-              onChange={this.handlePageChange}
-            />
+            {cardData.length > 12 && (
+              <Pagination
+                prevPageText="prev"
+                nextPageText="next"
+                activePage={this.state.activePage}
+                itemsCountPerPage={this.state.perPage}
+                totalItemsCount={cardData.length}
+                pageRangeDisplayed={3}
+                onChange={this.handlePageChange}
+              />
+            )}
           </CardWrapper>
           {this.state.showMap && <MapContainer cardData={cardData} />}
         </Wrapper>

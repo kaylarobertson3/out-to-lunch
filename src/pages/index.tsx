@@ -7,6 +7,7 @@ import { Events, scroller } from "react-scroll";
 import Footer from "@components/Footer";
 import { ANIMATION } from "@src/constants";
 import { sortData } from "@src/utils/sort";
+import { string } from "prop-types";
 
 // import Tabletop from 'tabletop'
 // const APIKEY = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
@@ -31,6 +32,8 @@ class Home extends React.Component<
     distance?: any;
     query: any;
     resultsText: string;
+    isReset: boolean;
+    sortParams: string;
   }
 > {
   constructor(props) {
@@ -42,13 +45,15 @@ class Home extends React.Component<
       price: null,
       distance: null,
       query: "",
-      resultsText: "All restaurants"
+      resultsText: "All restaurants",
+      isReset: false,
+      sortParams: "rating"
     };
   }
 
   componentDidMount = () => {
     Events.scrollEvent.register("end", (to, element) => {
-      // console.log("end");
+      console.log("end");
     });
   };
 
@@ -58,9 +63,11 @@ class Home extends React.Component<
 
   handleReset = e => {
     e.preventDefault();
+    this.updateSortParams("rating");
     this.setState({
       data: data,
       query: "",
+      isReset: true,
       resultsText: "All restaurants"
     });
   };
@@ -72,29 +79,6 @@ class Home extends React.Component<
       offset: -150
     });
   };
-
-  // handleFilter = (param, name) => {
-
-  //   if (param === "any") {
-
-  //   }
-
-  // const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0;
-  // const distanceIndexNum = distanceFilter == "any" ? 100 : distanceFilter;
-  // const priceIndexNum = priceFilter == "any" ? -1 : 0;
-  // const filteredData = data.filter(d => {
-  //   return (
-  //     d.cuisine.indexOf(cuisineFilter) >= cuisineIndexNum &&
-  //     d.price.indexOf(priceFilter) >= priceIndexNum &&
-  //     d.distance <= distanceIndexNum
-  //     // d.distance.indexOf(distanceFilter) >= distanceIndexNum
-  //   );
-  // });
-  // this.setState({
-  //   data: filteredData,
-  //   resultsText: cuisineFilter + " ," + priceFilter + ", " + distanceFilter
-  // });
-  // };
 
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
     const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0;
@@ -138,11 +122,12 @@ class Home extends React.Component<
   };
 
   updateSortParams = sortParams => {
+    console.log("sortparams", sortParams);
     let sortedData;
     if (this.state.data.length >= 1) {
       sortedData = sortData(this.state.data, sortParams);
     } else sortedData = this.state.data;
-    this.setState({ data: sortedData });
+    this.setState({ data: sortedData, sortParams: sortParams });
   };
 
   // handleSortRating = () => {
@@ -217,9 +202,11 @@ class Home extends React.Component<
         />
         <CardSection
           updateSortParams={this.updateSortParams}
+          sortParams={this.state.sortParams}
           query={this.state.query}
           cardData={this.state.data}
           resultsText={this.state.resultsText}
+          isReset={this.state.isReset}
         />
         <SearchSection
           searchData={this.searchData}
@@ -227,16 +214,6 @@ class Home extends React.Component<
           handleInputChange={this.handleInputChange}
           query={this.state.query}
         />
-        {/* <Link
-          activeClass="active"
-          to="top"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
-        >
-          Section 1
-              </Link> */}
         <Footer />
       </>
     );

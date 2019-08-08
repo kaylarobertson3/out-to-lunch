@@ -43,6 +43,7 @@ const Site = styled.div`
   select {
     padding: 5px 0;
     color: ${COLOR.black};
+    width: 100%;
   }
 
   a {

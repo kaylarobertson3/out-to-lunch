@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR, FONT } from "@src/theme";
+import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import starIcon from "@public/assets/icons/star.svg";
 import walkIcon from "@public/assets/icons/walk.svg";
 
@@ -70,6 +70,10 @@ const NameWrapper = styled.div`
 const Name = styled.h3`
   color: ${COLOR.darkGray};
   margin-right: 1rem;
+
+  ${BREAKPOINT.m`
+      height: 40px;
+  `};
 `;
 
 const Price = styled.h4`
