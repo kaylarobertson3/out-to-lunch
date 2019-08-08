@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
-import * as listIcon from "@public/assets/icons/list.png";
-import * as mapIcon from "@public/assets/icons/map.png";
-import * as groupIcon from "@public/assets/icons/group.png";
-import * as arrowIcon from "@public/assets/icons/arrow.png";
+import listIcon from "@public/assets/icons/list.png";
+import mapIcon from "@public/assets/icons/map.png";
+import groupIcon from "@public/assets/icons/group.png";
+import arrowIcon from "@public/assets/icons/arrow.png";
 import Pagination from "react-js-pagination";
 
 const CardSectionWrapper = styled.section`
