@@ -272,18 +272,6 @@ class CardSection extends React.Component<
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
 
-    const getImgUrl = d => {
-      var imgUrl;
-      if (d.imgUrl && d.imgUrl.length > 1) {
-        imgUrl = `../../assets/img/cards/${d.imgUrl}`;
-      } else if (d.cuisine) {
-        const lowerCuisine = d.cuisine.toLowerCase();
-        imgUrl = `../../assets/img/cards/placeholders/${lowerCuisine}.jpg`;
-      }
-      return imgUrl;
-      console.log("IMGURL: ", imgUrl);
-    };
-
     return (
       <CardSectionWrapper>
         <MenuBar showMap={this.state.showMap}>
@@ -330,12 +318,19 @@ class CardSection extends React.Component<
             <Cards id="cards" listView={this.state.listView}>
               {cardData.length >= 1 ? (
                 dataPartial().map((d, i) => {
+                  const cuisinePathName = d.cuisine.toLowerCase();
+                  const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
+
                   return (
                     <Card
                       listView={this.state.listView}
-                      key={i}
+                      key={`card-${i}`}
                       name={d.name}
-                      imgUrl={`${getImgUrl(d)}`}
+                      imgUrl={
+                        d.imageUrl && d.imageUrl !== ""
+                          ? d.imageUrl
+                          : cuisineFallbackImg
+                      }
                       price={d.price}
                       rating={d.rating}
                       distance={d.distance}
