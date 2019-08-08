@@ -4,7 +4,7 @@ import Card from "./Card";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
 import * as listIcon from "@src/assets/icons/list.png";
-import * as mapIcon from "@src/assets/icons/group.png";
+import * as mapIcon from "@src/assets/icons/map.png";
 import * as groupIcon from "@src/assets/icons/group.png";
 
 const CardSectionWrapper = styled.section`

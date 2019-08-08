@@ -21,12 +21,21 @@ const MainSearch = styled.div`
 
 const Filters = styled.form`
   margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+  ${BREAKPOINT.m`
+    align-items: center;
+  `};
 `;
 
 const FiltersContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
   ${BREAKPOINT.m`
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
     align-items: center;
   `};
 `;
@@ -35,9 +44,12 @@ const FilterTop = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
+  align-items: flex-end;
+
   ${BREAKPOINT.m`
       display: flex;
       flex-direction: row;
+      align-items: center;
   `};
 `;
 

@@ -14,7 +14,6 @@ const Footer = styled.footer`
 
 const FooterInner = styled.div`
   width: 100%;
-  max-width: 1100px;
   width: 100%;
   margin-top: 1rem;
   display: flex;
