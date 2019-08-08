@@ -46,7 +46,7 @@ const Site = styled.div`
   }
 
   a {
-    color: ${COLOR.black};
+    color: inherit;
     text-decoration: none;
   }
 

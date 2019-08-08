@@ -24,11 +24,15 @@ const CardSectionWrapper = styled.section`
       background: ${COLOR.white};
       padding: 0.5rem 1rem;
       border-radius: 3px;
+      color: ${COLOR.black};
 
       a {
         text-decoration: none;
-        color: ${COLOR.black};
       }
+    }
+    .active {
+      background: ${COLOR.black};
+      color: ${COLOR.white};
     }
   }
 `;
