@@ -21,7 +21,8 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "types/*": ["types/*"],
-      "@src/*": ["src/*"]
+      "@src/*": ["src/*"],
+      "@public/*": ["public/*"]
     },
     "lib": ["dom", "es2015", "es2016"]
   },
