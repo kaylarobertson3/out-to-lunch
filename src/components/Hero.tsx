@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
-import * as arrowIcon from "@src/assets/icons/arrow.png";
+import arrowIcon from "@public/assets/icons/arrow.png";
 
 const HeroContainer = styled.section`
   display: flex;
