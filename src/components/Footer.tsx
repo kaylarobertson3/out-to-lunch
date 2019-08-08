@@ -70,15 +70,13 @@ export default class extends React.Component<{}, {}> {
     return (
       <Footer>
         <FooterInner>
+          <FooterRight>
+            <h6>© Infographics Group 2019 </h6>
+            {/* <h6>About </h6> */}
+          </FooterRight>
           <ScrollTopBtn onClick={this.scrollToTop}>
             <img src={scrollIcon} alt="scroll to top" />
           </ScrollTopBtn>
-          <FooterRight>
-            <h6>Infographics Group </h6>
-            <h6>About </h6>
-            <h6>Contact </h6>
-            <h6>Photos courtesy of... </h6>
-          </FooterRight>
         </FooterInner>
       </Footer>
     );
