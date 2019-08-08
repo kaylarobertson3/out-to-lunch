@@ -328,10 +328,7 @@ class CardSection extends React.Component<
         <Wrapper>
           <CardWrapper showMap={this.state.showMap}>
             <Cards id="cards" listView={this.state.listView}>
-              {cardData.length == 0 && (
-                <ResultsTextContainer>sorry, no results</ResultsTextContainer>
-              )}
-              {cardData.length >= 1 &&
+              {cardData.length >= 1 ? (
                 dataPartial().map((d, i) => {
                   return (
                     <Card
@@ -346,7 +343,10 @@ class CardSection extends React.Component<
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );
-                })}
+                })
+              ) : (
+                <ResultsTextContainer>sorry, no results</ResultsTextContainer>
+              )}
             </Cards>
             <Pagination
               hideFirstLastPages
