@@ -6,9 +6,31 @@ import MapContainer from "@components/MapContainer";
 import * as listIcon from "@src/assets/icons/list.png";
 import * as mapIcon from "@src/assets/icons/map.png";
 import * as groupIcon from "@src/assets/icons/group.png";
+import Pagination from "react-js-pagination";
+// import Pagination from "@src/components/Pagination";
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
+
+  .pagination {
+    margin: 2rem 1rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      margin: 1rem;
+      background: ${COLOR.white};
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+
+      a {
+        text-decoration: none;
+        color: ${COLOR.black};
+      }
+    }
+  }
 `;
 
 const MenuBar = styled.div<{ showMap: boolean }>`
@@ -185,13 +207,17 @@ class CardSection extends React.Component<
   {
     listView: boolean;
     showMap: boolean;
+    activePage: number;
+    perPage: number;
   }
 > {
   constructor(props) {
     super(props);
     this.state = {
       listView: false,
-      showMap: true
+      showMap: true,
+      perPage: 12,
+      activePage: 1
     };
   }
 
@@ -201,6 +227,11 @@ class CardSection extends React.Component<
         showMap: false
       });
     }
+  };
+
+  handlePageChange = pageNumber => {
+    console.log(`active page is ${pageNumber}`);
+    this.setState({ activePage: pageNumber });
   };
 
   toggleListView = e => {
@@ -220,7 +251,20 @@ class CardSection extends React.Component<
   render() {
     const { cardData, updateSortParams, resultsText } = this.props;
 
-    const dataPartial = cardData.slice(0, 12);
+    const dataPartial = () => {
+      const perPage = this.state.perPage;
+      const activePage = this.state.activePage;
+
+      const offset = () => {
+        if (activePage == 1) {
+          return 0;
+        } else return perPage * activePage;
+      };
+
+      const partialData = cardData.slice(offset(), offset() + perPage);
+      return partialData;
+    };
+
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
 
@@ -284,7 +328,7 @@ class CardSection extends React.Component<
                 <ResultsTextContainer>sorry, no results</ResultsTextContainer>
               )}
               {cardData.length >= 1 &&
-                dataPartial.map((d, i) => {
+                dataPartial().map((d, i) => {
                   return (
                     <Card
                       listView={this.state.listView}
@@ -300,10 +344,19 @@ class CardSection extends React.Component<
                   );
                 })}
             </Cards>
+            <Pagination
+              hideFirstLastPages
+              prevPageText="prev"
+              nextPageText="next"
+              activePage={this.state.activePage}
+              itemsCountPerPage={this.state.perPage}
+              totalItemsCount={cardData.length}
+              pageRangeDisplayed={5}
+              onChange={this.handlePageChange}
+            />
           </CardWrapper>
           {this.state.showMap && <MapContainer cardData={cardData} />}
         </Wrapper>
-        pagination goes here?
       </CardSectionWrapper>
     );
   }

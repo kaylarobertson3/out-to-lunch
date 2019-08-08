@@ -14,6 +14,14 @@ const SearchSectionContainer = styled.section`
           align-items: center;
           justify-content: center;
     `};
+
+  form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Section = styled.div`
@@ -22,6 +30,8 @@ const Section = styled.div`
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  align-items: center;
+  width: 100%;
 
   h2 {
     margin: 0 0 1rem 0;
@@ -29,21 +39,19 @@ const Section = styled.div`
 `;
 
 const SearchContainer = styled.div`
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 
-    /* ${BREAKPOINT.m`
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    `}; */
+  ${BREAKPOINT.m`
+  max-width: 350px;
+`};
 
-    input {
-      border-radius: 0.5rem 0 0 .5rem;
-    }
+  input {
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
 `;
 
 const SearchBtn = styled.button`
@@ -59,18 +67,18 @@ const SearchBtn = styled.button`
   img {
     width: 15px;
   }
-
-  ${BREAKPOINT.m`
-      margin-top: 0rem;
-  `};
 `;
 
 const RandomizeButton = styled.button`
   margin-top: 2rem;
   background: ${COLOR.black};
   color: ${COLOR.white};
-  width: 100%;
   border-radius: 0.5rem;
+  width: 100%;
+
+  ${BREAKPOINT.m`
+    max-width: 350px;
+  `};
 `;
 
 const Input = styled.input`
