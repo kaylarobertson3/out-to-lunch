@@ -74,7 +74,6 @@ class Home extends React.Component<
   };
 
   // handleFilter = (param, name) => {
-  //   console.log("param and name:", param, name);
 
   //   if (param === "any") {
 

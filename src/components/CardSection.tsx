@@ -3,7 +3,9 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
-import ReactPaginate from "react-paginate";
+import * as listIcon from "@src/assets/icons/list.png";
+import * as mapIcon from "@src/assets/icons/group.png";
+import * as groupIcon from "@src/assets/icons/group.png";
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
@@ -79,7 +81,7 @@ const SortBtn = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-  background-image: url("assets/icons/arrow.png");
+  background-image: url('../assets/icons/igg.png');
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
@@ -225,13 +227,13 @@ class CardSection extends React.Component<
     const getImgUrl = d => {
       var imgUrl;
       if (d.imgUrl && d.imgUrl.length > 1) {
-        console.log("d.imgUrl", d.imgUrl);
         imgUrl = `../../assets/img/cards/${d.imgUrl}`;
       } else if (d.cuisine) {
         const lowerCuisine = d.cuisine.toLowerCase();
         imgUrl = `../../assets/img/cards/placeholders/${lowerCuisine}.jpg`;
       }
       return imgUrl;
+      console.log("IMGURL: ", imgUrl);
     };
 
     return (
@@ -248,9 +250,9 @@ class CardSection extends React.Component<
               >
                 <span>{viewText}</span>
                 {this.state.listView ? (
-                  <img src="../../assets/icons/group.png" alt="card view" />
+                  <img src={groupIcon} alt="card view" />
                 ) : (
-                  <img src="../../assets/icons/list.png" alt="list view" />
+                  <img src={listIcon} alt="list view" />
                 )}
               </ViewBtn>
 
@@ -270,7 +272,7 @@ class CardSection extends React.Component<
             <FloatRight>
               <ViewBtn onClick={this.toggleMapView}>
                 <span>{mapText}</span>
-                <img src="../assets/icons/group.png" alt="map view" />
+                <img src={mapIcon} />
               </ViewBtn>
             </FloatRight>
           </MenuLower>
