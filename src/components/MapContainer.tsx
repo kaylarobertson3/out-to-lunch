@@ -17,7 +17,7 @@ const DefaultIcon = (L.Marker.prototype.options.icon = L.icon({
 
 // IGG icon
 const IggIcon = (L.Marker.prototype.options.icon = L.icon({
-  iconUrl: require("@src/assets/icons/iggCircle.svg"),
+  iconUrl: require("@public/assets/icons/iggCircle.svg"),
   iconAnchor: [13, 27],
   iconSize: [30, 30]
 }));

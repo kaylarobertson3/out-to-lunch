@@ -3,10 +3,10 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
-import * as listIcon from "@src/assets/icons/list.png";
-import * as mapIcon from "@src/assets/icons/map.png";
-import * as groupIcon from "@src/assets/icons/group.png";
-import * as arrowIcon from "@src/assets/icons/arrow.png";
+import listIcon from "@public/assets/icons/list.png";
+import mapIcon from "@public/assets/icons/map.png";
+import groupIcon from "@public/assets/icons/group.png";
+import arrowIcon from "@public/assets/icons/arrow.png";
 import Pagination from "react-js-pagination";
 
 const CardSectionWrapper = styled.section`
@@ -282,17 +282,6 @@ class CardSection extends React.Component<
     const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
 
-    const getImgUrl = d => {
-      var imgUrl;
-      if (d.imgUrl && d.imgUrl.length > 1) {
-        imgUrl = `../../assets/img/cards/${d.imgUrl}`;
-      } else if (d.cuisine) {
-        const lowerCuisine = d.cuisine.toLowerCase();
-        imgUrl = `../../assets/img/cards/placeholders/${lowerCuisine}.jpg`;
-      }
-      return imgUrl;
-    };
-
     return (
       <CardSectionWrapper>
         <MenuBar showMap={this.state.showMap}>
@@ -340,12 +329,18 @@ class CardSection extends React.Component<
             <Cards id="cards" listView={this.state.listView}>
               {cardData.length >= 1 ? (
                 dataPartial().map((d, i) => {
+                  const cuisinePathName = d.cuisine.toLowerCase();
+                  const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
                   return (
                     <Card
                       listView={this.state.listView}
-                      key={i}
+                      key={`card-${i}`}
                       name={d.name}
-                      imgUrl={`${getImgUrl(d)}`}
+                      imgUrl={
+                        d.imageUrl && d.imageUrl !== ""
+                          ? d.imageUrl
+                          : cuisineFallbackImg
+                      }
                       price={d.price}
                       rating={d.rating}
                       distance={d.distance}

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT } from "@src/theme";
-import * as searchIcon from "@src/assets/icons/search.png";
+import searchIcon from "@public/assets/icons/search.png";
 
 const SearchSectionContainer = styled.section`
   display: flex;

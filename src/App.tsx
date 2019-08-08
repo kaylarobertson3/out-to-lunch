@@ -5,7 +5,7 @@ import FancyDiv from "@components/FancyDiv";
 import "./app.css";
 import styled from "styled-components";
 import { FONT, COLOR, BREAKPOINT } from "@src/theme";
-import * as iggLogo from "@src/assets/icons/igg.png";
+import iggLogo from "@public/assets/icons/igg.png";
 
 const Site = styled.div`
   display: flex;
