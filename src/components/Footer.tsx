@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FONT, COLOR, BREAKPOINT } from "@src/theme";
-import scrollIcon from "@src/assets/icons/top.svg";
+import scrollIcon from "@public/assets/icons/top.svg";
 import { animateScroll as scroll, Events } from "react-scroll";
 import { ANIMATION } from "@src/constants";
 

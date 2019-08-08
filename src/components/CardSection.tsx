@@ -3,9 +3,9 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
-import * as listIcon from "@src/assets/icons/list.png";
-import * as mapIcon from "@src/assets/icons/map.png";
-import * as groupIcon from "@src/assets/icons/group.png";
+import * as listIcon from "@public/assets/icons/list.png";
+import * as mapIcon from "@public/assets/icons/map.png";
+import * as groupIcon from "@public/assets/icons/group.png";
 import Pagination from "react-js-pagination";
 // import Pagination from "@src/components/Pagination";
 
@@ -320,7 +320,6 @@ class CardSection extends React.Component<
                 dataPartial().map((d, i) => {
                   const cuisinePathName = d.cuisine.toLowerCase();
                   const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
-
                   return (
                     <Card
                       listView={this.state.listView}

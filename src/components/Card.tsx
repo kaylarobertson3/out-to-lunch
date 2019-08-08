@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR, FONT } from "@src/theme";
-import starIcon from "@src/assets/icons/star.svg";
-import walkIcon from "@src/assets/icons/walk.svg";
+import starIcon from "@public/assets/icons/star.svg";
+import walkIcon from "@public/assets/icons/walk.svg";
 
 const CardLink = styled.a`
   height: 100%;
