@@ -67,7 +67,7 @@
     "price": "1",
     "recommended dish:": "",
     "tags": "",
-    "imgUrl": ""
+    "imgUrl": "kabuki.jpg"
   },
   {
     "name": "Ashoka",
@@ -621,7 +621,7 @@
     "address": "Pfalzburger Str. 79, 10719 Berlin",
     "long": 13.3228031,
     "lat": 52.4981425,
-    "cuisine": "Ice Cream",
+    "cuisine": "ice Cream",
     "cuisine2": "Dessert",
     "distance": 5,
     "rating": 4,

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { BREAKPOINT, FONT, COLOR } from "@src/theme";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Map, Popup, TileLayer } from "react-leaflet";
-import Marker from "@src/components/Marker";
+import { Map, Popup, TileLayer, Marker } from "react-leaflet";
+// import Marker from "@src/components/Marker";
 
 const IGGpos = [52.50108, 13.31798];
 
@@ -93,33 +93,33 @@ class MapContainer extends React.Component<
 
   render() {
     const { cardData } = this.props;
+    console.log("CardData", cardData);
 
-    // console.log("CardDAta", cardData);
-    // const markers = cardData.map((d, i) => {
-    //   if (d.lat && d.long) {
-    //     const latLong = [parseFloat(d.lat), parseFloat(d.long)];
-    //     return (
-    //       <ExtendedMarker
-    //         key={`marker-${d.name}`}
-    //         ref={`marker-${d.name}`}
-    //         icon={DefaultIcon}
-    //         position={latLong}
-    //         onClick={e => {
-    //           console.log("marker clicked");
-    //         }}
-    //       >
-    //         <Popup>
-    //           <p>{d.name}</p>
-    //           <p>{d.rating}</p>
-    //           <p>{d.price}</p>
-    //           <p>{d.distance}</p>
-    //           Open in google maps =>
-    //         </Popup>
-    //       </ExtendedMarker>
-    //     );
-    //   }
-    // });
-    // console.log("markers", markers);
+    const markers = cardData.map((d, i) => {
+      if (d.lat && d.long) {
+        const latLong = [parseFloat(d.lat), parseFloat(d.long)];
+        return (
+          <Marker
+            key={`marker-${d.name}`}
+            ref={`marker-${d.name}`}
+            icon={DefaultIcon}
+            position={latLong}
+            onClick={e => {
+              console.log("marker clicked");
+            }}
+          >
+            <Popup>
+              <p>{d.name}</p>
+              <p>{d.rating}</p>
+              <p>{d.price}</p>
+              <p>{d.distance}</p>
+              Open in google maps =>
+            </Popup>
+          </Marker>
+        );
+      }
+    });
+    console.log("markers", markers);
 
     return (
       <LeafletWrapper>
@@ -136,46 +136,17 @@ class MapContainer extends React.Component<
             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {/* <ExtendedMarker icon={IggIcon} position={IGGpos}>
-            <Popup>
-              <p>IGG Office</p>
-            </Popup>
-          </ExtendedMarker> */}
-
-          {/* {cardData.length >= 1 &&
-            cardData.map((d, i) => {
-              if (d.lat && d.long) {
-                const latLong = [parseFloat(d.lat), parseFloat(d.long)];
-                return (
-                  <Marker
-                    key={`map-marker-${i}`}
-                    ref={`map-marker-${i}`}
-                    icon={DefaultIcon}
-                    position={latLong}
-                    onClick={e => {
-                      console.log("marker clicked");
-                    }}
-                  >
-                    <Popup>
-                      <p>{d.name}</p>
-                      <p>{d.rating}</p>
-                      <p>{d.price}</p>
-                      <p>{d.distance}</p>
-                      Open in google maps =>
-                    </Popup>
-                  </Marker>
-                );
-              }
-            })} */}
+          {cardData.length >= 1 && markers}
         </Map>
-        {/* <button
+        <button
           onClick={e => {
-            const ref = "marker-Aki Tatsu Sushi";
-            ref.context.map.openPopup();
+            console.log("clicked");
+            // const ref = "marker-Aki Tatsu Sushi";
+            // ref.context.map.openPopup();
           }}
         >
           BUTTON
-        </button> */}
+        </button>
       </LeafletWrapper>
     );
   }
