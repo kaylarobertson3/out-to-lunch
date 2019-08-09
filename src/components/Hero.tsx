@@ -65,6 +65,7 @@ const Label = styled.label`
   font: normal 500 16px/23px ${FONT.sansSerif};
   ${BREAKPOINT.m`
     font-size: 20px;
+    width: 100%;
   `};
 `;
 
@@ -189,109 +190,111 @@ class Hero extends React.Component<
       <HeroContainer>
         <MainSearch>
           <h1>What sounds good?</h1>
-          <Filters>
-            <FiltersContainer>
-              <FilterTop>
+          <div>
+            <Filters>
+              <FiltersContainer>
+                <FilterTop>
+                  <FilterGroup>
+                    <Label htmlFor="cuisine">I want</Label>
+                    <Filter
+                      name="cuisine"
+                      value={this.state.cuisineFilter}
+                      onChange={e => {
+                        this.setState({
+                          cuisineFilter: e.target.value
+                        });
+                        this.handleChange(
+                          e.target.value,
+                          this.state.priceFilter,
+                          this.state.distanceFilter
+                        );
+                      }}
+                    >
+                      {cuisines.map((d, i) => {
+                        return (
+                          <option key={i} value={d}>
+                            {d}
+                          </option>
+                        );
+                      })}
+                    </Filter>
+                  </FilterGroup>
+                  <FilterGroup>
+                    <Label htmlFor="price">for </Label>
+                    <Filter
+                      name="price"
+                      value={this.state.priceFilter}
+                      onChange={e => {
+                        this.setState({
+                          priceFilter: e.target.value
+                        });
+                        this.handleChange(
+                          this.state.cuisineFilter,
+                          e.target.value,
+                          this.state.distanceFilter
+                        );
+                      }}
+                    >
+                      <option value="any">any price</option>
+                      <option value={1}>around $</option>
+                      <option value={2}>$$ or less</option>
+                      <option value={3}>$$$ or less</option>
+                    </Filter>
+                  </FilterGroup>
+                </FilterTop>
+
                 <FilterGroup>
-                  <Label htmlFor="cuisine">I want</Label>
+                  <Label htmlFor="distance"> and am up for walking</Label>
                   <Filter
-                    name="cuisine"
-                    value={this.state.cuisineFilter}
+                    name="distance"
+                    value={this.state.distanceFilter}
                     onChange={e => {
                       this.setState({
-                        cuisineFilter: e.target.value
-                      });
-                      this.handleChange(
-                        e.target.value,
-                        this.state.priceFilter,
-                        this.state.distanceFilter
-                      );
-                    }}
-                  >
-                    {cuisines.map((d, i) => {
-                      return (
-                        <option key={i} value={d}>
-                          {d}
-                        </option>
-                      );
-                    })}
-                  </Filter>
-                </FilterGroup>
-                <FilterGroup>
-                  <Label htmlFor="price">for </Label>
-                  <Filter
-                    name="price"
-                    value={this.state.priceFilter}
-                    onChange={e => {
-                      this.setState({
-                        priceFilter: e.target.value
+                        distanceFilter: e.target.value
                       });
                       this.handleChange(
                         this.state.cuisineFilter,
-                        e.target.value,
-                        this.state.distanceFilter
+                        this.state.priceFilter,
+                        e.target.value
                       );
                     }}
                   >
-                    <option value="any">any price</option>
-                    <option value={1}>around $</option>
-                    <option value={2}>$$ or less</option>
-                    <option value={3}>$$$ or less</option>
+                    <option value="any">any distance</option>
+                    <option value={5}>under 5 minutes</option>
+                    <option value={10}>under 10 minutes</option>
                   </Filter>
                 </FilterGroup>
-              </FilterTop>
+              </FiltersContainer>
+            </Filters>
+            <Buttons>
+              <ResetBtn
+                onClick={e => {
+                  this.setState({
+                    cuisineFilter: "any",
+                    priceFilter: "any",
+                    distanceFilter: "any"
+                  });
+                  handleReset(e);
+                }}
+              >
+                Reset
+              </ResetBtn>
 
-              <FilterGroup>
-                <Label htmlFor="distance"> and am up for walking</Label>
-                <Filter
-                  name="distance"
-                  value={this.state.distanceFilter}
-                  onChange={e => {
-                    this.setState({
-                      distanceFilter: e.target.value
-                    });
-                    this.handleChange(
-                      this.state.cuisineFilter,
-                      this.state.priceFilter,
-                      e.target.value
-                    );
-                  }}
-                >
-                  <option value="any">any distance</option>
-                  <option value={5}>under 5 minutes</option>
-                  <option value={10}>under 10 minutes</option>
-                </Filter>
-              </FilterGroup>
-            </FiltersContainer>
-          </Filters>
-          <Buttons>
-            <ResetBtn
-              onClick={e => {
-                this.setState({
-                  cuisineFilter: "any",
-                  priceFilter: "any",
-                  distanceFilter: "any"
-                });
-                handleReset(e);
-              }}
-            >
-              Reset
-            </ResetBtn>
-
-            <FindFoodBtn
-              type="submit"
-              onClick={e => {
-                e.preventDefault();
-                handleClick(
-                  this.state.cuisineFilter,
-                  this.state.priceFilter,
-                  this.state.distanceFilter
-                );
-              }}
-            >
-              Find Food!
-            </FindFoodBtn>
-          </Buttons>
+              <FindFoodBtn
+                type="submit"
+                onClick={e => {
+                  e.preventDefault();
+                  handleClick(
+                    this.state.cuisineFilter,
+                    this.state.priceFilter,
+                    this.state.distanceFilter
+                  );
+                }}
+              >
+                Find Food!
+              </FindFoodBtn>
+            </Buttons>
+          </div>
         </MainSearch>
       </HeroContainer>
     );

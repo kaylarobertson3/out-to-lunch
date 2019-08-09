@@ -19,7 +19,8 @@ const data = dataUnsorted.sort((a, b) => {
 const cuisines = ["any"];
 
 data.map(d => {
-  if (cuisines.indexOf(d.cuisine) == -1) cuisines.push(d.cuisine);
+  const cuisine = d.cuisine.toLowerCase();
+  if (cuisines.indexOf(cuisine) == -1) cuisines.push(cuisine);
 });
 
 class Home extends React.Component<
@@ -85,10 +86,12 @@ class Home extends React.Component<
     const distanceIndexNum = distanceFilter == "any" ? 100 : distanceFilter;
     const priceIndexNum = priceFilter == "any" ? 3 : priceFilter;
     const filteredData = data.filter(d => {
+      const cuisineTags = [d.cuisine.toLowerCase(), d.cuisine2.toLowerCase()];
       return (
-        d.cuisine.indexOf(cuisineFilter) >= cuisineIndexNum &&
-        d.price <= priceIndexNum &&
-        d.distance <= distanceIndexNum
+        d.cuisine.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum ||
+        (d.cuisine2.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum &&
+          d.price <= priceIndexNum &&
+          d.distance <= distanceIndexNum)
       );
     });
 

@@ -20,15 +20,19 @@ const CardSectionWrapper = styled.section`
     align-items: center;
 
     li {
-      margin: 1rem;
+      padding: 0.3rem 0.5rem;
+      margin: 0.5rem;
+
       background: ${COLOR.white};
-      padding: 0.5rem 1rem;
       border-radius: 3px;
       color: ${COLOR.black};
 
       a {
         text-decoration: none;
       }
+      ${BREAKPOINT.m`
+      margin: 1rem;
+      padding: 0.5rem 1rem;  `};
     }
     .active {
       background: ${COLOR.black};

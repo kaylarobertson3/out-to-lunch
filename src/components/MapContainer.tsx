@@ -23,17 +23,18 @@ const IggIcon = (L.Marker.prototype.options.icon = L.icon({
 }));
 
 const LeafletWrapper = styled.div`
-  width: 50%;
+  width: 100%;
   height: 100vh;
   margin: 0 0 2rem 0;
 
   ${BREAKPOINT.m`
       margin: 0 0 1rem 1rem;
+      width: 50%;
    `};
 
   .leaflet-container {
     width: 100%;
-    height: 900px;
+    height: 300px;
     border-radius: 10px;
     box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08);
   }
@@ -41,6 +42,10 @@ const LeafletWrapper = styled.div`
   .leaflet-popup {
     margin-bottom: 40px;
     left: -49px;
+
+    ${BREAKPOINT.m`
+      height: 900px;
+   `};
 
     p {
       font: normal 700 13px/1.2 ${FONT.sansSerif};

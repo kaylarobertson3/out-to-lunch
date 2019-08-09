@@ -44,6 +44,7 @@ const Site = styled.div`
     padding: 5px 0;
     color: ${COLOR.black};
     width: 100%;
+    min-width: 140px;
   }
 
   a {
