@@ -85,7 +85,7 @@ const Nav = styled.nav`
 
 const Content = styled.div`
   flex: 1;
-  padding: 0 2rem;
+  padding: 0 2rem 1rem 2rem;
   max-width: 2000px;
   width: 100%;
   align-self: center;
