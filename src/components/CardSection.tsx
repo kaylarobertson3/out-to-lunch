@@ -341,8 +341,8 @@ class CardSection extends React.Component<
                       key={`card-${i}`}
                       name={d.name}
                       imgUrl={
-                        d.imageUrl && d.imageUrl !== ""
-                          ? d.imageUrl
+                        d.imgUrl && d.imgUrl !== ""
+                          ? `./assets/img/cards/${d.imgUrl}`
                           : cuisineFallbackImg
                       }
                       price={d.price}
