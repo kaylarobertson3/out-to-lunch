@@ -37,15 +37,15 @@ const LeafletWrapper = styled.div`
     height: 300px;
     border-radius: 10px;
     box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08);
+
+    ${BREAKPOINT.m`
+      height: 900px;
+   `};
   }
 
   .leaflet-popup {
     margin-bottom: 40px;
     left: -49px;
-
-    ${BREAKPOINT.m`
-      height: 900px;
-   `};
 
     p {
       font: normal 700 13px/1.2 ${FONT.sansSerif};
