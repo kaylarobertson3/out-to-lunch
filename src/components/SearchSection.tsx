@@ -134,7 +134,7 @@ class SearchSection extends React.Component<{
                   handleInputChange(e.target.value);
                 }}
                 name="value"
-                placeholder="Heno Heno..."
+                placeholder="Restaurant or cuisine..."
                 onKeyDown={e => {
                   this.handleKeyPress(e);
                 }}
