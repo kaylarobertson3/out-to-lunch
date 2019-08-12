@@ -110,7 +110,8 @@ class MapContainer extends React.Component<
             icon={DefaultIcon}
             position={latLong}
             onClick={e => {
-              console.log("marker clicked");
+              console.log("lat", e.latlng.lat);
+              console.log("lng", e.latlng.lng);
             }}
           >
             <Popup>
