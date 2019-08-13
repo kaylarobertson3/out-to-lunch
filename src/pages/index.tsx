@@ -125,34 +125,12 @@ class Home extends React.Component<
   };
 
   updateSortParams = sortParams => {
-    console.log("sortparams", sortParams);
     let sortedData;
     if (this.state.data.length >= 1) {
       sortedData = sortData(this.state.data, sortParams);
     } else sortedData = this.state.data;
     this.setState({ data: sortedData, sortParams: sortParams });
   };
-
-  // handleSortRating = () => {
-  //   let sortedData;
-  //   if (this.state.data.length >= 1) {
-  //     sortedData = this.state.data.sort((a, b) => {
-  //       return b.rating - a.rating;
-  //     });
-  //   } else sortedData = this.state.data;
-
-  //   this.setState({ data: sortedData });
-  // };
-
-  // handleSortDistance = () => {
-  //   let sortedData;
-  //   if (this.state.data.length >= 1) {
-  //     sortedData = this.state.data.sort((a, b) => {
-  //       return a.distance - b.distance;
-  //     });
-  //   } else sortedData = this.state.data;
-  //   this.setState({ data: sortedData });
-  // };
 
   handleRandomize = () => {
     this.scrollToCard();

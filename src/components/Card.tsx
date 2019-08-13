@@ -189,7 +189,7 @@ class Card extends React.Component<{
       <CardLink
         onClick={e => {
           console.log(`${name} was clicked`);
-          // open cooresponding leaflet popup somehow;
+          // open cooresponding leaflet popup
         }}
       >
         <CardContainer listView={listView}>

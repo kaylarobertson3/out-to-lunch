@@ -98,7 +98,6 @@ class MapContainer extends React.Component<
 
   render() {
     const { cardData } = this.props;
-    console.log("CardData", cardData);
 
     const markers = cardData.map((d, i) => {
       if (d.lat && d.long) {
@@ -125,7 +124,6 @@ class MapContainer extends React.Component<
         );
       }
     });
-    console.log("markers", markers);
 
     return (
       <LeafletWrapper>
@@ -144,15 +142,6 @@ class MapContainer extends React.Component<
           />
           {cardData.length >= 1 && markers}
         </Map>
-        <button
-          onClick={e => {
-            console.log("clicked");
-            // const ref = "marker-Aki Tatsu Sushi";
-            // ref.context.map.openPopup();
-          }}
-        >
-          BUTTON
-        </button>
       </LeafletWrapper>
     );
   }

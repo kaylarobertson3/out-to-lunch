@@ -50,7 +50,7 @@ export default class extends React.Component<{}, {}> {
 
   componentDidMount = () => {
     Events.scrollEvent.register("end", (to, element) => {
-      // console.log("end");
+      console.log("end");
     });
   };
 
