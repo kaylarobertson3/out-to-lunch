@@ -392,7 +392,7 @@ class CardSection extends React.Component<
           {this.state.showMap && (
             <MapContainer
               clickedPos={this.state.clickedPos}
-              cardData={cardData}
+              cardData={dataPartial()}
             />
           )}
         </Wrapper>
