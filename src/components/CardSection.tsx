@@ -217,6 +217,9 @@ class CardSection extends React.Component<
     perPage: number;
     sortParams: string;
     activePage: number;
+    clickedLat: number;
+    clickedLong: number;
+    clickedPos: any;
   }
 > {
   constructor(props) {
@@ -226,7 +229,10 @@ class CardSection extends React.Component<
       showMap: true,
       activePage: 1,
       perPage: 12,
-      sortParams: this.props.sortParams
+      sortParams: this.props.sortParams,
+      clickedLat: null,
+      clickedLong: null,
+      clickedPos: null
     };
   }
 
@@ -239,8 +245,6 @@ class CardSection extends React.Component<
   };
 
   componentWillReceiveProps(nextProps) {
-    console.log("this.props.isReset", this.props.isReset);
-    console.log("nextProps.isReset", nextProps.isReset);
     if (this.props.isReset !== nextProps.isReset) {
       this.setState({
         activePage: 1
@@ -265,6 +269,15 @@ class CardSection extends React.Component<
       showMap: !this.state.showMap
     });
   };
+
+  // handleCardClick = (lat, long, name) => {
+  //   // const clickedLat = lat;
+  //   // const clickedLong = long;
+  //   // const clickedPos = [clickedLat, clickedLong];
+  //   this.setState({
+  //     clickedPos: name
+  //   });
+  // };
 
   render() {
     const { cardData, updateSortParams, sortParams, resultsText } = this.props;
@@ -346,9 +359,16 @@ class CardSection extends React.Component<
                           : cuisineFallbackImg
                       }
                       price={d.price}
+                      lat={d.lat}
+                      long={d.long}
                       rating={d.rating}
                       distance={d.distance}
                       description={d.description}
+                      handleCardClick={() => {
+                        this.setState({
+                          clickedPos: d.name
+                        });
+                      }}
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );
@@ -369,7 +389,12 @@ class CardSection extends React.Component<
               />
             )}
           </CardWrapper>
-          {this.state.showMap && <MapContainer cardData={cardData} />}
+          {this.state.showMap && (
+            <MapContainer
+              clickedPos={this.state.clickedPos}
+              cardData={cardData}
+            />
+          )}
         </Wrapper>
       </CardSectionWrapper>
     );

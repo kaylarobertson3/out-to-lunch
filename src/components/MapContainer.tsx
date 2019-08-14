@@ -4,7 +4,6 @@ import { BREAKPOINT, FONT, COLOR } from "@src/theme";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Map, Popup, TileLayer, Marker } from "react-leaflet";
-// import Marker from "@src/components/Marker";
 
 const IGGpos = [52.50108, 13.31798];
 
@@ -64,27 +63,16 @@ const LeafletWrapper = styled.div`
   }
 `;
 
-// // Create your own class, extending from the Marker class.
-// class ExtendedMarker extends Marker {
-//   leafletElement: any;
-//   // "Hijack" the component lifecycle.
-//   componentDidMount() {
-//     // Call the Marker class componentDidMount (to make sure everything behaves as normal)
-//     super.componentDidMount();
-
-//     // Access the marker element and open the popup.
-//     this.leafletElement.openPopup();
-//   }
-// }
-
 class MapContainer extends React.Component<
   {
     cardData: any;
+    clickedPos: any;
   },
   {
     lat: number;
     long: number;
     zoom: number;
+    popupOpen: boolean;
   }
 > {
   constructor(props) {
@@ -92,38 +80,13 @@ class MapContainer extends React.Component<
     this.state = {
       lat: 52.50108,
       long: 13.31798,
-      zoom: 14
+      zoom: 14,
+      popupOpen: false
     };
   }
 
   render() {
-    const { cardData } = this.props;
-
-    const markers = cardData.map((d, i) => {
-      if (d.lat && d.long) {
-        const latLong = [parseFloat(d.lat), parseFloat(d.long)];
-        return (
-          <Marker
-            key={`marker-${d.name}`}
-            ref={`marker-${d.name}`}
-            icon={DefaultIcon}
-            position={latLong}
-            onClick={e => {
-              console.log("lat", e.latlng.lat);
-              console.log("lng", e.latlng.lng);
-            }}
-          >
-            <Popup>
-              <p>{d.name}</p>
-              <p>{d.rating}</p>
-              <p>{d.price}</p>
-              <p>{d.distance}</p>
-              Open in google maps =>
-            </Popup>
-          </Marker>
-        );
-      }
-    });
+    const { cardData, clickedPos } = this.props;
 
     return (
       <LeafletWrapper>
@@ -140,7 +103,37 @@ class MapContainer extends React.Component<
             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {cardData.length >= 1 && markers}
+          {cardData.map((d, i) => {
+            if (d.lat && d.long) {
+              const latLong = [d.lat, d.long];
+              return (
+                <>
+                  <Marker
+                    key={`marker-${d.name}`}
+                    icon={DefaultIcon}
+                    position={latLong}
+                  >
+                    <Popup position={latLong}>
+                      <p>{d.name}</p>
+                      <p>{d.rating}</p>
+                      <p>{d.price}</p>
+                      <p>{d.distance}</p>
+                      Open in google maps —>
+                    </Popup>
+                  </Marker>
+                  {clickedPos === d.name && (
+                    <Popup position={latLong}>
+                      <p>{d.name}</p>
+                      <p>{d.rating}</p>
+                      <p>{d.price}</p>
+                      <p>{d.distance}</p>
+                      Open in google maps —>
+                    </Popup>
+                  )}
+                </>
+              );
+            }
+          })}
         </Map>
       </LeafletWrapper>
     );

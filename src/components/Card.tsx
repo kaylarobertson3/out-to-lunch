@@ -163,6 +163,9 @@ class Card extends React.Component<{
   listView: boolean;
   description: string;
   tags?: any;
+  lat: number;
+  long: number;
+  handleCardClick: any;
 }> {
   render() {
     const {
@@ -172,7 +175,9 @@ class Card extends React.Component<{
       rating,
       distance,
       listView,
-      tags
+      tags,
+      lat,
+      long
     } = this.props;
 
     const priceText = () => {
@@ -188,8 +193,7 @@ class Card extends React.Component<{
     return (
       <CardLink
         onClick={e => {
-          console.log(`${name} was clicked`);
-          // open cooresponding leaflet popup
+          this.props.handleCardClick(lat, long);
         }}
       >
         <CardContainer listView={listView}>
