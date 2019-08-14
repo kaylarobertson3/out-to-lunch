@@ -22,10 +22,11 @@ const CardSectionWrapper = styled.section`
     li {
       padding: 0.3rem 0.5rem;
       margin: 0.5rem;
-
+      border: 1px solid black;
       background: ${COLOR.white};
       border-radius: 3px;
       color: ${COLOR.black};
+      cursor: pointer;
 
       a {
         text-decoration: none;
@@ -33,10 +34,30 @@ const CardSectionWrapper = styled.section`
       ${BREAKPOINT.m`
       margin: 1rem;
       padding: 0.5rem 1rem;  `};
+
+      :hover {
+        background: ${COLOR.black};
+        color: ${COLOR.white};
+      }
     }
     .active {
       background: ${COLOR.black};
       color: ${COLOR.white};
+    }
+
+    .disabled {
+      border: 1px solid lightgray;
+      cursor: default;
+      a {
+        cursor: default;
+        color: lightgray;
+      }
+
+      :hover {
+        color: ${COLOR.black};
+        background: none;
+        background: default;
+      }
     }
   }
 `;
@@ -47,7 +68,6 @@ const MenuBar = styled.div<{ showMap: boolean }>`
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2.5rem;
-  background: ${COLOR.gray};
   z-index: 300;
 
   ${BREAKPOINT.m`
@@ -379,13 +399,14 @@ class CardSection extends React.Component<
             </Cards>
             {cardData.length > this.state.perPage && (
               <Pagination
-                prevPageText="prev"
-                nextPageText="next"
+                prevPageText="<"
+                nextPageText=">"
                 activePage={this.state.activePage}
                 itemsCountPerPage={this.state.perPage}
                 totalItemsCount={cardData.length}
                 pageRangeDisplayed={3}
                 onChange={this.handlePageChange}
+                hideFirstLastPages={true}
               />
             )}
           </CardWrapper>
