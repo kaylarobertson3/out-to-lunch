@@ -46,11 +46,10 @@ const CardSectionWrapper = styled.section`
     }
 
     .disabled {
-      border: 1px solid lightgray;
+      opacity: 0.2;
       cursor: default;
       a {
         cursor: default;
-        color: lightgray;
       }
 
       :hover {

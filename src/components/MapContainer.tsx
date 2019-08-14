@@ -23,7 +23,6 @@ const IggIcon = (L.Marker.prototype.options.icon = L.icon({
 
 const LeafletWrapper = styled.div`
   width: 100%;
-  height: 100vh;
   margin: 0 0 2rem 0;
 
   ${BREAKPOINT.m`
@@ -40,6 +39,10 @@ const LeafletWrapper = styled.div`
     ${BREAKPOINT.m`
       height: 900px;
    `};
+
+    .leaflet-popup-content-wrapper {
+      color: black;
+    }
   }
 
   .leaflet-popup {
@@ -47,7 +50,7 @@ const LeafletWrapper = styled.div`
     left: -49px;
 
     p {
-      font: normal 700 13px/1.2 ${FONT.sansSerif};
+      /* font: normal 700 13px/1.2 ${FONT.sansSerif}; */
       margin: 0;
     }
   }
@@ -61,6 +64,11 @@ const LeafletWrapper = styled.div`
     font-family: ${FONT.sansSerif};
     color: ${COLOR.darkGray};
   }
+`;
+
+const DirectionsBtn = styled.a`
+  /* background: ${COLOR.black}; */
+  /* color: ${COLOR.white}; */
 `;
 
 class MapContainer extends React.Component<
@@ -87,7 +95,6 @@ class MapContainer extends React.Component<
 
   render() {
     const { cardData, clickedPos } = this.props;
-
     return (
       <LeafletWrapper>
         <Map
@@ -106,6 +113,9 @@ class MapContainer extends React.Component<
           {cardData.map((d, i) => {
             if (d.lat && d.long) {
               const latLong = [d.lat, d.long];
+              const link = `https://www.google.com/maps/search/?api=1&query=${
+                d.lat
+              },${d.long}`;
               return (
                 <>
                   <Marker
@@ -118,7 +128,7 @@ class MapContainer extends React.Component<
                       <p>{d.rating}</p>
                       <p>{d.price}</p>
                       <p>{d.distance}</p>
-                      Open in google maps —>
+                      <DirectionsBtn href={link}>Directions —></DirectionsBtn>
                     </Popup>
                   </Marker>
                   {clickedPos === d.name && (
@@ -127,7 +137,7 @@ class MapContainer extends React.Component<
                       <p>{d.rating}</p>
                       <p>{d.price}</p>
                       <p>{d.distance}</p>
-                      Open in google maps —>
+                      <DirectionsBtn href={link}>Directions —></DirectionsBtn>
                     </Popup>
                   )}
                 </>

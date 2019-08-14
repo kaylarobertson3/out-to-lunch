@@ -38,13 +38,22 @@ const Site = styled.div`
 
   button {
     cursor: pointer;
+
+    :hover {
+      opacity: 0.7;
+    }
   }
 
   select {
+    cursor: pointer;
     padding: 5px 0;
     color: ${COLOR.black};
     width: 100%;
     min-width: 150px;
+
+    :hover {
+      opacity: 0.7;
+    }
   }
 
   a {
