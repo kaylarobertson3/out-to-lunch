@@ -233,7 +233,6 @@ class CardSection extends React.Component<
   {
     listView: boolean;
     showMap: boolean;
-    perPage: number;
     sortParams: string;
     activePage: number;
     clickedLat: number;
@@ -247,7 +246,6 @@ class CardSection extends React.Component<
       listView: false,
       showMap: true,
       activePage: 1,
-      perPage: 12,
       sortParams: this.props.sortParams,
       clickedLat: null,
       clickedLong: null,
@@ -301,17 +299,24 @@ class CardSection extends React.Component<
   render() {
     const { cardData, updateSortParams, sortParams, resultsText } = this.props;
 
+    const perPage = () => {
+      if (this.state.showMap) {
+        return window.innerWidth > 1750 && 12;
+      } else {
+        return 12;
+      }
+    };
+
     const dataPartial = () => {
-      const perPage = this.state.perPage;
       const activePage = this.state.activePage;
 
       const offset = () => {
         if (activePage == 1) {
           return 0;
-        } else return perPage * (activePage - 1);
+        } else return perPage() * (activePage - 1);
       };
 
-      const partialData = cardData.slice(offset(), offset() + perPage);
+      const partialData = cardData.slice(offset(), offset() + perPage());
       return partialData;
     };
 
@@ -396,12 +401,12 @@ class CardSection extends React.Component<
                 <ResultsTextContainer>sorry, no results</ResultsTextContainer>
               )}
             </Cards>
-            {cardData.length > this.state.perPage && (
+            {cardData.length > perPage() && (
               <Pagination
                 prevPageText="<"
                 nextPageText=">"
                 activePage={this.state.activePage}
-                itemsCountPerPage={this.state.perPage}
+                itemsCountPerPage={perPage()}
                 totalItemsCount={cardData.length}
                 pageRangeDisplayed={3}
                 onChange={this.handlePageChange}

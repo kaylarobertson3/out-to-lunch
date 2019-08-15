@@ -23,6 +23,11 @@ const CardContainer = styled.div<{ listView: boolean }>`
     line-height: 1.5;
     margin-top: 0.7rem;
   }
+
+  :hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
 `;
 
 const ImgContainer = styled.div<{ listView: boolean }>`
