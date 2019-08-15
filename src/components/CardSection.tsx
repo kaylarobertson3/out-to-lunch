@@ -92,8 +92,9 @@ const FloatRight = styled.div``;
 const ViewBtn = styled.button`
   background: none;
   display: flex;
-  padding: 0 !important;
+  padding: 5px 8px;
   align-items: center;
+  border-radius: 5px;
 
   img {
     margin-left: 0;
@@ -121,9 +122,12 @@ const SortBtn = styled.select`
   border-top: none;
   border-right: none;
   border-left: none;
-  border-bottom: 2px solid ${COLOR.black};
-  padding: 0.6em 1.4em 0.5em 0.8em;
-  border-radius: 0em;
+  cursor: pointer;
+  padding: 5px 30px 5px 8px;
+  color: rgb(0, 0, 0);
+  min-width: 150px;
+  border-radius: 5px;
+  border: 1px solid rgb(0, 0, 0);
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -133,6 +137,7 @@ const SortBtn = styled.select`
   background-size: 0.65em auto, 100%;
   margin: 0 1rem;
   min-width: 160px;
+
   font: normal 500 16px/23px ${FONT.sansSerif};
   ${BREAKPOINT.m`
     font-size: 16px;
@@ -182,7 +187,6 @@ const SortBtn = styled.select`
 const CardWrapper = styled.div<{ showMap: boolean }>`
   display: flex;
   flex-direction: column;
-  /* overflow-y: scroll; */
   width: 100%;
 
   ${BREAKPOINT.m`
@@ -208,7 +212,7 @@ const ResultsTextContainer = styled.h4`
   font-size: 1.3rem;
   margin-bottom: 1rem;
   ${BREAKPOINT.m`
-    margin.bottomm: 0;
+    margin-bottom: 2rem;
   `};
 `;
 
@@ -301,10 +305,28 @@ class CardSection extends React.Component<
 
     const perPage = () => {
       if (this.state.showMap) {
-        return window.innerWidth > 1750 && 12;
+        return window.innerWidth >= 1750
+          ? 12
+          : window.innerWidth >= 1320
+          ? 9
+          : window.innerWidth >= 900
+          ? 6
+          : 3;
       } else {
-        return 12;
+        console.log("no map");
+        return window.innerWidth >= 1750
+          ? 18
+          : window.innerWidth >= 1465
+          ? 15
+          : window.innerWidth >= 1185
+          ? 12
+          : 9;
       }
+      // if (window.innerWidth >= 1750) {
+      //   return 18;
+      // } else if (window.innerWidth >= 1750) {
+      //   return 18;
+      // }
     };
 
     const dataPartial = () => {

@@ -32,8 +32,7 @@ const Site = styled.div`
   button,
   input {
     font: normal 300 16px/23px ${FONT.sansSerif};
-    padding: 8px 10px;
-    border: none;
+    border: 1px solid ${COLOR.black};
   }
 
   button {
@@ -46,9 +45,7 @@ const Site = styled.div`
 
   select {
     cursor: pointer;
-    padding: 5px 0;
     color: ${COLOR.black};
-    width: 100%;
     min-width: 150px;
 
     :hover {

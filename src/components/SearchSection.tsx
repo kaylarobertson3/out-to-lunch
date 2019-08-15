@@ -55,6 +55,7 @@ const SearchContainer = styled.div`
 `;
 
 const SearchBtn = styled.button`
+  padding: 8px 10px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -70,6 +71,7 @@ const SearchBtn = styled.button`
 `;
 
 const RandomizeButton = styled.button`
+  padding: 8px 10px;
   margin-top: 2rem;
   background: ${COLOR.black};
   color: ${COLOR.white};
@@ -82,6 +84,7 @@ const RandomizeButton = styled.button`
 `;
 
 const Input = styled.input`
+  padding: 8px 10px;
   width: 100%;
 `;
 

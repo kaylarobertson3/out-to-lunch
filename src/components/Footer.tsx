@@ -37,7 +37,7 @@ const FooterRight = styled.div`
   }
 `;
 
-const ScrollTopBtn = styled.button`
+const ScrollTopBtn = styled.a`
   background: none;
   display: flex;
   align-items: center;
