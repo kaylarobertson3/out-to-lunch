@@ -65,21 +65,20 @@ const TextContainer = styled.div<{ listView: boolean }>`
     props.listView ? "0px 10px 10px 0" : "0 0 10px 10px"};
 `;
 
-const NameWrapper = styled.div`
+const NameWrapper = styled.div<{ listView: boolean }>`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+  ${BREAKPOINT.m`
+      height: ${props => (props.listView ? "auto" : "40px;")};
+  `};
 `;
 
 const Name = styled.h3`
   color: ${COLOR.darkGray};
   margin-right: 1rem;
   line-height: 1.2;
-
-  ${BREAKPOINT.m`
-      height: 40px;
-  `};
 `;
 
 const Price = styled.h4`
@@ -171,6 +170,7 @@ class Card extends React.Component<{
   lat: number;
   long: number;
   handleCardClick: any;
+  closePopup: any;
 }> {
   render() {
     const {
@@ -197,8 +197,11 @@ class Card extends React.Component<{
 
     return (
       <CardLink
-        onClick={e => {
+        onMouseOver={e => {
           this.props.handleCardClick(lat, long);
+        }}
+        onMouseLeave={e => {
+          this.props.closePopup();
         }}
       >
         <CardContainer listView={listView}>
@@ -216,7 +219,7 @@ class Card extends React.Component<{
             </Details>
           </ImgContainer>
           <TextContainer listView={listView}>
-            <NameWrapper>
+            <NameWrapper listView={listView}>
               <Name>{name}</Name>
               <Price>{priceText()}</Price>
             </NameWrapper>

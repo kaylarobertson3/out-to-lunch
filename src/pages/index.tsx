@@ -158,10 +158,14 @@ class Home extends React.Component<
         }
       });
     });
+    const resultsText =
+      filteredData.length >= 1
+        ? `Results for ${this.state.query}: `
+        : `Sorry, no results for ${this.state.query}`;
 
     this.setState({
       data: filteredData,
-      resultsText: `Results for ${this.state.query}: `
+      resultsText: resultsText
     });
     this.scrollToCard();
   };

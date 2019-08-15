@@ -208,8 +208,8 @@ const Cards = styled.div<{ listView: boolean }>`
 `;
 
 const ResultsTextContainer = styled.h4`
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 2rem;
   margin-bottom: 1rem;
   ${BREAKPOINT.m`
     margin-bottom: 2rem;
@@ -291,17 +291,14 @@ class CardSection extends React.Component<
     });
   };
 
-  // handleCardClick = (lat, long, name) => {
-  //   // const clickedLat = lat;
-  //   // const clickedLong = long;
-  //   // const clickedPos = [clickedLat, clickedLong];
-  //   this.setState({
-  //     clickedPos: name
-  //   });
-  // };
-
   render() {
-    const { cardData, updateSortParams, sortParams, resultsText } = this.props;
+    const {
+      cardData,
+      updateSortParams,
+      sortParams,
+      resultsText,
+      query
+    } = this.props;
 
     const perPage = () => {
       if (this.state.showMap) {
@@ -322,11 +319,6 @@ class CardSection extends React.Component<
           ? 12
           : 9;
       }
-      // if (window.innerWidth >= 1750) {
-      //   return 18;
-      // } else if (window.innerWidth >= 1750) {
-      //   return 18;
-      // }
     };
 
     const dataPartial = () => {
@@ -415,12 +407,20 @@ class CardSection extends React.Component<
                           clickedPos: d.name
                         });
                       }}
+                      closePopup={() => {
+                        this.setState({
+                          clickedPos: null
+                        });
+                      }}
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );
                 })
               ) : (
-                <ResultsTextContainer>sorry, no results</ResultsTextContainer>
+                <ResultsTextContainer>
+                  Can't find what you're looking for? Suggest a resturant to be
+                  added <a>here.</a>
+                </ResultsTextContainer>
               )}
             </Cards>
             {cardData.length > perPage() && (

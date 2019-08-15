@@ -35,6 +35,7 @@ const Section = styled.div`
 
   h2 {
     margin: 0 0 1rem 0;
+    font-size: 2rem;
   }
 `;
 
@@ -94,7 +95,7 @@ const Line = styled.hr`
   height: 1px;
 
   ${BREAKPOINT.m`
-    width: 300px;
+    width: 600px;
       margin: 2rem;
       height: 1px;
       transform: rotate(90deg);

@@ -74,7 +74,7 @@ const FindFoodBtn = styled.button`
   background: ${COLOR.black};
   color: ${COLOR.white};
   border-radius: 0.5rem;
-  margin: 0px 8px;
+  margin: 1rem 0.5rem;
   padding: 8px 10px;
 `;
 
@@ -158,7 +158,7 @@ const ResetBtn = styled.button`
   background: none;
   border: 1px solid ${COLOR.black};
   border-radius: 0.5rem;
-  margin: 0px 8px;
+  margin: 1rem 0.5rem;
   padding: 8px 10px;
 `;
 

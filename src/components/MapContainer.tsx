@@ -26,7 +26,7 @@ const LeafletWrapper = styled.div`
   margin: 0 0 2rem 0;
 
   ${BREAKPOINT.m`
-      margin: 0 0 1rem 1rem;
+      margin: 0 0 1rem 3rem;
       width: 50%;
    `};
 
