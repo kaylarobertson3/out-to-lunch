@@ -15,7 +15,7 @@ const CardContainer = styled.div<{ listView: boolean }>`
   margin: ${props => (props.listView ? "1rem 0" : "0")};
   border-radius: ${props =>
     props.listView ? "0 10px 10px 0" : "0 0 10px 10px"};
-  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08);
+  /* box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08); */
 
   p {
     color: ${COLOR.darkGray};
@@ -42,6 +42,8 @@ const ImgContainer = styled.div<{ listView: boolean }>`
   border-radius: ${props =>
     props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
   margin: 0;
+  border: 1px solid ${COLOR.black};
+  border-bottom: none;
 `;
 
 const Img = styled.img`
@@ -61,6 +63,9 @@ const TextContainer = styled.div<{ listView: boolean }>`
   width: 100%;
   background: ${COLOR.white};
   color: ${COLOR.darkGray};
+  border-left: 1px solid ${COLOR.black};
+  border-bottom: 1px solid ${COLOR.black};
+  border-right: 1px solid ${COLOR.black};
   border-radius: ${props =>
     props.listView ? "0px 10px 10px 0" : "0 0 10px 10px"};
 `;

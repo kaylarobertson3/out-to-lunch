@@ -105,7 +105,7 @@ const ViewBtn = styled.button`
       `};
   }
 
-  span {
+  .text {
     display: none;
     ${BREAKPOINT.m`
         display: block;
@@ -124,10 +124,10 @@ const SortBtn = styled.select`
   border-left: none;
   cursor: pointer;
   padding: 5px 30px 5px 8px;
-  color: rgb(0, 0, 0);
+  color: ${COLOR.black};
   min-width: 150px;
   border-radius: 5px;
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px solid ${COLOR.black};
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -349,11 +349,15 @@ class CardSection extends React.Component<
                 onClick={this.toggleListView}
                 style={{ marginRight: "1rem" }}
               >
-                <span>{viewText}</span>
+                <span className="text">{viewText}</span>
                 {this.state.listView ? (
-                  <img src={groupIcon} alt="card view" />
+                  <span>
+                    <img src={groupIcon} alt="card view" />
+                  </span>
                 ) : (
-                  <img src={listIcon} alt="list view" />
+                  <span>
+                    <img src={listIcon} alt="list view" />
+                  </span>
                 )}
               </ViewBtn>
 
@@ -373,8 +377,10 @@ class CardSection extends React.Component<
             </FloatLeft>
             <FloatRight>
               <ViewBtn onClick={this.toggleMapView}>
-                <span>{mapText}</span>
-                <img src={mapIcon} />
+                <span className="text">{mapText}</span>
+                <span>
+                  <img src={mapIcon} />
+                </span>
               </ViewBtn>
             </FloatRight>
           </MenuLower>

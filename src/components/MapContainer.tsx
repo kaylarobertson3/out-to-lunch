@@ -43,6 +43,8 @@ const LeafletWrapper = styled.div`
     .leaflet-popup-content-wrapper {
       color: black;
     }
+    border: 1px solid ${COLOR.black};
+
   }
 
   .leaflet-popup {
@@ -110,6 +112,11 @@ class MapContainer extends React.Component<
             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
+          <Marker icon={IggIcon} position={IGGpos}>
+            <Popup position={IGGpos}>
+              <p>Igg Office</p>
+            </Popup>
+          </Marker>
           {cardData.map((d, i) => {
             if (d.lat && d.long) {
               const latLong = [d.lat, d.long];
@@ -125,18 +132,20 @@ class MapContainer extends React.Component<
                   >
                     <Popup position={latLong}>
                       <p>{d.name}</p>
-                      <p>{d.rating}</p>
+                      {/* <p>{d.rating}</p>
                       <p>{d.price}</p>
-                      <p>{d.distance}</p>
-                      <DirectionsBtn href={link}>Directions —></DirectionsBtn>
+                      <p>{d.distance}</p> */}
+                      <DirectionsBtn href={link}>
+                        <p>Directions —></p>
+                      </DirectionsBtn>
                     </Popup>
                   </Marker>
                   {clickedPos === d.name && (
                     <Popup position={latLong}>
                       <p>{d.name}</p>
-                      <p>{d.rating}</p>
+                      {/* <p>{d.rating}</p>
                       <p>{d.price}</p>
-                      <p>{d.distance}</p>
+                      <p>{d.distance}</p> */}
                       <DirectionsBtn href={link}>Directions —></DirectionsBtn>
                     </Popup>
                   )}
