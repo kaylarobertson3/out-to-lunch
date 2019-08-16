@@ -63,22 +63,10 @@ const CardSectionWrapper = styled.section`
 
 const MenuBar = styled.div<{ showMap: boolean }>`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
   margin-bottom: 2.5rem;
-  z-index: 300;
-
-  ${BREAKPOINT.m`
-  flex-direction: column;
-  `};
-`;
-
-const MenuLower = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
 `;
 
 const FloatLeft = styled.div`
@@ -194,8 +182,8 @@ const CardWrapper = styled.div<{ showMap: boolean }>`
   `};
 `;
 
-const Cards = styled.div<{ listView: boolean }>`
-  display: ${props => (props.listView ? "flex" : "grid")};
+const Cards = styled.div`
+  display: grid;
   flex-direction: column;
   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
   grid-gap: 40px 30px;
@@ -210,9 +198,7 @@ const Cards = styled.div<{ listView: boolean }>`
 const ResultsTextContainer = styled.h4`
   font-weight: 600;
   font-size: 2rem;
-  margin-bottom: 1rem;
   ${BREAKPOINT.m`
-    margin-bottom: 2rem;
   `};
 `;
 
@@ -235,7 +221,6 @@ class CardSection extends React.Component<
     isReset: boolean;
   },
   {
-    listView: boolean;
     showMap: boolean;
     sortParams: string;
     activePage: number;
@@ -247,7 +232,6 @@ class CardSection extends React.Component<
   constructor(props) {
     super(props);
     this.state = {
-      listView: false,
       showMap: true,
       activePage: 1,
       sortParams: this.props.sortParams,
@@ -275,13 +259,6 @@ class CardSection extends React.Component<
 
   handlePageChange = pageNumber => {
     this.setState({ activePage: pageNumber });
-  };
-
-  toggleListView = e => {
-    e.preventDefault();
-    this.setState({
-      listView: !this.state.listView
-    });
   };
 
   toggleMapView = e => {
@@ -334,67 +311,47 @@ class CardSection extends React.Component<
       return partialData;
     };
 
-    const viewText = this.state.listView ? "Grid View" : "List View";
     const mapText = this.state.showMap ? "Hide map" : "View map";
 
     return (
       <CardSectionWrapper>
         <MenuBar showMap={this.state.showMap}>
-          {resultsText && (
-            <ResultsTextContainer>{resultsText}</ResultsTextContainer>
-          )}
-          <MenuLower>
-            <FloatLeft>
-              <ViewBtn
-                onClick={this.toggleListView}
-                style={{ marginRight: "1rem" }}
-              >
-                <span className="text">{viewText}</span>
-                {this.state.listView ? (
-                  <span>
-                    <img src={groupIcon} alt="card view" />
-                  </span>
-                ) : (
-                  <span>
-                    <img src={listIcon} alt="list view" />
-                  </span>
-                )}
-              </ViewBtn>
-
-              <SortBtn
-                name="sort"
-                onChange={e => {
-                  updateSortParams(e.target.value);
-                  this.setState({ sortParams: e.target.value, activePage: 1 });
-                }}
-                value={sortParams}
-              >
-                <option value={"rating"}>Sort by: top rated</option>
-                <option value={"distance"}>Sort by: closest</option>
-                <option value={"a-z"}>Sort: A-Z</option>
-                <img src="../assets/icons/arrow.png" alt="" />
-              </SortBtn>
-            </FloatLeft>
-            <FloatRight>
-              <ViewBtn onClick={this.toggleMapView}>
-                <span className="text">{mapText}</span>
-                <span>
-                  <img src={mapIcon} />
-                </span>
-              </ViewBtn>
-            </FloatRight>
-          </MenuLower>
+          <FloatLeft>
+            {resultsText && (
+              <ResultsTextContainer>{resultsText}</ResultsTextContainer>
+            )}
+            <SortBtn
+              name="sort"
+              onChange={e => {
+                updateSortParams(e.target.value);
+                this.setState({ sortParams: e.target.value, activePage: 1 });
+              }}
+              value={sortParams}
+            >
+              <option value={"rating"}>Sort by: top rated</option>
+              <option value={"distance"}>Sort by: closest</option>
+              <option value={"a-z"}>Sort: A-Z</option>
+              <img src="../assets/icons/arrow.png" alt="" />
+            </SortBtn>
+          </FloatLeft>
+          <FloatRight>
+            <ViewBtn onClick={this.toggleMapView}>
+              <span className="text">{mapText}</span>
+              <span>
+                <img src={mapIcon} />
+              </span>
+            </ViewBtn>
+          </FloatRight>
         </MenuBar>
         <Wrapper>
           <CardWrapper showMap={this.state.showMap}>
-            <Cards id="cards" listView={this.state.listView}>
+            <Cards id="cards">
               {cardData.length >= 1 ? (
                 dataPartial().map((d, i) => {
                   const cuisinePathName = d.cuisine.toLowerCase();
                   const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
                   return (
                     <Card
-                      listView={this.state.listView}
                       key={`card-${i}`}
                       name={d.name}
                       imgUrl={

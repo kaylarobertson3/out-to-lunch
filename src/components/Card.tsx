@@ -8,16 +8,13 @@ const CardLink = styled.a`
   height: 100%;
 `;
 
-const CardContainer = styled.div<{ listView: boolean }>`
+const CardContainer = styled.div`
   display: flex;
-  flex-direction: ${props => (props.listView ? "row" : "column")};
-  height: ${props => (props.listView ? "100px" : "100%")};
-  margin: ${props => (props.listView ? "1rem 0" : "0")};
-  border-radius: ${props =>
-    props.listView ? "0 10px 10px 0" : "0 0 10px 10px"};
-  /* box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08); */
-
-  p {
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  border-radius: 0 0 10px 10px
+    /* box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08); */ p {
     color: ${COLOR.darkGray};
     font-size: 16px;
     line-height: 1.5;
@@ -30,17 +27,16 @@ const CardContainer = styled.div<{ listView: boolean }>`
   }
 `;
 
-const ImgContainer = styled.div<{ listView: boolean }>`
+const ImgContainer = styled.div`
   display: flex;
   flex-direction: column;
   background: ${COLOR.white};
   border-radius: 10px;
   overflow: hidden;
-  justify-content: ${props => (props.listView ? "flex-end" : "flex-start")};
-  height: ${props => (props.listView ? "100px" : "140px")};
-  width: ${props => (props.listView ? "30%" : "100%")};
-  border-radius: ${props =>
-    props.listView ? "10px 0 0 10px" : "10px 10px 0 0"};
+  justify-content: flex-start;
+  height: 140px;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
   margin: 0;
   border: 1px solid ${COLOR.black};
   border-bottom: none;
@@ -54,7 +50,7 @@ const Img = styled.img`
   opacity: 0.9;
 `;
 
-const TextContainer = styled.div<{ listView: boolean }>`
+const TextContainer = styled.div`
   padding: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -66,17 +62,16 @@ const TextContainer = styled.div<{ listView: boolean }>`
   border-left: 1px solid ${COLOR.black};
   border-bottom: 1px solid ${COLOR.black};
   border-right: 1px solid ${COLOR.black};
-  border-radius: ${props =>
-    props.listView ? "0px 10px 10px 0" : "0 0 10px 10px"};
+  border-radius: 0 0 10px 10px;
 `;
 
-const NameWrapper = styled.div<{ listView: boolean }>`
+const NameWrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   ${BREAKPOINT.m`
-      height: ${props => (props.listView ? "auto" : "40px;")};
+      height: 40px;
   `};
 `;
 
@@ -136,13 +131,13 @@ const Distance = styled.div`
   }
 `;
 
-const Details = styled.div<{ listView: boolean }>`
+const Details = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   align-self: flex-end;
   position: absolute;
-  margin: ${props => (props.listView ? "0" : " -.8rem 0 0 .3rem")};
+  margin: -0.8rem 0 0 0.3rem;
   border-radius: 9px;
   background: ${COLOR.white};
   z-index: 1;
@@ -169,7 +164,6 @@ class Card extends React.Component<{
   name: string;
   rating: number;
   distance: number;
-  listView: boolean;
   description: string;
   tags?: any;
   lat: number;
@@ -184,7 +178,6 @@ class Card extends React.Component<{
       name,
       rating,
       distance,
-      listView,
       tags,
       lat,
       long
@@ -209,10 +202,10 @@ class Card extends React.Component<{
           this.props.closePopup();
         }}
       >
-        <CardContainer listView={listView}>
-          <ImgContainer listView={listView}>
+        <CardContainer>
+          <ImgContainer>
             <Img src={imgUrl} alt={name} />
-            <Details listView={listView}>
+            <Details>
               <Rating>
                 <img src={starIcon} alt="rating" />
                 <h5>{rating}</h5>
@@ -223,8 +216,8 @@ class Card extends React.Component<{
               </Distance>
             </Details>
           </ImgContainer>
-          <TextContainer listView={listView}>
-            <NameWrapper listView={listView}>
+          <TextContainer>
+            <NameWrapper>
               <Name>{name}</Name>
               <Price>{priceText()}</Price>
             </NameWrapper>
