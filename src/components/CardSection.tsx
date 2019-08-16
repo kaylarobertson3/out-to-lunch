@@ -11,6 +11,7 @@ import Pagination from "react-js-pagination";
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
+  height: 100%;
 
   .pagination {
     margin: 2rem 1rem;
@@ -69,13 +70,13 @@ const MenuBar = styled.div<{ showMap: boolean }>`
   align-items: center;
 `;
 
-const FloatLeft = styled.div`
+const FloatLeft = styled.div``;
+
+const FloatRight = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
-
-const FloatRight = styled.div``;
 
 const ViewBtn = styled.button`
   background: none;
@@ -198,6 +199,7 @@ const Cards = styled.div`
 const ResultsTextContainer = styled.h4`
   font-weight: 600;
   font-size: 2rem;
+  line-height: 1.2;
   ${BREAKPOINT.m`
   `};
 `;
@@ -320,6 +322,8 @@ class CardSection extends React.Component<
             {resultsText && (
               <ResultsTextContainer>{resultsText}</ResultsTextContainer>
             )}
+          </FloatLeft>
+          <FloatRight>
             <SortBtn
               name="sort"
               onChange={e => {
@@ -333,8 +337,7 @@ class CardSection extends React.Component<
               <option value={"a-z"}>Sort: A-Z</option>
               <img src="../assets/icons/arrow.png" alt="" />
             </SortBtn>
-          </FloatLeft>
-          <FloatRight>
+
             <ViewBtn onClick={this.toggleMapView}>
               <span className="text">{mapText}</span>
               <span>
@@ -363,7 +366,7 @@ class CardSection extends React.Component<
                       lat={d.lat}
                       long={d.long}
                       rating={d.rating}
-                      distance={d.distance}
+                      distance={d.distanceMinutes}
                       description={d.description}
                       handleCardClick={() => {
                         this.setState({

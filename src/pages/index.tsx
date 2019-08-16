@@ -91,7 +91,7 @@ class Home extends React.Component<
         d.cuisine.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum ||
         (d.cuisine2.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum &&
           d.price <= priceIndexNum &&
-          d.distance <= distanceIndexNum)
+          d.distanceMinutes <= distanceIndexNum)
       );
     });
 
@@ -160,7 +160,7 @@ class Home extends React.Component<
     });
     const resultsText =
       filteredData.length >= 1
-        ? `Results for ${this.state.query}: `
+        ? `${filteredData.length} results for ${this.state.query}: `
         : `Sorry, no results for ${this.state.query}`;
 
     this.setState({

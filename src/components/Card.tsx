@@ -67,7 +67,7 @@ const TextContainer = styled.div`
 
 const NameWrapper = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   ${BREAKPOINT.m`
@@ -195,12 +195,15 @@ class Card extends React.Component<{
 
     return (
       <CardLink
-        onMouseOver={e => {
+        // onMouseOver={e => {
+        //   this.props.handleCardClick(lat, long);
+        // }}
+        onClick={e => {
           this.props.handleCardClick(lat, long);
         }}
-        onMouseLeave={e => {
-          this.props.closePopup();
-        }}
+        // onMouseLeave={e => {
+        //   this.props.closePopup();
+        // }}
       >
         <CardContainer>
           <ImgContainer>
