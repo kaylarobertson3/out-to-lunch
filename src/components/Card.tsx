@@ -142,7 +142,7 @@ const Details = styled.div`
   background: ${COLOR.white};
   z-index: 1;
   padding: 8px 10px;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${COLOR.black};
 
   img {
     height: 15px;

@@ -206,7 +206,7 @@ const ResultsTextContainer = styled.h4`
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
   ${BREAKPOINT.m`
       flex-direction: row;
@@ -244,11 +244,11 @@ class CardSection extends React.Component<
   }
 
   componentDidMount = () => {
-    if (window.innerWidth <= 700) {
-      this.setState({
-        showMap: false
-      });
-    }
+    // if (window.innerWidth <= 700) {
+    //   this.setState({
+    //     showMap: false
+    //   });
+    // }
   };
 
   componentWillReceiveProps(nextProps) {
@@ -280,24 +280,23 @@ class CardSection extends React.Component<
     } = this.props;
 
     const perPage = () => {
-      if (this.state.showMap) {
-        return window.innerWidth >= 1750
-          ? 12
-          : window.innerWidth >= 1320
-          ? 9
-          : window.innerWidth >= 900
-          ? 6
-          : 3;
-      } else {
-        console.log("no map");
-        return window.innerWidth >= 1750
-          ? 18
-          : window.innerWidth >= 1465
-          ? 15
-          : window.innerWidth >= 1185
-          ? 12
-          : 9;
-      }
+      // if (this.state.showMap) {
+      return window.innerWidth >= 1750
+        ? 12
+        : window.innerWidth >= 1320
+        ? 9
+        : window.innerWidth >= 900
+        ? 6
+        : 3;
+      // } else {
+      //   return window.innerWidth >= 1750
+      //     ? 18
+      //     : window.innerWidth >= 1465
+      //     ? 15
+      //     : window.innerWidth >= 1185
+      //     ? 12
+      //     : 9;
+      // }
     };
 
     const dataPartial = () => {
@@ -313,7 +312,7 @@ class CardSection extends React.Component<
       return partialData;
     };
 
-    const mapText = this.state.showMap ? "Hide map" : "View map";
+    // const mapText = this.state.showMap ? "Hide map" : "View map";
 
     return (
       <CardSectionWrapper>
@@ -338,12 +337,12 @@ class CardSection extends React.Component<
               <img src="../assets/icons/arrow.png" alt="" />
             </SortBtn>
 
-            <ViewBtn onClick={this.toggleMapView}>
+            {/* <ViewBtn onClick={this.toggleMapView}>
               <span className="text">{mapText}</span>
               <span>
                 <img src={mapIcon} />
               </span>
-            </ViewBtn>
+            </ViewBtn> */}
           </FloatRight>
         </MenuBar>
         <Wrapper>
