@@ -3,9 +3,6 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
-import listIcon from "@public/assets/icons/list.png";
-import mapIcon from "@public/assets/icons/map.png";
-import groupIcon from "@public/assets/icons/group.png";
 import arrowIcon from "@public/assets/icons/arrow.png";
 import Pagination from "react-js-pagination";
 
@@ -62,7 +59,7 @@ const CardSectionWrapper = styled.section`
   }
 `;
 
-const MenuBar = styled.div<{ showMap: boolean }>`
+const MenuBar = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -173,13 +170,13 @@ const SortBtn = styled.select`
   }
 `;
 
-const CardWrapper = styled.div<{ showMap: boolean }>`
+const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
 
   ${BREAKPOINT.m`
-    margin-right: ${props => (props.showMap ? "1" : "0")};
+    margin-right: 1
   `};
 `;
 
@@ -220,10 +217,10 @@ class CardSection extends React.Component<
     resultsText: string;
     query: any;
     sortParams: string;
-    isReset: boolean;
+    activePage: number;
+    changeActivePage: any;
   },
   {
-    showMap: boolean;
     sortParams: string;
     activePage: number;
     clickedLat: number;
@@ -234,41 +231,13 @@ class CardSection extends React.Component<
   constructor(props) {
     super(props);
     this.state = {
-      showMap: true,
-      activePage: 1,
       sortParams: this.props.sortParams,
       clickedLat: null,
+      activePage: this.props.activePage,
       clickedLong: null,
       clickedPos: null
     };
   }
-
-  componentDidMount = () => {
-    // if (window.innerWidth <= 700) {
-    //   this.setState({
-    //     showMap: false
-    //   });
-    // }
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.isReset !== nextProps.isReset) {
-      this.setState({
-        activePage: 1
-      });
-    }
-  }
-
-  handlePageChange = pageNumber => {
-    this.setState({ activePage: pageNumber });
-  };
-
-  toggleMapView = e => {
-    e.preventDefault();
-    this.setState({
-      showMap: !this.state.showMap
-    });
-  };
 
   render() {
     const {
@@ -276,11 +245,11 @@ class CardSection extends React.Component<
       updateSortParams,
       sortParams,
       resultsText,
-      query
+      activePage,
+      changeActivePage
     } = this.props;
 
     const perPage = () => {
-      // if (this.state.showMap) {
       return window.innerWidth >= 1750
         ? 12
         : window.innerWidth >= 1320
@@ -288,20 +257,9 @@ class CardSection extends React.Component<
         : window.innerWidth >= 900
         ? 6
         : 3;
-      // } else {
-      //   return window.innerWidth >= 1750
-      //     ? 18
-      //     : window.innerWidth >= 1465
-      //     ? 15
-      //     : window.innerWidth >= 1185
-      //     ? 12
-      //     : 9;
-      // }
     };
 
     const dataPartial = () => {
-      const activePage = this.state.activePage;
-
       const offset = () => {
         if (activePage == 1) {
           return 0;
@@ -312,11 +270,9 @@ class CardSection extends React.Component<
       return partialData;
     };
 
-    // const mapText = this.state.showMap ? "Hide map" : "View map";
-
     return (
       <CardSectionWrapper>
-        <MenuBar showMap={this.state.showMap}>
+        <MenuBar>
           <FloatLeft>
             {resultsText && (
               <ResultsTextContainer>{resultsText}</ResultsTextContainer>
@@ -346,7 +302,7 @@ class CardSection extends React.Component<
           </FloatRight>
         </MenuBar>
         <Wrapper>
-          <CardWrapper showMap={this.state.showMap}>
+          <CardWrapper>
             <Cards id="cards">
               {cardData.length >= 1 ? (
                 dataPartial().map((d, i) => {
@@ -392,21 +348,21 @@ class CardSection extends React.Component<
               <Pagination
                 prevPageText="<"
                 nextPageText=">"
-                activePage={this.state.activePage}
+                activePage={this.props.activePage}
                 itemsCountPerPage={perPage()}
                 totalItemsCount={cardData.length}
                 pageRangeDisplayed={3}
-                onChange={this.handlePageChange}
+                onChange={pageNumber => {
+                  changeActivePage(pageNumber);
+                }}
                 hideFirstLastPages={true}
               />
             )}
           </CardWrapper>
-          {this.state.showMap && (
-            <MapContainer
-              clickedPos={this.state.clickedPos}
-              cardData={dataPartial()}
-            />
-          )}
+          <MapContainer
+            clickedPos={this.state.clickedPos}
+            cardData={dataPartial()}
+          />
         </Wrapper>
       </CardSectionWrapper>
     );

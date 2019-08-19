@@ -104,6 +104,7 @@ const Line = styled.hr`
 
 class SearchSection extends React.Component<{
   handleRandomizeClick: any;
+  handleReset: any;
   handleInputChange: any;
   searchData: any;
   query: string;
@@ -121,6 +122,7 @@ class SearchSection extends React.Component<{
   render() {
     const {
       handleRandomizeClick,
+      handleReset,
       handleInputChange,
       searchData,
       query

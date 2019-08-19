@@ -8,6 +8,7 @@ import Footer from "@components/Footer";
 import { ANIMATION } from "@src/constants";
 import { sortData } from "@src/utils/sort";
 import { string } from "prop-types";
+import { join } from "path";
 
 // import Tabletop from 'tabletop'
 // const APIKEY = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
@@ -33,8 +34,8 @@ class Home extends React.Component<
     distance?: any;
     query: any;
     resultsText: string;
-    isReset: boolean;
     sortParams: string;
+    activePage: number;
   }
 > {
   constructor(props) {
@@ -47,8 +48,8 @@ class Home extends React.Component<
       distance: null,
       query: "",
       resultsText: "All restaurants",
-      isReset: false,
-      sortParams: "rating"
+      sortParams: "rating",
+      activePage: 1
     };
   }
 
@@ -63,12 +64,13 @@ class Home extends React.Component<
   };
 
   handleReset = e => {
+    console.log("resetting");
     e.preventDefault();
     this.updateSortParams("rating");
     this.setState({
       data: data,
+      activePage: 1,
       query: "",
-      isReset: true,
       resultsText: "All restaurants"
     });
   };
@@ -136,10 +138,11 @@ class Home extends React.Component<
     this.scrollToCard();
     const min = 0;
     const max = data.length;
-    var randomId = Math.floor(Math.random() * (+max - +min)) + +min;
-    var randomResturant = [data[randomId]];
+    const randomId = Math.floor(Math.random() * (+max - +min)) + +min;
+    const randomResturant = [data[randomId]];
 
     this.setState({
+      activePage: 1,
       data: randomResturant,
       resultsText: "Go to: " + randomResturant[0].name
     });
@@ -176,6 +179,10 @@ class Home extends React.Component<
     });
   };
 
+  changeActivePage = newActivePage => {
+    this.setState({ activePage: newActivePage });
+  };
+
   render() {
     return (
       <>
@@ -188,14 +195,16 @@ class Home extends React.Component<
         <CardSection
           updateSortParams={this.updateSortParams}
           sortParams={this.state.sortParams}
+          activePage={this.state.activePage}
+          changeActivePage={this.changeActivePage}
           query={this.state.query}
           cardData={this.state.data}
           resultsText={this.state.resultsText}
-          isReset={this.state.isReset}
         />
         <SearchSection
           searchData={this.searchData}
           handleRandomizeClick={this.handleRandomize}
+          handleReset={this.handleReset}
           handleInputChange={this.handleInputChange}
           query={this.state.query}
         />

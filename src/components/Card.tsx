@@ -9,6 +9,7 @@ const CardLink = styled.a`
 `;
 
 const CardContainer = styled.div`
+  transition: all 300ms ease-out;
   display: flex;
   flex-direction: column;
   height: 100%;
