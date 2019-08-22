@@ -18,6 +18,10 @@ const HeroContainer = styled.section`
 const MainSearch = styled.div`
   margin: 1rem 0;
   text-align: center;
+  width: 100%;
+  ${BREAKPOINT.m`
+  width: auto;
+  `};
 `;
 
 const Filters = styled.form`
@@ -44,12 +48,13 @@ const FiltersContainer = styled.div`
 const FilterTop = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   align-items: flex-end;
 
   ${BREAKPOINT.m`
       display: flex;
       flex-direction: row;
+      margin-bottom: 1rem; 
       align-items: center;
   `};
 `;
@@ -223,7 +228,7 @@ class Hero extends React.Component<
                   </Filter>
                 </FilterGroup>
                 <FilterGroup>
-                  <Label htmlFor="price">for </Label>
+                  <Label htmlFor="price">I'll spend </Label>
                   <Filter
                     name="price"
                     value={this.state.priceFilter}
@@ -247,7 +252,7 @@ class Hero extends React.Component<
               </FilterTop>
 
               <FilterGroup>
-                <Label htmlFor="distance"> and am up for walking</Label>
+                <Label htmlFor="distance"> I'll walk</Label>
                 <Filter
                   name="distance"
                   value={this.state.distanceFilter}

@@ -147,6 +147,9 @@ const SortBtn = styled.select`
 
   option {
     font-weight: normal;
+    span {
+      font-weight: bold;
+    }
   }
 
   /* Support for rtl text, explicit support for Arabic and Hebrew */
@@ -289,8 +292,7 @@ class CardSection extends React.Component<
             >
               <option value={"rating"}>Sort by: top rated</option>
               <option value={"distance"}>Sort by: closest</option>
-              <option value={"a-z"}>Sort: A-Z</option>
-              <img src="../assets/icons/arrow.png" alt="" />
+              <option value={"a-z"}>Sort by: A-Z</option>
             </SortBtn>
 
             {/* <ViewBtn onClick={this.toggleMapView}>

@@ -124,7 +124,7 @@ class MapContainer extends React.Component<
                 d.lat
               },${d.long}`;
               return (
-                <>
+                <div key={i}>
                   <Marker
                     key={`marker-${d.name}`}
                     icon={DefaultIcon}
@@ -149,7 +149,7 @@ class MapContainer extends React.Component<
                       <DirectionsBtn href={link}>Directions —></DirectionsBtn>
                     </Popup>
                   )}
-                </>
+                </div>
               );
             }
           })}
