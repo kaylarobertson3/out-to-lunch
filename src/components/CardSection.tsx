@@ -61,18 +61,29 @@ const CardSectionWrapper = styled.section`
 
 const MenuBar = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 2.5rem;
   align-items: center;
+
+  ${BREAKPOINT.m`
+  flex-direction: row;
+      `};
 `;
 
-const FloatLeft = styled.div``;
+const FloatLeft = styled.div`
+  width: 100%;
+`;
 
 const FloatRight = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+
+  ${BREAKPOINT.m`
+    width: auto;
+  `};
 `;
 
 const ViewBtn = styled.button`
@@ -121,12 +132,13 @@ const SortBtn = styled.select`
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
-  margin: 0 1rem;
+  margin: 0;
   min-width: 160px;
-
   font: normal 500 16px/23px ${FONT.sansSerif};
+
   ${BREAKPOINT.m`
     font-size: 16px;
+    margin: 0 1rem;
   `};
 
   ::-ms-expand {
@@ -198,9 +210,12 @@ const Cards = styled.div`
 
 const ResultsTextContainer = styled.h4`
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1.2;
+  margin-bottom: 1rem;
   ${BREAKPOINT.m`
+      margin-bottom: 0;
+      font-size: 2rem;
   `};
 `;
 
@@ -230,7 +245,7 @@ class CardSection extends React.Component<
     clickedLong: number;
     clickedPos: any;
   }
-> {
+  > {
   constructor(props) {
     super(props);
     this.state = {
@@ -256,10 +271,10 @@ class CardSection extends React.Component<
       return window.innerWidth >= 1750
         ? 12
         : window.innerWidth >= 1320
-        ? 9
-        : window.innerWidth >= 900
-        ? 6
-        : 3;
+          ? 9
+          : window.innerWidth >= 900
+            ? 6
+            : 3;
     };
 
     const dataPartial = () => {
@@ -340,11 +355,11 @@ class CardSection extends React.Component<
                   );
                 })
               ) : (
-                <ResultsTextContainer>
-                  Can't find what you're looking for? Suggest a resturant to be
+                  <ResultsTextContainer>
+                    Can't find what you're looking for? Suggest a resturant to be
                   added <a>here.</a>
-                </ResultsTextContainer>
-              )}
+                  </ResultsTextContainer>
+                )}
             </Cards>
             {cardData.length > perPage() && (
               <Pagination

@@ -519,6 +519,20 @@
     "imgUrl": "five-guys.jpg"
   },
   {
+    "name": "Pizza Bra",
+    "address": "Kurfürstendamm 94, 10709 Berlin",
+    "long": 0,
+    "lat": 0,
+    "cuisine": "pizza",
+    "cuisine2": "italian",
+    "distanceMinutes": 17,
+    "rating": 4,
+    "price": "2",
+    "recommended dish:": "pizza",
+    "tags": "",
+    "imgUrl": "pizza.jpg"
+  },
+  {
     "name": "Tommi's Burger Joint",
     "address": "Kurfürstendamm 212, 10719 Berlin",
     "long": 13.325379,
@@ -902,7 +916,7 @@
     "name": "Bäckerei & Konditorei Fahland",
     "address": "Bleibtreustraße 38-39, 10623 Berlin",
     "long": 13.319887,
-    "lat":52.502365,
+    "lat": 52.502365,
     "cuisine": "Bakery",
     "cuisine2": "bio",
     "distanceMinutes": 5,

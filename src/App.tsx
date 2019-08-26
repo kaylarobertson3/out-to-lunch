@@ -14,10 +14,11 @@ const Site = styled.div`
 
   h1 {
     font: normal 700 38px/1.2 ${FONT.sansSerif};
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     ${BREAKPOINT.m`
-    font: normal 700 50px/1.2 ${FONT.sansSerif};
+      font: normal 700 50px/1.2 ${FONT.sansSerif};
+      margin-bottom: 2rem;
    `};
   }
 

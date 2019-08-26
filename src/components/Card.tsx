@@ -35,12 +35,16 @@ const ImgContainer = styled.div`
   border-radius: 10px;
   overflow: hidden;
   justify-content: flex-start;
-  height: 140px;
+  height: 100px;
   width: 100%;
   border-radius: 10px 10px 0 0;
   margin: 0;
   border: 1px solid ${COLOR.black};
   border-bottom: none;
+
+  ${BREAKPOINT.m`
+    height: 140px;
+  `};
 `;
 
 const Img = styled.img`

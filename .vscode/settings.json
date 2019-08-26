@@ -1,6 +1,7 @@
 {
+  "liveServer.settings.donotShowInfoMsg": true,
   "editor.wordWrap": "on",
   "editor.formatOnSave": true,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "typescript.updateImportsOnFileMove.enabled": "always"
 }

@@ -79,8 +79,12 @@ const FindFoodBtn = styled.button`
   background: ${COLOR.black};
   color: ${COLOR.white};
   border-radius: 0.5rem;
-  margin: 1rem 0.5rem;
+  margin-top: 1rem;
   padding: 8px 10px;
+  ${BREAKPOINT.m`
+    margin-top: 0;
+    margin-left: .5rem;
+  `};
 `;
 
 const Buttons = styled.div`
@@ -163,8 +167,12 @@ const ResetBtn = styled.button`
   background: none;
   border: 1px solid ${COLOR.black};
   border-radius: 0.5rem;
-  margin: 1rem 0.5rem;
+  margin: 0;
   padding: 8px 10px;
+  ${BREAKPOINT.m`
+    margin-top: 0;
+    margin-right: .5;
+  `};
 `;
 
 class Hero extends React.Component<
