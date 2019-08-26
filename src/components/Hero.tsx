@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import arrowIcon from "@public/assets/icons/arrow.png";
+import SelectDropdown from "@src/components/SelectDropdown";
 
 const HeroContainer = styled.section`
   display: flex;
@@ -162,6 +163,13 @@ const ResetBtn = styled.button`
   padding: 8px 10px;
 `;
 
+const PRICE_SELECT = [
+  { name: "any price", value: "any" },
+  { name: "around $", value: 1 },
+  { name: "$$ or less", value: 2 },
+  { name: "$$$ or less", value: 3 }
+];
+
 class Hero extends React.Component<
   {
     data: any;
@@ -198,11 +206,12 @@ class Hero extends React.Component<
             <FiltersContainer>
               <FilterTop>
                 <FilterGroup>
-                  <Label htmlFor="cuisine">I want</Label>
-                  <Filter
-                    name="cuisine"
+                  <SelectDropdown
+                    name={"cusine"}
+                    label={"I want"}
                     value={this.state.cuisineFilter}
-                    onChange={e => {
+                    options={cuisines}
+                    handleChange={e => {
                       this.setState({
                         cuisineFilter: e.target.value
                       });
@@ -212,22 +221,15 @@ class Hero extends React.Component<
                         this.state.distanceFilter
                       );
                     }}
-                  >
-                    {cuisines.map((d, i) => {
-                      return (
-                        <option key={i} value={d}>
-                          {d}
-                        </option>
-                      );
-                    })}
-                  </Filter>
+                  />
                 </FilterGroup>
                 <FilterGroup>
-                  <Label htmlFor="price">for </Label>
-                  <Filter
-                    name="price"
+                  <SelectDropdown
+                    name={"price"}
+                    label={"for"}
                     value={this.state.priceFilter}
-                    onChange={e => {
+                    options={PRICE_SELECT.map(price => price)}
+                    handleChange={e => {
                       this.setState({
                         priceFilter: e.target.value
                       });
@@ -237,16 +239,11 @@ class Hero extends React.Component<
                         this.state.distanceFilter
                       );
                     }}
-                  >
-                    <option value="any">any price</option>
-                    <option value={1}>around $</option>
-                    <option value={2}>$$ or less</option>
-                    <option value={3}>$$$ or less</option>
-                  </Filter>
+                  />
                 </FilterGroup>
               </FilterTop>
-
               <FilterGroup>
+                {/* TODO: use Selectdropdown component and remove styles */}
                 <Label htmlFor="distance"> and am up for walking</Label>
                 <Filter
                   name="distance"
