@@ -217,8 +217,8 @@ interface CardSectionState {
   clickedLong: number;
   clickedPos: any;
 }
-
-// <CardSectionProps, CardSectionSftate>
+/* Example
+<CardSectionProps, CardSectionState> */
 class CardSection extends React.Component<
   {
     cardData: any;
@@ -327,7 +327,6 @@ class CardSection extends React.Component<
                       distance={d.distanceMinutes}
                       description={d.description}
                       handleCardClick={() => {
-                        console.log("return", d);
                         this.setState({
                           clickedPos: d.name
                         });
