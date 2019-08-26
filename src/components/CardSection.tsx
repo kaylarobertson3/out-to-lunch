@@ -210,6 +210,15 @@ const Wrapper = styled.div`
   `};
 `;
 
+interface CardSectionState {
+  sortParams: string;
+  activePage: number;
+  clickedLat: number;
+  clickedLong: number;
+  clickedPos: any;
+}
+
+// <CardSectionProps, CardSectionSftate>
 class CardSection extends React.Component<
   {
     cardData: any;
@@ -220,13 +229,7 @@ class CardSection extends React.Component<
     activePage: number;
     changeActivePage: any;
   },
-  {
-    sortParams: string;
-    activePage: number;
-    clickedLat: number;
-    clickedLong: number;
-    clickedPos: any;
-  }
+  CardSectionState
 > {
   constructor(props) {
     super(props);
