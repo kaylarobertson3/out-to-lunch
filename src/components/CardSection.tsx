@@ -290,7 +290,6 @@ class CardSection extends React.Component<
               <option value={"rating"}>Sort by: top rated</option>
               <option value={"distance"}>Sort by: closest</option>
               <option value={"a-z"}>Sort: A-Z</option>
-              <img src="../assets/icons/arrow.png" alt="" />
             </SortBtn>
 
             {/* <ViewBtn onClick={this.toggleMapView}>
