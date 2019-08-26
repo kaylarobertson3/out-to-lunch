@@ -324,15 +324,16 @@ class CardSection extends React.Component<
                       distance={d.distanceMinutes}
                       description={d.description}
                       handleCardClick={() => {
+                        console.log("return", d);
                         this.setState({
                           clickedPos: d.name
                         });
                       }}
-                      closePopup={() => {
-                        this.setState({
-                          clickedPos: null
-                        });
-                      }}
+                      // closePopup={() => {
+                      //   this.setState({
+                      //     clickedPos: null
+                      //   });
+                      // }}
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );

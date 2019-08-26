@@ -159,7 +159,7 @@ const Rating = styled.div`
   margin-right: 1rem;
 `;
 
-class Card extends React.Component<{
+interface CardProps {
   imgUrl: string;
   price: number;
   name: string;
@@ -169,9 +169,12 @@ class Card extends React.Component<{
   tags?: any;
   lat: number;
   long: number;
-  handleCardClick: any;
-  closePopup: any;
-}> {
+  handleCardClick: () => void;
+  // handleCardClick: (lat: number, long: number) => void;
+  // closePopup: () => void;
+}
+
+class Card extends React.Component<CardProps> {
   render() {
     const {
       imgUrl,
@@ -200,7 +203,10 @@ class Card extends React.Component<{
         //   this.props.handleCardClick(lat, long);
         // }}
         onClick={e => {
-          this.props.handleCardClick(lat, long);
+          this.props.handleCardClick();
+          /* NOTE: these parameters are not being used? 
+          so perhaps they are unnecessary */
+          // this.props.handleCardClick(lat, long);
         }}
         // onMouseLeave={e => {
         //   this.props.closePopup();
