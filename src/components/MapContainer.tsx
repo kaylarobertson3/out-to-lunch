@@ -122,8 +122,12 @@ class MapContainer extends React.Component<
               const latLong = [d.lat, d.long];
               const link = `https://www.google.com/maps/search/?api=1&query=${d.lat},${d.long}`;
               return (
-                <div key={`marker-${d.name}`}>
-                  <Marker icon={DefaultIcon} position={latLong}>
+                <>
+                  <Marker
+                    key={`marker-${d.name}`}
+                    icon={DefaultIcon}
+                    position={latLong}
+                  >
                     <Popup position={latLong}>
                       <p>{d.name}</p>
                       {/* <p>{d.rating}</p>
@@ -143,7 +147,7 @@ class MapContainer extends React.Component<
                       <DirectionsBtn href={link}>Directions —></DirectionsBtn>
                     </Popup>
                   )}
-                </div>
+                </>
               );
             }
           })}
