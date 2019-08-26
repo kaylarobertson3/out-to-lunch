@@ -215,7 +215,7 @@ interface CardSectionState {
   activePage: number;
   clickedLat: number;
   clickedLong: number;
-  clickedPos: any;
+  clickedPos: string;
 }
 /* Example
 <CardSectionProps, CardSectionState> */
