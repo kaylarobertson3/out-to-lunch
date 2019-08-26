@@ -1,18 +1,16 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import arrowIcon from "@public/assets/icons/arrow.png";
 
-const Select = styled.select`
+const Select = styled.select<{ isBorderStyle?: boolean }>`
   background: none;
   border-top: none;
   border-right: none;
   border-left: none;
   border-bottom: 2px solid ${COLOR.black};
   padding: 0.6em 1.4em 0.5em 0.8em;
-  border-radius: 0em;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  border-radius: 0;
   appearance: none;
   background-image: url(${arrowIcon});
   background-repeat: no-repeat, repeat;
@@ -21,6 +19,7 @@ const Select = styled.select`
   margin: 0 1rem;
   width: 160px;
   font: normal 500 16px/23px ${FONT.sansSerif};
+
   ${BREAKPOINT.m`
     font-size: 20px;
   `};
@@ -64,6 +63,21 @@ const Select = styled.select`
   [aria-disabled="true"] {
     border-color: #aaa;
   }
+
+  ${p =>
+    p.isBorderStyle &&
+    css`
+      border: 1px solid ${COLOR.black};
+      border-radius: 5px;
+      width: auto;
+      min-width: 160px;
+      padding: 5px 30px 5px 8px;
+      margin: 0;
+
+      ${BREAKPOINT.m`
+        font-size: 16px;
+        `};
+    `};
 `;
 
 const Label = styled.label`
@@ -81,6 +95,7 @@ interface SelectDropdownProps {
   value: string | number;
   options: any[];
   handleChange: (value: any) => void;
+  isBorderStyle?: boolean;
 }
 
 class SelectDropdown extends React.PureComponent<SelectDropdownProps> {
@@ -88,11 +103,24 @@ class SelectDropdown extends React.PureComponent<SelectDropdownProps> {
     super(props);
   }
   render() {
-    const { className, name, label, value, options, handleChange } = this.props;
+    const {
+      className,
+      name,
+      label,
+      value,
+      options,
+      handleChange,
+      isBorderStyle
+    } = this.props;
     return (
       <div className={className}>
         <Label htmlFor={name}>{label}</Label>
-        <Select name={name} value={value} onChange={handleChange}>
+        <Select
+          name={name}
+          value={value}
+          onChange={handleChange}
+          isBorderStyle={isBorderStyle}
+        >
           {options.map((opt, i) => {
             return (
               <option key={`${value}-${i}`} value={opt.value ? opt.value : opt}>

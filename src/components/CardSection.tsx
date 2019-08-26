@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Card from "./Card";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
-import arrowIcon from "@public/assets/icons/arrow.png";
 import Pagination from "react-js-pagination";
 import SelectDropdown from "@src/components/SelectDropdown";
 
@@ -101,24 +100,6 @@ const ViewBtn = styled.button`
 
   ${BREAKPOINT.m`
       min-width: 100px;
-  `};
-`;
-
-const SortBtn = styled(SelectDropdown)`
-  cursor: pointer;
-  padding: 5px 30px 5px 8px;
-  color: ${COLOR.black};
-  min-width: 150px;
-  border-radius: 5px;
-  border: 1px solid ${COLOR.black};
-  background-image: url(${arrowIcon});
-  background-repeat: no-repeat, repeat;
-  background-position: right 0.7em top 50%, 0 0;
-  background-size: 0.65em auto, 100%;
-  margin: 0 1rem;
-  min-width: 160px;
-  ${BREAKPOINT.m`
-    font-size: 16px;
   `};
 `;
 
@@ -237,7 +218,7 @@ class CardSection extends React.Component<
             )}
           </FloatLeft>
           <FloatRight>
-            <SortBtn
+            <SelectDropdown
               name={"sort"}
               value={sortParams}
               options={SORT_BTN_SELECT.map(opt => opt)}
@@ -245,6 +226,7 @@ class CardSection extends React.Component<
                 updateSortParams(e.target.value);
                 this.setState({ sortParams: e.target.value, activePage: 1 });
               }}
+              isBorderStyle
             />
             {/* <ViewBtn onClick={this.toggleMapView}>
               <span className="text">{mapText}</span>
