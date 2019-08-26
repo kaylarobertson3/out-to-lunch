@@ -166,7 +166,7 @@ interface CardProps {
   rating: number;
   distance: number;
   description: string;
-  tags?: any;
+  tags?: string[];
   lat: number;
   long: number;
   handleCardClick: () => void;
@@ -182,9 +182,10 @@ class Card extends React.Component<CardProps> {
       name,
       rating,
       distance,
-      tags,
-      lat,
-      long
+      tags
+      // NOTE: Maybe not needed?
+      // lat,
+      // long
     } = this.props;
 
     const priceText = () => {
