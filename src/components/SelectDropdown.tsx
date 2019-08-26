@@ -81,6 +81,7 @@ interface SelectDropdownProps {
   value: string | number;
   handleChange: () => void;
   options: any[];
+  optionNames?: any[];
 }
 
 class SelectDropdown extends React.PureComponent<SelectDropdownProps> {
@@ -88,14 +89,22 @@ class SelectDropdown extends React.PureComponent<SelectDropdownProps> {
     super(props);
   }
   render() {
-    const { className, name, label, value, handleChange, options } = this.props;
+    const {
+      className,
+      name,
+      label,
+      value,
+      handleChange,
+      options,
+      optionNames
+    } = this.props;
     return (
       <div className={className}>
         <Label htmlFor={name}>{label}</Label>
         <Select name={name} value={value} onChange={handleChange}>
           {options.map((opt, i) => (
             <option key={`${value}-${i}`} value={opt}>
-              {opt}
+              {optionNames ? optionNames : opt}
             </option>
           ))}
         </Select>
