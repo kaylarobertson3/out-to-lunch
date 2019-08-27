@@ -120,9 +120,7 @@ class MapContainer extends React.Component<
           {cardData.map((d, i) => {
             if (d.lat && d.long) {
               const latLong = [d.lat, d.long];
-              const link = `https://www.google.com/maps/search/?api=1&query=${
-                d.lat
-              },${d.long}`;
+              const link = `https://www.google.com/maps/search/?api=1&query=${d.lat},${d.long}`;
               return (
                 <>
                   <Marker
