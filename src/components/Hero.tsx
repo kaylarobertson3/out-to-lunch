@@ -170,6 +170,12 @@ const PRICE_SELECT = [
   { name: "$$$ or less", value: 3 }
 ];
 
+const DISTANCE_SELECT = [
+  { name: "any distance", value: "any" },
+  { name: "under 5 minutes", value: 5 },
+  { name: "under 10 minutes", value: 10 }
+];
+
 class Hero extends React.Component<
   {
     data: any;
@@ -182,7 +188,7 @@ class Hero extends React.Component<
     priceFilter: any;
     distanceFilter: any;
   }
-> {
+  > {
   constructor(props) {
     super(props);
     this.state = {
@@ -243,12 +249,12 @@ class Hero extends React.Component<
                 </FilterGroup>
               </FilterTop>
               <FilterGroup>
-                {/* TODO: use Selectdropdown component and remove styles */}
-                <Label htmlFor="distance"> and am up for walking</Label>
-                <Filter
-                  name="distance"
+                <SelectDropdown
+                  name={"distance"}
+                  label={"and want to walk"}
                   value={this.state.distanceFilter}
-                  onChange={e => {
+                  options={DISTANCE_SELECT.map(price => price)}
+                  handleChange={e => {
                     this.setState({
                       distanceFilter: e.target.value
                     });
@@ -258,11 +264,7 @@ class Hero extends React.Component<
                       e.target.value
                     );
                   }}
-                >
-                  <option value="any">any distance</option>
-                  <option value={5}>under 5 minutes</option>
-                  <option value={10}>under 10 minutes</option>
-                </Filter>
+                />
               </FilterGroup>
             </FiltersContainer>
           </Filters>
@@ -295,7 +297,7 @@ class Hero extends React.Component<
             </FindFoodBtn>
           </Buttons>
         </MainSearch>
-      </HeroContainer>
+      </HeroContainer >
     );
   }
 }
