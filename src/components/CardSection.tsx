@@ -230,7 +230,7 @@ class CardSection extends React.Component<
     changeActivePage: any;
   },
   CardSectionState
-> {
+  > {
   constructor(props) {
     super(props);
     this.state = {
@@ -256,10 +256,10 @@ class CardSection extends React.Component<
       return window.innerWidth >= 1750
         ? 12
         : window.innerWidth >= 1320
-        ? 9
-        : window.innerWidth >= 900
-        ? 6
-        : 3;
+          ? 9
+          : window.innerWidth >= 900
+            ? 6
+            : 3;
     };
 
     const dataPartial = () => {
@@ -331,21 +331,16 @@ class CardSection extends React.Component<
                           clickedPos: d.name
                         });
                       }}
-                      // closePopup={() => {
-                      //   this.setState({
-                      //     clickedPos: null
-                      //   });
-                      // }}
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );
                 })
               ) : (
-                <ResultsTextContainer>
-                  Can't find what you're looking for? Suggest a resturant to be
+                  <ResultsTextContainer>
+                    Can't find what you're looking for? Suggest a resturant to be
                   added <a>here.</a>
-                </ResultsTextContainer>
-              )}
+                  </ResultsTextContainer>
+                )}
             </Cards>
             {cardData.length > perPage() && (
               <Pagination

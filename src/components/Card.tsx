@@ -170,8 +170,6 @@ interface CardProps {
   lat: number;
   long: number;
   handleCardClick: () => void;
-  // handleCardClick: (lat: number, long: number) => void;
-  // closePopup: () => void;
 }
 
 class Card extends React.Component<CardProps> {
@@ -200,18 +198,9 @@ class Card extends React.Component<CardProps> {
 
     return (
       <CardLink
-        // onMouseOver={e => {
-        //   this.props.handleCardClick(lat, long);
-        // }}
         onClick={e => {
           this.props.handleCardClick();
-          /* NOTE: these parameters are not being used? 
-          so perhaps they are unnecessary */
-          // this.props.handleCardClick(lat, long);
         }}
-        // onMouseLeave={e => {
-        //   this.props.closePopup();
-        // }}
       >
         <CardContainer>
           <ImgContainer>
