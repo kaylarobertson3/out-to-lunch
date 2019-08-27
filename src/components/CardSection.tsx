@@ -61,29 +61,18 @@ const CardSectionWrapper = styled.section`
 
 const MenuBar = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 2.5rem;
   align-items: center;
-
-  ${BREAKPOINT.m`
-  flex-direction: row;
-      `};
 `;
 
-const FloatLeft = styled.div`
-  width: 100%;
-`;
+const FloatLeft = styled.div``;
 
 const FloatRight = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%;
-
-  ${BREAKPOINT.m`
-    width: auto;
-  `};
 `;
 
 const ViewBtn = styled.button`
@@ -132,13 +121,12 @@ const SortBtn = styled.select`
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
-  margin: 0;
+  margin: 0 1rem;
   min-width: 160px;
-  font: normal 500 16px/23px ${FONT.sansSerif};
 
+  font: normal 500 16px/23px ${FONT.sansSerif};
   ${BREAKPOINT.m`
     font-size: 16px;
-    margin: 0 1rem;
   `};
 
   ::-ms-expand {
@@ -159,9 +147,6 @@ const SortBtn = styled.select`
 
   option {
     font-weight: normal;
-    span {
-      font-weight: bold;
-    }
   }
 
   /* Support for rtl text, explicit support for Arabic and Hebrew */
@@ -210,12 +195,9 @@ const Cards = styled.div`
 
 const ResultsTextContainer = styled.h4`
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.2;
-  margin-bottom: 1rem;
   ${BREAKPOINT.m`
-      margin-bottom: 0;
-      font-size: 2rem;
   `};
 `;
 
@@ -228,6 +210,15 @@ const Wrapper = styled.div`
   `};
 `;
 
+interface CardSectionState {
+  sortParams: string;
+  activePage: number;
+  clickedLat: number;
+  clickedLong: number;
+  clickedPos: string;
+}
+/* Example
+<CardSectionProps, CardSectionState> */
 class CardSection extends React.Component<
   {
     cardData: any;
@@ -238,14 +229,8 @@ class CardSection extends React.Component<
     activePage: number;
     changeActivePage: any;
   },
-  {
-    sortParams: string;
-    activePage: number;
-    clickedLat: number;
-    clickedLong: number;
-    clickedPos: any;
-  }
-  > {
+  CardSectionState
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -271,10 +256,10 @@ class CardSection extends React.Component<
       return window.innerWidth >= 1750
         ? 12
         : window.innerWidth >= 1320
-          ? 9
-          : window.innerWidth >= 900
-            ? 6
-            : 3;
+        ? 9
+        : window.innerWidth >= 900
+        ? 6
+        : 3;
     };
 
     const dataPartial = () => {
@@ -308,6 +293,7 @@ class CardSection extends React.Component<
               <option value={"rating"}>Sort by: top rated</option>
               <option value={"distance"}>Sort by: closest</option>
               <option value={"a-z"}>Sort: A-Z</option>
+              <img src="../assets/icons/arrow.png" alt="" />
             </SortBtn>
 
             {/* <ViewBtn onClick={this.toggleMapView}>
@@ -345,21 +331,21 @@ class CardSection extends React.Component<
                           clickedPos: d.name
                         });
                       }}
-                      closePopup={() => {
-                        this.setState({
-                          clickedPos: null
-                        });
-                      }}
+                      // closePopup={() => {
+                      //   this.setState({
+                      //     clickedPos: null
+                      //   });
+                      // }}
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );
                 })
               ) : (
-                  <ResultsTextContainer>
-                    Can't find what you're looking for? Suggest a resturant to be
+                <ResultsTextContainer>
+                  Can't find what you're looking for? Suggest a resturant to be
                   added <a>here.</a>
-                  </ResultsTextContainer>
-                )}
+                </ResultsTextContainer>
+              )}
             </Cards>
             {cardData.length > perPage() && (
               <Pagination

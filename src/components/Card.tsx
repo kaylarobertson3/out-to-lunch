@@ -35,16 +35,12 @@ const ImgContainer = styled.div`
   border-radius: 10px;
   overflow: hidden;
   justify-content: flex-start;
-  height: 100px;
+  height: 140px;
   width: 100%;
   border-radius: 10px 10px 0 0;
   margin: 0;
   border: 1px solid ${COLOR.black};
   border-bottom: none;
-
-  ${BREAKPOINT.m`
-    height: 140px;
-  `};
 `;
 
 const Img = styled.img`
@@ -163,19 +159,22 @@ const Rating = styled.div`
   margin-right: 1rem;
 `;
 
-class Card extends React.Component<{
+interface CardProps {
   imgUrl: string;
   price: number;
   name: string;
   rating: number;
   distance: number;
   description: string;
-  tags?: any;
+  tags?: string[];
   lat: number;
   long: number;
-  handleCardClick: any;
-  closePopup: any;
-}> {
+  handleCardClick: () => void;
+  // handleCardClick: (lat: number, long: number) => void;
+  // closePopup: () => void;
+}
+
+class Card extends React.Component<CardProps> {
   render() {
     const {
       imgUrl,
@@ -183,9 +182,10 @@ class Card extends React.Component<{
       name,
       rating,
       distance,
-      tags,
-      lat,
-      long
+      tags
+      // NOTE: Maybe not needed?
+      // lat,
+      // long
     } = this.props;
 
     const priceText = () => {
@@ -204,7 +204,10 @@ class Card extends React.Component<{
         //   this.props.handleCardClick(lat, long);
         // }}
         onClick={e => {
-          this.props.handleCardClick(lat, long);
+          this.props.handleCardClick();
+          /* NOTE: these parameters are not being used? 
+          so perhaps they are unnecessary */
+          // this.props.handleCardClick(lat, long);
         }}
         // onMouseLeave={e => {
         //   this.props.closePopup();

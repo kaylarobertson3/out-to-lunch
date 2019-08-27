@@ -18,10 +18,6 @@ const HeroContainer = styled.section`
 const MainSearch = styled.div`
   margin: 1rem 0;
   text-align: center;
-  width: 100%;
-  ${BREAKPOINT.m`
-  width: auto;
-  `};
 `;
 
 const Filters = styled.form`
@@ -48,13 +44,12 @@ const FiltersContainer = styled.div`
 const FilterTop = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin-bottom: 1rem; */
+  margin-bottom: 1rem;
   align-items: flex-end;
 
   ${BREAKPOINT.m`
       display: flex;
       flex-direction: row;
-      margin-bottom: 1rem; 
       align-items: center;
   `};
 `;
@@ -79,12 +74,8 @@ const FindFoodBtn = styled.button`
   background: ${COLOR.black};
   color: ${COLOR.white};
   border-radius: 0.5rem;
-  margin-top: 1rem;
+  margin: 1rem 0.5rem;
   padding: 8px 10px;
-  ${BREAKPOINT.m`
-    margin-top: 0;
-    margin-left: .5rem;
-  `};
 `;
 
 const Buttons = styled.div`
@@ -167,12 +158,8 @@ const ResetBtn = styled.button`
   background: none;
   border: 1px solid ${COLOR.black};
   border-radius: 0.5rem;
-  margin: 0;
+  margin: 1rem 0.5rem;
   padding: 8px 10px;
-  ${BREAKPOINT.m`
-    margin-top: 0;
-    margin-right: .5;
-  `};
 `;
 
 class Hero extends React.Component<
@@ -236,7 +223,7 @@ class Hero extends React.Component<
                   </Filter>
                 </FilterGroup>
                 <FilterGroup>
-                  <Label htmlFor="price">I'll spend </Label>
+                  <Label htmlFor="price">for </Label>
                   <Filter
                     name="price"
                     value={this.state.priceFilter}
@@ -260,7 +247,7 @@ class Hero extends React.Component<
               </FilterTop>
 
               <FilterGroup>
-                <Label htmlFor="distance"> I'll walk</Label>
+                <Label htmlFor="distance"> and am up for walking</Label>
                 <Filter
                   name="distance"
                   value={this.state.distanceFilter}

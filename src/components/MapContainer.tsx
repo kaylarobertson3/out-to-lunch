@@ -34,6 +34,7 @@ const LeafletWrapper = styled.div`
     width: 100%;
     height: 300px;
     border-radius: 10px;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08);
 
     ${BREAKPOINT.m`
       height: 900px;
@@ -83,7 +84,7 @@ class MapContainer extends React.Component<
     zoom: number;
     popupOpen: boolean;
   }
-  > {
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -121,9 +122,9 @@ class MapContainer extends React.Component<
               const latLong = [d.lat, d.long];
               const link = `https://www.google.com/maps/search/?api=1&query=${
                 d.lat
-                },${d.long}`;
+              },${d.long}`;
               return (
-                <div key={i}>
+                <>
                   <Marker
                     key={`marker-${d.name}`}
                     icon={DefaultIcon}
@@ -148,7 +149,7 @@ class MapContainer extends React.Component<
                       <DirectionsBtn href={link}>Directions —></DirectionsBtn>
                     </Popup>
                   )}
-                </div>
+                </>
               );
             }
           })}
