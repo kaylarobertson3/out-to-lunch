@@ -149,24 +149,24 @@ const SORT_BTN_SELECT = [
   { name: "Sort: A-Z", value: "a-z" }
 ];
 
-class CardSection extends React.Component<
-  {
-    cardData: any;
-    updateSortParams: any;
-    resultsText: string;
-    query: any;
-    sortParams: string;
-    activePage: number;
-    changeActivePage: any;
-  },
-  {
-    sortParams: string;
-    activePage: number;
-    clickedLat: number;
-    clickedLong: number;
-    clickedPos: any;
-  }
-> {
+interface CardSectionState {
+  sortParams: string;
+  activePage: number;
+  clickedLat: number;
+  clickedLong: number;
+  clickedPos: string;
+}
+
+interface CardSectionProps {
+  cardData: any;
+  updateSortParams: any;
+  resultsText: string;
+  query: any;
+  sortParams: string;
+  activePage: number;
+  changeActivePage: any;
+}
+class CardSection extends React.Component<CardSectionProps, CardSectionState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -192,10 +192,10 @@ class CardSection extends React.Component<
       return window.innerWidth >= 1750
         ? 12
         : window.innerWidth >= 1320
-        ? 9
-        : window.innerWidth >= 900
-        ? 6
-        : 3;
+          ? 9
+          : window.innerWidth >= 900
+            ? 6
+            : 3;
     };
 
     const dataPartial = () => {
@@ -263,21 +263,16 @@ class CardSection extends React.Component<
                           clickedPos: d.name
                         });
                       }}
-                      closePopup={() => {
-                        this.setState({
-                          clickedPos: null
-                        });
-                      }}
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );
                 })
               ) : (
-                <ResultsTextContainer>
-                  Can't find what you're looking for? Suggest a resturant to be
+                  <ResultsTextContainer>
+                    Can't find what you're looking for? Suggest a resturant to be
                   added <a>here.</a>
-                </ResultsTextContainer>
-              )}
+                  </ResultsTextContainer>
+                )}
             </Cards>
             {cardData.length > perPage() && (
               <Pagination

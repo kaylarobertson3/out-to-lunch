@@ -159,19 +159,20 @@ const Rating = styled.div`
   margin-right: 1rem;
 `;
 
-class Card extends React.Component<{
+interface CardProps {
   imgUrl: string;
   price: number;
   name: string;
   rating: number;
   distance: number;
   description: string;
-  tags?: any;
+  tags?: string[];
   lat: number;
   long: number;
-  handleCardClick: any;
-  closePopup: any;
-}> {
+  handleCardClick: () => void;
+}
+
+class Card extends React.Component<CardProps> {
   render() {
     const {
       imgUrl,
@@ -179,9 +180,7 @@ class Card extends React.Component<{
       name,
       rating,
       distance,
-      tags,
-      lat,
-      long
+      tags
     } = this.props;
 
     const priceText = () => {
@@ -196,15 +195,9 @@ class Card extends React.Component<{
 
     return (
       <CardLink
-        // onMouseOver={e => {
-        //   this.props.handleCardClick(lat, long);
-        // }}
         onClick={e => {
-          this.props.handleCardClick(lat, long);
+          this.props.handleCardClick();
         }}
-        // onMouseLeave={e => {
-        //   this.props.closePopup();
-        // }}
       >
         <CardContainer>
           <ImgContainer>
