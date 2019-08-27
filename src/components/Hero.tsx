@@ -165,9 +165,9 @@ const ResetBtn = styled.button`
 
 const PRICE_SELECT = [
   { name: "any price", value: "any" },
-  { name: "around $", value: 1 },
-  { name: "$$ or less", value: 2 },
-  { name: "$$$ or less", value: 3 }
+  { name: "$", value: 1 },
+  { name: "$$", value: 2 },
+  { name: "$$$", value: 3 }
 ];
 
 const DISTANCE_SELECT = [
