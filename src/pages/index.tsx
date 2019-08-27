@@ -37,7 +37,7 @@ class Home extends React.Component<
     sortParams: string;
     activePage: number;
   }
-> {
+  > {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,12 +87,15 @@ class Home extends React.Component<
     const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0;
     const distanceIndexNum = distanceFilter == "any" ? 100 : distanceFilter;
     const priceIndexNum = priceFilter == "any" ? 3 : priceFilter;
+    console.log("priceindexNum", priceIndexNum)
     const filteredData = data.filter(d => {
+      console.log("d.price" + Number(d.price) + "priceIndexNum" + Number(priceIndexNum))
       const cuisineTags = [d.cuisine.toLowerCase(), d.cuisine2.toLowerCase()];
       return (
-        d.cuisine.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum ||
+        d.cuisine.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum &&
         (d.cuisine2.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum &&
-          d.price <= priceIndexNum &&
+          // Number(d.price) <= Number(priceIndexNum) &&
+          Number(d.price) === Number(priceIndexNum) &&
           d.distanceMinutes <= distanceIndexNum)
       );
     });

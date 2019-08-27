@@ -174,7 +174,7 @@ class Hero extends React.Component<
     priceFilter: any;
     distanceFilter: any;
   }
-> {
+  > {
   constructor(props) {
     super(props);
     this.state = {
@@ -240,8 +240,8 @@ class Hero extends React.Component<
                   >
                     <option value="any">any price</option>
                     <option value={1}>around $</option>
-                    <option value={2}>$$ or less</option>
-                    <option value={3}>$$$ or less</option>
+                    <option value={2}>$$</option>
+                    <option value={3}>$$$</option>
                   </Filter>
                 </FilterGroup>
               </FilterTop>
