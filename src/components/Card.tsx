@@ -181,9 +181,6 @@ class Card extends React.Component<CardProps> {
       rating,
       distance,
       tags
-      // NOTE: Maybe not needed?
-      // lat,
-      // long
     } = this.props;
 
     const priceText = () => {

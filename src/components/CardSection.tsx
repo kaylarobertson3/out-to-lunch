@@ -217,20 +217,17 @@ interface CardSectionState {
   clickedLong: number;
   clickedPos: string;
 }
-/* Example
-<CardSectionProps, CardSectionState> */
-class CardSection extends React.Component<
-  {
-    cardData: any;
-    updateSortParams: any;
-    resultsText: string;
-    query: any;
-    sortParams: string;
-    activePage: number;
-    changeActivePage: any;
-  },
-  CardSectionState
-  > {
+
+interface CardSectionProps {
+  cardData: any;
+  updateSortParams: any;
+  resultsText: string;
+  query: any;
+  sortParams: string;
+  activePage: number;
+  changeActivePage: any;
+}
+class CardSection extends React.Component<CardSectionProps, CardSectionState> {
   constructor(props) {
     super(props);
     this.state = {
