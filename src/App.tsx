@@ -1,7 +1,7 @@
 import React from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { Link, Router } from "@reach/router";
-import FancyDiv from "@components/FancyDiv";
+// import FancyDiv from "@components/FancyDiv";
 import "./app.css";
 import styled from "styled-components";
 import { FONT, COLOR, BREAKPOINT } from "@src/theme";
@@ -116,13 +116,14 @@ function App() {
           </div>
         </Nav>
         <Content>
-          <FancyDiv>
-            <React.Suspense fallback={<em>Loading...</em>}>
-              <Router>
-                <Routes path="*" />
-              </Router>
-            </React.Suspense>
-          </FancyDiv>
+          {/* NOTE: FancyDiv is just wrapper component that returns some children so maybe it's unnecessary?  */}
+          {/* <FancyDiv> */}
+          <React.Suspense fallback={<em>Loading...</em>}>
+            <Router>
+              <Routes path="*" />
+            </Router>
+          </React.Suspense>
+          {/* </FancyDiv> */}
         </Content>
       </Site>
     </Root>
