@@ -99,9 +99,6 @@ interface SelectDropdownProps {
 }
 
 class SelectDropdown extends React.PureComponent<SelectDropdownProps> {
-  constructor(props: SelectDropdownProps) {
-    super(props);
-  }
   render() {
     const {
       className,
