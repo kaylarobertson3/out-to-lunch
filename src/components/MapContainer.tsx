@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { BREAKPOINT, FONT, COLOR } from "@src/theme";
 import L from "leaflet";
@@ -72,34 +72,22 @@ const DirectionsBtn = styled.a`
   /* color: ${COLOR.white}; */
 `;
 
-interface MapContainerState {
-  // lat: number;
-  // long: number;
-  zoom: number;
-  // popupOpen: boolean;
-}
 interface MapContainerProps {
   cardData: any;
   clickedPos: string;
 }
 
 const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
-  const [position, setPosition] = useState<MapContainerState>({
-    // lat: 52.50108
-    // long: 13.31798,
-    zoom: 14
-    // popupOpen: false
-  });
   return (
     <LeafletWrapper>
       <Map
         center={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}
-        zoom={position.zoom}
+        zoom={IGG_MAP_POSITION.zoom}
         scrollWheelZoom={false}
         touchZoom={false}
-        zoomSnap={0}
-        minZoom={14}
-        maxZoom={17}
+        zoomSnap={IGG_MAP_POSITION.zoomSnap}
+        minZoom={IGG_MAP_POSITION.minZoom}
+        maxZoom={IGG_MAP_POSITION.maxZoom}
       >
         <TileLayer
           url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
@@ -117,9 +105,9 @@ const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
           if (d.lat && d.long) {
             const lat = d.lat;
             const lng = d.long;
-            const link = `https://www.google.com/maps/search/?api=1&query=${d.lat},${d.long}`;
+            const link = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
             return (
-              <>
+              <div key={`marker-${i}`}>
                 <Marker
                   key={`marker-${d.name}`}
                   icon={DefaultIcon}
@@ -144,7 +132,7 @@ const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
                     <DirectionsBtn href={link}>Directions -></DirectionsBtn>
                   </Popup>
                 )}
-              </>
+              </div>
             );
           }
         })}
