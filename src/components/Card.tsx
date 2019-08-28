@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { COLOR, BREAKPOINT } from "@src/theme";
+import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import starIcon from "@public/assets/icons/star.svg";
 import walkIcon from "@public/assets/icons/walk.svg";
 
@@ -172,52 +172,63 @@ interface CardProps {
   handleCardClick: () => void;
 }
 
-const Card = ({ imgUrl, price, name, rating, distance, tags }: CardProps) => {
-  const priceText = () => {
-    if (price == 1) {
-      return "$";
-    } else if (price == 2) {
-      return "$$";
-    } else if (price == 3) {
-      return "$$$";
-    } else return "?";
-  };
+class Card extends React.Component<CardProps> {
+  render() {
+    const {
+      imgUrl,
+      price,
+      name,
+      rating,
+      distance,
+      tags
+    } = this.props;
 
-  return (
-    <CardLink
-      onClick={e => {
-        this.props.handleCardClick();
-      }}
-    >
-      <CardContainer>
-        <ImgContainer>
-          <Img src={imgUrl} alt={name} />
-          <Details>
-            <Rating>
-              <img src={starIcon} alt="rating" />
-              <h5>{rating}</h5>
-            </Rating>
-            <Distance>
-              <img height="15px" src={walkIcon} alt="walking distance" />
-              <h5>{distance} min.</h5>
-            </Distance>
-          </Details>
-        </ImgContainer>
-        <TextContainer>
-          <NameWrapper>
-            <Name>{name}</Name>
-            <Price>{priceText()}</Price>
-          </NameWrapper>
-          <Row>
-            <Tags>
-              {tags && tags[0] && <Tag>{tags[0]}</Tag>}
-              {tags && tags[1] && <Tag>{tags[1]}</Tag>}
-            </Tags>
-          </Row>
-        </TextContainer>
-      </CardContainer>
-    </CardLink>
-  );
-};
+    const priceText = () => {
+      if (price == 1) {
+        return "$";
+      } else if (price == 2) {
+        return "$$";
+      } else if (price == 3) {
+        return "$$$";
+      } else return "?";
+    };
+
+    return (
+      <CardLink
+        onClick={e => {
+          this.props.handleCardClick();
+        }}
+      >
+        <CardContainer>
+          <ImgContainer>
+            <Img src={imgUrl} alt={name} />
+            <Details>
+              <Rating>
+                <img src={starIcon} alt="rating" />
+                <h5>{rating}</h5>
+              </Rating>
+              <Distance>
+                <img height="15px" src={walkIcon} alt="walking distance" />
+                <h5>{distance} min.</h5>
+              </Distance>
+            </Details>
+          </ImgContainer>
+          <TextContainer>
+            <NameWrapper>
+              <Name>{name}</Name>
+              <Price>{priceText()}</Price>
+            </NameWrapper>
+            <Row>
+              <Tags>
+                {tags && tags[0] && <Tag>{tags[0]}</Tag>}
+                {tags && tags[1] && <Tag>{tags[1]}</Tag>}
+              </Tags>
+            </Row>
+          </TextContainer>
+        </CardContainer>
+      </CardLink>
+    );
+  }
+}
 
 export default Card;
