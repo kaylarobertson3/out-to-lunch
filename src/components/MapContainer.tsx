@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { BREAKPOINT, FONT, COLOR } from "@src/theme";
 import L from "leaflet";
@@ -72,29 +72,17 @@ const DirectionsBtn = styled.a`
   /* color: ${COLOR.white}; */
 `;
 
-interface MapContainerState {
-  // lat: number;
-  // long: number;
-  zoom: number;
-  // popupOpen: boolean;
-}
 interface MapContainerProps {
   cardData: any;
   clickedPos: string;
 }
 
 const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
-  const [position, setPosition] = useState<MapContainerState>({
-    // lat: 52.50108
-    // long: 13.31798,
-    zoom: 14
-    // popupOpen: false
-  });
   return (
     <LeafletWrapper>
       <Map
         center={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}
-        zoom={position.zoom}
+        zoom={IGG_MAP_POSITION.zoom}
         scrollWheelZoom={false}
         touchZoom={false}
         zoomSnap={0}
