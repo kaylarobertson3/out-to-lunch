@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import { COLOR, BREAKPOINT, FONT } from "@src/theme";
+import { COLOR, BREAKPOINT } from "@src/theme";
 import MapContainer from "@components/MapContainer";
 import Pagination from "react-js-pagination";
 import SelectDropdown from "@src/components/SelectDropdown";
@@ -166,137 +166,130 @@ interface CardSectionProps {
   activePage: number;
   changeActivePage: any;
 }
-class CardSection extends React.Component<CardSectionProps, CardSectionState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sortParams: this.props.sortParams,
-      clickedLat: null,
-      activePage: this.props.activePage,
-      clickedLong: null,
-      clickedPos: null
-    };
-  }
+const CardSection = ({
+  cardData,
+  updateSortParams,
+  sortParams,
+  resultsText,
+  activePage,
+  changeActivePage
+}: CardSectionProps) => {
+  // this.state = {
+  //   sortParams: this.props.sortParams,
+  //   clickedLat: null,
+  //   activePage: this.props.activePage,
+  //   clickedLong: null,
+  //   clickedPos: null
+  // };
 
-  render() {
-    const {
-      cardData,
-      updateSortParams,
-      sortParams,
-      resultsText,
-      activePage,
-      changeActivePage
-    } = this.props;
+  const perPage = () => {
+    return window.innerWidth >= 1750
+      ? 12
+      : window.innerWidth >= 1320
+      ? 9
+      : window.innerWidth >= 900
+      ? 6
+      : 3;
+  };
 
-    const perPage = () => {
-      return window.innerWidth >= 1750
-        ? 12
-        : window.innerWidth >= 1320
-          ? 9
-          : window.innerWidth >= 900
-            ? 6
-            : 3;
-    };
-
-    const dataPartial = () => {
-      const offset = () => {
-        if (activePage == 1) {
-          return 0;
-        } else return perPage() * (activePage - 1);
-      };
-
-      const partialData = cardData.slice(offset(), offset() + perPage());
-      return partialData;
+  const dataPartial = () => {
+    const offset = () => {
+      if (activePage == 1) {
+        return 0;
+      } else return perPage() * (activePage - 1);
     };
 
-    return (
-      <CardSectionWrapper>
-        <MenuBar>
-          <FloatLeft>
-            {resultsText && (
-              <ResultsTextContainer>{resultsText}</ResultsTextContainer>
-            )}
-          </FloatLeft>
-          <FloatRight>
-            <SelectDropdown
-              name={"sort"}
-              value={sortParams}
-              options={SORT_BTN_SELECT.map(opt => opt)}
-              handleChange={e => {
-                updateSortParams(e.target.value);
-                this.setState({ sortParams: e.target.value, activePage: 1 });
-              }}
-              isBorderStyle
-            />
-            {/* <ViewBtn onClick={this.toggleMapView}>
+    const partialData = cardData.slice(offset(), offset() + perPage());
+    return partialData;
+  };
+
+  return (
+    <CardSectionWrapper>
+      <MenuBar>
+        <FloatLeft>
+          {resultsText && (
+            <ResultsTextContainer>{resultsText}</ResultsTextContainer>
+          )}
+        </FloatLeft>
+        <FloatRight>
+          <SelectDropdown
+            name={"sort"}
+            value={sortParams}
+            options={SORT_BTN_SELECT.map(opt => opt)}
+            handleChange={e => {
+              updateSortParams(e.target.value);
+              this.setState({ sortParams: e.target.value, activePage: 1 });
+            }}
+            isBorderStyle
+          />
+          {/* <ViewBtn onClick={this.toggleMapView}>
               <span className="text">{mapText}</span>
               <span>
                 <img src={mapIcon} />
               </span>
             </ViewBtn> */}
-          </FloatRight>
-        </MenuBar>
-        <Wrapper>
-          <CardWrapper>
-            <Cards id="cards">
-              {cardData.length >= 1 ? (
-                dataPartial().map((d, i) => {
-                  const cuisinePathName = d.cuisine.toLowerCase();
-                  const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
-                  return (
-                    <Card
-                      key={`card-${i}`}
-                      name={d.name}
-                      imgUrl={
-                        d.imgUrl && d.imgUrl !== ""
-                          ? `./assets/img/cards/${d.imgUrl}`
-                          : cuisineFallbackImg
-                      }
-                      price={d.price}
-                      lat={d.lat}
-                      long={d.long}
-                      rating={d.rating}
-                      distance={d.distanceMinutes}
-                      description={d.description}
-                      handleCardClick={() => {
-                        this.setState({
-                          clickedPos: d.name
-                        });
-                      }}
-                      tags={[d.cuisine, d.cuisine2, d.cuisine3]}
-                    />
-                  );
-                })
-              ) : (
-                  <ResultsTextContainer>
-                    Can't find what you're looking for? Suggest a resturant to be
-                  added <a>here.</a>
-                  </ResultsTextContainer>
-                )}
-            </Cards>
-            {cardData.length > perPage() && (
-              <Pagination
-                prevPageText="<"
-                nextPageText=">"
-                activePage={this.props.activePage}
-                itemsCountPerPage={perPage()}
-                totalItemsCount={cardData.length}
-                pageRangeDisplayed={3}
-                onChange={pageNumber => {
-                  changeActivePage(pageNumber);
-                }}
-                hideFirstLastPages={true}
-              />
+        </FloatRight>
+      </MenuBar>
+      <Wrapper>
+        <CardWrapper>
+          <Cards id="cards">
+            {cardData.length >= 1 ? (
+              dataPartial().map((d, i) => {
+                const cuisinePathName = d.cuisine.toLowerCase();
+                const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
+                return (
+                  <Card
+                    key={`card-${i}`}
+                    name={d.name}
+                    imgUrl={
+                      d.imgUrl && d.imgUrl !== ""
+                        ? `./assets/img/cards/${d.imgUrl}`
+                        : cuisineFallbackImg
+                    }
+                    price={d.price}
+                    lat={d.lat}
+                    long={d.long}
+                    rating={d.rating}
+                    distance={d.distanceMinutes}
+                    description={d.description}
+                    handleCardClick={() => {
+                      this.setState({
+                        clickedPos: d.name
+                      });
+                    }}
+                    tags={[d.cuisine, d.cuisine2, d.cuisine3]}
+                  />
+                );
+              })
+            ) : (
+              <ResultsTextContainer>
+                Can't find what you're looking for? Suggest a resturant to be
+                added <a>here.</a>
+              </ResultsTextContainer>
             )}
-          </CardWrapper>
-          <MapContainer
-            clickedPos={this.state.clickedPos}
-            cardData={dataPartial()}
-          />
-        </Wrapper>
-      </CardSectionWrapper>
-    );
-  }
-}
+          </Cards>
+          {cardData.length > perPage() && (
+            <Pagination
+              prevPageText="<"
+              nextPageText=">"
+              activePage={activePage}
+              itemsCountPerPage={perPage()}
+              totalItemsCount={cardData.length}
+              pageRangeDisplayed={3}
+              onChange={pageNumber => {
+                changeActivePage(pageNumber);
+              }}
+              hideFirstLastPages={true}
+            />
+          )}
+        </CardWrapper>
+        <MapContainer
+          clickedPos={this.state.clickedPos}
+          cardData={dataPartial()}
+        />
+      </Wrapper>
+    </CardSectionWrapper>
+  );
+};
 
 export default CardSection;
