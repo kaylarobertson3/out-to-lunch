@@ -137,7 +137,7 @@ class MapContainer extends React.Component<
                       <p>{d.price}</p>
                       <p>{d.distance<inutes}</p> */}
                       <DirectionsBtn href={link}>
-                        <p>Directions —></p>
+                        <p>Directions -></p>
                       </DirectionsBtn>
                     </Popup>
                   </Marker>
@@ -147,7 +147,7 @@ class MapContainer extends React.Component<
                       {/* <p>{d.rating}</p>
                       <p>{d.price}</p>
                       <p>{d.distanceMinutes}</p> */}
-                      <DirectionsBtn href={link}>Directions —></DirectionsBtn>
+                      <DirectionsBtn href={link}>Directions -></DirectionsBtn>
                     </Popup>
                   )}
                 </>
