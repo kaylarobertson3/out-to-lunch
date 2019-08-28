@@ -4,14 +4,13 @@ import { BREAKPOINT, FONT, COLOR } from "@src/theme";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Map, Popup, TileLayer, Marker } from "react-leaflet";
-
-const IGGpos = [52.50108, 13.31798];
+import { IGG_MAP_POSITION } from "@src/constants";
 
 // default icon
 const DefaultIcon = (L.Marker.prototype.options.icon = L.icon({
   iconUrl: require("leaflet/dist/images/marker-icon-2x.png"),
   iconAnchor: [13, 27],
-  iconSize: [20, "auto"]
+  iconSize: [20, null]
 }));
 
 // IGG icon
@@ -100,7 +99,7 @@ class MapContainer extends React.Component<
     return (
       <LeafletWrapper>
         <Map
-          center={IGGpos}
+          center={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}
           zoom={this.state.zoom}
           scrollWheelZoom={false}
           touchZoom={false}
@@ -112,23 +111,27 @@ class MapContainer extends React.Component<
             url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
             attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker icon={IggIcon} position={IGGpos}>
-            <Popup position={IGGpos}>
+          <Marker
+            icon={IggIcon}
+            position={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}
+          >
+            <Popup position={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}>
               <p>Igg Office</p>
             </Popup>
           </Marker>
           {cardData.map((d, i) => {
             if (d.lat && d.long) {
-              const latLong = [d.lat, d.long];
+              const lat = d.lat;
+              const lng = d.long;
               const link = `https://www.google.com/maps/search/?api=1&query=${d.lat},${d.long}`;
               return (
                 <>
                   <Marker
                     key={`marker-${d.name}`}
                     icon={DefaultIcon}
-                    position={latLong}
+                    position={[lat, lng]}
                   >
-                    <Popup position={latLong}>
+                    <Popup position={[lat, lng]}>
                       <p>{d.name}</p>
                       {/* <p>{d.rating}</p>
                       <p>{d.price}</p>
@@ -139,7 +142,7 @@ class MapContainer extends React.Component<
                     </Popup>
                   </Marker>
                   {clickedPos === d.name && (
-                    <Popup position={latLong}>
+                    <Popup position={[lat, lng]}>
                       <p>{d.name}</p>
                       {/* <p>{d.rating}</p>
                       <p>{d.price}</p>
