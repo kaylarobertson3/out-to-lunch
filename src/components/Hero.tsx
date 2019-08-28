@@ -188,7 +188,7 @@ class Hero extends React.Component<
     priceFilter: any;
     distanceFilter: any;
   }
-  > {
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -204,6 +204,8 @@ class Hero extends React.Component<
 
   render() {
     const { handleClick, cuisines, handleReset } = this.props;
+
+    console.log("oprops", this.props);
     return (
       <HeroContainer>
         <MainSearch>
@@ -297,7 +299,7 @@ class Hero extends React.Component<
             </FindFoodBtn>
           </Buttons>
         </MainSearch>
-      </HeroContainer >
+      </HeroContainer>
     );
   }
 }

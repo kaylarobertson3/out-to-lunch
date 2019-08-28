@@ -107,12 +107,8 @@ const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
             const lng = d.long;
             const link = `https://www.google.com/maps/search/?api=1&query=${d.lat},${d.long}`;
             return (
-              <>
-                <Marker
-                  key={`marker-${d.name}`}
-                  icon={DefaultIcon}
-                  position={[lat, lng]}
-                >
+              <div key={`marker-${d.name}`}>
+                <Marker icon={DefaultIcon} position={[lat, lng]}>
                   <Popup position={[lat, lng]}>
                     <p>{d.name}</p>
                     {/* <p>{d.rating}</p>
@@ -132,7 +128,7 @@ const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
                     <DirectionsBtn href={link}>Directions -></DirectionsBtn>
                   </Popup>
                 )}
-              </>
+              </div>
             );
           }
         })}
