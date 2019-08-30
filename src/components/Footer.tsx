@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { FONT, COLOR, BREAKPOINT } from "@src/theme";
+import { COLOR, BREAKPOINT } from "@src/theme";
 import scrollIcon from "@public/assets/icons/top.svg";
 import { animateScroll as scroll, Events } from "react-scroll";
 import { ANIMATION } from "@src/constants";
 
-const Footer = styled.footer`
+const FooterStyled = styled.footer`
   margin-top: 4rem;
   color: ${COLOR.black};
   width: 100%;
@@ -43,41 +43,36 @@ const ScrollTopBtn = styled.a`
   align-items: center;
 `;
 
-export default class extends React.Component<{}, {}> {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount = () => {
+const Footer = () => {
+  useEffect(() => {
     Events.scrollEvent.register("end", (to, element) => {
       console.log("end");
     });
-  };
+    return () => {
+      Events.scrollEvent.remove("end");
+    };
+  });
 
-  componentWillUnmount = () => {
-    Events.scrollEvent.remove("end");
-  };
-
-  scrollToTop = () => {
+  function scrollToTop() {
     scroll.scrollToTop({
       duration: ANIMATION.duration,
       smooth: true
     });
-  };
-
-  render() {
-    return (
-      <Footer>
-        <FooterInner>
-          <FooterRight>
-            <h6>© Infographics Group 2019 </h6>
-            {/* <h6>About </h6> */}
-          </FooterRight>
-          <ScrollTopBtn onClick={this.scrollToTop}>
-            <img src={scrollIcon} alt="scroll to top" />
-          </ScrollTopBtn>
-        </FooterInner>
-      </Footer>
-    );
   }
-}
+
+  return (
+    <FooterStyled>
+      <FooterInner>
+        <FooterRight>
+          <h6>© Infographics Group 2019 </h6>
+          {/* <h6>About </h6> */}
+        </FooterRight>
+        <ScrollTopBtn onClick={scrollToTop}>
+          <img src={scrollIcon} alt="scroll to top" />
+        </ScrollTopBtn>
+      </FooterInner>
+    </FooterStyled>
+  );
+};
+
+export default Footer;

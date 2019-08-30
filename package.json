@@ -33,11 +33,13 @@
     "tabletop": "^1.5.2"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.5.1",
     "@types/node": "^10.12.23",
     "@types/reach__router": "^1.2.2",
     "@types/react": "^16.8.2",
     "@types/react-dom": "^16.8.0",
     "@types/react-hot-loader": "^4.1.0",
+    "@types/react-leaflet": "^2.4.0",
     "@types/react-scroll": "^1.5.4",
     "@types/styled-components": "^4.1.18",
     "@types/webpack-env": "^1.13.6",

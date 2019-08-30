@@ -98,40 +98,34 @@ interface SelectDropdownProps {
   isBorderStyle?: boolean;
 }
 
-class SelectDropdown extends React.PureComponent<SelectDropdownProps> {
-  constructor(props: SelectDropdownProps) {
-    super(props);
-  }
-  render() {
-    const {
-      className,
-      name,
-      label,
-      value,
-      options,
-      handleChange,
-      isBorderStyle
-    } = this.props;
-    return (
-      <div className={className}>
-        <Label htmlFor={name}>{label}</Label>
-        <Select
-          name={name}
-          value={value}
-          onChange={handleChange}
-          isBorderStyle={isBorderStyle}
-        >
-          {options.map((opt, i) => {
-            return (
-              <option key={`${value}-${i}`} value={opt.value ? opt.value : opt}>
-                {opt.name ? opt.name : opt}
-              </option>
-            );
-          })}
-        </Select>
-      </div>
-    );
-  }
-}
+const SelectDropdown = ({
+  className,
+  name,
+  label,
+  value,
+  options,
+  handleChange,
+  isBorderStyle
+}: SelectDropdownProps) => {
+  return (
+    <div className={className}>
+      <Label htmlFor={name}>{label}</Label>
+      <Select
+        name={name}
+        value={value}
+        onChange={handleChange}
+        isBorderStyle={isBorderStyle}
+      >
+        {options.map((opt, i) => {
+          return (
+            <option key={`${value}-${i}`} value={opt.value ? opt.value : opt}>
+              {opt.name ? opt.name : opt}
+            </option>
+          );
+        })}
+      </Select>
+    </div>
+  );
+};
 
 export default SelectDropdown;
