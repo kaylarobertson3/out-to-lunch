@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { COLOR, BREAKPOINT, FONT } from "@src/theme";
 import arrowIcon from "@public/assets/icons/arrow.png";
@@ -176,130 +176,92 @@ const DISTANCE_SELECT = [
   { name: "under 10 minutes", value: 10 }
 ];
 
-class Hero extends React.Component<
-  {
-    data: any;
-    cuisines: any;
-    handleClick: any;
-    handleReset;
-  },
-  {
-    cuisineFilter: any;
-    priceFilter: any;
-    distanceFilter: any;
-  }
-  > {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cuisineFilter: "any",
-      priceFilter: "any",
-      distanceFilter: "any"
-    };
+interface HeroProps {
+  data: any;
+  cuisines: any;
+  handleClick: any;
+  handleReset;
+}
+const Hero = ({ handleClick, cuisines, handleReset }: HeroProps) => {
+  const [cuisineFilter, setCuisineFilter] = useState("any");
+  const [priceFilter, setPriceFilter] = useState("any");
+  const [distanceFilter, setDistanceFilter] = useState("any");
+
+  function handleChange(cuisineFilter, priceFilter, distanceFilter) {
+    handleClick(cuisineFilter, priceFilter, distanceFilter);
   }
 
-  handleChange = (cuisineFilter, priceFilter, distanceFilter) => {
-    this.props.handleClick(cuisineFilter, priceFilter, distanceFilter);
-  };
-
-  render() {
-    const { handleClick, cuisines, handleReset } = this.props;
-    return (
-      <HeroContainer>
-        <MainSearch>
-          <h1>What sounds good?</h1>
-          <Filters>
-            <FiltersContainer>
-              <FilterTop>
-                <FilterGroup>
-                  <SelectDropdown
-                    name={"cusine"}
-                    label={"I want"}
-                    value={this.state.cuisineFilter}
-                    options={cuisines}
-                    handleChange={e => {
-                      this.setState({
-                        cuisineFilter: e.target.value
-                      });
-                      this.handleChange(
-                        e.target.value,
-                        this.state.priceFilter,
-                        this.state.distanceFilter
-                      );
-                    }}
-                  />
-                </FilterGroup>
-                <FilterGroup>
-                  <SelectDropdown
-                    name={"price"}
-                    label={"for"}
-                    value={this.state.priceFilter}
-                    options={PRICE_SELECT.map(price => price)}
-                    handleChange={e => {
-                      this.setState({
-                        priceFilter: e.target.value
-                      });
-                      this.handleChange(
-                        this.state.cuisineFilter,
-                        e.target.value,
-                        this.state.distanceFilter
-                      );
-                    }}
-                  />
-                </FilterGroup>
-              </FilterTop>
+  return (
+    <HeroContainer>
+      <MainSearch>
+        <h1>What sounds good?</h1>
+        <Filters>
+          <FiltersContainer>
+            <FilterTop>
               <FilterGroup>
                 <SelectDropdown
-                  name={"distance"}
-                  label={"and want to walk"}
-                  value={this.state.distanceFilter}
-                  options={DISTANCE_SELECT.map(price => price)}
+                  name={"cusine"}
+                  label={"I want"}
+                  value={cuisineFilter}
+                  options={cuisines}
                   handleChange={e => {
-                    this.setState({
-                      distanceFilter: e.target.value
-                    });
-                    this.handleChange(
-                      this.state.cuisineFilter,
-                      this.state.priceFilter,
-                      e.target.value
-                    );
+                    setCuisineFilter(e.target.value);
+                    handleChange(e.target.value, priceFilter, distanceFilter);
                   }}
                 />
               </FilterGroup>
-            </FiltersContainer>
-          </Filters>
-          <Buttons>
-            <ResetBtn
-              onClick={e => {
-                this.setState({
-                  cuisineFilter: "any",
-                  priceFilter: "any",
-                  distanceFilter: "any"
-                });
-                handleReset(e);
-              }}
-            >
-              Reset
-            </ResetBtn>
+              <FilterGroup>
+                <SelectDropdown
+                  name={"price"}
+                  label={"for"}
+                  value={priceFilter}
+                  options={PRICE_SELECT.map(price => price)}
+                  handleChange={e => {
+                    setPriceFilter(e.target.value);
+                    handleChange(cuisineFilter, e.target.value, distanceFilter);
+                  }}
+                />
+              </FilterGroup>
+            </FilterTop>
+            <FilterGroup>
+              <SelectDropdown
+                name={"distance"}
+                label={"and want to walk"}
+                value={distanceFilter}
+                options={DISTANCE_SELECT.map(price => price)}
+                handleChange={e => {
+                  setDistanceFilter(e.target.value);
+                  handleChange(cuisineFilter, priceFilter, e.target.value);
+                }}
+              />
+            </FilterGroup>
+          </FiltersContainer>
+        </Filters>
+        <Buttons>
+          <ResetBtn
+            onClick={e => {
+              setCuisineFilter("any");
+              setPriceFilter("any");
+              setDistanceFilter("any");
+              handleReset(e);
+            }}
+          >
+            Reset
+          </ResetBtn>
 
-            <FindFoodBtn
-              type="submit"
-              onClick={e => {
-                e.preventDefault();
-                handleClick(
-                  this.state.cuisineFilter,
-                  this.state.priceFilter,
-                  this.state.distanceFilter
-                );
-              }}
-            >
-              Find Food!
-            </FindFoodBtn>
-          </Buttons>
-        </MainSearch>
-      </HeroContainer >
-    );
-  }
-}
+          <FindFoodBtn
+            type="submit"
+            onClick={e => {
+              e.preventDefault();
+              handleClick(cuisineFilter, priceFilter, distanceFilter);
+            }}
+          >
+            Find Food!
+          </FindFoodBtn>
+        </Buttons>
+      </MainSearch>
+    </HeroContainer>
+  );
+};
 
 export default Hero;

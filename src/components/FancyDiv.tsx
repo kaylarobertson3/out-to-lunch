@@ -1,6 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const FancyDiv: React.FC = ({ children }) => {
-  return <div>{children}</div>
+interface FancyDivProps {
+  children: JSX.Element;
 }
-export default FancyDiv
+const FancyDiv = ({ children }: FancyDivProps) => {
+  return <div>{children}</div>;
+};
+export default FancyDiv;

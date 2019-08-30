@@ -9,14 +9,12 @@ import SelectDropdown from "@src/components/SelectDropdown";
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
   height: 100%;
-
   .pagination {
     margin: 2rem 1rem;
     list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
-
     li {
       padding: 0.3rem 0.5rem;
       margin: 0.5rem;
@@ -25,14 +23,12 @@ const CardSectionWrapper = styled.section`
       border-radius: 3px;
       color: ${COLOR.black};
       cursor: pointer;
-
       a {
         text-decoration: none;
       }
       ${BREAKPOINT.m`
       margin: 1rem;
       padding: 0.5rem 1rem;  `};
-
       :hover {
         background: ${COLOR.black};
         color: ${COLOR.white};
@@ -42,14 +38,12 @@ const CardSectionWrapper = styled.section`
       background: ${COLOR.black};
       color: ${COLOR.white};
     }
-
     .disabled {
       opacity: 0.2;
       cursor: default;
       a {
         cursor: default;
       }
-
       :hover {
         color: ${COLOR.black};
         background: none;
@@ -81,23 +75,19 @@ const ViewBtn = styled.button`
   padding: 5px 8px;
   align-items: center;
   border-radius: 5px;
-
   img {
     margin-left: 0;
     width: 15px;
-
     ${BREAKPOINT.m`
         margin-left: 1rem;
       `};
   }
-
   .text {
     display: none;
     ${BREAKPOINT.m`
         display: block;
       `};
   }
-
   ${BREAKPOINT.m`
       min-width: 100px;
   `};
@@ -107,7 +97,6 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
   ${BREAKPOINT.m`
     margin-right: 1
   `};
@@ -120,7 +109,6 @@ const Cards = styled.div`
   grid-gap: 40px 30px;
   align-items: stretch;
   width: 100%;
-
   ${BREAKPOINT.m`
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     `};
@@ -137,7 +125,6 @@ const ResultsTextContainer = styled.h4`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
-
   ${BREAKPOINT.m`
       flex-direction: row;
   `};
@@ -192,10 +179,10 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
       return window.innerWidth >= 1750
         ? 12
         : window.innerWidth >= 1320
-          ? 9
-          : window.innerWidth >= 900
-            ? 6
-            : 3;
+        ? 9
+        : window.innerWidth >= 900
+        ? 6
+        : 3;
     };
 
     const dataPartial = () => {
@@ -268,11 +255,11 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
                   );
                 })
               ) : (
-                  <ResultsTextContainer>
-                    Can't find what you're looking for? Suggest a resturant to be
+                <ResultsTextContainer>
+                  Can't find what you're looking for? Suggest a resturant to be
                   added <a>here.</a>
-                  </ResultsTextContainer>
-                )}
+                </ResultsTextContainer>
+              )}
             </Cards>
             {cardData.length > perPage() && (
               <Pagination
