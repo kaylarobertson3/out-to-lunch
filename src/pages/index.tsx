@@ -3,15 +3,10 @@ import Hero from "@components/Hero";
 import CardSection from "@components/CardSection";
 import SearchSection from "@components/SearchSection";
 import dataUnsorted from "@src/data/data.json";
-import { Events, scroller } from "react-scroll";
+import {Events, scroller} from "react-scroll";
 import Footer from "@components/Footer";
-import { ANIMATION } from "@src/constants";
-import { sortData } from "@src/utils/sort";
-import { string } from "prop-types";
-import { join } from "path";
-
-// import Tabletop from 'tabletop'
-// const APIKEY = '14nDLj6C9YGOH_oaO6yr7C1dzTSAF3SO4WLBt2DM5l2o';
+import {ANIMATION} from "@src/constants";
+import {sortData} from "@src/utils/sort";
 
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating;
@@ -21,7 +16,9 @@ const cuisines = ["any"];
 
 data.map(d => {
   const cuisine = d.cuisine.toLowerCase();
-  if (cuisines.indexOf(cuisine) == -1) cuisines.push(cuisine);
+  const cuisine2 = d.cuisine2.toLowerCase();
+  if (cuisine.length > 0 && cuisines.indexOf(cuisine) == -1) cuisines.push(cuisine);
+  if (cuisine2.length > 0 && cuisines.indexOf(cuisine2) == -1) cuisines.push(cuisine2);
 });
 
 class Home extends React.Component<
@@ -37,7 +34,7 @@ class Home extends React.Component<
     sortParams: string;
     activePage: number;
   }
-  > {
+> {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,7 +46,7 @@ class Home extends React.Component<
       query: "",
       resultsText: "All restaurants",
       sortParams: "rating",
-      activePage: 1
+      activePage: 1,
     };
   }
 
@@ -64,14 +61,13 @@ class Home extends React.Component<
   };
 
   handleReset = e => {
-    console.log("resetting");
     e.preventDefault();
     this.updateSortParams("rating");
     this.setState({
       data: data,
       activePage: 1,
       query: "",
-      resultsText: "All restaurants"
+      resultsText: "All restaurants",
     });
   };
 
@@ -79,25 +75,29 @@ class Home extends React.Component<
     scroller.scrollTo("cards", {
       duration: ANIMATION.duration,
       smooth: true,
-      offset: -150
+      offset: -150,
     });
   };
 
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
-    const cuisineIndexNum = cuisineFilter == "any" ? -1 : 0;
-    const distanceIndexNum = distanceFilter == "any" ? 100 : distanceFilter;
-    const priceIndexNum = priceFilter == "any" ? 3 : priceFilter;
-    console.log("priceindexNum", priceIndexNum)
-    const filteredData = data.filter(d => {
-      console.log("d.price" + Number(d.price) + "priceIndexNum" + Number(priceIndexNum))
-      const cuisineTags = [d.cuisine.toLowerCase(), d.cuisine2.toLowerCase()];
+    const cuisineConditional = d => {
       return (
-        d.cuisine.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum &&
-        (d.cuisine2.toLowerCase().indexOf(cuisineFilter) >= cuisineIndexNum &&
-          // Number(d.price) <= Number(priceIndexNum) &&
-          Number(d.price) === Number(priceIndexNum) &&
-          d.distanceMinutes <= distanceIndexNum)
+        cuisineFilter === "any" ||
+        d.cuisine.toLowerCase() === cuisineFilter ||
+        d.cuisine2.toLowerCase() === cuisineFilter
       );
+    };
+
+    const priceConditional = d => {
+      return priceFilter === "any" || Number(d.price) === Number(priceFilter);
+    };
+
+    const distanceConditional = d => {
+      return distanceFilter === "any" || d.distanceMinutes <= distanceFilter;
+    };
+
+    const filteredData = data.filter(d => {
+      return cuisineConditional(d) && priceConditional(d) && distanceConditional(d);
     });
 
     const cuisineText = () => {
@@ -109,11 +109,11 @@ class Home extends React.Component<
       if (priceFilter === "any") {
         return "Any price";
       } else if (priceFilter == 1) {
-        return "under $";
+        return "$";
       } else if (priceFilter == 2) {
-        return "under $$";
+        return "$$";
       } else if (priceFilter == 3) {
-        return "under $$$";
+        return "$$$";
       } else return "?";
     };
 
@@ -125,7 +125,7 @@ class Home extends React.Component<
 
     this.setState({
       data: filteredData,
-      resultsText: cuisineText() + ", " + priceText() + ", " + distanceText()
+      resultsText: cuisineText() + ", " + priceText() + ", " + distanceText(),
     });
   };
 
@@ -134,7 +134,7 @@ class Home extends React.Component<
     if (this.state.data.length >= 1) {
       sortedData = sortData(this.state.data, sortParams);
     } else sortedData = this.state.data;
-    this.setState({ data: sortedData, sortParams: sortParams });
+    this.setState({data: sortedData, sortParams: sortParams});
   };
 
   handleRandomize = () => {
@@ -147,7 +147,7 @@ class Home extends React.Component<
     this.setState({
       activePage: 1,
       data: randomResturant,
-      resultsText: "Go to: " + randomResturant[0].name
+      resultsText: "Go to: " + randomResturant[0].name,
     });
   };
 
@@ -171,19 +171,19 @@ class Home extends React.Component<
 
     this.setState({
       data: filteredData,
-      resultsText: resultsText
+      resultsText: resultsText,
     });
     this.scrollToCard();
   };
 
   handleInputChange = e => {
     this.setState({
-      query: e
+      query: e,
     });
   };
 
   changeActivePage = newActivePage => {
-    this.setState({ activePage: newActivePage });
+    this.setState({activePage: newActivePage});
   };
 
   render() {

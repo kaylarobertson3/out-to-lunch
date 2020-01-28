@@ -1,11 +1,9 @@
 import React from "react";
-import { Root, Routes, addPrefetchExcludes } from "react-static";
-import { Link, Router } from "@reach/router";
-// import FancyDiv from "@components/FancyDiv";
+import {Root, Routes, addPrefetchExcludes} from "react-static";
+import {Router} from "@reach/router";
 import "./app.css";
 import styled from "styled-components";
-import { FONT, COLOR, BREAKPOINT } from "@src/theme";
-import iggLogo from "@public/assets/icons/igg.png";
+import {FONT, COLOR, BREAKPOINT} from "@src/theme";
 
 const Site = styled.div`
   display: flex;
@@ -59,33 +57,7 @@ const Site = styled.div`
   }
 
   section {
-    padding: 0 0 4rem 0;
-  }
-`;
-
-const Nav = styled.nav`
-  font-size: 0.9em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  div {
-    padding: 1rem 2rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 2000px;
-    width: 100%;
-
-    ${BREAKPOINT.m`
-        padding: 2rem 3rem;
-    `};
-
-    img {
-      width: 100px;
-      margin-right: 1rem;
-    }
+    padding: 4rem 0 0 0;
   }
 `;
 
@@ -108,22 +80,12 @@ function App() {
   return (
     <Root>
       <Site>
-        <Nav>
-          <div>
-            <a href="/">
-              <img src={iggLogo} alt="infographics logo" />
-            </a>
-          </div>
-        </Nav>
         <Content>
-          {/* NOTE: FancyDiv is just wrapper component that returns some children so maybe it's unnecessary?  */}
-          {/* <FancyDiv> */}
           <React.Suspense fallback={<em>Loading...</em>}>
             <Router>
               <Routes path="*" />
             </Router>
           </React.Suspense>
-          {/* </FancyDiv> */}
         </Content>
       </Site>
     </Root>

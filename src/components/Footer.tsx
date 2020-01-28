@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
-import { COLOR, BREAKPOINT } from "@src/theme";
+import {COLOR, BREAKPOINT} from "@src/theme";
 import scrollIcon from "@public/assets/icons/top.svg";
-import { animateScroll as scroll, Events } from "react-scroll";
-import { ANIMATION } from "@src/constants";
+import {animateScroll as scroll, Events} from "react-scroll";
+import {ANIMATION} from "@src/constants";
 
 const FooterStyled = styled.footer`
-  margin-top: 4rem;
+  margin-top: 5rem;
   color: ${COLOR.black};
   width: 100%;
   font-size: 0.8rem;
@@ -56,7 +56,7 @@ const Footer = () => {
   function scrollToTop() {
     scroll.scrollToTop({
       duration: ANIMATION.duration,
-      smooth: true
+      smooth: true,
     });
   }
 
