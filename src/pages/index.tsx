@@ -119,7 +119,7 @@ class Home extends React.Component<
 
     const distanceText = () => {
       if (distanceFilter === "any") {
-        return "Any distance";
+        return "any distance";
       } else return `Under ${distanceFilter} min.`;
     };
 

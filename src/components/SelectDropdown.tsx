@@ -1,9 +1,9 @@
 import * as React from "react";
-import styled, { css } from "styled-components";
-import { COLOR, BREAKPOINT, FONT } from "@src/theme";
+import styled, {css} from "styled-components";
+import {COLOR, BREAKPOINT, FONT} from "@src/theme";
 import arrowIcon from "@public/assets/icons/arrow.png";
 
-const Select = styled.select<{ isBorderStyle?: boolean }>`
+const Select = styled.select<{isBorderStyle?: boolean}>`
   background: none;
   border-top: none;
   border-right: none;
@@ -17,7 +17,7 @@ const Select = styled.select<{ isBorderStyle?: boolean }>`
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
   margin: 0 1rem;
-  width: 160px;
+  width: 200px;
   font: normal 500 16px/23px ${FONT.sansSerif};
 
   ${BREAKPOINT.m`
@@ -70,7 +70,7 @@ const Select = styled.select<{ isBorderStyle?: boolean }>`
       border: 1px solid ${COLOR.black};
       border-radius: 5px;
       width: auto;
-      min-width: 160px;
+      min-width: 200px;
       padding: 5px 30px 5px 8px;
       margin: 0;
 
@@ -98,24 +98,11 @@ interface SelectDropdownProps {
   isBorderStyle?: boolean;
 }
 
-const SelectDropdown = ({
-  className,
-  name,
-  label,
-  value,
-  options,
-  handleChange,
-  isBorderStyle
-}: SelectDropdownProps) => {
+const SelectDropdown = ({className, name, label, value, options, handleChange, isBorderStyle}: SelectDropdownProps) => {
   return (
     <div className={className}>
       <Label htmlFor={name}>{label}</Label>
-      <Select
-        name={name}
-        value={value}
-        onChange={handleChange}
-        isBorderStyle={isBorderStyle}
-      >
+      <Select name={name} value={value} onChange={handleChange} isBorderStyle={isBorderStyle}>
         {options.map((opt, i) => {
           return (
             <option key={`${value}-${i}`} value={opt.value ? opt.value : opt}>

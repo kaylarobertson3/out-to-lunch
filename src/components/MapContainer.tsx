@@ -1,23 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-import { BREAKPOINT, FONT, COLOR } from "@src/theme";
+import {BREAKPOINT, FONT, COLOR} from "@src/theme";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { Map, Popup, TileLayer, Marker } from "react-leaflet";
-import { IGG_MAP_POSITION } from "@src/constants";
+import {Map, Popup, TileLayer, Marker} from "react-leaflet";
+import {IGG_MAP_POSITION} from "@src/constants";
 
 // default icon
 const DefaultIcon = (L.Marker.prototype.options.icon = L.icon({
   iconUrl: require("leaflet/dist/images/marker-icon-2x.png"),
   iconAnchor: [13, 27],
-  iconSize: [20, null]
+  iconSize: [20, null],
 }));
 
 // IGG icon
 const IggIcon = (L.Marker.prototype.options.icon = L.icon({
   iconUrl: require("@public/assets/icons/iggCircle.svg"),
   iconAnchor: [13, 27],
-  iconSize: [30, 30]
+  iconSize: [30, 30],
 }));
 
 const LeafletWrapper = styled.div`
@@ -77,7 +77,7 @@ interface MapContainerProps {
   clickedPos: string;
 }
 
-const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
+const MapContainer = ({cardData, clickedPos}: MapContainerProps) => {
   return (
     <LeafletWrapper>
       <Map
@@ -93,12 +93,9 @@ const MapContainer = ({ cardData, clickedPos }: MapContainerProps) => {
           url="https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png"
           attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker
-          icon={IggIcon}
-          position={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}
-        >
+        <Marker icon={IggIcon} position={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}>
           <Popup position={[IGG_MAP_POSITION.lat, IGG_MAP_POSITION.lng]}>
-            <p>Igg Office</p>
+            <p>IGG Office</p>
           </Popup>
         </Marker>
         {cardData.map((d, i) => {
