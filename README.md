@@ -1,7 +1,6 @@
 # IGG Out to Lunch
 
-https://igg-lunch.netlify.com/
-Description of project coming soon.
+https://out-to-lunch.netlify.com/
 
 ## Framework
 
@@ -10,21 +9,15 @@ Description of project coming soon.
   - Styled Components
   - Leaflet
   - react-scroll
-
 ### Prerequisites
-
-The following software needs to be available on your system:
-
-- node.js `v`
-- yarn
 
 ## Quick Start
 
 In your terminal, clone the repo by running
-`git clone git@github.com:infographicsgroup/igg-lunch.git`
+`git clone git@github.com:kaylarobertson3/out-to-lunch.git`
 
 Enter repo folder
-`cd igg-lunch`
+`cd out-to-lunch`
 
 Install modules
 `yarn install`

@@ -133,7 +133,7 @@ class SearchSection extends React.Component<{
         <Section>
           <form>
             <h2>Can't find something?</h2>
-            <p>Search for a resturant, cuisine, or location</p>
+            <label htmlFor="search">Search for a resturant, cuisine, or location</label>
             <SearchContainer>
               <Input
                 onChange={e => {
@@ -145,6 +145,7 @@ class SearchSection extends React.Component<{
                   this.handleKeyPress(e);
                 }}
                 value={query}
+                id="search"
               />
               <SearchBtn
                 onClick={e => {

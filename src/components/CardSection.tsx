@@ -69,30 +69,6 @@ const FloatRight = styled.div`
   align-items: center;
 `;
 
-const ViewBtn = styled.button`
-  background: none;
-  display: flex;
-  padding: 5px 8px;
-  align-items: center;
-  border-radius: 5px;
-  img {
-    margin-left: 0;
-    width: 15px;
-    ${BREAKPOINT.m`
-        margin-left: 1rem;
-      `};
-  }
-  .text {
-    display: none;
-    ${BREAKPOINT.m`
-        display: block;
-      `};
-  }
-  ${BREAKPOINT.m`
-      min-width: 100px;
-  `};
-`;
-
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -206,7 +182,8 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
           </FloatLeft>
           <FloatRight>
             <SelectDropdown
-              name={"sort"}
+              name="sort"
+              label="sort results"
               value={sortParams}
               options={SORT_BTN_SELECT.map(opt => opt)}
               handleChange={e => {
@@ -215,18 +192,12 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
               }}
               isBorderStyle
             />
-            {/* <ViewBtn onClick={this.toggleMapView}>
-              <span className="text">{mapText}</span>
-              <span>
-                <img src={mapIcon} />
-              </span>
-            </ViewBtn> */}
           </FloatRight>
         </MenuBar>
         <Wrapper>
           <CardWrapper>
             <Cards id="cards">
-              {cardData.length >= 1 ? (
+              {cardData.length >= 1 && (
                 dataPartial().map((d, i) => {
                   const cuisinePathName = d.cuisine.toLowerCase();
                   const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
@@ -254,11 +225,6 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
                     />
                   );
                 })
-              ) : (
-                <ResultsTextContainer>
-                  Can't find what you're looking for? Suggest a resturant to be
-                  added <a>here.</a>
-                </ResultsTextContainer>
               )}
             </Cards>
             {cardData.length > perPage() && (

@@ -91,7 +91,7 @@ const Label = styled.label`
 interface SelectDropdownProps {
   className?: string;
   name: string;
-  label?: string;
+  label: string;
   value: string | number;
   options: any[];
   handleChange: (value: any) => void;
@@ -100,9 +100,9 @@ interface SelectDropdownProps {
 
 const SelectDropdown = ({className, name, label, value, options, handleChange, isBorderStyle}: SelectDropdownProps) => {
   return (
-    <div className={className}>
+    <form className={className}>
       <Label htmlFor={name}>{label}</Label>
-      <Select name={name} value={value} onChange={handleChange} isBorderStyle={isBorderStyle}>
+      <Select name={name} value={value} onChange={handleChange} isBorderStyle={isBorderStyle} id={name}>
         {options.map((opt, i) => {
           return (
             <option key={`${value}-${i}`} value={opt.value ? opt.value : opt}>
@@ -111,7 +111,7 @@ const SelectDropdown = ({className, name, label, value, options, handleChange, i
           );
         })}
       </Select>
-    </div>
+    </form>
   );
 };
 

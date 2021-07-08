@@ -18,6 +18,10 @@ p {
   margin: 0;
 }
 
+label {
+  line-height: 1.2;
+}
+
 html,
 body {
   line-height: 1;
