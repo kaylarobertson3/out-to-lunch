@@ -14,8 +14,8 @@ const CardContainer = styled.div`
   flex-direction: column;
   height: 100%;
   margin: 0;
-  border-radius: 0 0 10px 10px
-    /* box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.08); */ p {
+  border-radius: 0 0 10px 10px;
+  p {
     color: ${COLOR.darkGray};
     font-size: 16px;
     line-height: 1.5;
@@ -203,10 +203,10 @@ class Card extends React.Component<CardProps> {
           <ImgContainer>
             <Img src={imgUrl} alt={name} />
             <Details>
-              <Rating>
+              {/* <Rating>
                 <img src={starIcon} alt="rating" />
                 <h5>{rating}</h5>
-              </Rating>
+              </Rating> */}
               <Distance>
                 <img height="15px" src={walkIcon} alt="walking distance" />
                 <h5>{distance} min.</h5>

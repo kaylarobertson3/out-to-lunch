@@ -61,7 +61,7 @@ const Site = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled.main`
   flex: 1;
   padding: 0 2rem 1rem 2rem;
   max-width: 2000px;
@@ -69,8 +69,8 @@ const Content = styled.div`
   align-self: center;
 
   ${BREAKPOINT.m`
-        padding: .5rem 3rem 2rem 3rem;
-    `};
+    padding: .5rem 3rem 2rem 3rem;
+  `};
 `;
 
 // Any routes that start with 'dynamic' will be treated as non-static routes

@@ -1,6 +1,8 @@
-# IGG Out to Lunch
+# Out to Lunch
 
 https://out-to-lunch.netlify.com/
+
+Built during the academy program at Sapera to find a place to eat lunch near the office.
 
 ## Framework
 
@@ -9,6 +11,7 @@ https://out-to-lunch.netlify.com/
   - Styled Components
   - Leaflet
   - react-scroll
+
 ### Prerequisites
 
 ## Quick Start
@@ -25,4 +28,4 @@ Install modules
 Start server
 `yarn start`
 
-Your server will ber running on `http://localhost:3000`
+Your server will be running on `http://localhost:3000`
