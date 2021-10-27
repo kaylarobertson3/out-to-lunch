@@ -21,8 +21,8 @@ const FooterInner = styled.div`
   justify-content: space-between;
 
   ${BREAKPOINT.m`
-	margin-top: 0;
-    `};
+    margin-top: 0;
+  `};
 `;
 
 const FooterRight = styled.div`
@@ -41,6 +41,7 @@ const ScrollTopBtn = styled.button`
   background: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Footer = () => {
