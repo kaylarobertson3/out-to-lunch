@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
-import styled from "styled-components";
-import {COLOR, BREAKPOINT} from "@src/theme";
-import scrollIcon from "@public/assets/icons/top.svg";
-import {animateScroll as scroll, Events} from "react-scroll";
-import {ANIMATION} from "@src/constants";
+import scrollIcon from '@public/assets/icons/top.svg';
+import { ANIMATION } from '@src/constants';
+import { BREAKPOINT, COLOR } from '@src/theme';
+import React, { useEffect } from 'react';
+import { animateScroll as scroll, Events } from 'react-scroll';
+import styled from 'styled-components';
 
 const FooterStyled = styled.footer`
   margin-top: 5rem;
@@ -41,16 +41,15 @@ const ScrollTopBtn = styled.button`
   background: none;
   display: flex;
   align-items: center;
-  cursor: pointer;
 `;
 
 const Footer = () => {
   useEffect(() => {
-    Events.scrollEvent.register("end", (to, element) => {
-      console.log("end");
+    Events.scrollEvent.register('end', (to, element) => {
+      // console.log("end");
     });
     return () => {
-      Events.scrollEvent.remove("end");
+      Events.scrollEvent.remove('end');
     };
   });
 
@@ -67,7 +66,7 @@ const Footer = () => {
         <FooterRight>
           <h6>Created at Sapera in 2019</h6>
         </FooterRight>
-        <ScrollTopBtn onClick={scrollToTop} aria-label="scroll to top of page">
+        <ScrollTopBtn style={{ border: 'none' }} onClick={scrollToTop} aria-label="scroll to top of page">
           <img src={scrollIcon} alt="" />
         </ScrollTopBtn>
       </FooterInner>

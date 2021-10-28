@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { COLOR, BREAKPOINT } from "@src/theme";
-import searchIcon from "@public/assets/icons/search.png";
+import searchIcon from '@public/assets/icons/search.png';
+import { BREAKPOINT, COLOR } from '@src/theme';
+import React from 'react';
+import styled from 'styled-components';
 
 const SearchSectionContainer = styled.section`
   display: flex;
@@ -56,15 +56,16 @@ const SearchContainer = styled.div`
 `;
 
 const SearchBtn = styled.button`
-  padding: 8px 10px;
-  cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100px;
   background: ${COLOR.black};
   color: ${COLOR.white};
   border: 1px solid ${COLOR.black};
   border-radius: 0rem 0.5rem 0.5rem 0rem;
+  padding: 8px 10px;
+  cursor: pointer;
 
   img {
     width: 15px;
@@ -113,19 +114,16 @@ class SearchSection extends React.Component<{
     super(props);
   }
 
-  handleKeyPress = event => {
-    if (event.key === "Enter") {
+  handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
       event.preventDefault();
       this.props.searchData();
     }
   };
+
   render() {
     const {
-      handleRandomizeClick,
-      handleReset,
-      handleInputChange,
-      searchData,
-      query
+      handleRandomizeClick, handleInputChange, searchData, query,
     } = this.props;
 
     return (
@@ -136,24 +134,26 @@ class SearchSection extends React.Component<{
             <label htmlFor="search">Search for a resturant, cuisine, or location</label>
             <SearchContainer>
               <Input
-                onChange={e => {
+                onChange={(e) => {
+                  console.log('e', e);
                   handleInputChange(e.target.value);
                 }}
                 name="value"
                 placeholder="Restaurant or cuisine..."
-                onKeyDown={e => {
+                onKeyDown={(e) => {
                   this.handleKeyPress(e);
                 }}
                 value={query}
                 id="search"
               />
               <SearchBtn
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   searchData();
                 }}
+                aria-label="search"
               >
-                <img src={searchIcon} alt="search" />
+                <img src={searchIcon} alt="" />
               </SearchBtn>
             </SearchContainer>
           </form>
@@ -162,9 +162,7 @@ class SearchSection extends React.Component<{
         <Section>
           <h2>Can't decide?</h2>
           <p>Click the button to get a random resturant.</p>
-          <RandomizeButton onClick={handleRandomizeClick}>
-            Randomize
-          </RandomizeButton>
+          <RandomizeButton onClick={handleRandomizeClick}>Randomize</RandomizeButton>
         </Section>
       </SearchSectionContainer>
     );

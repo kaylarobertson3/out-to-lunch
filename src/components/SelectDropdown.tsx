@@ -1,7 +1,7 @@
+import arrowIcon from "@public/assets/icons/arrow.png";
+import {BREAKPOINT, COLOR, FONT} from "@src/theme";
 import * as React from "react";
 import styled, {css} from "styled-components";
-import {COLOR, BREAKPOINT, FONT} from "@src/theme";
-import arrowIcon from "@public/assets/icons/arrow.png";
 
 const Select = styled.select<{isBorderStyle?: boolean}>`
   background: none;
@@ -77,7 +77,7 @@ const Select = styled.select<{isBorderStyle?: boolean}>`
 
       ${BREAKPOINT.m`
         font-size: 16px;
-        `};
+      `};
     `};
 `;
 
