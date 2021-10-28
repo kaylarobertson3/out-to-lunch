@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import { COLOR, BREAKPOINT, FONT } from "@src/theme";
+import {COLOR, BREAKPOINT, FONT} from "@src/theme";
 import MapContainer from "@components/MapContainer";
 import Pagination from "react-js-pagination";
 import SelectDropdown from "@src/components/SelectDropdown";
@@ -27,8 +27,9 @@ const CardSectionWrapper = styled.section`
         text-decoration: none;
       }
       ${BREAKPOINT.m`
-      margin: 1rem;
-      padding: 0.5rem 1rem;  `};
+        margin: 1rem;
+        padding: 0.5rem 1rem;
+      `};
       :hover {
         background: ${COLOR.black};
         color: ${COLOR.white};
@@ -60,8 +61,6 @@ const MenuBar = styled.div`
   margin-bottom: 2.5rem;
   align-items: center;
 `;
-
-const FloatLeft = styled.div``;
 
 const FloatRight = styled.div`
   display: flex;
@@ -107,9 +106,9 @@ const Wrapper = styled.div`
 `;
 
 const SORT_BTN_SELECT = [
-  { name: "Sort by: top rated", value: "rating" },
-  { name: "Sort by: closest", value: "distance" },
-  { name: "Sort: A-Z", value: "a-z" }
+  {name: "Top rated", value: "rating"},
+  {name: "Closest", value: "distance"},
+  {name: "A-Z", value: "a-z"},
 ];
 
 interface CardSectionState {
@@ -137,28 +136,15 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
       clickedLat: null,
       activePage: this.props.activePage,
       clickedLong: null,
-      clickedPos: null
+      clickedPos: null,
     };
   }
 
   render() {
-    const {
-      cardData,
-      updateSortParams,
-      sortParams,
-      resultsText,
-      activePage,
-      changeActivePage
-    } = this.props;
+    const {cardData, updateSortParams, sortParams, resultsText, activePage, changeActivePage} = this.props;
 
     const perPage = () => {
-      return window.innerWidth >= 1750
-        ? 12
-        : window.innerWidth >= 1320
-        ? 9
-        : window.innerWidth >= 900
-        ? 6
-        : 3;
+      return window.innerWidth >= 1750 ? 12 : window.innerWidth >= 1320 ? 9 : window.innerWidth >= 900 ? 6 : 3;
     };
 
     const dataPartial = () => {
@@ -175,11 +161,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
     return (
       <CardSectionWrapper>
         <MenuBar>
-          <FloatLeft>
-            {resultsText && (
-              <ResultsTextContainer>{resultsText}</ResultsTextContainer>
-            )}
-          </FloatLeft>
+          <div>{resultsText && <ResultsTextContainer>{resultsText}</ResultsTextContainer>}</div>
           <FloatRight>
             <SelectDropdown
               name="sort"
@@ -188,7 +170,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
               options={SORT_BTN_SELECT.map(opt => opt)}
               handleChange={e => {
                 updateSortParams(e.target.value);
-                this.setState({ sortParams: e.target.value, activePage: 1 });
+                this.setState({sortParams: e.target.value, activePage: 1});
               }}
               isBorderStyle
             />
@@ -197,7 +179,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
         <Wrapper>
           <CardWrapper>
             <Cards id="cards">
-              {cardData.length >= 1 && (
+              {cardData.length >= 1 &&
                 dataPartial().map((d, i) => {
                   const cuisinePathName = d.cuisine.toLowerCase();
                   const cuisineFallbackImg = `./assets/img/cards/placeholders/${cuisinePathName}.jpg`;
@@ -205,11 +187,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
                     <Card
                       key={`card-${i}`}
                       name={d.name}
-                      imgUrl={
-                        d.imgUrl && d.imgUrl !== ""
-                          ? `./assets/img/cards/${d.imgUrl}`
-                          : cuisineFallbackImg
-                      }
+                      imgUrl={d.imgUrl && d.imgUrl !== "" ? `./assets/img/cards/${d.imgUrl}` : cuisineFallbackImg}
                       price={d.price}
                       lat={d.lat}
                       long={d.long}
@@ -218,14 +196,13 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
                       description={d.description}
                       handleCardClick={() => {
                         this.setState({
-                          clickedPos: d.name
+                          clickedPos: d.name,
                         });
                       }}
                       tags={[d.cuisine, d.cuisine2, d.cuisine3]}
                     />
                   );
-                })
-              )}
+                })}
             </Cards>
             {cardData.length > perPage() && (
               <Pagination
@@ -242,10 +219,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
               />
             )}
           </CardWrapper>
-          <MapContainer
-            clickedPos={this.state.clickedPos}
-            cardData={dataPartial()}
-          />
+          <MapContainer clickedPos={this.state.clickedPos} cardData={dataPartial()} />
         </Wrapper>
       </CardSectionWrapper>
     );

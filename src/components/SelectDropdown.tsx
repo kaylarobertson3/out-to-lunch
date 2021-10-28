@@ -73,6 +73,7 @@ const Select = styled.select<{isBorderStyle?: boolean}>`
       min-width: 200px;
       padding: 5px 30px 5px 8px;
       margin: 0;
+      margin-left: 0.5rem;
 
       ${BREAKPOINT.m`
         font-size: 16px;

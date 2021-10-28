@@ -9,23 +9,23 @@ export default {
     [
       require.resolve("react-static-plugin-source-filesystem"),
       {
-        location: path.resolve("./src/pages")
-      }
+        location: path.resolve("./src/pages"),
+      },
     ],
     require.resolve("react-static-plugin-reach-router"),
-    require.resolve("react-static-plugin-sitemap")
+    require.resolve("react-static-plugin-sitemap"),
   ],
   resolve: {
-    extensions: ["", ".webpack.js", ".web.js", ".js"]
+    extensions: ["", ".webpack.js", ".web.js", ".js"],
   },
   module: {
     loaders: [
       {
         test: /\.json$/,
-        loader: "json-loader"
-      }
-    ]
-  }
+        loader: "json-loader",
+      },
+    ],
+  },
 };
 
 // import axios from "axios";
