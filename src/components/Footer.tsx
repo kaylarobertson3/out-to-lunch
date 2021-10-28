@@ -21,8 +21,8 @@ const FooterInner = styled.div`
   justify-content: space-between;
 
   ${BREAKPOINT.m`
-	margin-top: 0;
-    `};
+    margin-top: 0;
+  `};
 `;
 
 const FooterRight = styled.div`
@@ -37,10 +37,11 @@ const FooterRight = styled.div`
   }
 `;
 
-const ScrollTopBtn = styled.a`
+const ScrollTopBtn = styled.button`
   background: none;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Footer = () => {
@@ -64,11 +65,10 @@ const Footer = () => {
     <FooterStyled>
       <FooterInner>
         <FooterRight>
-          <h6>© Infographics Group 2019 </h6>
-          {/* <h6>About </h6> */}
+          <h6>Created at Sapera in 2019</h6>
         </FooterRight>
-        <ScrollTopBtn onClick={scrollToTop}>
-          <img src={scrollIcon} alt="scroll to top" />
+        <ScrollTopBtn onClick={scrollToTop} aria-label="scroll to top of page">
+          <img src={scrollIcon} alt="" />
         </ScrollTopBtn>
       </FooterInner>
     </FooterStyled>
