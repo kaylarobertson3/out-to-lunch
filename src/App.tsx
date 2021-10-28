@@ -1,7 +1,8 @@
-import {Router} from '@reach/router';
-import {BREAKPOINT, COLOR, FONT} from '@src/theme';
+import { Router } from '@reach/router';
+import { BREAKPOINT, COLOR, FONT } from '@src/theme';
 import React from 'react';
-import {addPrefetchExcludes, Root, Routes} from 'react-static';
+import { Helmet } from 'react-helmet';
+import { addPrefetchExcludes, Root, Routes } from 'react-static';
 import styled from 'styled-components';
 import './app.css';
 
@@ -82,6 +83,11 @@ addPrefetchExcludes(['dynamic']);
 function App() {
   return (
     <Root>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Out To Lunch | IGG</title>
+        <link rel="canonical" href="https://out-to-lunch.netlify.app/" />
+      </Helmet>
       <Site>
         <Content>
           <React.Suspense fallback={<em>Loading...</em>}>
