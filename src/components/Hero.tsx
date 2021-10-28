@@ -1,6 +1,6 @@
 import SelectDropdown from '@src/components/SelectDropdown';
-import {BREAKPOINT, COLOR} from '@src/theme';
-import React, {useState} from 'react';
+import { BREAKPOINT, COLOR } from '@src/theme';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const HeroContainer = styled.section`
@@ -12,7 +12,7 @@ const HeroContainer = styled.section`
 
   ${BREAKPOINT.m`
     display: flex;
-    `};
+   `};
 `;
 
 const MainSearch = styled.div`
@@ -20,43 +20,27 @@ const MainSearch = styled.div`
   text-align: center;
 `;
 
-const Filters = styled.form`
-  margin-top: 1rem;
-  display: flex;
-  align-items: flex-start;
-  ${BREAKPOINT.m`
-    align-items: center;
-  `};
-`;
-
 const FiltersContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-
-  ${BREAKPOINT.m`
-    align-items: center;
-  `};
+  form {
+    margin: 0.2rem 0.5rem;
+  }
 `;
 
 const FilterTop = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
-  align-items: flex-end;
 
   ${BREAKPOINT.m`
-      display: flex;
-      flex-direction: row;
-      align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   `};
-`;
 
-const FilterGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  :nth-child(2) {
+    ${BREAKPOINT.m`
+      marginLeft: 2rem;
+    `}
+  }
 `;
 
 const FindFoodBtn = styled.button`
@@ -69,14 +53,15 @@ const FindFoodBtn = styled.button`
 `;
 
 const Buttons = styled.div`
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
   ${BREAKPOINT.m`
-  flex-direction: row;
+    flex-direction: row;
+    margin-top: 2rem;
   `};
 `;
 
@@ -93,16 +78,16 @@ const ResetBtn = styled.button`
 `;
 
 const PRICE_SELECT = [
-  {name: 'any price', value: 'any'},
-  {name: '$', value: 1},
-  {name: '$$', value: 2},
-  {name: '$$$', value: 3},
+  { name: 'any price', value: 'any' },
+  { name: '$', value: 1 },
+  { name: '$$', value: 2 },
+  { name: '$$$', value: 3 },
 ];
 
 const DISTANCE_SELECT = [
-  {name: 'any distance', value: 'any'},
-  {name: 'under 5 minutes', value: 5},
-  {name: 'under 10 minutes', value: 10},
+  { name: 'any distance', value: 'any' },
+  { name: 'under 5 minutes', value: 5 },
+  { name: 'under 10 minutes', value: 10 },
 ];
 
 interface HeroProps {
@@ -111,7 +96,7 @@ interface HeroProps {
   handleClick: any;
   handleReset;
 }
-const Hero = ({handleClick, cuisines, handleReset}: HeroProps) => {
+const Hero = ({ handleClick, cuisines, handleReset }: HeroProps) => {
   const [cuisineFilter, setCuisineFilter] = useState('any');
   const [priceFilter, setPriceFilter] = useState('any');
   const [distanceFilter, setDistanceFilter] = useState('any');
@@ -124,48 +109,40 @@ const Hero = ({handleClick, cuisines, handleReset}: HeroProps) => {
     <HeroContainer>
       <MainSearch>
         <h1>What sounds good?</h1>
-        <Filters>
-          <FiltersContainer>
-            <FilterTop>
-              <FilterGroup>
-                <SelectDropdown
-                  name={'cusine'}
-                  label={'I want'}
-                  value={cuisineFilter}
-                  options={cuisines}
-                  handleChange={e => {
-                    setCuisineFilter(e.target.value);
-                    handleChange(e.target.value, priceFilter, distanceFilter);
-                  }}
-                />
-              </FilterGroup>
-              <FilterGroup>
-                <SelectDropdown
-                  name={'price'}
-                  label={'for'}
-                  value={priceFilter}
-                  options={PRICE_SELECT.map(price => price)}
-                  handleChange={e => {
-                    setPriceFilter(e.target.value);
-                    handleChange(cuisineFilter, e.target.value, distanceFilter);
-                  }}
-                />
-              </FilterGroup>
-            </FilterTop>
-            <FilterGroup>
-              <SelectDropdown
-                name={'distance'}
-                label={'and want to walk'}
-                value={distanceFilter}
-                options={DISTANCE_SELECT.map(price => price)}
-                handleChange={e => {
-                  setDistanceFilter(e.target.value);
-                  handleChange(cuisineFilter, priceFilter, e.target.value);
-                }}
-              />
-            </FilterGroup>
-          </FiltersContainer>
-        </Filters>
+        <FiltersContainer>
+          <FilterTop>
+            <SelectDropdown
+              name={'cusine'}
+              label={'Cuisine:'}
+              value={cuisineFilter}
+              options={cuisines}
+              handleChange={e => {
+                setCuisineFilter(e.target.value);
+                handleChange(e.target.value, priceFilter, distanceFilter);
+              }}
+            />
+            <SelectDropdown
+              name={'price'}
+              label={'Price point:'}
+              value={priceFilter}
+              options={PRICE_SELECT.map(price => price)}
+              handleChange={e => {
+                setPriceFilter(e.target.value);
+                handleChange(cuisineFilter, e.target.value, distanceFilter);
+              }}
+            />
+          </FilterTop>
+          <SelectDropdown
+            name={'distance'}
+            label={'Walking distance:'}
+            value={distanceFilter}
+            options={DISTANCE_SELECT.map(price => price)}
+            handleChange={e => {
+              setDistanceFilter(e.target.value);
+              handleChange(cuisineFilter, priceFilter, e.target.value);
+            }}
+          />
+        </FiltersContainer>
         <Buttons>
           <ResetBtn
             onClick={e => {

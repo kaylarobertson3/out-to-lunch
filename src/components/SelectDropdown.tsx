@@ -1,27 +1,38 @@
 import arrowIcon from '@public/assets/icons/arrow.png';
-import {BREAKPOINT, COLOR, FONT} from '@src/theme';
+import { BREAKPOINT, COLOR, FONT } from '@src/theme';
 import * as React from 'react';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const Select = styled.select<{isBorderStyle?: boolean}>`
-  background: none;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: 2px solid ${COLOR.black};
-  padding: 0.6em 1.4em 0.5em 0.8em;
-  border-radius: 0;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  ${BREAKPOINT.s`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  `};
+`;
+
+const Select = styled.select<{ isSmallStyle?: boolean }>`
+  border: 1px solid ${COLOR.black};
+  border-radius: 5px;
+  width: auto;
+  min-width: 200px;
+  padding: 8px 30px 8px 10px;
+  margin: 0.5rem;
   appearance: none;
   background-image: url(${arrowIcon});
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
-  margin: 0 1rem;
-  width: 200px;
   font: normal 500 16px/23px ${FONT.sansSerif};
 
   ${BREAKPOINT.m`
     font-size: 20px;
+    margin: .5rem;
   `};
 
   ::-ms-expand {
@@ -65,27 +76,32 @@ const Select = styled.select<{isBorderStyle?: boolean}>`
   }
 
   ${p =>
-    p.isBorderStyle &&
+    p.isSmallStyle &&
     css`
-      border: 1px solid ${COLOR.black};
-      border-radius: 5px;
-      width: auto;
-      min-width: 200px;
-      padding: 5px 30px 5px 8px;
-      margin: 0;
-      margin-left: 0.5rem;
-
+      padding: 5px 20px 5px 8px;
+      margin: 0 0 0 1rem;
+      font-size: 12px;
       ${BREAKPOINT.m`
         font-size: 16px;
       `};
     `};
 `;
 
-const Label = styled.label`
+const Label = styled.label<{ isSmallStyle?: Boolean }>`
   font: normal 500 16px/23px ${FONT.sansSerif};
   ${BREAKPOINT.m`
-    width: 100%;
+    font-size: 20px;
+    // width: 100%;
   `};
+
+  ${p =>
+    p.isSmallStyle &&
+    css`
+      font-size: 12px;
+      ${BREAKPOINT.m`
+        font-size: 16px;
+      `}
+    `}
 `;
 
 interface SelectDropdownProps {
@@ -95,14 +111,24 @@ interface SelectDropdownProps {
   value: string | number;
   options: any[];
   handleChange: (value: any) => void;
-  isBorderStyle?: boolean;
+  isSmallStyle?: boolean;
 }
 
-const SelectDropdown = ({className, name, label, value, options, handleChange, isBorderStyle}: SelectDropdownProps) => {
+const SelectDropdown = ({
+  className,
+  name,
+  label,
+  value,
+  options,
+  handleChange,
+  isSmallStyle,
+}: SelectDropdownProps) => {
   return (
-    <form className={className}>
-      <Label htmlFor={name}>{label}</Label>
-      <Select name={name} value={value} onChange={handleChange} isBorderStyle={isBorderStyle} id={name}>
+    <Form className={className}>
+      <Label isSmallStyle={isSmallStyle} htmlFor={name}>
+        {label}
+      </Label>
+      <Select name={name} value={value} onChange={handleChange} isSmallStyle={isSmallStyle} id={name}>
         {options.map((opt, i) => {
           return (
             <option key={`${value}-${i}`} value={opt.value ? opt.value : opt}>
@@ -111,7 +137,7 @@ const SelectDropdown = ({className, name, label, value, options, handleChange, i
           );
         })}
       </Select>
-    </form>
+    </Form>
   );
 };
 

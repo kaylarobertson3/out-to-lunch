@@ -171,7 +171,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
               updateSortParams(e.target.value);
               this.setState({sortParams: e.target.value, activePage: 1});
             }}
-            isBorderStyle
+            isSmallStyle
           />
         </MenuBar>
         <Wrapper>
