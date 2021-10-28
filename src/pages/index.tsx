@@ -1,18 +1,18 @@
-import React from "react";
-import Hero from "@components/Hero";
-import CardSection from "@components/CardSection";
-import SearchSection from "@components/SearchSection";
-import dataUnsorted from "@src/data/data.json";
-import {Events, scroller} from "react-scroll";
-import Footer from "@components/Footer";
-import {ANIMATION} from "@src/constants";
-import {sortData} from "@src/utils/sort";
+import CardSection from '@components/CardSection';
+import Footer from '@components/Footer';
+import Hero from '@components/Hero';
+import SearchSection from '@components/SearchSection';
+import {ANIMATION} from '@src/constants';
+import dataUnsorted from '@src/data/data.json';
+import {sortData} from '@src/utils/sort';
+import React from 'react';
+import {Events, scroller} from 'react-scroll';
 
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating;
 });
 
-const cuisines = ["any"];
+const cuisines = ['any'];
 
 data.map(d => {
   const cuisine = d.cuisine.toLowerCase();
@@ -43,36 +43,36 @@ class Home extends React.Component<
       cuisine: null,
       price: null,
       distance: null,
-      query: "",
-      resultsText: "All restaurants",
-      sortParams: "rating",
+      query: '',
+      resultsText: 'All restaurants',
+      sortParams: 'rating',
       activePage: 1,
     };
   }
 
   componentDidMount = () => {
-    Events.scrollEvent.register("end", (to, element) => {
-      console.log("end");
+    Events.scrollEvent.register('end', (to, element) => {
+      console.log('end');
     });
   };
 
   componentWillUnmount = () => {
-    Events.scrollEvent.remove("end");
+    Events.scrollEvent.remove('end');
   };
 
   handleReset = e => {
     e.preventDefault();
-    this.updateSortParams("rating");
+    this.updateSortParams('rating');
     this.setState({
       data: data,
       activePage: 1,
-      query: "",
-      resultsText: "All restaurants",
+      query: '',
+      resultsText: 'All restaurants',
     });
   };
 
   scrollToCard = () => {
-    scroller.scrollTo("cards", {
+    scroller.scrollTo('cards', {
       duration: ANIMATION.duration,
       smooth: true,
       offset: -150,
@@ -82,18 +82,18 @@ class Home extends React.Component<
   handleFilter = (cuisineFilter, priceFilter, distanceFilter) => {
     const cuisineConditional = d => {
       return (
-        cuisineFilter === "any" ||
+        cuisineFilter === 'any' ||
         d.cuisine.toLowerCase() === cuisineFilter ||
         d.cuisine2.toLowerCase() === cuisineFilter
       );
     };
 
     const priceConditional = d => {
-      return priceFilter === "any" || Number(d.price) === Number(priceFilter);
+      return priceFilter === 'any' || Number(d.price) === Number(priceFilter);
     };
 
     const distanceConditional = d => {
-      return distanceFilter === "any" || d.distanceMinutes <= distanceFilter;
+      return distanceFilter === 'any' || d.distanceMinutes <= distanceFilter;
     };
 
     const filteredData = data.filter(d => {
@@ -101,31 +101,31 @@ class Home extends React.Component<
     });
 
     const cuisineText = () => {
-      if (cuisineFilter == "any") return "Any cuisine";
-      else return cuisineFilter;
+      if (cuisineFilter == 'any') return 'Any cuisine';
+      else return cuisineFilter.charAt(0).toUpperCase() + cuisineFilter.slice(1);
     };
 
     const priceText = () => {
-      if (priceFilter === "any") {
-        return "Any price";
+      if (priceFilter === 'any') {
+        return 'Any price';
       } else if (priceFilter == 1) {
-        return "$";
+        return '$';
       } else if (priceFilter == 2) {
-        return "$$";
+        return '$$';
       } else if (priceFilter == 3) {
-        return "$$$";
-      } else return "?";
+        return '$$$';
+      } else return '?';
     };
 
     const distanceText = () => {
-      if (distanceFilter === "any") {
-        return "any distance";
+      if (distanceFilter === 'any') {
+        return 'Any distance';
       } else return `Under ${distanceFilter} min.`;
     };
 
     this.setState({
       data: filteredData,
-      resultsText: cuisineText() + ", " + priceText() + ", " + distanceText(),
+      resultsText: cuisineText() + ', ' + priceText() + ', ' + distanceText(),
     });
   };
 
@@ -147,7 +147,7 @@ class Home extends React.Component<
     this.setState({
       activePage: 1,
       data: randomResturant,
-      resultsText: "Go to: " + randomResturant[0].name,
+      resultsText: 'Go to: ' + randomResturant[0].name,
     });
   };
 

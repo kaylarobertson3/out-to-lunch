@@ -1,12 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { COLOR, BREAKPOINT, FONT } from "@src/theme";
-import starIcon from "@public/assets/icons/star.svg";
-import walkIcon from "@public/assets/icons/walk.svg";
+import walkIcon from '@public/assets/icons/walk.svg';
+import {BREAKPOINT, COLOR} from '@src/theme';
+import React from 'react';
+import styled from 'styled-components';
 
-const CardLink = styled.a`
-  height: 100%;
-`;
+// const CardLink = styled.a`
+//   height: 100%;
+// `;
 
 const CardContainer = styled.div`
   transition: all 300ms ease-out;
@@ -151,19 +150,10 @@ const Details = styled.div`
   }
 `;
 
-const Rating = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-right: 1rem;
-`;
-
 interface CardProps {
   imgUrl: string;
   price: number;
   name: string;
-  rating: number;
   distance: number;
   description: string;
   tags?: string[];
@@ -174,59 +164,50 @@ interface CardProps {
 
 class Card extends React.Component<CardProps> {
   render() {
-    const {
-      imgUrl,
-      price,
-      name,
-      rating,
-      distance,
-      tags
-    } = this.props;
+    const {imgUrl, price, name, distance, tags} = this.props;
 
     const priceText = () => {
       if (price == 1) {
-        return "$";
+        return '$';
       } else if (price == 2) {
-        return "$$";
+        return '$$';
       } else if (price == 3) {
-        return "$$$";
-      } else return "?";
+        return '$$$';
+      } else return '?';
     };
 
     return (
-      <CardLink
+      <CardContainer
+        tabIndex={0}
+        role="button"
+        // TODO listen for enter or space key onKeyPress
+        // TODO move focus to popup when clicked
         onClick={e => {
           this.props.handleCardClick();
         }}
       >
-        <CardContainer>
-          <ImgContainer>
-            <Img src={imgUrl} alt={name} />
-            <Details>
-              {/* <Rating>
-                <img src={starIcon} alt="rating" />
-                <h5>{rating}</h5>
-              </Rating> */}
-              <Distance>
-                <img height="15px" src={walkIcon} alt="walking distance" />
-                <h5>{distance} min.</h5>
-              </Distance>
-            </Details>
-          </ImgContainer>
-          <TextContainer>
-            <NameWrapper>
-              <Name>{name}</Name>
-              <Price>{priceText()}</Price>
-            </NameWrapper>
-            <Row>
-              <Tags>
-                {tags && tags[0] && <Tag>{tags[0]}</Tag>}
-                {tags && tags[1] && <Tag>{tags[1]}</Tag>}
-              </Tags>
-            </Row>
-          </TextContainer>
-        </CardContainer>
-      </CardLink>
+        <ImgContainer>
+          <Img src={imgUrl} alt={name} />
+          <Details>
+            <Distance>
+              <img height="15px" src={walkIcon} alt="person walking icon" />
+              <h5>{distance} min.</h5>
+            </Distance>
+          </Details>
+        </ImgContainer>
+        <TextContainer>
+          <NameWrapper>
+            <Name>{name}</Name>
+            <Price>{priceText()}</Price>
+          </NameWrapper>
+          <Row>
+            <Tags>
+              {tags && tags[0] && <Tag>{tags[0]}</Tag>}
+              {tags && tags[1] && <Tag>{tags[1]}</Tag>}
+            </Tags>
+          </Row>
+        </TextContainer>
+      </CardContainer>
     );
   }
 }

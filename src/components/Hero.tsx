@@ -1,8 +1,7 @@
-import React, {useState} from "react";
-import styled from "styled-components";
-import {COLOR, BREAKPOINT, FONT} from "@src/theme";
-import arrowIcon from "@public/assets/icons/arrow.png";
-import SelectDropdown from "@src/components/SelectDropdown";
+import SelectDropdown from '@src/components/SelectDropdown';
+import {BREAKPOINT, COLOR} from '@src/theme';
+import React, {useState} from 'react';
+import styled from 'styled-components';
 
 const HeroContainer = styled.section`
   display: flex;
@@ -86,21 +85,24 @@ const ResetBtn = styled.button`
   background: none;
   border: 1px solid ${COLOR.black};
   border-radius: 0.5rem;
-  margin: 1rem 0.5rem;
+  margin: 0rem 0.5rem;
   padding: 8px 10px;
+  ${BREAKPOINT.m`
+    margin: 1rem 0.5rem;
+  `};
 `;
 
 const PRICE_SELECT = [
-  {name: "any price", value: "any"},
-  {name: "$", value: 1},
-  {name: "$$", value: 2},
-  {name: "$$$", value: 3},
+  {name: 'any price', value: 'any'},
+  {name: '$', value: 1},
+  {name: '$$', value: 2},
+  {name: '$$$', value: 3},
 ];
 
 const DISTANCE_SELECT = [
-  {name: "any distance", value: "any"},
-  {name: "under 5 minutes", value: 5},
-  {name: "under 10 minutes", value: 10},
+  {name: 'any distance', value: 'any'},
+  {name: 'under 5 minutes', value: 5},
+  {name: 'under 10 minutes', value: 10},
 ];
 
 interface HeroProps {
@@ -110,9 +112,9 @@ interface HeroProps {
   handleReset;
 }
 const Hero = ({handleClick, cuisines, handleReset}: HeroProps) => {
-  const [cuisineFilter, setCuisineFilter] = useState("any");
-  const [priceFilter, setPriceFilter] = useState("any");
-  const [distanceFilter, setDistanceFilter] = useState("any");
+  const [cuisineFilter, setCuisineFilter] = useState('any');
+  const [priceFilter, setPriceFilter] = useState('any');
+  const [distanceFilter, setDistanceFilter] = useState('any');
 
   function handleChange(cuisineFilter, priceFilter, distanceFilter) {
     handleClick(cuisineFilter, priceFilter, distanceFilter);
@@ -127,8 +129,8 @@ const Hero = ({handleClick, cuisines, handleReset}: HeroProps) => {
             <FilterTop>
               <FilterGroup>
                 <SelectDropdown
-                  name={"cusine"}
-                  label={"I want"}
+                  name={'cusine'}
+                  label={'I want'}
                   value={cuisineFilter}
                   options={cuisines}
                   handleChange={e => {
@@ -139,8 +141,8 @@ const Hero = ({handleClick, cuisines, handleReset}: HeroProps) => {
               </FilterGroup>
               <FilterGroup>
                 <SelectDropdown
-                  name={"price"}
-                  label={"for"}
+                  name={'price'}
+                  label={'for'}
                   value={priceFilter}
                   options={PRICE_SELECT.map(price => price)}
                   handleChange={e => {
@@ -152,8 +154,8 @@ const Hero = ({handleClick, cuisines, handleReset}: HeroProps) => {
             </FilterTop>
             <FilterGroup>
               <SelectDropdown
-                name={"distance"}
-                label={"and want to walk"}
+                name={'distance'}
+                label={'and want to walk'}
                 value={distanceFilter}
                 options={DISTANCE_SELECT.map(price => price)}
                 handleChange={e => {
@@ -167,9 +169,9 @@ const Hero = ({handleClick, cuisines, handleReset}: HeroProps) => {
         <Buttons>
           <ResetBtn
             onClick={e => {
-              setCuisineFilter("any");
-              setPriceFilter("any");
-              setDistanceFilter("any");
+              setCuisineFilter('any');
+              setPriceFilter('any');
+              setDistanceFilter('any');
               handleReset(e);
             }}
           >

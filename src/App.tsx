@@ -1,9 +1,9 @@
-import React from "react";
-import {Root, Routes, addPrefetchExcludes} from "react-static";
-import {Router} from "@reach/router";
-import "./app.css";
-import styled from "styled-components";
-import {FONT, COLOR, BREAKPOINT} from "@src/theme";
+import {Router} from '@reach/router';
+import {BREAKPOINT, COLOR, FONT} from '@src/theme';
+import React from 'react';
+import {addPrefetchExcludes, Root, Routes} from 'react-static';
+import styled from 'styled-components';
+import './app.css';
 
 const Site = styled.div`
   display: flex;
@@ -57,7 +57,10 @@ const Site = styled.div`
   }
 
   section {
-    padding: 4rem 0 0 0;
+    padding: 2rem 0 0 0;
+    ${BREAKPOINT.m`
+      padding: 4rem 0 0 0;
+  `};
   }
 `;
 
@@ -74,7 +77,7 @@ const Content = styled.main`
 `;
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(["dynamic"]);
+addPrefetchExcludes(['dynamic']);
 
 function App() {
   return (

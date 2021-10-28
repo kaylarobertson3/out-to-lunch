@@ -1,21 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import {BREAKPOINT, FONT, COLOR} from "@src/theme";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import {Map, Popup, TileLayer, Marker} from "react-leaflet";
-import {IGG_MAP_POSITION} from "@src/constants";
+import {IGG_MAP_POSITION} from '@src/constants';
+import {BREAKPOINT, COLOR, FONT} from '@src/theme';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import React from 'react';
+import {Map, Marker, Popup, TileLayer} from 'react-leaflet';
+import styled from 'styled-components';
 
 // default icon
 const DefaultIcon = (L.Marker.prototype.options.icon = L.icon({
-  iconUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require('leaflet/dist/images/marker-icon-2x.png'),
   iconAnchor: [13, 27],
   iconSize: [20, null],
 }));
 
 // IGG icon
 const IggIcon = (L.Marker.prototype.options.icon = L.icon({
-  iconUrl: require("@public/assets/icons/iggCircle.svg"),
+  iconUrl: require('@public/assets/icons/iggCircle.svg'),
   iconAnchor: [13, 27],
   iconSize: [30, 30],
 }));
@@ -23,9 +23,11 @@ const IggIcon = (L.Marker.prototype.options.icon = L.icon({
 const LeafletWrapper = styled.div`
   width: 100%;
   margin: 0 0 2rem 0;
+  display: none;
 
   ${BREAKPOINT.m`
       margin: 0 0 1rem 3rem;
+      display: block;
       width: 50%;
    `};
 
@@ -68,8 +70,9 @@ const LeafletWrapper = styled.div`
 `;
 
 const DirectionsBtn = styled.a`
-  /* background: ${COLOR.black}; */
-  /* color: ${COLOR.white}; */
+  p {
+    text-decoration: underline;
+  }
 `;
 
 interface MapContainerProps {
@@ -108,21 +111,17 @@ const MapContainer = ({cardData, clickedPos}: MapContainerProps) => {
                 <Marker icon={DefaultIcon} position={[lat, lng]}>
                   <Popup position={[lat, lng]}>
                     <p>{d.name}</p>
-                    {/* <p>{d.rating}</p>
-                      <p>{d.price}</p>
-                      <p>{d.distance<inutes}</p> */}
                     <DirectionsBtn href={link}>
-                      <p>Directions -></p>
+                      <p>Get directions</p>
                     </DirectionsBtn>
                   </Popup>
                 </Marker>
                 {clickedPos === d.name && (
                   <Popup position={[lat, lng]}>
                     <p>{d.name}</p>
-                    {/* <p>{d.rating}</p>
-                      <p>{d.price}</p>
-                      <p>{d.distanceMinutes}</p> */}
-                    <DirectionsBtn href={link}>Directions -></DirectionsBtn>
+                    <DirectionsBtn href={link}>
+                      <p>Get directions</p>
+                    </DirectionsBtn>
                   </Popup>
                 )}
               </div>

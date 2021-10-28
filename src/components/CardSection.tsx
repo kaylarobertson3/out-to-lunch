@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
-import Card from "./Card";
-import {COLOR, BREAKPOINT, FONT} from "@src/theme";
-import MapContainer from "@components/MapContainer";
-import Pagination from "react-js-pagination";
-import SelectDropdown from "@src/components/SelectDropdown";
+import SelectDropdown from '@src/components/SelectDropdown';
+import {BREAKPOINT, COLOR} from '@src/theme';
+import React from 'react';
+import Pagination from 'react-js-pagination';
+import styled from 'styled-components';
+import Card from './Card';
+import MapContainer from './MapContainer';
 
 const CardSectionWrapper = styled.section`
   max-width: 100vw;
@@ -56,16 +56,13 @@ const CardSectionWrapper = styled.section`
 
 const MenuBar = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 2.5rem;
   align-items: center;
-`;
-
-const FloatRight = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  ${BREAKPOINT.m`
+    flex-direction: row;
+  `};
 `;
 
 const CardWrapper = styled.div`
@@ -85,15 +82,18 @@ const Cards = styled.div`
   align-items: stretch;
   width: 100%;
   ${BREAKPOINT.m`
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    `};
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  `};
 `;
 
 const ResultsTextContainer = styled.h4`
   font-weight: 600;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: 1.2;
+  margin-bottom: 1rem;
   ${BREAKPOINT.m`
+    font-size: 2rem;
+    margin-bottom: 0;
   `};
 `;
 
@@ -101,14 +101,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
   ${BREAKPOINT.m`
-      flex-direction: row;
+    flex-direction: row;
   `};
 `;
 
 const SORT_BTN_SELECT = [
-  {name: "Top rated", value: "rating"},
-  {name: "Closest", value: "distance"},
-  {name: "A-Z", value: "a-z"},
+  {name: 'Top rated', value: 'rating'},
+  {name: 'Closest', value: 'distance'},
+  {name: 'A-Z', value: 'a-z'},
 ];
 
 interface CardSectionState {
@@ -161,20 +161,18 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
     return (
       <CardSectionWrapper>
         <MenuBar>
-          <div>{resultsText && <ResultsTextContainer>{resultsText}</ResultsTextContainer>}</div>
-          <FloatRight>
-            <SelectDropdown
-              name="sort"
-              label="sort results"
-              value={sortParams}
-              options={SORT_BTN_SELECT.map(opt => opt)}
-              handleChange={e => {
-                updateSortParams(e.target.value);
-                this.setState({sortParams: e.target.value, activePage: 1});
-              }}
-              isBorderStyle
-            />
-          </FloatRight>
+          {resultsText && <ResultsTextContainer>{resultsText}</ResultsTextContainer>}
+          <SelectDropdown
+            name="sort"
+            label="Sort by"
+            value={sortParams}
+            options={SORT_BTN_SELECT.map(opt => opt)}
+            handleChange={e => {
+              updateSortParams(e.target.value);
+              this.setState({sortParams: e.target.value, activePage: 1});
+            }}
+            isBorderStyle
+          />
         </MenuBar>
         <Wrapper>
           <CardWrapper>
@@ -187,11 +185,10 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
                     <Card
                       key={`card-${i}`}
                       name={d.name}
-                      imgUrl={d.imgUrl && d.imgUrl !== "" ? `./assets/img/cards/${d.imgUrl}` : cuisineFallbackImg}
+                      imgUrl={d.imgUrl && d.imgUrl !== '' ? `./assets/img/cards/${d.imgUrl}` : cuisineFallbackImg}
                       price={d.price}
                       lat={d.lat}
                       long={d.long}
-                      rating={d.rating}
                       distance={d.distanceMinutes}
                       description={d.description}
                       handleCardClick={() => {
