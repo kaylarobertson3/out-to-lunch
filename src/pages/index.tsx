@@ -2,11 +2,11 @@ import CardSection from '@components/CardSection';
 import Footer from '@components/Footer';
 import Hero from '@components/Hero';
 import SearchSection from '@components/SearchSection';
-import {ANIMATION} from '@src/constants';
+import { ANIMATION } from '@src/constants';
 import dataUnsorted from '@src/data/data.json';
-import {sortData} from '@src/utils/sort';
+import { sortData } from '@src/utils/sort';
 import React from 'react';
-import {Events, scroller} from 'react-scroll';
+import { Events, scroller } from 'react-scroll';
 
 const data = dataUnsorted.sort((a, b) => {
   return b.rating - a.rating;
@@ -123,9 +123,14 @@ class Home extends React.Component<
       } else return `Under ${distanceFilter} min.`;
     };
 
+    const resultsText =
+      filteredData.length >= 1
+        ? `${filteredData.length} results for ${cuisineText()}, ${priceText()}, ${distanceText()}: `
+        : `Sorry, no results for ${cuisineText()}, ${priceText()}, ${distanceText()}`;
+
     this.setState({
       data: filteredData,
-      resultsText: cuisineText() + ', ' + priceText() + ', ' + distanceText(),
+      resultsText: resultsText,
     });
   };
 
@@ -134,7 +139,7 @@ class Home extends React.Component<
     if (this.state.data.length >= 1) {
       sortedData = sortData(this.state.data, sortParams);
     } else sortedData = this.state.data;
-    this.setState({data: sortedData, sortParams: sortParams});
+    this.setState({ data: sortedData, sortParams: sortParams });
   };
 
   handleRandomize = () => {
@@ -153,6 +158,7 @@ class Home extends React.Component<
 
   searchData = () => {
     const queryLower = this.state.query.toLowerCase();
+
     const filteredData = data.filter(item => {
       return Object.keys(item).some(key => {
         if (item[key]) {
@@ -164,6 +170,7 @@ class Home extends React.Component<
         }
       });
     });
+
     const resultsText =
       filteredData.length >= 1
         ? `${filteredData.length} results for ${this.state.query}: `
@@ -183,7 +190,7 @@ class Home extends React.Component<
   };
 
   changeActivePage = newActivePage => {
-    this.setState({activePage: newActivePage});
+    this.setState({ activePage: newActivePage });
   };
 
   render() {
@@ -192,7 +199,7 @@ class Home extends React.Component<
         <Hero
           data={this.state.data}
           cuisines={cuisines}
-          handleClick={this.handleFilter}
+          handleSearch={this.handleFilter}
           handleReset={this.handleReset}
         />
         <CardSection

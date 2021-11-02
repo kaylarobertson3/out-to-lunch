@@ -1,5 +1,5 @@
 import SelectDropdown from '@src/components/SelectDropdown';
-import {BREAKPOINT, COLOR} from '@src/theme';
+import { BREAKPOINT, COLOR } from '@src/theme';
 import React from 'react';
 import Pagination from 'react-js-pagination';
 import styled from 'styled-components';
@@ -106,9 +106,9 @@ const Wrapper = styled.div`
 `;
 
 const SORT_BTN_SELECT = [
-  {name: 'Top rated', value: 'rating'},
-  {name: 'Closest', value: 'distance'},
-  {name: 'A-Z', value: 'a-z'},
+  { name: 'Top rated', value: 'rating' },
+  { name: 'Closest', value: 'distance' },
+  { name: 'A-Z', value: 'a-z' },
 ];
 
 interface CardSectionState {
@@ -141,7 +141,7 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
   }
 
   render() {
-    const {cardData, updateSortParams, sortParams, resultsText, activePage, changeActivePage} = this.props;
+    const { cardData, updateSortParams, sortParams, resultsText, activePage, changeActivePage } = this.props;
 
     const perPage = () => {
       return window.innerWidth >= 1750 ? 12 : window.innerWidth >= 1320 ? 9 : window.innerWidth >= 900 ? 6 : 3;
@@ -162,17 +162,19 @@ class CardSection extends React.Component<CardSectionProps, CardSectionState> {
       <CardSectionWrapper>
         <MenuBar>
           {resultsText && <ResultsTextContainer>{resultsText}</ResultsTextContainer>}
-          <SelectDropdown
-            name="sort"
-            label="Sort by"
-            value={sortParams}
-            options={SORT_BTN_SELECT.map(opt => opt)}
-            handleChange={e => {
-              updateSortParams(e.target.value);
-              this.setState({sortParams: e.target.value, activePage: 1});
-            }}
-            isSmallStyle
-          />
+          {cardData.length > 1 && (
+            <SelectDropdown
+              name="sort"
+              label="Sort results by"
+              value={sortParams}
+              options={SORT_BTN_SELECT.map(opt => opt)}
+              handleChange={e => {
+                updateSortParams(e.target.value);
+                this.setState({ sortParams: e.target.value, activePage: 1 });
+              }}
+              isSmallStyle
+            />
+          )}
         </MenuBar>
         <Wrapper>
           <CardWrapper>

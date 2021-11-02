@@ -20,7 +20,7 @@ const MainSearch = styled.div`
   text-align: center;
 `;
 
-const FiltersContainer = styled.div`
+const FiltersContainer = styled.form`
   form {
     margin: 0.2rem 0.5rem;
   }
@@ -93,17 +93,13 @@ const DISTANCE_SELECT = [
 interface HeroProps {
   data: any;
   cuisines: any;
-  handleClick: any;
+  handleSearch: any;
   handleReset;
 }
-const Hero = ({ handleClick, cuisines, handleReset }: HeroProps) => {
+const Hero = ({ handleSearch, cuisines, handleReset }: HeroProps) => {
   const [cuisineFilter, setCuisineFilter] = useState('any');
   const [priceFilter, setPriceFilter] = useState('any');
   const [distanceFilter, setDistanceFilter] = useState('any');
-
-  function handleChange(cuisineFilter, priceFilter, distanceFilter) {
-    handleClick(cuisineFilter, priceFilter, distanceFilter);
-  }
 
   return (
     <HeroContainer>
@@ -118,7 +114,6 @@ const Hero = ({ handleClick, cuisines, handleReset }: HeroProps) => {
               options={cuisines}
               handleChange={e => {
                 setCuisineFilter(e.target.value);
-                handleChange(e.target.value, priceFilter, distanceFilter);
               }}
             />
             <SelectDropdown
@@ -128,7 +123,6 @@ const Hero = ({ handleClick, cuisines, handleReset }: HeroProps) => {
               options={PRICE_SELECT.map(price => price)}
               handleChange={e => {
                 setPriceFilter(e.target.value);
-                handleChange(cuisineFilter, e.target.value, distanceFilter);
               }}
             />
           </FilterTop>
@@ -139,7 +133,6 @@ const Hero = ({ handleClick, cuisines, handleReset }: HeroProps) => {
             options={DISTANCE_SELECT.map(price => price)}
             handleChange={e => {
               setDistanceFilter(e.target.value);
-              handleChange(cuisineFilter, priceFilter, e.target.value);
             }}
           />
         </FiltersContainer>
@@ -159,10 +152,10 @@ const Hero = ({ handleClick, cuisines, handleReset }: HeroProps) => {
             type="submit"
             onClick={e => {
               e.preventDefault();
-              handleClick(cuisineFilter, priceFilter, distanceFilter);
+              handleSearch(cuisineFilter, priceFilter, distanceFilter);
             }}
           >
-            Find Food!
+            Search
           </FindFoodBtn>
         </Buttons>
       </MainSearch>

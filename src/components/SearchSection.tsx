@@ -10,10 +10,10 @@ const SearchSectionContainer = styled.section`
   max-width: 100vw;
 
   ${BREAKPOINT.m`
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-    `};
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  `};
 
   form {
     width: 100%;
@@ -114,7 +114,7 @@ class SearchSection extends React.Component<{
     super(props);
   }
 
-  handleKeyPress = (event) => {
+  handleKeyPress = event => {
     if (event.key === 'Enter') {
       event.preventDefault();
       this.props.searchData();
@@ -122,9 +122,7 @@ class SearchSection extends React.Component<{
   };
 
   render() {
-    const {
-      handleRandomizeClick, handleInputChange, searchData, query,
-    } = this.props;
+    const { handleRandomizeClick, handleInputChange, searchData, query } = this.props;
 
     return (
       <SearchSectionContainer>
@@ -134,20 +132,20 @@ class SearchSection extends React.Component<{
             <label htmlFor="search">Search for a resturant, cuisine, or location</label>
             <SearchContainer>
               <Input
-                onChange={(e) => {
-                  console.log('e', e);
+                onChange={e => {
                   handleInputChange(e.target.value);
                 }}
                 name="value"
-                placeholder="Restaurant or cuisine..."
-                onKeyDown={(e) => {
+                placeholder='"Indian", "Zen", "Pizza Como"'
+                onKeyDown={e => {
                   this.handleKeyPress(e);
                 }}
                 value={query}
                 id="search"
               />
               <SearchBtn
-                onClick={(e) => {
+                type="submit"
+                onClick={e => {
                   e.preventDefault();
                   searchData();
                 }}

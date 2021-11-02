@@ -3,19 +3,6 @@ import { BREAKPOINT, COLOR, FONT } from '@src/theme';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  ${BREAKPOINT.s`
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  `};
-`;
-
 const Select = styled.select<{ isSmallStyle?: boolean }>`
   border: 1px solid ${COLOR.black};
   border-radius: 5px;
@@ -32,7 +19,7 @@ const Select = styled.select<{ isSmallStyle?: boolean }>`
 
   ${BREAKPOINT.m`
     font-size: 20px;
-    margin: .5rem;
+    margin-bottom: .75rem;
   `};
 
   ::-ms-expand {
@@ -88,20 +75,35 @@ const Select = styled.select<{ isSmallStyle?: boolean }>`
 `;
 
 const Label = styled.label<{ isSmallStyle?: Boolean }>`
-  font: normal 500 16px/23px ${FONT.sansSerif};
-  ${BREAKPOINT.m`
-    font-size: 20px;
-    // width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  ${BREAKPOINT.s`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   `};
 
-  ${p =>
-    p.isSmallStyle &&
-    css`
-      font-size: 12px;
-      ${BREAKPOINT.m`
+  p {
+    font: normal 500 16px/23px ${FONT.sansSerif};
+
+    ${BREAKPOINT.m`
+      font-size: 20px;
+      margin-right: 10px;
+      margin-left: 10px;
+    `};
+
+    ${p =>
+      p.isSmallStyle &&
+      css`
+        font-size: 12px;
+        ${BREAKPOINT.m`
         font-size: 16px;
       `}
-    `}
+      `}
+  }
 `;
 
 interface SelectDropdownProps {
@@ -124,10 +126,8 @@ const SelectDropdown = ({
   isSmallStyle,
 }: SelectDropdownProps) => {
   return (
-    <Form className={className}>
-      <Label isSmallStyle={isSmallStyle} htmlFor={name}>
-        {label}
-      </Label>
+    <Label className={className} isSmallStyle={isSmallStyle}>
+      <p>{label}</p>
       <Select name={name} value={value} onChange={handleChange} isSmallStyle={isSmallStyle} id={name}>
         {options.map((opt, i) => {
           return (
@@ -137,7 +137,7 @@ const SelectDropdown = ({
           );
         })}
       </Select>
-    </Form>
+    </Label>
   );
 };
 
