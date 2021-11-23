@@ -17,7 +17,7 @@ Built during the academy program at Sapera to find a place to eat lunch near the
 ## Quick Start
 
 In your terminal, clone the repo by running
-`git clone git@github.com:kaylarobertson3/out-to-lunch.git`
+`git clone https://github.com/kaylarobertson3/out-to-lunch.git`
 
 Enter repo folder
 `cd out-to-lunch`
